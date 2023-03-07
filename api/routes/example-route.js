@@ -1,5 +1,6 @@
 
 async function exampleRoutes (fastify, options) {
+  /*
   fastify.get('/', (request, reply) => {
     fastify.mysql.query(
       'SELECT idUsuario, nombre FROM usuarios',
@@ -7,6 +8,11 @@ async function exampleRoutes (fastify, options) {
         reply.send(err || result)
       }
     )
+  })
+  */
+
+  fastify.get('/', function (request, reply) {
+    reply.send({ hello: 'world' })
   })
 }
 
