@@ -1,15 +1,9 @@
+const userController = require('../controllers/user-controller')
 
 async function exampleRoutes (fastify, options) {
-  /*
-  fastify.get('/', (request, reply) => {
-    fastify.mysql.query(
-      'SELECT idUsuario, nombre FROM usuarios',
-      function onResult (err, result) {
-        reply.send(err || result)
-      }
-    )
-  })
-  */
+  userController.fastify = fastify
+
+  fastify.get('/users', userController.getUsers)
 
   fastify.get('/', function (request, reply) {
     reply.send({ hello: 'world' })

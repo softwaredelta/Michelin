@@ -1,10 +1,11 @@
 
 const fastifyPlugin = require('fastify-plugin')
 
-async function conectorBD (fastify, options) {
+async function dbConnector (fastify, options) {
   fastify.register(require('@fastify/mysql'), {
+    promise: true,
     connectionString: 'mysql://root@localhost/test'
   })
 }
 
-module.exports = fastifyPlugin(conectorBD)
+module.exports = fastifyPlugin(dbConnector)
