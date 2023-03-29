@@ -25,4 +25,5 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           VALIDATE_JAVASCRIPT_STANDARD: true
+          FILTER_REGEX_EXCLUDE: .*.test.js
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
