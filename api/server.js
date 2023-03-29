@@ -1,13 +1,13 @@
-const fastify = require('fastify')({
+
+const server = require('./app')({
   logger: true
-})
+},
+false
+)
 
-fastify.register(require('./util/db-connector'))
-fastify.register(require('./routes/example-route'))
-
-fastify.listen({ port: 3080 }, function (err, address) {
+server.listen({ port: 3080 }, (err, address) => {
   if (err) {
-    fastify.log.error(err)
+    server.log.error(err)
     process.exit(1)
   }
 })
