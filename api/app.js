@@ -3,6 +3,8 @@ const Fastify = require('fastify')
 function buildFastify (opts = {}, testing) {
   const fastify = Fastify(opts)
 
+  fastify.register(require('fastify-bcrypt'))
+
   if (testing) {
     fastify.register(require('./util/test-db-connector'))
   } else {
