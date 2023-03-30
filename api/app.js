@@ -8,7 +8,9 @@ function buildFastify (opts = {}, testing) {
   } else {
     fastify.register(require('./util/db-connector'))
   }
-  fastify.register(require('./routes/example-route'))
+
+  fastify.register(require('./util/jwt-setup'))
+  fastify.register(require('./routes/user-routes'), { prefix: '/user' })
 
   return fastify
 }
