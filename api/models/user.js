@@ -22,7 +22,6 @@ module.exports = class User {
   static async createUser (fastify, name, lastName, idManager, email, password) {
     await fastify.bcrypt.hash(password)
       .then(async (passwordEncrypted) => {
-        console.log(passwordEncrypted)
         const connection = await fastify.mysql.getConnection()
         await connection.query(
           'INSERT INTO Users(name, last_name, id_manager, mail, password) VALUES (?,?,?,?,?)',
