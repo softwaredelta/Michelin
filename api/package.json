@@ -45,5 +45,6 @@
     "ignore": [
       "/__tests__/*test.js"
     ]
+
   }
 }
