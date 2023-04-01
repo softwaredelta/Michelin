@@ -2,7 +2,7 @@ const formController = require('../controllers/form-controller')
 
 const multer = require('fastify-multer')
 
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ dest: 'uploads/temp' })
 
 async function formRoutes (fastify, options) {
   formController.fastify = fastify
