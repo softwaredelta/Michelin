@@ -3,6 +3,9 @@ const Fastify = require('fastify')
 function buildFastify (opts = {}, testing) {
   const fastify = Fastify(opts)
 
+  fastify.register(require('./util/env-setup'))
+  fastify.register(require('./util/jwt-setup'))
+
   fastify.register(require('fastify-multer').contentParser)
 
   fastify.register(require('fastify-bcrypt'))
@@ -13,7 +16,6 @@ function buildFastify (opts = {}, testing) {
     fastify.register(require('./util/db-connector'))
   }
 
-  fastify.register(require('./util/jwt-setup'))
   fastify.register(require('./routes/user-routes'), { prefix: '/user' })
   fastify.register(require('./routes/form-routes'), { prefix: '/form' })
 

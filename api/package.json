@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/softwaredelta/Michelin#readme",
   "dependencies": {
+    "@fastify/env": "^4.2.0",
     "@fastify/jwt": "^6.7.1",
     "@fastify/mysql": "^4.1.0",
     "concurrently": "^7.6.0",
