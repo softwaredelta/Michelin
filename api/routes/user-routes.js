@@ -5,6 +5,13 @@ async function userRoutes (fastify, options) {
 
   fastify.get('/list', userController.getUsers)
 
+  fastify.get(
+    '/listProtected',
+    {
+      onRequest: [fastify.authenticate]
+    },
+    userController.getUsers)
+
   fastify.post('/login', userController.login)
 
   fastify.post('/signup', userController.signup)

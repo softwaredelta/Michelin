@@ -5,10 +5,10 @@ exports.getUsers = (request, reply) => {
   return userData
 }
 
-exports.login = (request, reply) => {
-  if (User.verifyUser(this.fastify, request.body.email, request.body.password) === true) {
-    const token = this.fastify.jwt.sign({ mail: request.body.mail })
-    return ({ token })
+exports.login = async (request, reply) => {
+  if (await User.verifyUser(this.fastify, request.body.email, request.body.password) === true) {
+    const token = this.fastify.jwt.sign({ mail: request.body.email })
+    reply.code(200).send({ token })
   } else {
     reply.code(400).send({ statusCode: 400 })
   }

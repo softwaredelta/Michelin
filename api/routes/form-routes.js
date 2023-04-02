@@ -12,7 +12,7 @@ async function formRoutes (fastify, options) {
     { preHandler: upload.array('reportImages', 15) },
     formController.postForm)
 
-  fastify.get('/Reporte', formController.loadReport)
+  fastify.get('/report/:fileName', formController.loadReport)
 }
 
 module.exports = formRoutes
