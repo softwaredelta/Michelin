@@ -1,4 +1,4 @@
-import { usersGetUserQuery } from "./usersApiSlice";
+import { useGetUsersQuery } from "./usersApiSlice";
 import User from './User'
 
 const UsersList = () => {
@@ -8,7 +8,7 @@ const UsersList = () => {
         isSuccess,
         isError,
         error
-    } = usersGetUserQuery()
+    } = useGetUsersQuery()
     
     let content
     if (isLoading) content =<p>Loading...</p>

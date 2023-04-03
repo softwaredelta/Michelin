@@ -3,20 +3,19 @@ import {
     createEntityAdapter
 } from "@reduxjs/toolkit"
 
-import {apiSlice} from "../../app/api/apiSlice"
+import {appSlice} from "../../app/api/apiSlice"
 
 const usersAdapter = createEntityAdapter({})
 
 const initialState = usersAdapter.getInitialState()
 
-export const usersApiSlice = apiSlice.injectEndpoints({
+export const usersApiSlice = appSlice.injectEndpoints({
     endpoints: builder => ({
         getUsers: builder.query({
-            query:() => '/users',
+            query:() => '/user/list',
             validateStatus: (response, result) =>{
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5,
             transformResponse: responseData =>{
                 const loadedUsers = responseData.map(user => {
                     user.id = user._id
@@ -33,11 +32,22 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 }else return[{type:'User', id:'LIST'}]
             }
         }),
+        addNewUser: builder.mutation({
+            query: initialUserData =>({
+                url:'/user/signup',
+                method:'POST',
+                body:{...initialUserData,}
+            }),
+            invalidatesTags: [
+                {type:'User', id:"LIST"}
+            ]
+        }),
     }),
 })
 
 export const{
-    usersGetUserQuery,
+    useGetUsersQuery,
+    useAddNewUserMutation,
 } = usersApiSlice
 
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select()
