@@ -18,7 +18,7 @@ export const usersApiSlice = appSlice.injectEndpoints({
             },
             transformResponse: responseData =>{
                 const loadedUsers = responseData.map(user => {
-                    user.id = user._id
+                    user.id = user.id_user
                     return user
                 });
                 return usersAdapter.setAll(initialState, loadedUsers)
@@ -27,7 +27,7 @@ export const usersApiSlice = appSlice.injectEndpoints({
                 if (result?.ids){
                     return[
                         {type:'User', id: 'LIST'},
-                        ...result.ids.map(id => ({tpye:'User', id}))
+                        ...result.ids.map(id => ({tpye:'User', id:'LIST'}))
                     ]
                 }else return[{type:'User', id:'LIST'}]
             }

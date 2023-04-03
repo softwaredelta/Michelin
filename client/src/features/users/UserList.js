@@ -18,16 +18,16 @@ const UsersList = () => {
     
     if (isSuccess){
         const {ids} = users
+        console.log(users)
         const tableContent = ids?.length
-            ? ids.map(userId => <User key={userId} userId ={userId}/>)
+            ? ids.map(id_user => <User key={id_user} userId ={id_user}/>)
             : null
         content = (
             <table>
                 <thead>
                     <tr>
-                        <th>Username</th>
-                        <th>Roles</th>
-                        <th>Edit</th>
+                        <th>Name</th>
+                        <th>Last Name</th>
                     </tr>
                 </thead>
                 <tbody>
