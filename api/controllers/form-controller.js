@@ -6,13 +6,10 @@ exports.postForm = async (request, reply) => {
   // Create PDF
   const doc = new PDFDocument()
   doc.pipe(fs.createWriteStream('./uploads/reports/' + request.body.fileName))
-  doc
-    .fontSize(25)
-    .text('Some text with an embedded font!', 100, 100)
-  doc.image('./uploads/temp/' + request.file.originalname, {
-    fit: [450, 200],
-    align: 'center',
-    valign: 'center'
+  doc.image('./uploads/temp/' + request.file.originalname, 0, 0, {
+    height: doc.page.height,
+    width: doc.page.width
+    // cover: [doc.page.width, doc.page.height]
   })
   fs.unlinkSync('./uploads/temp/' + request.file.originalname)
   doc.end()
