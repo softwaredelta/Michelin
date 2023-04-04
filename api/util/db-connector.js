@@ -8,8 +8,7 @@ const onDeployedEnv = process.env.ON_DEPLOY_ENV === 'true' || false
 async function dbConnector (fastify, options) {
   fastify.register(require('@fastify/mysql'), {
     promise: true,
-    connectionString: localConnectionString
-    //connectionString: onDeployedEnv ? awsConnectionString : localConnectionString
+    connectionString: onDeployedEnv ? awsConnectionString : localConnectionString
   })
 }
 
