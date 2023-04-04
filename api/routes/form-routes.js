@@ -8,7 +8,7 @@ async function formRoutes (fastify, options) {
   formController.fastify = fastify
 
   fastify.post(
-    '/uploadReport',
+    '/postForm',
     { preHandler: upload.array('reportImages', 15) },
     formController.postForm)
 

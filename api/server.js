@@ -5,7 +5,12 @@ const server = require('./app')({
 false
 )
 
-server.listen({ port: 3080 }, (err, address) => {
+const optsLocal = { port: 3080 }
+const optsAWS = { port: 3080, host: '0.0.0.0' }
+
+const onDeployedEnv = process.env.ON_DEPLOY_ENV === 'true' || false
+
+server.listen(onDeployedEnv ? optsAWS : optsLocal, (err, address) => {
   if (err) {
     server.log.error(err)
     process.exit(1)
