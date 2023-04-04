@@ -1,12 +1,11 @@
 const Fastify = require('fastify')
-const cors = require('@fastify/cors')
 
 function buildFastify (opts = {}, testing) {
   const fastify = Fastify(opts)
-  fastify.register(cors,{
-    origin: "*"
+  fastify.register(require('@fastify/cors'), {
+    origin: '*'
   })
-  
+
   fastify.register(require('./util/env-setup'))
   fastify.register(require('./util/jwt-setup'))
 
