@@ -6,6 +6,8 @@ function buildFastify (opts = {}, testing) {
     origin: '*'
   })
 
+  fastify.register(require('@fastify/formbody'))
+
   fastify.register(require('./util/env-setup'))
   fastify.register(require('./util/jwt-setup'))
 

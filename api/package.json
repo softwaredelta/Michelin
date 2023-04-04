@@ -24,6 +24,7 @@
   "dependencies": {
     "@fastify/cors": "^8.2.1",
     "@fastify/env": "^4.2.0",
+    "@fastify/formbody": "^7.4.0",
     "@fastify/jwt": "^6.7.1",
     "@fastify/mysql": "^4.1.0",
     "concurrently": "^7.6.0",
