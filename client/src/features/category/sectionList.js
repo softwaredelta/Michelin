@@ -1,1 +1,1 @@
-//figma (View cuestionarios) shows sectionsS
+// figma (View cuestionarios) shows sectionsS

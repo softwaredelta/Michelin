@@ -1,1 +1,1 @@
-//figma: View preguntas, edit questions
+// figma: View preguntas, edit questions
