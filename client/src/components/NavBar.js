@@ -6,8 +6,8 @@ import { NavbarLink } from "flowbite-react/lib/esm/components/Navbar/NavbarLink"
 const NavBar = () => {
   return (
     <>
-      <div>
-        <Navbar className="border-b-2" fluid={true} rounded={true}>
+      <div className="mb-5">
+        <Navbar className="border-b-2" fluid={true} rounded={false}>
           <NavbarBrand className="px-4" href="">
             <img
               style={({ width: "100px" }, { height: "60px" })}
@@ -16,10 +16,10 @@ const NavBar = () => {
             />
           </NavbarBrand>
           <NavbarCollapse className="px-2">
-            <NavbarLink className="text-lg font-semibold !text-blues-100 hover:!text-gray-500">Historial</NavbarLink>
-            <NavbarLink className="text-lg font-semibold !text-blues-100 hover:!text-gray-500">Métricas</NavbarLink>
-            <NavbarLink className="text-lg font-semibold !text-blues-100 hover:!text-gray-500">Cuestionarios</NavbarLink>
-            <NavbarLink className="text-lg font-semibold !text-blues-100 hover:!text-gray-500">
+            <NavbarLink className="text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500">Historial</NavbarLink>
+            <NavbarLink className="text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500">Métricas</NavbarLink>
+            <NavbarLink className="text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500">Cuestionarios</NavbarLink>
+            <NavbarLink className="text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500">
               <div className="flex md:order-2 text-lg">
                 <Dropdown
                   arrowIcon={true}
@@ -33,7 +33,7 @@ const NavBar = () => {
                 </Dropdown>
               </div>
             </NavbarLink>
-            <NavbarLink className="text-lg font-semibold !text-blues-100 hover:!text-gray-500">Cuenta</NavbarLink>
+            <NavbarLink className="text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500">Cuenta</NavbarLink>
           </NavbarCollapse>
         </Navbar>
       </div>
