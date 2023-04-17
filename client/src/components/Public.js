@@ -1,5 +1,3 @@
-import ModifiedFooter from "./ModifiedFooter";
-import  NavBar from "./NavBar";
 import Wrapper from "./Wrapper";
 
 const Public = () => {
