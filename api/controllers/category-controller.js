@@ -1,11 +1,15 @@
-// GET and POST for categories, sections and their questions
+const Category = require('../models/category')
 
-// TODO: add question
+exports.postQuestion = async (request, reply) => {
+  await Category.addQuestion(
+    this.fastify,
+    request.qText,
+    request.section,
+    request.usingCamera,
+    request.btnNa,
+    request.file.originalname,
+    request.questionOrder,
+    request.idCategory)
 
-// TODO: get questions by section and category
-
-// TODO: edit question
-
-// TODO: delete question
-
-// TODO: get categories
+  return reply.code(200).send({ statusCode: 200 })
+}
