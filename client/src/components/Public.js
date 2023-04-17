@@ -1,9 +1,19 @@
 // import Wrapper from './Wrapper'
-import SellingPointList from '../features/sellingPoint/SellingPointList'
+
+import ModifiedFooter from './ModifiedFooter'
+import NavBar from './NavBar'
 
 const Public = () => {
   return (
-    <SellingPointList />
+    <>
+      <div>
+        <NavBar />
+        <div className='pt-20 w-ful h-screen flex flex-col items-center'>
+          <div className='container flex flex-wrap justify-items-stretch' />
+          <ModifiedFooter />
+        </div>
+      </div>
+    </>
   )
 }
 export default Public
