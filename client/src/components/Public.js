@@ -1,6 +1,9 @@
+import Wrapper from './Wrapper'
+
 const Public = () => {
-  const content = <h1>Prueba Inicial de Arquitectura</h1>
-  return content
+  return (
+    <Wrapper />
+  )
 }
 export default Public
 
