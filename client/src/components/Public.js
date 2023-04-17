@@ -1,11 +1,11 @@
-import Wrapper from "./Wrapper";
+import Wrapper from './Wrapper'
 
 const Public = () => {
   return (
     <Wrapper />
-  );
-};
-export default Public;
+  )
+}
+export default Public
 
 // Prueba de configuración inicial de tailwind
 // import { Button } from "flowbite-react";
