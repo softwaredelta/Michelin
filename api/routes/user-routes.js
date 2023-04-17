@@ -15,10 +15,6 @@ async function userRoutes (fastify, options) {
   fastify.post('/login', userController.login)
 
   fastify.post('/signup', userController.signup)
-
-  fastify.get('/', function (request, reply) {
-    reply.send({ hello: 'world' })
-  })
 }
 
 module.exports = userRoutes

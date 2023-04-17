@@ -1,26 +1,20 @@
-import Wrapper from './Wrapper'
+// import Wrapper from './Wrapper'
+
+import ModifiedFooter from "./ModifiedFooter"
+import NavBar from "./NavBar"
 
 const Public = () => {
   return (
-    <Wrapper />
+    <>
+      <div>
+        <NavBar />
+        <div className='pt-20 w-ful h-screen flex flex-col items-center'>
+          <div className='container flex flex-wrap justify-items-stretch'>
+          </div>
+          <ModifiedFooter />
+        </div>
+      </div>
+    </>
   )
 }
 export default Public
-
-// Prueba de configuración inicial de tailwind
-// import { Button } from "flowbite-react";
-// import { AiFillCheckCircle } from 'react-icons/ai';
-
-// const Public = () => {
-//   const content = (
-//     <>
-//       <h1>Prueba Inicial de Arquitectura</h1>
-//       <Button className="mx-10 bg-ok-50 hover:bg-ok-100">
-//         Prueba
-//         <AiFillCheckCircle className="mx-2" />
-//       </Button>
-//     </>
-//   );
-//   return content;
-// };
-// export default Public;
