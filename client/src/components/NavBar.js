@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <>
       <div className="mb-5">
-        <Navbar className="border-b-2" fluid={true} rounded={false}>
+        <Navbar className="border-b-2 fixed top-0 z-30 w-full" fluid={true} rounded={false}>
           <NavbarBrand className="px-4" href="">
             <img
               style={({ width: "100px" }, { height: "60px" })}
@@ -27,9 +27,9 @@ const NavBar = () => {
                   className="!text-lg"
                   label="Administración"
                 >
-                  <DropdownItem className="font-semibold !text-blues-100 hover:!text-gray-500">Puntos de Venta</DropdownItem>
-                  <DropdownItem className="font-semibold !text-blues-100 hover:!text-gray-500">Equipos</DropdownItem>
-                  <DropdownItem className="font-semibold !text-blues-100 hover:!text-gray-500">Usuario</DropdownItem>
+                  <DropdownItem className="font-semibold !text-blues-100 dark:!text-trademark-50 hover:!text-gray-500">Puntos de Venta</DropdownItem>
+                  <DropdownItem className="font-semibold !text-blues-100 dark:!text-trademark-50 hover:!text-gray-500">Equipos</DropdownItem>
+                  <DropdownItem className="font-semibold !text-blues-100 dark:!text-trademark-50 hover:!text-gray-500">Usuario</DropdownItem>
                 </Dropdown>
               </div>
             </NavbarLink>
