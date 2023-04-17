@@ -14,17 +14,17 @@ const SPCard = ({ name, zone, address, phone }) => {
   };
 
   return (
-    <div className="w-72 h-96 my-4 mx-6 flex flex-col">
+    <div className="w-72 h-72 my-4 mx-6 flex flex-col">
       <ReactCardFlip
         isFlipped={flip}
         flipDirection="horizontal"
-        className="min-w-full min-h-full !p-0"
+        className="min-w-full min-h-full !rounded-xl"
       >
         <Card
           imgSrc="https://cdn-prod-eu.yepgarage.info/upload/llantas-del-lago/fitters/llantas-de-lago-norte-1-lg.png?005111932"
-          className="!bg-blues-300 h-96"
+          className="!bg-blues-300 h-72 !rounded-xl !border-2"
         >
-          <div className="flex">
+          <div className="flex row justify-between">
             <div className="flex-col mr-2">
               <h5 className="text-2xl font-bold tracking-tight text-white dark:text-white">
               {name}
@@ -39,33 +39,33 @@ const SPCard = ({ name, zone, address, phone }) => {
           </div>
         </Card>
 
-        <Card className="h-96">
-          <div className="!bg-blues-300 px-2 py-2 rounded-lg flex flex-row justify-center">
-            <h3 className="text-2xl font-bold tracking-tight text-white dark:text-white">
+        <Card className="h-72 !rounded-xl">
+          <div className="flex flex-row justify-center">
+            <h3 className="text-xl font-bold tracking-tight text-blues-300 dark:text-white">
               {name}
             </h3>
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col my-0">
             <div className="flex-col">
-              <h2 className="text-xl font-bold tracking-tight text-blues-300 dark:text-white">
+              <h2 className="text-lg font-bold tracking-tight text-blues-300 dark:text-white">
                 Zona:
               </h2>
             </div>
             <div className="flex-col">
-              <p className="text-lg font-medium tracking-tight text-blues-300 dark:text-white">
+              <p className="text-md font-medium tracking-tight text-blues-300 dark:text-white">
                 {zone}
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col">
-            <div className="flex-col">
-              <h2 className="text-xl font-bold tracking-tight text-blues-300 dark:text-white">
+          <div className="flex flex-col my-0">
+            <div className="flex-col min-w-0">
+              <h2 className="text-lg font-bold tracking-tight text-blues-300 dark:text-white">
                 Dirección:
               </h2>
             </div>
             <div className="flex-col">
-              <p className="text-lg font-medium tracking-tight text-blues-300 dark:text-white">
+              <p className="text-md font-medium tracking-tight text-blues-300 dark:text-white truncate block">
                 {address}
               </p>
             </div>
@@ -73,12 +73,12 @@ const SPCard = ({ name, zone, address, phone }) => {
 
           <div className="flex flex-col">
             <div className="flex-col">
-              <h2 className="text-xl font-bold tracking-tight text-blues-300 dark:text-white">
+              <h2 className="text-lg font-bold tracking-tight text-blues-300 dark:text-white">
                 Telefono:
               </h2>
             </div>
             <div className="flex-col">
-              <p className="text-lg font-medium tracking-tight text-blues-300 dark:text-white">
+              <p className="text-md font-medium tracking-tight text-blues-300 dark:text-white">
                 {phone}
               </p>
             </div>
