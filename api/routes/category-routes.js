@@ -18,6 +18,8 @@ async function categoryRoutes (fastify, options) {
     '/postQuestion',
     { preHandler: upload.single('placeholder') },
     categoryController.postQuestion)
+
+  fastify.get('/:idCategory/:section/questions', categoryController.getQuestionsBySection)
 }
 
 module.exports = categoryRoutes
