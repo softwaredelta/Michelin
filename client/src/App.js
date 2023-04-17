@@ -3,7 +3,7 @@ import Layout from './components/Layout'
 import Public from './components/Public'
 import Login from './components/Login'
 import UsersList from './features/users/UserList'
-import NewUserForm from './features/users/NewUserForm'
+import UserAdd from './features/users/UserAdd'
 
 function App () {
   return (
@@ -13,7 +13,7 @@ function App () {
         <Route path='login' element={<Login />} />
         <Route path='user'>
           <Route index element={<UsersList />} />
-          <Route path='new' element={<NewUserForm />} />
+          <Route path='new' element={<UserAdd />} />
         </Route>
       </Route>
     </Routes>
