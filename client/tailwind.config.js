@@ -1,22 +1,22 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require("tailwindcss/plugin");
+const plugin = require('tailwindcss/plugin')
 
 const Myclass = plugin(function ({ addUtilities }) {
   addUtilities({
-    ".my-rotate-y-180": {
-      transform: "rotateY(180deg)",
+    '.my-rotate-y-180': {
+      transform: 'rotateY(180deg)'
     },
-    ".preserve-3d": {
-      transformStyle: "preserve-3d",
+    '.preserve-3d': {
+      transformStyle: 'preserve-3d'
     },
-    ".perspective": {
-      perspective: "1000px",
+    '.perspective': {
+      perspective: '1000px'
     },
-    ".backface-hidden": {
-      backfaceVisibility: "hidden",
-    },
-  });
-});
+    '.backface-hidden': {
+      backfaceVisibility: 'hidden'
+    }
+  })
+})
 
 module.exports = {
   content: [
@@ -35,7 +35,7 @@ module.exports = {
           // Michelin blue
           200: '#27509b',
 
-          300: '#1d4089',
+          300: '#1d4089'
 
         },
         ok: {
