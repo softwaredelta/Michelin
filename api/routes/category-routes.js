@@ -20,6 +20,7 @@ async function categoryRoutes (fastify, options) {
     categoryController.postQuestion)
 
   fastify.get('/:idCategory/:section/questions', categoryController.getQuestionsBySection)
+  fastify.get('/getAllQuestions', categoryController.getQuestions)
 }
 
 module.exports = categoryRoutes

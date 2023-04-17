@@ -15,6 +15,11 @@ exports.postQuestion = async (request, reply) => {
   return reply.code(200).send({ statusCode: 200 })
 }
 
+exports.getQuestions = (request, reply) => {
+    const questionData = Question.fetchAll(this.fastify)
+    return questionData
+  }
+
 exports.getQuestionsBySection = (request, reply) => {
   const { idCategory, section } = request.params
   const questionData = Category.fetchQuestionsBySection(this.fastify, idCategory, section)
