@@ -41,9 +41,9 @@ const SPCard = ({ spId }) => {
             </div>
           </div>
         </Card>
-        
+
         <Card className='h-72 !rounded-xl'>
-          <div className='flex flex-row justify-center'  onClick={() => console.log("a")}>
+          <div className='flex flex-row justify-center' onClick={() => console.log('a')}>
             <h3 className='text-xl font-bold tracking-tight text-blues-300 dark:text-white'>
               {sp.name}
             </h3>

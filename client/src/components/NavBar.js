@@ -27,7 +27,7 @@ const NavBar = () => {
                   className='!text-lg'
                   label='Administración'
                 >
-                  <DropdownItem href="/sellingPoint" className='font-semibold !text-blues-100 dark:!text-trademark-50 hover:!text-gray-500'> <a href="/sellingPoint">Puntos de Venta</a></DropdownItem>
+                  <DropdownItem href='/sellingPoint' className='font-semibold !text-blues-100 dark:!text-trademark-50 hover:!text-gray-500'> <a href='/sellingPoint'>Puntos de Venta</a></DropdownItem>
                   <DropdownItem className='font-semibold !text-blues-100 dark:!text-trademark-50 hover:!text-gray-500'>Equipos</DropdownItem>
                   <DropdownItem className='font-semibold !text-blues-100 dark:!text-trademark-50 hover:!text-gray-500'>Usuario</DropdownItem>
                 </Dropdown>
