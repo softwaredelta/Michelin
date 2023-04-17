@@ -1,8 +1,13 @@
+import ModifiedFooter from "./ModifiedFooter";
+import  NavBar from "./NavBar";
+import Wrapper from "./Wrapper";
+
 const Public = () => {
-  const content = <h1>Prueba Inicial de Arquitectura</h1>
-  return content
-}
-export default Public
+  return (
+    <Wrapper />
+  );
+};
+export default Public;
 
 // Prueba de configuración inicial de tailwind
 // import { Button } from "flowbite-react";
