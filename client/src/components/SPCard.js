@@ -5,9 +5,12 @@ import SvgButton from './SvgButton'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { FaEdit } from 'react-icons/fa'
 import { BsFillTrashFill } from 'react-icons/bs'
+import { useSelector } from 'react-redux'
+import { selectSPById } from '../features/sellingPoint/sellingPointApiSlice'
 
-const SPCard = ({ name, zone, address, phone }) => {
+const SPCard = ({ spId }) => {
   const [flip, setFlip] = useState(false)
+  const sp = useSelector(state => selectSPById(state, spId))
 
   const handleSetFlip = () => {
     setFlip(!flip)
@@ -27,7 +30,7 @@ const SPCard = ({ name, zone, address, phone }) => {
           <div className='flex row justify-between'>
             <div className='flex-col mr-2'>
               <h5 className='text-2xl font-bold tracking-tight text-white dark:text-white'>
-                {name}
+                {sp.name}
               </h5>
             </div>
             <div className='flex col ml-2 mt-1'>
@@ -42,7 +45,7 @@ const SPCard = ({ name, zone, address, phone }) => {
         <Card className='h-72 !rounded-xl'>
           <div className='flex flex-row justify-center'>
             <h3 className='text-xl font-bold tracking-tight text-blues-300 dark:text-white'>
-              {name}
+              {sp.name}
             </h3>
           </div>
           <div className='flex flex-col my-0'>
@@ -53,7 +56,7 @@ const SPCard = ({ name, zone, address, phone }) => {
             </div>
             <div className='flex-col'>
               <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white'>
-                {zone}
+                {sp.zone}
               </p>
             </div>
           </div>
@@ -66,7 +69,7 @@ const SPCard = ({ name, zone, address, phone }) => {
             </div>
             <div className='flex-col'>
               <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white truncate block'>
-                {address}
+                {sp.address}
               </p>
             </div>
           </div>
@@ -79,7 +82,7 @@ const SPCard = ({ name, zone, address, phone }) => {
             </div>
             <div className='flex-col'>
               <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white'>
-                {phone}
+                {sp.phone}
               </p>
             </div>
           </div>

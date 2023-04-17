@@ -23,6 +23,7 @@ function buildFastify (opts = {}, testing) {
 
   fastify.register(require('./routes/user-routes'), { prefix: '/user' })
   fastify.register(require('./routes/form-routes'), { prefix: '/form' })
+  fastify.register(require('./routes/sellingPoint-routes'), { prefix: '/sellingPoint' })
 
   return fastify
 }
