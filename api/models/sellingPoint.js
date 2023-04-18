@@ -12,7 +12,7 @@ module.exports = class SellingPoint {
 
   static async addSellingPoint (fastify, idType, idZone, address, rating, name, phone) {
     const connection = await fastify.mysql.getConnection()
-    const queryRes = await connection.query(
+    await connection.query(
       'INSERT INTO SellingPoint(id_category, id_state, address, rating, name, phone) VALUES (?,?,?,?,?,?)',
       [
         idType, idZone, address, rating, name, phone
