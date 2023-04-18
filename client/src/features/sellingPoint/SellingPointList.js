@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ModifiedFooter from "../../components/ModifiedFooter";
-import ModifiedModal from "../../components/ModifiedFooter";
+import ModifiedModal from "../../components/ModifiedModal";
 import NavBar from "../../components/NavBar";
 import SellingPoint from "./SellingPoint";
 import { useGetSPQuery } from "./sellingPointApiSlice";
@@ -9,14 +9,16 @@ import Bluebutton from "../../components/Bluebutton";
 
 const SellingPointList = () => {
 
-  const [open, setOpen] = useState(false);
-  const handleSetOpen = () => {
-    setOpen(true);
+  const [show, setShow] = useState(false);
+
+  const handleSetShow = () => {
+    setShow(true);
   };
 
-  const handleSetClose = () => {
-    setOpen(false);
+  const handleClose = () => {
+    setShow(false);
   };
+  
   const { data: sp, isLoading, isSuccess, isError, error } = useGetSPQuery();
 
   let content;
@@ -38,7 +40,8 @@ const SellingPointList = () => {
           <div className="pt-20 w-full h-screen flex flex-col items-center">
             <Header myText="Punto de Venta" />
             <div className="self-end mr-5">
-              <Bluebutton myText="+ Nuevo Punto de Venta" />
+              <button onClick={() => setShow(true)}>Holis</button>
+              <Bluebutton myText="+ Nuevo Punto de Venta" method={handleSetShow} />
             </div>
             <div className="container flex flex-wrap justify-items-stretch">
               {listContent}
@@ -46,7 +49,7 @@ const SellingPointList = () => {
             <ModifiedFooter />
           </div>
         </div>
-        <ModifiedModal show={open} onClose={handleSetClose} />
+        <ModifiedModal show={show} onClose={handleClose} />
       </>
     );
   }
