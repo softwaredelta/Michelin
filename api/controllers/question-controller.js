@@ -26,9 +26,8 @@ exports.getQuestionsBySection = (request, reply) => {
   return questionData
 }
 
-exports.getAreasBySection = (request, reply) => {
-  const { idSection } = request.params
-  const areaData = Section.fetchAreasBySection(this.fastify, idSection)
+exports.getAreas = (request, reply) => {
+  const areaData = Section.fetchAreas(this.fastify)
 
   return areaData
 }

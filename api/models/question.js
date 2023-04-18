@@ -11,12 +11,27 @@ module.exports = class Question {
     return rows[0]
   }
 
+  static async fetchHighestOrder (fastify, idArea) {
+    const connection = await fastify.mysql.getConnection()
+    const orderQueryRes = await connection.query(
+      'SELECT MAX(q_order) FROM question WHERE id_area = ?',
+      [
+        idArea
+      ]
+    )
+    connection.release()
+    return orderQueryRes[0][0]['MAX(q_order)'] || 0
+  }
+
   static async addQuestion (fastify, questionText, idArea, usingCamera, btnNa, pictureName, idCategory) {
     const connection = await fastify.mysql.getConnection()
+
+    const questionOrder = await this.fetchHighestOrder(fastify, idArea) + 1
+
     const queryRes = await connection.query(
       'INSERT INTO Question(p_text, id_area, camara, btn_na, picture, q_order) VALUES (?,?,?,?,?,?)',
       [
-        questionText, idArea, usingCamera, btnNa, pictureName, 1
+        questionText, idArea, usingCamera, btnNa, pictureName, questionOrder
       ]
     )
 

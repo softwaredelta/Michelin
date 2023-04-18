@@ -21,7 +21,7 @@ async function questionRoutes (fastify, options) {
 
   fastify.get('/bySection/:idCategory/:idSection', questionController.getQuestionsBySection)
   fastify.get('/getAllQuestions', questionController.getQuestions)
-  fastify.get('/getAreas/bySection/:idSection', questionController.getAreasBySection)
+  fastify.get('/getAreas', questionController.getAreas)
 }
 
 module.exports = questionRoutes
