@@ -35,12 +35,13 @@ const ModifiedModal = ({ show, onClose }) => {
   if (isSuccessState) {
     const { ids } = state
     const listContent = ids?.length
-      ? ids.map((idState) => <StateOption key={idState} zoneId={idState} />)
+      ? ids.map((idState) => <StateOption key={idState} stateId={idState} />)
       : null
     mystate = listContent;
     console.log(listContent);
   }
 
+  console.log(mystate);
 
   return (
     <>
@@ -76,7 +77,7 @@ const ModifiedModal = ({ show, onClose }) => {
             </div>
             <div className="flex flex-col w-3/4">
               <select className="border-2 rounded-md my-2">
-                {mystate}
+                {/* {mystate} */}
               </select>
               <select className="border-2 rounded-md my-2">
                 {mycategory}

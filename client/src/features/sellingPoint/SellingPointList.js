@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ModifiedFooter from "../../components/ModifiedFooter";
-import ModifiedModal from "../../components/ModifiedModal";
+import SellingPointAdd from "./SellingPointAdd";
 import NavBar from "../../components/NavBar";
 import SellingPoint from "./SellingPoint";
 import { useGetSPQuery } from "./sellingPointApiSlice";
@@ -50,7 +50,7 @@ const SellingPointList = () => {
             <ModifiedFooter />
           </div>
         </div>
-        <ModifiedModal show={show} onClose={handleClose} />
+        <SellingPointAdd show={show} onClose={handleClose} />
       </>
     );
   }

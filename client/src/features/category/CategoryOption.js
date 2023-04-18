@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { selectCategoryById } from "../features/category/categoryApiSlice";
+import { selectCategoryById } from "./categoryApiSlice";
 
-const ModifiedOption = ({ categoryId }) => {
+const CategoryOption = ({ categoryId }) => {
   const category = useSelector((state) => selectCategoryById(state, categoryId));
   return (
     <>
@@ -10,4 +10,4 @@ const ModifiedOption = ({ categoryId }) => {
   );
 };
 
-export default ModifiedOption;
+export default CategoryOption;
