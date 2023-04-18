@@ -27,3 +27,8 @@ exports.getQuestionsBySection = (request, reply) => {
 
   return questionData
 }
+
+exports.getCategories = (request, reply) => {
+  const categoryData = Category.fetchAll(this.fastify)
+  return categoryData
+}

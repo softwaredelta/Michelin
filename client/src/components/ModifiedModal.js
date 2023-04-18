@@ -2,8 +2,31 @@ import { Modal } from "flowbite-react";
 import { ModalHeader } from "flowbite-react/lib/esm/components/Modal/ModalHeader";
 import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
 import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter";
+import ModifiedOption from "./ModifiedOption";
+import { useGetCategoriesQuery } from "../features/category/categoryApiSlice";
 
 const ModifiedModal = ({ show, onClose }) => {
+
+  let content;
+  const { data: category, isLoading, isSuccess, isError, error } = useGetCategoriesQuery()
+
+  // console.log(category);
+
+  if (isLoading) content = <option> Cargando </option>
+  if (isError) {
+    content = <option> Sin opciones válidas </option>
+    console.log(category);
+  }
+
+  if (isSuccess) {
+    const { ids } = category
+    const listContent = ids?.length
+      ? ids.map((idCategory) => <ModifiedOption key={idCategory} categoryId={idCategory} />)
+      : null
+    content = listContent;
+  }
+
+  console.log(content);
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
@@ -39,7 +62,7 @@ const ModifiedModal = ({ show, onClose }) => {
             <div className="flex flex-col w-3/4">
               <input className="border-2 rounded-md my-2" />
               <select className="border-2 rounded-md my-2">
-                <option value={1.0}>Uno</option>
+                {content}
               </select>
               <textarea className="border-2 rounded-md my-2 resize-none" />
               <input className="border-2 rounded-md my-2" />
