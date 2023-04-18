@@ -1,14 +1,14 @@
 import { Card } from 'flowbite-react'
 import { useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
-import SvgButton from '../../components/SvgButton'
+import SvgButton from './SvgButton'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { FaEdit } from 'react-icons/fa'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
-import { selectSPById } from './sellingPointApiSlice'
+import { selectSPById } from '../features/sellingPoint/sellingPointApiSlice'
 
-const SellingPoint = ({ spId }) => {
+const SPCard = ({ spId }) => {
   const [flip, setFlip] = useState(false)
   const sp = useSelector(state => selectSPById(state, spId))
 
@@ -42,8 +42,8 @@ const SellingPoint = ({ spId }) => {
           </div>
         </Card>
 
-        <Card className='h-72 !rounded-xl cursor-pointer' onClick={() => setFlip(!flip)}>
-          <div className='flex flex-row justify-center'>
+        <Card className='h-72 !rounded-xl'>
+          <div className='flex flex-row justify-center' onClick={() => console.log('a')}>
             <h3 className='text-xl font-bold tracking-tight text-blues-300 dark:text-white'>
               {sp.name}
             </h3>
@@ -106,4 +106,4 @@ const SellingPoint = ({ spId }) => {
   )
 }
 
-export default SellingPoint
+export default SPCard
