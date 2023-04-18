@@ -4,15 +4,21 @@ const Question = require('../models/question')
 exports.postQuestion = async (request, reply) => {
   await Question.addQuestion(
     this.fastify,
-    request.qText,
-    request.section,
-    request.usingCamera,
-    request.btnNa,
-    request.file.originalname,
-    request.questionOrder,
-    request.idCategory)
+    request.body.qText,
+    request.body.section,
+    request.body.usingCamera,
+    request.body.btnNa,
+    'holi.jpg',
+    // request.file.originalname,
+    request.body.questionOrder,
+    request.body.idCategory)
 
   return reply.code(200).send({ statusCode: 200 })
+}
+
+exports.getQuestions = (request, reply) => {
+  const questionData = Question.fetchAll(this.fastify)
+  return questionData
 }
 
 exports.getQuestionsBySection = (request, reply) => {

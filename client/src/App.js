@@ -4,6 +4,7 @@ import Public from './components/Public'
 import Login from './components/Login'
 import UsersList from './features/users/UserList'
 import UserAdd from './features/users/UserAdd'
+import QuestionAdd from './features/category/questions/QuestionAdd'
 import SellingPointList from './features/sellingPoint/SellingPointList'
 
 function App () {
@@ -15,6 +16,9 @@ function App () {
         <Route path='user'>
           <Route index element={<UsersList />} />
           <Route path='new' element={<UserAdd />} />
+        </Route>
+        <Route path='question'>
+          <Route path='new' element={<QuestionAdd />} />
         </Route>
         <Route path='sellingPoint'>
           <Route index element={<SellingPointList />} />
