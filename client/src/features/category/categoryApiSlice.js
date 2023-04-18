@@ -54,8 +54,7 @@ export const selectQuestionResult = categoryApiSlice.endpoints.getQuestions.sele
 
 const selectQuestionsData = createSelector(
   selectQuestionResult,
-  questionsResult => questionsResult.data
-)
+  questionsResult => questionsResult.data)
 
 export const {
   selectAll: selectAllQuestions,
