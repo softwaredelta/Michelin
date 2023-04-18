@@ -14,15 +14,13 @@ const SellingPointAdd = ({ show, onClose }) => {
     data: category,
     isLoading: isLoadingCategory,
     isSuccess: isSuccessCategory,
-    isError: isErrorCategory,
-    error: errorCategory
+    isError: isErrorCategory
   } = useGetCategoriesQuery()
   const {
     data: state,
     isLoading: isLoadingState,
     isSuccess: isSuccessState,
-    isError: isErrorState,
-    error: errorState
+    isError: isErrorState
   } = useGetStateQuery()
 
   if (isLoadingCategory) mycategory = <option> Cargando </option>

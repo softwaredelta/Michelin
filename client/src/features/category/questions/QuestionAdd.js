@@ -5,7 +5,7 @@ import { Checkbox, Select, Label, TextInput, FileInput } from 'flowbite-react'
 
 const QuestionAdd = () => {
   const [addNewQuestion, {
-    isLoading,
+    // isLoading,
     isSuccess
   }] = useAddNewQuestionMutation()
 
@@ -17,7 +17,7 @@ const QuestionAdd = () => {
   const [btnNa, setbtnNa] = useState(0)
   const [idCategory] = useState(1)
   const [questionOrder, setQuestionOrder] = useState(1)
-  const [originalname, setOriginalName] = useState('holi.jpg')
+  // const [originalname, setOriginalName] = useState('holi.jpg')
 
   useEffect(() => {
     if (isSuccess) {
