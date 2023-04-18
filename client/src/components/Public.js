@@ -1,9 +1,9 @@
 // import Wrapper from './Wrapper'
-import SellingPointList from '../features/sellingPoint/SellingPointList'
+import SectionList from '../features/category/SectionList'
 
 const Public = () => {
   return (
-    <SellingPointList />
+    <SectionList />
   )
 }
 export default Public
