@@ -4,29 +4,44 @@ import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
 import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter";
 import ModifiedOption from "./ModifiedOption";
 import { useGetCategoriesQuery } from "../features/category/categoryApiSlice";
+import { useGetStateQuery } from "../features/state/stateApiSlice";
+import StateOption from "../features/state/StateOption";
 
 const ModifiedModal = ({ show, onClose }) => {
 
-  let content;
-  const { data: category, isLoading, isSuccess, isError, error } = useGetCategoriesQuery()
+  let mycategory, mystate;
 
-  // console.log(category);
+  const { data: category, isLoading: isLoadingCategory, isSuccess: isSuccessCategory, isError: isErrorCategory, error: errorCategory } = useGetCategoriesQuery()
+  const { data: state, isLoading: isLoadingState, isSuccess: isSuccessState, isError: isErrorState, error: errorState } = useGetStateQuery()
 
-  if (isLoading) content = <option> Cargando </option>
-  if (isError) {
-    content = <option> Sin opciones válidas </option>
-    console.log(category);
+  if (isLoadingCategory) mycategory = <option> Cargando </option>
+  if (isErrorCategory) {
+    mycategory = <option> Sin opciones válidas </option>
   }
 
-  if (isSuccess) {
+  if (isSuccessCategory) {
     const { ids } = category
     const listContent = ids?.length
       ? ids.map((idCategory) => <ModifiedOption key={idCategory} categoryId={idCategory} />)
       : null
-    content = listContent;
+    mycategory = listContent;
   }
 
-  console.log(content);
+  if (isLoadingState) mystate = <option> Cargando </option>
+  if (isErrorState) {
+    mystate = <option> Sin opciones válidas </option>
+  }
+
+  if (isSuccessState) {
+    const { ids } = state
+    const listContent = ids?.length
+      ? ids.map((idState) => <StateOption key={idState} zoneId={idState} />)
+      : null
+    mystate = listContent;
+    console.log(listContent);
+  }
+
+
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
@@ -60,9 +75,11 @@ const ModifiedModal = ({ show, onClose }) => {
               </div>
             </div>
             <div className="flex flex-col w-3/4">
-              <input className="border-2 rounded-md my-2" />
               <select className="border-2 rounded-md my-2">
-                {content}
+                {mystate}
+              </select>
+              <select className="border-2 rounded-md my-2">
+                {mycategory}
               </select>
               <textarea className="border-2 rounded-md my-2 resize-none" />
               <input className="border-2 rounded-md my-2" />

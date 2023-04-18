@@ -9,7 +9,3 @@ exports.addSellingPoints = async (request, reply) => {
   await SellingPoint.addSellingPoint(this.fastify, request.body.idType, request.body.idZone, request.body.idZone, request.body.rating, request.body.name, request.body.phone)
   return reply.code(200).send({ statusCode: 200 })
 }
-
-// name, last_name, id_manager, mail, password
-
-// idType, idZone, idZone, rating, name, phone

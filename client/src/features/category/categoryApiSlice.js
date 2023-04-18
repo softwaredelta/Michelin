@@ -53,7 +53,7 @@ export const categoryApiSlice = appSlice.injectEndpoints({
         if (result?.ids) {
           return [
             { type: "Category", id: "LIST" },
-            ...result.ids.map((id) => ({ tpye: "Category", id: "LIST" })),
+            ...result.ids.map((id) => ({ type: "Category", id: "LIST" })),
           ];
         } else return [{ type: "Category", id: "LIST" }];
       },
