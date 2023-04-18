@@ -9,11 +9,11 @@ import { useSelector } from 'react-redux'
 import { selectSPById } from './sellingPointApiSlice'
 
 const SellingPoint = ({ spId }) => {
-  const [flip, setFlip] = useState(false)
-  const sp = useSelector(state => selectSPById(state, spId))
+  const [flip, setFlip] = useState(false);
+  const sp = useSelector(state => selectSPById(state, spId));
 
   const handleSetFlip = () => {
-    setFlip(!flip)
+    setFlip(!flip);
   }
 
   return (
