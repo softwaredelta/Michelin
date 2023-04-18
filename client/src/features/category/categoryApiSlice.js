@@ -36,7 +36,7 @@ export const categoryApiSlice = appSlice.injectEndpoints({
       query: initialUserData => ({
         url: 'category/postQuestion',
         method: 'POST',
-        body: { ...initialUserData }
+        body: initialUserData
       }),
       invalidatesTags: [
         { type: 'Question', id: 'LIST' }

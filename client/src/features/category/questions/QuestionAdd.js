@@ -40,7 +40,15 @@ const QuestionAdd = () => {
   const onSaveQuestionClicked = async (e) => {
     e.preventDefault()
     console.log(placeholder)
-    await addNewQuestion({ qText, section, usingCamera, btnNa, placeholder, questionOrder, idCategory })
+    const newQuestion = new FormData()
+    newQuestion.append('qText', qText)
+    newQuestion.append('section', section)
+    newQuestion.append('usingCamera', usingCamera)
+    newQuestion.append('btnNa', btnNa)
+    newQuestion.append('placeholder', placeholder)
+    newQuestion.append('questionOrder', questionOrder)
+    newQuestion.append('idCategory', idCategory)
+    await addNewQuestion(newQuestion)
   }
 
   const content = (
