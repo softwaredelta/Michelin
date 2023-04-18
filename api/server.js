@@ -5,7 +5,7 @@ const server = require('./app')({
 false
 )
 
-const optsLocal = { port: 3306 }
+const optsLocal = { port: 3080 }
 const optsAWS = { port: 3080, host: '0.0.0.0' }
 
 const onDeployedEnv = process.env.ON_DEPLOY_ENV === 'true' || false

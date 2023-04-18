@@ -1,9 +1,19 @@
 // import Wrapper from './Wrapper'
-import SectionList from '../features/category/SectionList'
+
+import ModifiedFooter from './ModifiedFooter'
+import NavBar from './NavBar'
 
 const Public = () => {
   return (
-    <SectionList />
+    <>
+      <div>
+        <NavBar />
+        <div className='pt-20 w-ful h-screen flex flex-col items-center'>
+          <div className='container flex flex-wrap justify-items-stretch' />
+          <ModifiedFooter />
+        </div>
+      </div>
+    </>
   )
 }
 export default Public

@@ -42,7 +42,7 @@ const SellingPoint = ({ spId }) => {
           </div>
         </Card>
 
-        <Card className='h-72 !rounded-xl'>
+        <Card className='h-72 !rounded-xl cursor-pointer' onClick={() => setFlip(!flip)}>
           <div className='flex flex-row justify-center'>
             <h3 className='text-xl font-bold tracking-tight text-blues-300 dark:text-white'>
               {sp.name}
@@ -77,7 +77,7 @@ const SellingPoint = ({ spId }) => {
           <div className='flex flex-col'>
             <div className='flex-col'>
               <h2 className='text-lg font-bold tracking-tight text-blues-300 dark:text-white'>
-                Telefono:
+                Teléfono:
               </h2>
             </div>
             <div className='flex-col'>
