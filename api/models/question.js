@@ -11,12 +11,12 @@ module.exports = class Question {
     return rows[0]
   }
 
-  static async addQuestion (fastify, questionText, section, usingCamera, btnNa, pictureName, questionOrder, idCategory) {
+  static async addQuestion (fastify, questionText, idArea, usingCamera, btnNa, pictureName, idCategory) {
     const connection = await fastify.mysql.getConnection()
     const queryRes = await connection.query(
-      'INSERT INTO Question(p_text, section, camara, btn_na, picture, q_order) VALUES (?,?,?,?,?,?)',
+      'INSERT INTO Question(p_text, id_area, camara, btn_na, picture, q_order) VALUES (?,?,?,?,?,?)',
       [
-        questionText, section, usingCamera, btnNa, pictureName, questionOrder
+        questionText, idArea, usingCamera, btnNa, pictureName, 1
       ]
     )
 

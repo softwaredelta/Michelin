@@ -12,18 +12,16 @@ const QuestionAdd = () => {
   const navigate = useNavigate()
 
   const [qText, setqText] = useState('')
-  const [section, setSection] = useState(1)
+  const [idArea, setArea] = useState(1)
   const [usingCamera, setUsingCamera] = useState(0)
   const [btnNa, setbtnNa] = useState(0)
   const [idCategory] = useState(1)
-  const [questionOrder, setQuestionOrder] = useState(1)
   const [placeholder, setPlaceHolder] = useState(null)
-  const [selectedFile, setSelectedFile] = useState(null)
 
   useEffect(() => {
     if (isSuccess) {
       setqText('')
-      setSection('')
+      setArea('')
       setUsingCamera(0)
       setbtnNa(0)
       navigate('/')
@@ -31,22 +29,19 @@ const QuestionAdd = () => {
   }, [isSuccess, navigate])
 
   const onqTextChanged = e => setqText(e.target.value)
-  const onSectionChanged = e => { setSection(e.target.value) }
+  const onAreaChanged = e => { setArea(e.target.value) }
   const onUsingCameraChanged = e => setUsingCamera(e.target.checked ? 1 : 0)
   const onbtnNaChanged = e => { setbtnNa(e.target.checked ? 1 : 0) }
-  const onOrderChanged = e => setQuestionOrder(e.target.value)
-  const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]); setSelectedFile(e.target.files[0]); console.log(e.target.files[0]) }
+  const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]);}
 
   const onSaveQuestionClicked = async (e) => {
     e.preventDefault()
-    console.log(placeholder)
     const newQuestion = new FormData()
     newQuestion.append('qText', qText)
-    newQuestion.append('section', section)
+    newQuestion.append('idArea', idArea)
     newQuestion.append('usingCamera', usingCamera)
     newQuestion.append('btnNa', btnNa)
     newQuestion.append('placeholder', placeholder)
-    newQuestion.append('questionOrder', questionOrder)
     newQuestion.append('idCategory', idCategory)
     await addNewQuestion(newQuestion)
   }
@@ -81,32 +76,14 @@ const QuestionAdd = () => {
             />
           </div>
           <Select
-            id='section'
-            name='section'
+            id='idArea'
+            name='idArea'
             required
-            onChange={onSectionChanged}
-            value={section}
+            onChange={onAreaChanged}
+            value={idArea}
           >
             <option value={1} defaultValue={1}>Exterior</option>
             <option value={2}>Interior</option>
-          </Select>
-        </div>
-        <div>
-          <div className='mb-2 block'>
-            <Label
-              htmlFor='questionOrder'
-              value='Orden de Pregunta'
-            />
-          </div>
-          <Select
-            id='questionOrder'
-            name='questionOrder'
-            required
-            value={questionOrder}
-            onChange={onOrderChanged}
-          >
-            <option value={1} defaultValue={1}>Llantas</option>
-            <option value={2}>Papilla</option>
           </Select>
         </div>
         <Checkbox id='usingCamera' name='usingCamera' onClick={onUsingCameraChanged} value={1} uncheckedvalue={0} />
