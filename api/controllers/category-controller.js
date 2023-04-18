@@ -8,8 +8,7 @@ exports.postQuestion = async (request, reply) => {
     request.body.section,
     request.body.usingCamera,
     request.body.btnNa,
-    'holi.jpg',
-    // request.file.originalname,
+    request.file.originalname,
     request.body.questionOrder,
     request.body.idCategory)
 
