@@ -8,12 +8,13 @@ exports.getSellingPoints = (request, reply) => {
 exports.addSellingPoints = async (request, reply) => {
   await SellingPoint.addSellingPoint(
     this.fastify,
-    request.body.idType,
-    request.body.idZone,
-    request.body.idZone,
+    request.body.type,
+    request.body.zone,
+    request.body.address,
     request.body.rating,
     request.body.name,
     request.body.phone
   );
+  
   return reply.code(200).send({ statusCode: 200 });
 };
