@@ -41,13 +41,24 @@ export const sellingPointApiSlice = appSlice.injectEndpoints({
       invalidatesTags: [
         { type: 'sp', id: 'LIST' }
       ]
+    }),
+    deleteSP: builder.mutation({
+      query: initialUserData => ({
+        url: '/sellingPoint/delete',
+        method: 'POST',
+        body: { ...initialUserData }
+      }),
+      invalidatesTags: [
+        { type: 'sp', id: 'LIST' }
+      ]
     })
   })
 })
 
 export const {
   useGetSPQuery,
-  useAddNewSPMutation
+  useAddNewSPMutation,
+  useDeleteSPMutation
 } = sellingPointApiSlice
 
 export const selectSPResult = sellingPointApiSlice.endpoints.getSP.select()
