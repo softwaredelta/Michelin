@@ -25,6 +25,8 @@ function buildFastify (opts = {}, testing) {
   fastify.register(require('./routes/form-routes'), { prefix: '/form' })
   fastify.register(require('./routes/sellingPoint-routes'), { prefix: '/sellingPoint' })
   fastify.register(require('./routes/question-routes'), { prefix: '/question' })
+  fastify.register(require('./routes/category-routes'), { prefix: '/category' })
+  fastify.register(require('./routes/state-routes'), { prefix: '/state' })
 
   return fastify
 }

@@ -1,12 +1,11 @@
-import { Accordion, Button, Modal } from 'flowbite-react'
+import { Accordion } from 'flowbite-react'
 import ModifiedFooter from '../../components/ModifiedFooter'
 import NavBar from '../../components/NavBar'
 import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle'
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent'
 import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel'
 const SectionList = () => {
-  let content
-  content = (
+  const content = (
     <div>
       <NavBar />
       <div className='pt-20 w-ful h-screen flex flex-col items-center'>

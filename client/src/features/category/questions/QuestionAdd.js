@@ -5,7 +5,7 @@ import { Checkbox, Select, Label, TextInput, FileInput } from 'flowbite-react'
 
 const QuestionAdd = () => {
   const [addNewQuestion, {
-    isLoading,
+    // isLoading,
     isSuccess
   }] = useAddNewQuestionMutation()
 
@@ -32,7 +32,7 @@ const QuestionAdd = () => {
   const onAreaChanged = e => { setArea(e.target.value) }
   const onUsingCameraChanged = e => setUsingCamera(e.target.checked ? 1 : 0)
   const onbtnNaChanged = e => { setbtnNa(e.target.checked ? 1 : 0) }
-  const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]);}
+  const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]) }
 
   const onSaveQuestionClicked = async (e) => {
     e.preventDefault()
