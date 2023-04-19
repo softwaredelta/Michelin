@@ -6,7 +6,7 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { FaEdit } from 'react-icons/fa'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
-import { selectSPById } from './sellingPointApiSlice'
+import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
 
 const SellingPoint = ({ spId }) => {
   const [flip, setFlip] = useState(false)
@@ -14,6 +14,14 @@ const SellingPoint = ({ spId }) => {
 
   const handleSetFlip = () => {
     setFlip(!flip)
+  }
+
+  const [DeleteSP] = useDeleteSPMutation()
+
+  const onDeleteSPClicked = async (e) => {
+    e.preventDefault()
+
+    await DeleteSP({ spId })
   }
 
   return (
@@ -96,7 +104,7 @@ const SellingPoint = ({ spId }) => {
             <div className='flex-col'>
               <SvgButton
                 svgfile={<BsFillTrashFill color='#1d4089' />}
-                method={handleSetFlip}
+                method={onDeleteSPClicked}
               />
             </div>
           </div>
