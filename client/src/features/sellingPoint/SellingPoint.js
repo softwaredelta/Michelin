@@ -6,9 +6,12 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { FaEdit } from 'react-icons/fa'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
+import ConfirmationModal from '../../components/ConfirmationModal'
 import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
 
 const SellingPoint = ({ spId }) => {
+  let confirmationText = "Estas seguro que deseas eliminar el punto de venta"
+
   const [flip, setFlip] = useState(false)
   const sp = useSelector(state => selectSPById(state, spId))
 
@@ -20,8 +23,19 @@ const SellingPoint = ({ spId }) => {
 
   const onDeleteSPClicked = async (e) => {
     e.preventDefault()
-
     await DeleteSP({ spId })
+    handleClose()
+  }
+
+  //Modal
+  const [show, setShow] = useState(false)
+
+  const handleSetShow = () => {
+    setShow(true)
+  }
+
+  const handleClose = () => {
+    setShow(false)
   }
 
   return (
@@ -104,12 +118,13 @@ const SellingPoint = ({ spId }) => {
             <div className='flex-col'>
               <SvgButton
                 svgfile={<BsFillTrashFill color='#1d4089' />}
-                method={onDeleteSPClicked}
+                method={handleSetShow}
               />
             </div>
           </div>
         </Card>
       </ReactCardFlip>
+      <ConfirmationModal show={show} onClose={handleClose} text={confirmationText} method={onDeleteSPClicked}/>
     </div>
   )
 }

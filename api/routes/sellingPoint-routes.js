@@ -6,6 +6,8 @@ async function sellingPointRoutes (fastify, options) {
   fastify.get('/list', sellingPointController.getSellingPoints)
 
   fastify.post('/addSellingPoint', sellingPointController.addSellingPoints)
+
+  fastify.post('/delete', sellingPointController.postDeleteSellingPoint)
 }
 
 module.exports = sellingPointRoutes
