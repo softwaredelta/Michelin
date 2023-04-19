@@ -4,7 +4,6 @@ import NavBar from '../../../components/NavBar'
 import Header from '../../../components/Header'
 import Bluebutton from '../../../components/Bluebutton'
 import QuestionAdd from './QuestionAdd'
-import { Navigate } from 'react-router-dom'
 
 const QuestionList = () => {
   const [show, setShow] = useState(false)
