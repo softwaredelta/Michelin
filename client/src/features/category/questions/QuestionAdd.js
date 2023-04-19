@@ -5,7 +5,6 @@ import { Checkbox, Select, Label, TextInput, FileInput } from 'flowbite-react'
 
 const QuestionAdd = () => {
   const [addNewQuestion, {
-    // isLoading,
     isSuccess
   }] = useAddNewQuestionMutation()
 
@@ -49,8 +48,8 @@ const QuestionAdd = () => {
   const content = (
     <>
       <form onSubmit={onSaveQuestionClicked} className='flex flex-col gap-4'>
-        <h2>New Question</h2>
-        <button title='Save'>Save</button>
+        <h2>Nueva Pregunta</h2>
+        <button title='Create'>Crear</button>
         <div>
           <div className='mb-2 block'>
             <Label
