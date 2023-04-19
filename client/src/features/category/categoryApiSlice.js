@@ -9,7 +9,7 @@ const initialState = categoryAdapter.getInitialState()
 export const categoryApiSlice = appSlice.injectEndpoints({
   endpoints: (builder) => ({
     getQuestions: builder.query({
-      query: () => '/category/getAllQuestions',
+      query: () => '/question/getAllQuestions',
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError
       },
@@ -31,7 +31,7 @@ export const categoryApiSlice = appSlice.injectEndpoints({
     }),
     addNewQuestion: builder.mutation({
       query: (initialUserData) => ({
-        url: 'category/postQuestion',
+        url: '/question/postQuestion',
         method: 'POST',
         body: initialUserData
       }),
