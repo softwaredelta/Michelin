@@ -10,7 +10,10 @@ import { useForm } from 'react-hook-form'
 
 const QuestionAdd = ({ show, onClose }) => {
   const [addNewQuestion, {
-    isSuccess
+    isSuccess,
+    isLoading,
+    isError,
+    error
   }] = useAddNewQuestionMutation()
 
   const { register, getValues } = useForm()
@@ -20,6 +23,11 @@ const QuestionAdd = ({ show, onClose }) => {
   const [placeholder, setPlaceHolder] = useState('')
 
   useEffect(() => {
+    if (isError){
+      const err = <p>{error?.data?.message}</p>
+    }else if (isLoading){
+
+    }
     if (isSuccess) {
       window.location.reload()
     }
@@ -55,9 +63,9 @@ const QuestionAdd = ({ show, onClose }) => {
     isError: isErrorArea
   } = useGetAreaQuery()
 
-  if (isLoadingArea) area = <option> Cargando </option>
+  if (isLoadingArea) area = <option disabled selected value=''> Cargando... </option>
   if (isErrorArea) {
-    area = <option> Sin opciones válidas </option>
+    area = <option disabled selected value=''> Sin opciones válidas </option>
   }
 
   if (isSuccessArea) {
@@ -145,7 +153,15 @@ const QuestionAdd = ({ show, onClose }) => {
                       accept='.jpg, .jpeg'
                     />
                   </div>
-                </div>
+                  
+                  <div className='flex-row justify-end float-right -my-2'>
+                  <Label
+                    htmlFor='placeholder'
+                    value ='Formatos aceptados .jpg, .jpeg'
+                    className='text-sm font-semibold'
+                  />
+                  </div>
+                  </div>
               </div>
             </div>
           </ModalBody>
