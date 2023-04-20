@@ -8,15 +8,17 @@ import { selectStateById, useGetStateQuery } from "./state/stateApiSlice";
 import StateOption from "./state/StateOption";
 import CategoryOption from "../category/CategoryOption";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 //import { useState } from "react";
 
 const SellingPointAdd = ({ show, onClose }) => {
   let zoneId;
+  const navigate = useNavigate();
   const { register, handleSubmit, getValues } = useForm();
 
-  const [addNewSP] = useAddNewSPMutation();
+  const [addNewSP, {isSuccess}] = useAddNewSPMutation();
   const myZone = useSelector((state) => selectStateById(state, zoneId));
 
   let mycategory, mystate;
@@ -26,8 +28,8 @@ const SellingPointAdd = ({ show, onClose }) => {
     isSuccess: isSuccessCategory,
     isError: isErrorCategory,
   } = useGetCategoriesQuery();
-  console.log(category)
-  
+  console.log(category);
+
   const {
     data: state,
     isSuccess: isSuccessState,
@@ -38,17 +40,16 @@ const SellingPointAdd = ({ show, onClose }) => {
     mycategory = <option> Sin opciones válidas </option>;
   }
 
-
   if (isSuccessCategory) {
     const { ids } = category;
-    
+
     const listContent = ids?.length
       ? ids.map((idCategory) => (
-        <CategoryOption key={idCategory} categoryId={idCategory} />
+          <CategoryOption key={idCategory} categoryId={idCategory} />
         ))
       : null;
 
-      /*const {entities} = category
+    /*const {entities} = category
       const listContent2 = entities?.length
       ? entities?.map((entitie, index) => (
           <option key={entitie?.idCategory} value={entitie?.idCategory}>
@@ -56,7 +57,6 @@ const SellingPointAdd = ({ show, onClose }) => {
           </option>
         ))
       : null;*/
-      
 
     mycategory = listContent;
   }
@@ -69,9 +69,7 @@ const SellingPointAdd = ({ show, onClose }) => {
     const { ids } = state;
 
     const listContent = ids?.length
-      ? ids.map((idState) => (
-        <StateOption key={idState} zoneId={idState} />
-        ))
+      ? ids.map((idState) => <StateOption key={idState} zoneId={idState} />)
       : null;
 
     mystate = listContent;
@@ -85,8 +83,6 @@ const SellingPointAdd = ({ show, onClose }) => {
     const address = getValues("address");
     const phone = getValues("phone");
 
-    console.log("holis", type);
-
     await addNewSP({
       type: type,
       zone: zone,
@@ -97,25 +93,31 @@ const SellingPointAdd = ({ show, onClose }) => {
     });
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      window.location.reload()
+    }
+  }, [isSuccess, navigate])
+
   return (
     <>
-      <form>
-        <Modal show={show} onClose={onClose} dismissible>
-          <ModalHeader className="!bg-blues-200">
-            <div className="flex ml-14">
-              <div className="flex items-center flex-col mx-4 text-xl font-semibold text-white">
-                Nombre:
-              </div>
-              <div className="flex flex-col mx-4">
-                <input
-                  className="border-2 rounded-lg text-center min-h-full text-mdh-4/5 w-72"
-                  placeholder="Punto de Venta"
-                  id="name"
-                  {...register("name")}
-                />
-              </div>
+      <Modal show={show} onClose={onClose} dismissible>
+        <ModalHeader className="!bg-blues-200">
+          <div className="flex ml-14">
+            <div className="flex items-center flex-col mx-4 text-xl font-semibold text-white">
+              Nombre:
             </div>
-          </ModalHeader>
+            <div className="flex flex-col mx-4">
+              <input
+                className="border-2 rounded-lg text-center min-h-full text-mdh-4/5 w-72"
+                placeholder="Punto de Venta"
+                id="name"
+                {...register("name")}
+              />
+            </div>
+          </div>
+        </ModalHeader>
+        <form onSubmit={onSaveSPClicked}>
           <ModalBody>
             <div className="flex justify-center">
               <div className="flex flex-col mx-4 items-end">
@@ -133,32 +135,22 @@ const SellingPointAdd = ({ show, onClose }) => {
                 </div>
               </div>
               <div className="flex flex-col w-3/4">
-                <Select id='select_zone' name='select_zone' {...register("select_zone")} required>
+                <Select
+                  id="select_zone"
+                  name="select_zone"
+                  {...register("select_zone")}
+                  required
+                >
                   {mystate}
                 </Select>
-                <Select id='select_type' name='select_type' {...register("select_type")} required>
+                <Select
+                  id="select_type"
+                  name="select_type"
+                  {...register("select_type")}
+                  required
+                >
                   {mycategory}
                 </Select>
-                {/* <select
-                  name="select-type"
-                  onChange={(e) => setValue(e.target.value)}
-                  //onClick={(e) => setValue(e.target.value)}
-                  className="border-2 rounded-md my-2"
-                  id="zone"
-                  {...register("zone")}
-                >
-                  {mystate}
-                </select>
-                <Select
-                  name="select-type"
-                  // onClick={(e) => setValue2(e.target.value)}
-                  onChange={(e) => setValue2(e.target.value)}
-                  className="border-2 rounded-md my-2"
-                  id="type"
-                  {...register("type")}
-                  options={mycategory}
-                >
-                </Select> */}
                 <textarea
                   className="border-2 rounded-md my-2 resize-none"
                   id="address"
@@ -176,19 +168,18 @@ const SellingPointAdd = ({ show, onClose }) => {
             <button
               className="bg-blues-200 text-white py-2 px-4 rounded-md"
               type="submit"
-              onClick={onSaveSPClicked}
             >
               Aceptar
             </button>
             <button
-              className="bg-gray-500 text-white py-2 px-4 rounded-md"
+              className="bg-gray-500 text-white py-2 px-4 rounded-md end"
               onClick={onClose}
             >
               Cancelar
             </button>
           </ModalFooter>
-        </Modal>
-      </form>
+        </form>
+      </Modal>
     </>
   );
 };
