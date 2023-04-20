@@ -107,8 +107,8 @@ const QuestionAdd = ({ show, onClose }) => {
                   required
                   className='border-2 rounded-md my-1'
                 >
-                  <option value={1} defaultValue={1}>Exterior</option>
-                  <option value={2}>Interior</option>
+                  <option disabled selected value=''> Selecciona una opción</option>
+                  {area}
                 </Select>
                 <Label
                   value='Agregados'
@@ -139,13 +139,13 @@ const QuestionAdd = ({ show, onClose }) => {
                     <FileInput
                       id='placeholder'
                       name='placeholder'
+                      required
                       className='border-2 rounded-md my-2.5'
                       onChange={onPlaceHolderChanged}
                       accept='.jpg, .jpeg'
                     />
                   </div>
                 </div>
-                <select className='border-2 rounded-md my-2'>{area}</select>
               </div>
             </div>
           </ModalBody>
