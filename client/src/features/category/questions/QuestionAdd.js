@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAddNewQuestionMutation, useGetAreaQuery } from '../categoryApiSlice'
-import { Checkbox, Select, Label, TextInput, FileInput, Modal } from 'flowbite-react'
+import { Checkbox, Select, Label, FileInput, Modal, Textarea } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import AreaOption from './AreaOption'
 import { useForm } from 'react-hook-form'
+import Toast from '../../../components/Toast'
 
 const QuestionAdd = ({ show, onClose }) => {
   const [addNewQuestion, {
@@ -16,20 +17,26 @@ const QuestionAdd = ({ show, onClose }) => {
     error
   }] = useAddNewQuestionMutation()
 
-  const { register, getValues } = useForm()
+  const { register, getValues, reset } = useForm()
 
   const navigate = useNavigate()
 
   const [placeholder, setPlaceHolder] = useState('')
 
   useEffect(() => {
-    if (isError){
+    if (isError) {
+      Toast.fire({
+        icon: 'error',
+        title: 'Se produjo un error'
+      })
       const err = <p>{error?.data?.message}</p>
-    }else if (isLoading){
-
     }
     if (isSuccess) {
-      window.location.reload()
+      reset()
+      Toast.fire({
+        icon: 'success',
+        title: 'Se creo una nueva pregunta'
+      })
     }
   }, [isSuccess, navigate])
 
@@ -96,12 +103,13 @@ const QuestionAdd = ({ show, onClose }) => {
                   value='Texto de Pregunta'
                   className='align-bottom my-2 text-lg font-semibold'
                 />
-                <TextInput
+                <Textarea
                   id='qText'
                   {...register('qText')}
                   name='qText'
                   required
-                  className='border-2 rounded-md my-1 resize-none'
+                  autoComplete='off'
+                  className='border-2 rounded-md my-1'
                 />
                 <Label
                   htmlFor='section'
@@ -115,7 +123,7 @@ const QuestionAdd = ({ show, onClose }) => {
                   required
                   className='border-2 rounded-md my-1'
                 >
-                  <option disabled selected value=''> Selecciona una opción</option>
+                  <option value='' selected> -- Selecciona una opción --</option>
                   {area}
                 </Select>
                 <Label
@@ -125,19 +133,19 @@ const QuestionAdd = ({ show, onClose }) => {
 
                 <div className='flex flex-row -my-2 justify-center'>
                   <div className='flex-col mx-3'>
-                    <Label htmlFor='usingCamara' className='align-bottom text-center text-lg font-semibold mx-2'>
+                    <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mx-2'>
                       Cámara
                     </Label>
-                    <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} />
+                    <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center' />
                   </div>
                   <div className='flex-col'>
-                    <Label htmlFor='btnNa' className='align-bottom text-center text-lg font-semibold mx-2'>
+                    <Label htmlFor='btnNa' className='align-top text-center text-lg font-semibold mx-2'>
                       Botón No Aplica
                     </Label>
-                    <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} />
+                    <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center' />
                   </div>
                 </div>
-                <div className='flex-row my-2'>
+                <div className='flex-row my-5'>
                   <Label
                     htmlFor='placeholder'
                     value='Imagen para pregunta'
@@ -153,15 +161,15 @@ const QuestionAdd = ({ show, onClose }) => {
                       accept='.jpg, .jpeg'
                     />
                   </div>
-                  
+
                   <div className='flex-row justify-end float-right -my-2'>
-                  <Label
-                    htmlFor='placeholder'
-                    value ='Formatos aceptados .jpg, .jpeg'
-                    className='text-sm font-semibold'
-                  />
+                    <Label
+                      htmlFor='placeholder'
+                      value='Formatos aceptados .jpg, .jpeg'
+                      className='text-sm font-semibold'
+                    />
                   </div>
-                  </div>
+                </div>
               </div>
             </div>
           </ModalBody>
@@ -176,7 +184,7 @@ const QuestionAdd = ({ show, onClose }) => {
             <a
               className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer'
               onClick={onClose}
-              href={() => {}}
+              href={onClose}
             >
               Cancelar
             </a>
