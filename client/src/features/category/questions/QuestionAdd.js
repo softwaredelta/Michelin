@@ -6,40 +6,35 @@ import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import AreaOption from './AreaOption'
+import { useForm } from 'react-hook-form'
 
 const QuestionAdd = ({ show, onClose }) => {
   const [addNewQuestion, {
     isSuccess
   }] = useAddNewQuestionMutation()
 
+  const { register, getValues } = useForm()
+
   const navigate = useNavigate()
 
-  const [qText, setqText] = useState('')
-  const [idArea, setArea] = useState(1)
-  const [usingCamera, setUsingCamera] = useState('')
-  const [btnNa, setbtnNa] = useState('')
-  const [idCategory] = useState(1)
   const [placeholder, setPlaceHolder] = useState('')
 
   useEffect(() => {
     if (isSuccess) {
-      setqText('')
-      setArea(1)
-      setUsingCamera('')
-      setbtnNa('')
-      setPlaceHolder('')
       window.location.reload()
     }
   }, [isSuccess, navigate])
 
-  const onqTextChanged = e => { setqText(e.target.value) }
-  const onAreaChanged = e => { setArea(e.target.value) }
-  const onUsingCameraChanged = e => setUsingCamera(e.target.checked ? 1 : 0)
-  const onbtnNaChanged = e => { setbtnNa(e.target.checked ? 1 : 0) }
   const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]) }
 
   const onSaveQuestionClicked = async (e) => {
     e.preventDefault()
+    const qText = getValues('qText')
+    const idArea = getValues('idArea')
+    const usingCamera = getValues('usingCamera')
+    const btnNa = getValues('btnNa')
+    const idCategory = 1
+
     const newQuestion = new FormData()
     newQuestion.append('qText', qText)
     newQuestion.append('idArea', idArea)
@@ -84,7 +79,7 @@ const QuestionAdd = ({ show, onClose }) => {
             </div>
           </div>
         </ModalHeader>
-        <form name='newQuestionForm'>
+        <form onSubmit={onSaveQuestionClicked}>
           <ModalBody>
             <div className='flex justify-center'>
               <div className='flex flex-col w-3/4'>
@@ -95,11 +90,9 @@ const QuestionAdd = ({ show, onClose }) => {
                 />
                 <TextInput
                   id='qText'
+                  {...register('qText')}
                   name='qText'
-                  autoComplete='off'
                   required
-                  value={qText}
-                  onChange={onqTextChanged}
                   className='border-2 rounded-md my-1 resize-none'
                 />
                 <Label
@@ -110,9 +103,8 @@ const QuestionAdd = ({ show, onClose }) => {
                 <Select
                   id='idArea'
                   name='idArea'
+                  {...register('idArea')}
                   required
-                  onChange={onAreaChanged}
-                  value={idArea}
                   className='border-2 rounded-md my-1'
                 >
                   <option value={1} defaultValue={1}>Exterior</option>
@@ -128,13 +120,13 @@ const QuestionAdd = ({ show, onClose }) => {
                     <Label htmlFor='usingCamara' className='align-bottom text-center text-lg font-semibold mx-2'>
                       Cámara
                     </Label>
-                    <Checkbox id='usingCamera' name='usingCamera' onClick={onUsingCameraChanged} value={1} uncheckedvalue={0} />
+                    <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} />
                   </div>
                   <div className='flex-col'>
                     <Label htmlFor='btnNa' className='align-bottom text-center text-lg font-semibold mx-2'>
                       Botón No Aplica
                     </Label>
-                    <Checkbox id='btnNa' name='btnNa' onClick={onbtnNaChanged} value={1} uncheckedvalue={0} />
+                    <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} />
                   </div>
                 </div>
                 <div className='flex-row my-2'>
@@ -162,17 +154,16 @@ const QuestionAdd = ({ show, onClose }) => {
               className='bg-blues-200 text-white py-2 px-4 rounded-md'
               title='Create'
               type='submit'
-              form='newQuestionForm'
-              onClick={onSaveQuestionClicked}
             >
               Crear
             </button>
-            <button
-              className='bg-gray-500 text-white py-2 px-4 rounded-md'
+            <a
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer'
               onClick={onClose}
+              href={() => {}}
             >
               Cancelar
-            </button>
+            </a>
           </ModalFooter>
         </form>
       </Modal>
