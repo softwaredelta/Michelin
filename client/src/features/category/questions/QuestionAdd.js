@@ -12,7 +12,6 @@ import Toast from '../../../components/Toast'
 const QuestionAdd = ({ show, onClose }) => {
   const [addNewQuestion, {
     isSuccess,
-    isLoading,
     isError,
     error
   }] = useAddNewQuestionMutation()
@@ -29,7 +28,6 @@ const QuestionAdd = ({ show, onClose }) => {
         icon: 'error',
         title: 'Se produjo un error'
       })
-      const err = <p>{error?.data?.message}</p>
     }
     if (isSuccess) {
       reset()
@@ -38,7 +36,7 @@ const QuestionAdd = ({ show, onClose }) => {
         title: 'Se creo una nueva pregunta'
       })
     }
-  }, [isSuccess, navigate])
+  }, [isSuccess, isError, error, reset, navigate])
 
   const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]) }
 
@@ -70,7 +68,7 @@ const QuestionAdd = ({ show, onClose }) => {
     isError: isErrorArea
   } = useGetAreaQuery()
 
-  if (isLoadingArea) area = <option disabled selected value=''> Cargando... </option>
+  if (isLoadingArea) area = <option disabled value=''> Cargando... </option>
   if (isErrorArea) {
     area = <option disabled selected value=''> Sin opciones válidas </option>
   }
