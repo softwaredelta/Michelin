@@ -8,7 +8,7 @@ exports.postQuestion = async (request, reply) => {
     request.body.idArea,
     request.body.usingCamera,
     request.body.btnNa,
-    request.file.originalname,
+    request.file.filename,
     request.body.idCategory)
 
   return reply.code(200).send({ statusCode: 200 })
