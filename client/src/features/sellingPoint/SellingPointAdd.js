@@ -41,20 +41,22 @@ const SellingPointAdd = ({ show, onClose }) => {
 
   if (isSuccessCategory) {
     const { ids } = category;
-
-    const listContent2 = ids?.length
-      ? ids.map((idCategory, index) => {
-        return category.entities[index + 1].name;
-      })
-      : null;
     
     const listContent = ids?.length
-      ? ids.map((idCategory, index) => (
-          <option key={idCategory} value={idCategory}>
-            {listContent2[index]}
-          </option>
+      ? ids.map((idCategory) => (
+        <CategoryOption key={idCategory} categoryId={idCategory} />
         ))
       : null;
+
+      /*const {entities} = category
+      const listContent2 = entities?.length
+      ? entities?.map((entitie, index) => (
+          <option key={entitie?.idCategory} value={entitie?.idCategory}>
+            {entitie?.name}
+          </option>
+        ))
+      : null;*/
+      
 
     mycategory = listContent;
   }
@@ -66,28 +68,14 @@ const SellingPointAdd = ({ show, onClose }) => {
   if (isSuccessState) {
     const { ids } = state;
 
-    const listContent2 = ids?.length
-      ? ids.map((idState, index) => {
-          return state.entities[index + 1].name;
-        })
-      : null;
-
     const listContent = ids?.length
-      ? ids.map((idState, index) => (
-          <option key={idState} value={idState}>
-            {listContent2[index]}{" "}
-          </option>
+      ? ids.map((idState) => (
+        <StateOption key={idState} zoneId={idState} />
         ))
       : null;
 
     mystate = listContent;
-    console.log(mystate);
   }
-
-  const onError = () => console.log("error :(");
-
-  const [myValue, setValue] = useState();
-  const [myValue2, setValue2] = useState();
 
   const onSaveSPClicked = async (e) => {
     e.preventDefault();
@@ -96,7 +84,6 @@ const SellingPointAdd = ({ show, onClose }) => {
     const type = getValues("select_type");
     const address = getValues("address");
     const phone = getValues("phone");
-    const rating = 0;
 
     console.log("holis", type);
 

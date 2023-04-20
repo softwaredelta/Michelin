@@ -5,7 +5,7 @@ const CategoryOption = ({ categoryId }) => {
   const category = useSelector((state) => selectCategoryById(state, categoryId))
   return (
     <>
-      <option id="type">{category.name}</option>
+      <option id="type" value={category.id}>{category.name}</option>
     </>
   )
 }
