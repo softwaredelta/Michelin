@@ -4,24 +4,24 @@ import { ModalBody } from "flowbite-react/lib/esm/components/Modal/ModalBody";
 import { ModalFooter } from "flowbite-react/lib/esm/components/Modal/ModalFooter";
 import { useAddNewSPMutation } from "./sellingPointApiSlice";
 import { useGetCategoriesQuery } from "../category/categoryApiSlice";
-import { selectStateById, useGetStateQuery } from "./state/stateApiSlice";
+import { useGetStateQuery } from "./state/stateApiSlice";
 import StateOption from "./state/StateOption";
 import CategoryOption from "../category/CategoryOption";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-//import { useState } from "react";
+import { useEffect } from "react";
 
 const SellingPointAdd = ({ show, onClose }) => {
-  let zoneId;
-  const navigate = useNavigate();
-  const { register, handleSubmit, getValues } = useForm();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    resetField,
+    formState: { errors },
+  } = useForm();
+  const [addNewSP, { isSuccess }] = useAddNewSPMutation();
 
-  const [addNewSP, {isSuccess}] = useAddNewSPMutation();
-  const myZone = useSelector((state) => selectStateById(state, zoneId));
-
-  let mycategory, mystate;
+  let myCategory, myState;
 
   const {
     data: category,
@@ -37,7 +37,7 @@ const SellingPointAdd = ({ show, onClose }) => {
   } = useGetStateQuery();
 
   if (isErrorCategory) {
-    mycategory = <option> Sin opciones válidas </option>;
+    myCategory = <option> Sin opciones válidas </option>;
   }
 
   if (isSuccessCategory) {
@@ -58,11 +58,11 @@ const SellingPointAdd = ({ show, onClose }) => {
         ))
       : null;*/
 
-    mycategory = listContent;
+    myCategory = listContent;
   }
 
   if (isErrorState) {
-    mystate = <option> Sin opciones válidas </option>;
+    myState = <option> Sin opciones válidas </option>;
   }
 
   if (isSuccessState) {
@@ -72,11 +72,10 @@ const SellingPointAdd = ({ show, onClose }) => {
       ? ids.map((idState) => <StateOption key={idState} zoneId={idState} />)
       : null;
 
-    mystate = listContent;
+    myState = listContent;
   }
 
   const onSaveSPClicked = async (e) => {
-    e.preventDefault();
     const name = getValues("name");
     const zone = getValues("select_zone");
     const type = getValues("select_type");
@@ -91,75 +90,108 @@ const SellingPointAdd = ({ show, onClose }) => {
       name: name,
       phone: phone,
     });
+
+    onClose();
   };
 
   useEffect(() => {
     if (isSuccess) {
-      window.location.reload()
+      reset();
+      resetField("option-disabled");
+      resetField("select_type");
     }
-  }, [isSuccess, navigate])
+  }, [isSuccess]);
 
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
-        <ModalHeader className="!bg-blues-200">
-          <div className="flex ml-14">
-            <div className="flex items-center flex-col mx-4 text-xl font-semibold text-white">
-              Nombre:
+        <form onSubmit={handleSubmit(onSaveSPClicked)}>
+          <ModalHeader className="!bg-blues-200">
+            <div className="flex ml-14">
+              <div className="flex items-center flex-col mx-4 text-xl font-semibold text-white">
+                Nombre:
+              </div>
+              <div className="flex flex-col mx-4">
+                <input
+                  className="border-2 rounded-lg text-center text-mdh-4/5 w-72"
+                  placeholder="Punto de Venta"
+                  id="name"
+                  {...register("name", {
+                    required: true,
+                    pattern: {
+                      value: /^\S+[a-zA-Z\s]*/,
+                      message: "error message",
+                    },
+                  })}
+                />
+              </div>
             </div>
-            <div className="flex flex-col mx-4">
-              <input
-                className="border-2 rounded-lg text-center min-h-full text-mdh-4/5 w-72"
-                placeholder="Punto de Venta"
-                id="name"
-                {...register("name")}
-              />
-            </div>
-          </div>
-        </ModalHeader>
-        <form onSubmit={onSaveSPClicked}>
+          </ModalHeader>
           <ModalBody>
             <div className="flex justify-center">
               <div className="flex flex-col mx-4 items-end">
                 <div className="flex-row align-bottom text-center my-2 text-lg font-semibold">
                   Zona:
                 </div>
-                <div className="flex-row text-center my-2 text-lg font-semibold">
+                <div className="flex-row text-center my-3 text-lg font-semibold">
                   Tipo:
                 </div>
                 <div className="flex-row text-center my-5 text-lg font-semibold">
                   Dirección:
                 </div>
-                <div className="flex-row text-center my-2 text-lg font-semibold">
+                <div className="flex-row text-center my-4 text-lg font-semibold">
                   Teléfono:
                 </div>
               </div>
               <div className="flex flex-col w-3/4">
                 <Select
+                  className="mb-3"
                   id="select_zone"
                   name="select_zone"
-                  {...register("select_zone")}
-                  required
+                  {...register("select_zone", {
+                    required: true,
+                  })}
                 >
-                  {mystate}
+                  <option value='' selected>
+                    Selecciona un estado
+                  </option>
+
+                  {myState}
                 </Select>
                 <Select
+                  className="mb-3"
                   id="select_type"
                   name="select_type"
-                  {...register("select_type")}
-                  required
+                  {...register("select_type", {
+                    required: true,
+                  })}
                 >
-                  {mycategory}
+                  <option value='' name="option-disabled" selected>
+                    Selecciona un tipo
+                  </option>
+                  {myCategory}
                 </Select>
                 <textarea
                   className="border-2 rounded-md my-2 resize-none"
                   id="address"
-                  {...register("address")}
+                  {...register("address", {
+                    required: true,
+                    pattern: {
+                      value: /^\S+[a-zA-Z\s]*/,
+                      message: "error message",
+                    },
+                  })}
                 />
                 <input
                   className="border-2 rounded-md my-2"
                   id="phone"
-                  {...register("phone")}
+                  {...register("phone", {
+                    required: true,
+                    pattern: {
+                      value: /^[0-9]*/,
+                      message: "error message",
+                    },
+                  })}
                 />
               </div>
             </div>
