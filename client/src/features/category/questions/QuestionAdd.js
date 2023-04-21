@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAddNewQuestionMutation, useGetAreaQuery } from '../categoryApiSlice'
-import { Checkbox, Select, Label, FileInput, Modal, Textarea } from 'flowbite-react'
+import { Checkbox, Select, Label, FileInput, Modal, Textarea, Tooltip } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import AreaOption from './AreaOption'
 import { useForm } from 'react-hook-form'
 import Toast from '../../../components/Toast'
-import { Tooltip } from 'flowbite-react'
-import {AiOutlineQuestionCircle} from 'react-icons/ai'
+
+import { AiOutlineQuestionCircle } from 'react-icons/ai'
 
 const QuestionAdd = ({ show, onClose }) => {
   const [addNewQuestion, {
@@ -99,20 +99,20 @@ const QuestionAdd = ({ show, onClose }) => {
             <div className='flex justify-center'>
               <div className='flex flex-col w-3/4'>
                 <div className='flex flex-row'>
-                <Label
-                  htmlFor='qText'
-                  value='Pregunta'
-                  className='text-lg font-semibold mr-2 my-1'
-                />
-                <Tooltip
-                    content="Máximo 255 caracteres"
-                    trigger="hover"
+                  <Label
+                    htmlFor='qText'
+                    value='Pregunta'
+                    className='text-lg font-semibold mr-2 my-1'
+                  />
+                  <Tooltip
+                    content='Máximo 255 caracteres'
+                    trigger='hover'
                     className='dark:!bg-white dark:!text-black'
-                >
-                <AiOutlineQuestionCircle className='dark:!fill-white my-2' />
-                </Tooltip>
+                  >
+                    <AiOutlineQuestionCircle className='dark:!fill-white my-2' />
+                  </Tooltip>
                 </div>
-                  
+
                 <Textarea
                   id='qText'
                   {...register('qText')}
@@ -120,21 +120,21 @@ const QuestionAdd = ({ show, onClose }) => {
                   required
                   autoComplete='off'
                   className='border-2 rounded-md my-1'
-                  maxLength={"255"}
+                  maxLength='255'
                 />
                 <div className='flex flex-row'>
-                <Label
-                  htmlFor='idArea'
-                  value='Área'
-                  className='align-bottom mr-2 my-1 text-lg font-semibold'
-                />
-                <Tooltip
-                    content="Donde aparecerá la pregunta dentro de la aplicación "
-                    trigger="hover"
+                  <Label
+                    htmlFor='idArea'
+                    value='Área'
+                    className='align-bottom mr-2 my-1 text-lg font-semibold'
+                  />
+                  <Tooltip
+                    content='Donde aparecerá la pregunta dentro de la aplicación '
+                    trigger='hover'
                     className='dark:!bg-white dark:!text-black'
-                >
-                <AiOutlineQuestionCircle className='dark:!fill-white my-2' />
-                </Tooltip>
+                  >
+                    <AiOutlineQuestionCircle className='dark:!fill-white my-2' />
+                  </Tooltip>
                 </div>
                 <Select
                   id='idArea'
@@ -153,48 +153,48 @@ const QuestionAdd = ({ show, onClose }) => {
                 <div className='flex flex-row -my-2 justify-center'>
                   <div className='flex-col mx-2'>
                     <div className='flex flex-row'>
-                    <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mr-1'>
-                      Uso de camára
-                    </Label>
-                    <Tooltip
-                    content="Necesita evidencia fotográfica"
-                    trigger="hover"
-                    className='dark:!bg-white dark:!text-black'
-                    >
-                      <AiOutlineQuestionCircle className='dark:!fill-white my-1 mr-2' />
-                    </Tooltip>
-                    <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center scale-150 my-1' />
-                  
+                      <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mr-1'>
+                        Uso de camára
+                      </Label>
+                      <Tooltip
+                        content='Necesita evidencia fotográfica'
+                        trigger='hover'
+                        className='dark:!bg-white dark:!text-black'
+                      >
+                        <AiOutlineQuestionCircle className='dark:!fill-white my-1 mr-2' />
+                      </Tooltip>
+                      <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center scale-150 my-1' />
+
                     </div>
-                    </div>
+                  </div>
                   <div className='flex-col'>
                     <div className='flex flex-row'>
-                    <Label htmlFor='btnNa' className='align-top text-center text-lg font-semibold ml-2 mr-1'>
-                      Botón No Aplica
-                    </Label>
-                    <Tooltip
-                    content="La respuesta puede ser omitida"
-                    trigger="hover"
-                    className='dark:!bg-white dark:!text-black'
-                    >
-                      <AiOutlineQuestionCircle className='dark:!fill-white my-1 mr-2' />
-                    </Tooltip>
+                      <Label htmlFor='btnNa' className='align-top text-center text-lg font-semibold ml-2 mr-1'>
+                        Botón No Aplica
+                      </Label>
+                      <Tooltip
+                        content='La respuesta puede ser omitida'
+                        trigger='hover'
+                        className='dark:!bg-white dark:!text-black'
+                      >
+                        <AiOutlineQuestionCircle className='dark:!fill-white my-1 mr-2' />
+                      </Tooltip>
 
-                    <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1' />
+                      <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1' />
                     </div>
                   </div>
                 </div>
                 <div className='flex-row my-5'>
                   <div className='flex flex-row'>
-                  <Label
-                    htmlFor='placeholder'
-                    value='Imagen de ejemplo'
-                    className='align-bottom text-center text-lg font-semibold mr-1'
-                  />
-                  <Tooltip
-                    content="Imagen predeterminada para la pregunta"
-                    trigger="hover"
-                    className='dark:!bg-white dark:!text-black'
+                    <Label
+                      htmlFor='placeholder'
+                      value='Imagen de ejemplo'
+                      className='align-bottom text-center text-lg font-semibold mr-1'
+                    />
+                    <Tooltip
+                      content='Imagen predeterminada para la pregunta'
+                      trigger='hover'
+                      className='dark:!bg-white dark:!text-black'
                     >
                       <AiOutlineQuestionCircle className='dark:!fill-white my-1' />
                     </Tooltip>
