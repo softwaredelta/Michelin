@@ -34,7 +34,7 @@ export const sellingPointApiSlice = appSlice.injectEndpoints({
     }),
     addNewSP: builder.mutation({
       query: initialUserData => ({
-        url: '/sellingPoint/add',
+        url: '/sellingPoint/addSellingPoint',
         method: 'POST',
         body: { ...initialUserData }
       }),
