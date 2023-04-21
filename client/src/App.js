@@ -6,8 +6,6 @@ import UsersList from './features/users/UserList'
 import UserAdd from './features/users/UserAdd'
 import QuestionAdd from './features/category/questions/QuestionAdd'
 import SellingPointList from './features/sellingPoint/SellingPointList'
-import SellingPointEdit from './features/sellingPoint/SellingPointEdit'
-
 
 function App () {
   return (
@@ -25,9 +23,6 @@ function App () {
         <Route path='sellingPoint'>
           <Route index element={<SellingPointList />} />
         </Route>
-        {/* <Route path='test'>
-          <Route index element={<SellingPointEdit />} />
-        </Route> */}
       </Route>
     </Routes>
   )

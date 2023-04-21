@@ -7,5 +7,4 @@ export default function SellingPointEdit() {
 Hola
             </div>
     )
-}*/
-
+} */
