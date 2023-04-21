@@ -9,6 +9,7 @@ import StateOption from './state/StateOption'
 import CategoryOption from '../category/CategoryOption'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
+import Toast from '../../components/Toast'
 
 const SellingPointAdd = ({ show, onClose }) => {
   const {
@@ -89,10 +90,17 @@ const SellingPointAdd = ({ show, onClose }) => {
     }
   }, [isSuccess])
 
+  const onError = () => {
+    Toast.fire({
+      icon: 'error',
+      title: 'Tienes campos faltantes o invalidos!'
+    })
+  }
+
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
-        <form onSubmit={handleSubmit(onSaveSPClicked)}>
+        <form onSubmit={handleSubmit(onSaveSPClicked, onError)}>
           <ModalHeader className='!bg-blues-200'>
             <div className='flex ml-14'>
               <div className='flex items-center flex-col mx-4 text-xl font-semibold text-white'>
@@ -175,7 +183,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                   {...register('phone', {
                     required: true,
                     pattern: {
-                      value: /^[0-9]*/,
+                      value: /[0-9]{10}/,
                       message: 'error message'
                     }
                   })}

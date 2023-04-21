@@ -57,6 +57,27 @@ export const categoryApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'Category', id: 'LIST' }]
       }
+    }),
+    getArea: builder.query({
+      query: () => '/question/getAreas',
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedAreas = responseData.map((area) => {
+          area.id = area.id_area
+          return area
+        })
+        return categoryAdapter.setAll(initialState, loadedAreas)
+      },
+      providesTags: (result, error, arg) => {
+        if (result?.ids) {
+          return [
+            { type: 'Area', id: 'LIST' },
+            ...result.ids.map((id) => ({ type: 'Area', id: 'LIST' }))
+          ]
+        } else return [{ type: 'Area', id: 'LIST' }]
+      }
     })
   })
 })
@@ -64,7 +85,8 @@ export const categoryApiSlice = appSlice.injectEndpoints({
 export const {
   useGetQuestionsQuery,
   useAddNewQuestionMutation,
-  useGetCategoriesQuery
+  useGetCategoriesQuery,
+  useGetAreaQuery
 } = categoryApiSlice
 
 export const selectQuestionResult =
@@ -83,6 +105,14 @@ const selectCategoriesData = createSelector(
   (categoriesResult) => categoriesResult.data
 )
 
+export const selectAreaResult =
+  categoryApiSlice.endpoints.getArea.select()
+
+const selectAreaData = createSelector(
+  selectAreaResult,
+  (areasResult) => areasResult.data
+)
+
 export const {
   selectAll: selectAllQuestions,
   selectById: selectQuestionById,
@@ -97,4 +127,12 @@ export const {
   selectIds: selectCategoryIds
 } = categoryAdapter.getSelectors(
   (state) => selectCategoriesData(state) ?? initialState
+)
+
+export const {
+  selectAll: selectAllAreass,
+  selectById: selectAreaById,
+  selectIds: selectAreaIds
+} = categoryAdapter.getSelectors(
+  (state) => selectAreaData(state) ?? initialState
 )
