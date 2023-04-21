@@ -88,7 +88,7 @@ const SellingPointAdd = ({ show, onClose }) => {
     if (isSuccess) {
       reset()
     }
-  }, [isSuccess])
+  }, [isSuccess, reset])
 
   const onError = () => {
     Toast.fire({
