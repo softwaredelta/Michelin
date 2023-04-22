@@ -12,8 +12,8 @@ import { useEffect } from 'react'
 import Toast from '../../components/Toast'
 import { useSelector } from 'react-redux'
 
-const SellingPointEdit = ({ show, onClose, id_sp }) => {
-  const sp = useSelector(state => selectSPById(state, id_sp))
+const SellingPointEdit = ({ show, onClose, spId }) => {
+  const sp = useSelector(state => selectSPById(state, spId))
 
   const {
     register,
@@ -74,14 +74,15 @@ const SellingPointEdit = ({ show, onClose, id_sp }) => {
     const type = getValues('select_type')
     const address = getValues('address')
     const phone = getValues('phone')
-    const id_sp = sp.id_sp
+    const spId = sp.id_sp
+    console.log(sp)
     await editSP({
       type,
       zone,
       address,
       name,
       phone,
-      id_sp
+      spId
     })
 
     onClose()
