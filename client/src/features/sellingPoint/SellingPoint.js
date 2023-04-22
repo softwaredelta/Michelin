@@ -7,6 +7,7 @@ import { FaEdit } from 'react-icons/fa'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
 import { selectSPById } from './sellingPointApiSlice'
+import SellingPointEdit from './SellingPointEdit'
 
 const SellingPoint = ({ spId }) => {
   const [flip, setFlip] = useState(false)
@@ -14,6 +15,16 @@ const SellingPoint = ({ spId }) => {
 
   const handleSetFlip = () => {
     setFlip(!flip)
+  }
+
+  const [show, setShow] = useState(false)
+
+  const handleSetShow = () => {
+    setShow(true)
+  }
+
+  const handleClose = () => {
+    setShow(false)
   }
 
   return (
@@ -90,7 +101,7 @@ const SellingPoint = ({ spId }) => {
             <div className='flex-col'>
               <SvgButton
                 svgfile={<FaEdit color='#1d4089' />}
-                method={handleSetFlip}
+                method={handleSetShow}
               />
             </div>
             <div className='flex-col'>
@@ -102,6 +113,7 @@ const SellingPoint = ({ spId }) => {
           </div>
         </Card>
       </ReactCardFlip>
+      <SellingPointEdit show={show} onClose={handleClose} spId={spId} />
     </div>
   )
 }

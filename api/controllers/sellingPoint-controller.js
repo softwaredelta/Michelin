@@ -18,3 +18,17 @@ exports.addSellingPoints = async (request, reply) => {
 
   return reply.code(200).send({ statusCode: 200 })
 }
+
+exports.editSellingPoints = async (request, reply) => {
+  await SellingPoint.editSellingPoint(
+    this.fastify,
+    request.body.type,
+    request.body.zone,
+    request.body.address,
+    request.body.name,
+    request.body.phone,
+    request.body.spId
+  )
+
+  return reply.code(200).send({ statusCode: 200 })
+}

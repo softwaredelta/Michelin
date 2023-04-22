@@ -2,7 +2,7 @@ import { Modal, Select } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
-import { useAddNewSPMutation } from './sellingPointApiSlice'
+import { useEditSPMutation, selectSPById } from './sellingPointApiSlice'
 import { useGetCategoriesQuery } from '../category/categoryApiSlice'
 import { useGetStateQuery } from './state/stateApiSlice'
 import StateOption from './state/StateOption'
@@ -10,15 +10,19 @@ import CategoryOption from '../category/CategoryOption'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
 import Toast from '../../components/Toast'
+import { useSelector } from 'react-redux'
 
-const SellingPointAdd = ({ show, onClose }) => {
+const SellingPointEdit = ({ show, onClose, spId }) => {
+  const sp = useSelector(state => selectSPById(state, spId))
+
   const {
     register,
     handleSubmit,
     getValues,
     reset
   } = useForm()
-  const [addNewSP, { isSuccess }] = useAddNewSPMutation()
+
+  const [editSP, { isSuccess }] = useEditSPMutation()
 
   let myCategory, myState
 
@@ -64,20 +68,20 @@ const SellingPointAdd = ({ show, onClose }) => {
     myState = listContent
   }
 
-  const onSaveSPClicked = async (e) => {
+  const onEditSPClicked = async (e) => {
     const name = getValues('name')
     const zone = getValues('select_zone')
     const type = getValues('select_type')
     const address = getValues('address')
     const phone = getValues('phone')
-
-    await addNewSP({
+    const spId = sp.id_sp
+    await editSP({
       type,
       zone,
       address,
-      rating: 0,
       name,
-      phone
+      phone,
+      spId
     })
 
     onClose()
@@ -85,7 +89,11 @@ const SellingPointAdd = ({ show, onClose }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      reset()
+      // reset()
+      Toast.fire({
+        icon: 'success',
+        title: 'El Punto de Venta se ha editado de forma exitosa'
+      })
     }
   }, [isSuccess, reset])
 
@@ -99,7 +107,7 @@ const SellingPointAdd = ({ show, onClose }) => {
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
-        <form onSubmit={handleSubmit(onSaveSPClicked, onError)}>
+        <form onSubmit={handleSubmit(onEditSPClicked, onError)}>
           <ModalHeader className='!bg-blues-200'>
             <div className='flex ml-14'>
               <div className='flex items-center flex-col mx-4 text-xl font-semibold text-white'>
@@ -108,7 +116,6 @@ const SellingPointAdd = ({ show, onClose }) => {
               <div className='flex flex-col mx-4'>
                 <input
                   className='border-2 rounded-lg text-center text-mdh-4/5 w-72'
-                  placeholder='Punto de Venta'
                   id='name'
                   {...register('name', {
                     required: true,
@@ -117,7 +124,9 @@ const SellingPointAdd = ({ show, onClose }) => {
                       message: 'error message'
                     }
                   })}
+                  defaultValue={sp.name}
                 />
+
               </div>
             </div>
           </ModalHeader>
@@ -146,8 +155,8 @@ const SellingPointAdd = ({ show, onClose }) => {
                     required: true
                   })}
                 >
-                  <option value='' selected>
-                    Selecciona un estado
+                  <option value={sp.id_state} selected>
+                    {sp.zone}
                   </option>
 
                   {myState}
@@ -160,9 +169,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                     required: true
                   })}
                 >
-                  <option value='' name='option-disabled' selected>
-                    Selecciona un tipo
-                  </option>
+                  <option value={sp.id_category}>{sp.category} </option>
                   {myCategory}
                 </Select>
                 <textarea
@@ -175,6 +182,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                       message: 'error message'
                     }
                   })}
+                  defaultValue={sp.address}
                 />
                 <input
                   className='border-2 rounded-md my-2'
@@ -186,6 +194,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                       message: 'error message'
                     }
                   })}
+                  defaultValue={sp.phone}
                 />
               </div>
             </div>
@@ -210,4 +219,4 @@ const SellingPointAdd = ({ show, onClose }) => {
   )
 }
 
-export default SellingPointAdd
+export default SellingPointEdit
