@@ -27,7 +27,7 @@ exports.editSellingPoints = async (request, reply) => {
     request.body.address,
     request.body.name,
     request.body.phone,
-    request.body.id_sp
+    request.body.spId
   )
 
   return reply.code(200).send({ statusCode: 200 })

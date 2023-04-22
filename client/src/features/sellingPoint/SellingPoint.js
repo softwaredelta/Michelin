@@ -113,7 +113,7 @@ const SellingPoint = ({ spId }) => {
           </div>
         </Card>
       </ReactCardFlip>
-      <SellingPointEdit show={show} onClose={handleClose} id_sp={spId} />
+      <SellingPointEdit show={show} onClose={handleClose} spId={spId} />
     </div>
   )
 }
