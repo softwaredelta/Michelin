@@ -29,7 +29,7 @@ module.exports = class Question {
     const questionOrder = await this.fetchHighestOrder(fastify, idArea) + 1
 
     const queryRes = await connection.query(
-      'INSERT INTO Question(p_text, id_area, camara, btn_na, picture, q_order) VALUES (?,?,?,?,?,?)',
+      'INSERT INTO Question(p_text, id_area, camera, btn_na, picture, q_order) VALUES (?,?,?,?,?,?)',
       [
         questionText, idArea, usingCamera, btnNa, pictureName, questionOrder
       ]
