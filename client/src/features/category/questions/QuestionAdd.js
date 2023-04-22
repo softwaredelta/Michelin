@@ -99,7 +99,7 @@ const QuestionAdd = ({ show, onClose }) => {
                 <Label
                   htmlFor='qText'
                   value='Texto de Pregunta'
-                  className='align-bottom my-2 text-lg font-semibold'
+                  className='align-bottom my-2 !text-xl font-semibold'
                 />
                 <Textarea
                   id='qText'
@@ -119,7 +119,7 @@ const QuestionAdd = ({ show, onClose }) => {
                   name='idArea'
                   {...register('idArea')}
                   required
-                  className='border-2 rounded-md my-1'
+                  className='rounded-md my-1'
                 >
                   <option value='' selected> -- Selecciona una opción --</option>
                   {area}
@@ -129,8 +129,8 @@ const QuestionAdd = ({ show, onClose }) => {
                   className='align-bottom my-2 text-lg font-semibold'
                 />
 
-                <div className='flex flex-row -my-2 justify-center'>
-                  <div className='flex-col mx-3'>
+                <div className='flex flex-row my-2 justify-center'>
+                  <div className='flex-col mx-5'>
                     <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mx-2'>
                       Cámara
                     </Label>
@@ -154,7 +154,7 @@ const QuestionAdd = ({ show, onClose }) => {
                       id='placeholder'
                       name='placeholder'
                       required
-                      className='border-2 rounded-md my-2.5'
+                      className='rounded-md my-2.5'
                       onChange={onPlaceHolderChanged}
                       accept='.jpg, .jpeg'
                     />
