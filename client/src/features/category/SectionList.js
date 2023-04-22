@@ -5,35 +5,35 @@ import Section from './Section'
 import { useGetSectionsQuery } from './categoryApiSlice'
 
 const SectionList = () => {
-  let sections;
+  let sections
 
   const {
     data: sectionData,
     isLoading: isLoadingSections,
     isSuccess: isSuccessSections,
-    isError: isErrorSections,
+    isError: isErrorSections
   } = useGetSectionsQuery()
 
-  if (isLoadingSections) sections = <div> Cargando... </div>;
+  if (isLoadingSections) sections = <div> Cargando... </div>
   if (isErrorSections) {
-    sections = <div> Sin opciones válidas </div>;
+    sections = <div> Sin opciones válidas </div>
   }
 
-    if (isSuccessSections) {
-        const { ids, entities } = sectionData;
-        const listContent = ids?.length
-            ? ids.map((idSection) => (
-                <Section sectionTitle={entities[idSection].section_name} idSection={idSection}/>
-            ))
-      : null;
-    sections = listContent;
+  if (isSuccessSections) {
+    const { ids, entities } = sectionData
+    const listContent = ids?.length
+      ? ids.map((idSection) => (
+        <Section key={idSection} sectionTitle={entities[idSection].section_name} idSection={idSection} />
+      ))
+      : null
+    sections = listContent
   }
 
   const content = (
     <div>
       <NavBar />
       <div className='pt-20 w-ful h-screen flex flex-col items-center'>
-        <Header myText={'Cuestionarios'} />
+        <Header myText='Cuestionarios' />
         <div className='container flex flex-wrap justify-items-stretch'>
           {sections}
         </div>

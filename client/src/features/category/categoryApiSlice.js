@@ -31,8 +31,8 @@ export const categoryApiSlice = appSlice.injectEndpoints({
     }),
     getQuestionsBySection: builder.query({
       query: (args) => {
-        const { idCategory, idSection } = args;
-      return `/question/bySection/${idCategory}/${idSection}`
+        const { idCategory, idSection } = args
+        return `/question/bySection/${idCategory}/${idSection}`
       },
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError
