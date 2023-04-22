@@ -10,7 +10,7 @@ import ConfirmationModal from '../../components/ConfirmationModal'
 import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
 
 const SellingPoint = ({ spId }) => {
-  let confirmationText = "Estas seguro que deseas eliminar el punto de venta"
+  const confirmationText = 'Estas seguro que deseas eliminar el punto de venta'
 
   const [flip, setFlip] = useState(false)
   const sp = useSelector(state => selectSPById(state, spId))
@@ -27,7 +27,7 @@ const SellingPoint = ({ spId }) => {
     handleClose()
   }
 
-  //Modal
+  // Modal
   const [show, setShow] = useState(false)
 
   const handleSetShow = () => {
@@ -124,7 +124,7 @@ const SellingPoint = ({ spId }) => {
           </div>
         </Card>
       </ReactCardFlip>
-      <ConfirmationModal show={show} onClose={handleClose} text={confirmationText} method={onDeleteSPClicked}/>
+      <ConfirmationModal show={show} onClose={handleClose} text={confirmationText} method={onDeleteSPClicked} />
     </div>
   )
 }
