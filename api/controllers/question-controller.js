@@ -1,4 +1,3 @@
-const Section = require('../models/section')
 const Question = require('../models/question')
 
 exports.postQuestion = async (request, reply) => {
@@ -21,13 +20,7 @@ exports.getQuestions = (request, reply) => {
 
 exports.getQuestionsBySection = (request, reply) => {
   const { idCategory, idSection } = request.params
-  const questionData = Section.fetchQuestionsBySection(this.fastify, idCategory, idSection)
+  const questionData = Question.fetchQuestionsBySection(this.fastify, idCategory, idSection)
 
   return questionData
-}
-
-exports.getAreas = (request, reply) => {
-  const areaData = Section.fetchAreas(this.fastify)
-
-  return areaData
 }
