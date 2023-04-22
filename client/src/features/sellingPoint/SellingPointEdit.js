@@ -75,7 +75,6 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
     const address = getValues('address')
     const phone = getValues('phone')
     const spId = sp.id_sp
-    console.log(sp)
     await editSP({
       type,
       zone,
