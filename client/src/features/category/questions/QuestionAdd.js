@@ -141,7 +141,7 @@ const QuestionAdd = ({ show, onClose }) => {
                   name='idArea'
                   {...register('idArea')}
                   required
-                  className='border-2 rounded-md my-1'
+                  className='rounded-md my-1'
                 >
                   <option value='' selected> -- Selecciona una opción --</option>
                   {area}
@@ -204,7 +204,7 @@ const QuestionAdd = ({ show, onClose }) => {
                       id='placeholder'
                       name='placeholder'
                       required
-                      className='border-2 rounded-md my-2.5'
+                      className='rounded-md my-2.5'
                       onChange={onPlaceHolderChanged}
                       accept='.jpg, .jpeg'
                     />

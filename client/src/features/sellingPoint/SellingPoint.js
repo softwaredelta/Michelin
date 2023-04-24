@@ -8,6 +8,7 @@ import { BsFillTrashFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
 import ConfirmationModal from '../../components/ConfirmationModal'
 import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
+import SellingPointEdit from './SellingPointEdit'
 
 const SellingPoint = ({ spId }) => {
   const confirmationText = 'Estas seguro que deseas eliminar el punto de venta'
@@ -24,18 +25,27 @@ const SellingPoint = ({ spId }) => {
   const onDeleteSPClicked = async (e) => {
     e.preventDefault()
     await DeleteSP({ spId })
-    handleClose()
+    handleCloseDelete()
   }
 
   // Modal
-  const [show, setShow] = useState(false)
+  const [showEdit, setShowEdit] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
 
-  const handleSetShow = () => {
-    setShow(true)
+  const handleSetShowEdit = () => {
+    setShowEdit(true)
   }
 
-  const handleClose = () => {
-    setShow(false)
+  const handleSetShowDelete = () => {
+    setShowDelete(true)
+  }
+
+  const handleCloseEdit = () => {
+    setShowEdit(false)
+  }
+
+  const handleCloseDelete = () => {
+    setShowDelete(false)
   }
 
   return (
@@ -112,19 +122,20 @@ const SellingPoint = ({ spId }) => {
             <div className='flex-col'>
               <SvgButton
                 svgfile={<FaEdit color='#1d4089' />}
-                method={handleSetFlip}
+                method={handleSetShowEdit}
               />
             </div>
             <div className='flex-col'>
               <SvgButton
                 svgfile={<BsFillTrashFill color='#1d4089' />}
-                method={handleSetShow}
+                method={handleSetShowDelete}
               />
             </div>
           </div>
         </Card>
       </ReactCardFlip>
-      <ConfirmationModal show={show} onClose={handleClose} text={confirmationText} method={onDeleteSPClicked} />
+      <ConfirmationModal show={showDelete} onClose={handleCloseDelete} text={confirmationText} method={onDeleteSPClicked} />
+      <SellingPointEdit show={showEdit} onClose={handleCloseEdit} spId={spId} />
     </div>
   )
 }
