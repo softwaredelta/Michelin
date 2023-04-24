@@ -13,6 +13,18 @@ exports.postQuestion = async (request, reply) => {
   return reply.code(200).send({ statusCode: 200 })
 }
 
+exports.editQuestion = async (request, reply) => {
+  const { idQuestion } = request.params
+  await Question.editQuestion(
+    this.fastify,
+    idQuestion,
+    request.body.questionText,
+    request.body.usingCamera,
+    request.body.btnNa
+  )
+  return reply.code(200).send({ statusCode: 200 })
+}
+
 exports.getQuestions = (request, reply) => {
   const questionData = Question.fetchAll(this.fastify)
   return questionData
