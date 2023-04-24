@@ -60,4 +60,14 @@ module.exports = class Question {
     connection.release()
     return rows[0]
   }
+  static async editQuestion (fastify, idQuestion, questionText, usingCamera, btnNa) {
+    const connection = await fastify.mysql.getConnection()
+    await connection.query(
+      'UPDATE question SET p_text = ?, camera = ?, btn_na = ? WHERE id_question = ?',
+      [
+        questionText, usingCamera, btnNa, idQuestion
+      ]
+    )
+    connection.release()
+  }
 }
