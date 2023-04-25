@@ -13,7 +13,7 @@ module.exports = class SellingPoint {
   static async addSellingPoint (fastify, type, zone, address, rating, name, phone) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'INSERT INTO SellingPoint(id_category, id_state, address, rating, name, phone) VALUES (?,?,?,?,?,?)',
+      'INSERT INTO sellingpoint(id_category, id_state, address, rating, name, phone) VALUES (?,?,?,?,?,?)',
       [
         type, zone, address, rating, name, phone
       ]
@@ -32,7 +32,7 @@ module.exports = class SellingPoint {
   static async editSellingPoint (fastify, type, zone, address, name, phone, spId) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'UPDATE SellingPoint SET id_category = ?, id_state = ?, address = ?, name = ?, phone = ? WHERE id_sp = ?',
+      'UPDATE sellingpoint SET id_category = ?, id_state = ?, address = ?, name = ?, phone = ? WHERE id_sp = ?',
       [
         type, zone, address, name, phone, spId
       ]
