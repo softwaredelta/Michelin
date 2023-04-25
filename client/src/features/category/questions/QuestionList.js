@@ -40,7 +40,7 @@ const QuestionList = () => {
     const listContent = ids?.length
       ? ids.map((idQuestion) => (
 
-        <Question key={idQuestion} triggerEdit={triggerEdit} idQuestion={idQuestion} qOrder={entities[idQuestion].q_order} qText={entities[idQuestion].p_text} camera={entities[idQuestion].camera} btnNaInitial={entities[idQuestion].btn_na} areaTitle={entities[idQuestion].area_title} idCategory={category} />
+        <Question key={idQuestion} triggerEdit={triggerEdit} setTriggerEdit={setTriggerEdit} idQuestion={idQuestion} qOrder={entities[idQuestion].q_order} qText={entities[idQuestion].p_text} camera={entities[idQuestion].camera} btnNaInitial={entities[idQuestion].btn_na} areaTitle={entities[idQuestion].area_title} idCategory={category} />
 
       ))
       : null
@@ -56,7 +56,7 @@ const QuestionList = () => {
   }
 
   const handleEdit = () => {
-    setTriggerEdit(triggerEdit + 1)
+    setTriggerEdit(1)
   }
 
   const content = (
