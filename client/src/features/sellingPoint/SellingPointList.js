@@ -22,7 +22,7 @@ const SellingPointList = () => {
 
   let content
   let message
-  if (isLoading) content = <p>...</p>
+  if (isLoading) content = <p>Cargando...</p>
   if (isError) {
     content = <p>{error?.data?.message}</p>
   }
@@ -31,7 +31,7 @@ const SellingPointList = () => {
     const { ids } = sp
     console.log(sp)
     if (ids.length === 0){
-      message =  <p>No hay puntos de venta que mostrar</p>
+      message =  <p className='text-2xl font-bold'>No hay puntos de venta que mostrar</p>
     }
     const listContent = ids?.length
       ? ids.map((idSP) => <SellingPoint key={idSP} spId={idSP} />)

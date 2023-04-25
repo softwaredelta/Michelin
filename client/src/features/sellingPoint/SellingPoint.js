@@ -121,13 +121,13 @@ const SellingPoint = ({ spId }) => {
           <div className='flex justify-end'>
             <div className='flex-col'>
               <SvgButton
-                svgfile={<FaEdit color='#1d4089' />}
+                svgfile={<FaEdit color='#1d4089' className='dark:fill-white' />}
                 method={handleSetShowEdit}
               />
             </div>
             <div className='flex-col'>
               <SvgButton
-                svgfile={<BsFillTrashFill color='#1d4089' />}
+                svgfile={<BsFillTrashFill color='#1d4089' className='dark:fill-white' />}
                 method={handleSetShowDelete}
               />
             </div>
