@@ -1,4 +1,3 @@
-
 module.exports = class State {
   static async fetchAll (fastify) {
     const connection = await fastify.mysql.getConnection()
