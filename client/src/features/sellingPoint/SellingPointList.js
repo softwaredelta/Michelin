@@ -31,7 +31,7 @@ const SellingPointList = () => {
     const { ids } = sp
     console.log(sp)
     if (ids.length === 0){
-      message =  <p className='text-2xl font-bold'>No hay puntos de venta que mostrar</p>
+      message =  <p className='text-3xl font-semibold dark:!text-white'>No hay puntos de venta que mostrar</p>
     }
     const listContent = ids?.length
       ? ids.map((idSP) => <SellingPoint key={idSP} spId={idSP} />)
@@ -41,7 +41,7 @@ const SellingPointList = () => {
       <>
         <div>
           <NavBar />
-          <div className='pt-20 w-full h-screen flex flex-col items-center'>
+          <div className='pt-20 p- w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
             <Header myText='Punto de Venta' />
             <div className='self-end mr-5'>
               <Bluebutton
@@ -50,7 +50,7 @@ const SellingPointList = () => {
               />
             </div>
             {message}
-            <div className='container  flex flex-wrap justify-items-stretch'>
+            <div className='container flex flex-wrap justify-items-stretch dark:!bg-blues-400'>
               {listContent}
             </div>
             <ModifiedFooter />
