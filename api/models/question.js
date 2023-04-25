@@ -29,7 +29,7 @@ module.exports = class Question {
     const questionOrder = await this.fetchHighestOrder(fastify, idArea) + 1
 
     const queryRes = await connection.query(
-      'INSERT INTO Question(p_text, id_area, camera, btn_na, picture, q_order) VALUES (?,?,?,?,?,?)',
+      'INSERT INTO question(p_text, id_area, camera, btn_na, picture, q_order) VALUES (?,?,?,?,?,?)',
       [
         questionText, idArea, usingCamera, btnNa, pictureName, questionOrder
       ]
@@ -38,7 +38,7 @@ module.exports = class Question {
     const questionId = queryRes[0].insertId
 
     await connection.query(
-      'INSERT INTO CategoryQuestion(id_category, id_question) VALUES (?,?)',
+      'INSERT INTO categoryquestion(id_category, id_question) VALUES (?,?)',
       [
         idCategory, questionId
       ]
@@ -65,7 +65,7 @@ module.exports = class Question {
     const connection = await fastify.mysql.getConnection()
     await connection.query('START TRANSACTION')
     const updateOrder = await connection.query(
-      'UPDATE Question SET Question.q_order = Question.q_order - 1 WHERE Question.q_order > ?',
+      'UPDATE question SET question.q_order = question.q_order - 1 WHERE question.q_order > ?',
       [
         order
       ]
