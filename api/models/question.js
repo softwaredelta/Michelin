@@ -3,7 +3,7 @@ module.exports = class Question {
   static async fetchAll (fastify) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-            `SELECT q.id_question, q.p_text, q.section, q.camera, q.btn_na, q.picture, q.q_order, cq.id_category 
+            `SELECT q.id_question, q.p_text, q.id_area, q.camera, q.btn_na, q.picture, q.q_order, cq.id_category 
             FROM question AS q, categoryquestion AS cq 
             WHERE q.id_question = cq.id_question`
     )
@@ -61,31 +61,42 @@ module.exports = class Question {
     return rows[0]
   }
 
-  static async deleteQuestion (fastify, idCategory, idQuestion, order) {
+  static async deleteQuestion(fastify, idCategory, idQuestion, order) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(`START TRANSACTION`)
     const updateOrder = await connection.query(
       `UPDATE Question SET Question.q_order = Question.q_order - 1 WHERE Question.q_order > ?`,
-        [
-          order
-        ]
+      [
+        order
+      ]
     )
     const rows = await connection.query(
       `DELETE FROM categoryquestion WHERE id_question = ? AND id_category = ?`,
-        [
-          idQuestion, idCategory
-        ]
+      [
+        idQuestion, idCategory
+      ]
     )
     const rows1 = await connection.query(
       `DELETE FROM question WHERE id_question = ?`,
-        [
-          idQuestion
-        ]
+      [
+        idQuestion
+      ]
     )
     await connection.query(`COMMIT`)
     
     connection.release()
 
     return updateOrder[0] + rows[0] + rows1[0]
+  }
+  
+  static async editQuestion (fastify, idQuestion, questionText, usingCamera, btnNa) {
+    const connection = await fastify.mysql.getConnection()
+    await connection.query(
+      'UPDATE question SET p_text = ?, camera = ?, btn_na = ? WHERE id_question = ?',
+      [
+        questionText, usingCamera, btnNa, idQuestion
+      ]
+    )
+    connection.release()
   }
 }

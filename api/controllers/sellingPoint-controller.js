@@ -19,6 +19,12 @@ exports.addSellingPoints = async (request, reply) => {
   return reply.code(200).send({ statusCode: 200 })
 }
 
+exports.postDeleteSellingPoint = async (request, reply) => {
+  await SellingPoint.deleteSP(
+    this.fastify,
+    request.body.spId)
+}
+
 exports.editSellingPoints = async (request, reply) => {
   await SellingPoint.editSellingPoint(
     this.fastify,

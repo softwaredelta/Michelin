@@ -21,6 +21,14 @@ module.exports = class SellingPoint {
     connection.release()
   }
 
+  static async deleteSP (fastify, idSp) {
+    const connection = await fastify.mysql.getConnection()
+    await connection.query(
+      'DELETE FROM sellingpoint WHERE id_sp = ?',
+      [idSp]
+    )
+  }
+
   static async editSellingPoint (fastify, type, zone, address, name, phone, spId) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
