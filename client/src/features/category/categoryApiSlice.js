@@ -163,7 +163,7 @@ export const categoryApiSlice = appSlice.injectEndpoints({
         body: initialUserData
       }),
       invalidatesTags: [{ type: 'Question', id: 'LIST' }]
-    }),
+    })
   })
 })
 
@@ -176,7 +176,7 @@ export const {
   useGetAreaQuery,
   useGetSectionsQuery,
   useDeleteQuestionMutation,
-  useGetAreasBySectionQuery,
+  useGetAreasBySectionQuery
 } = categoryApiSlice
 
 export const selectQuestionResult =

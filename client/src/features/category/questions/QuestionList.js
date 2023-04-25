@@ -40,7 +40,7 @@ const QuestionList = () => {
     const listContent = ids?.length
       ? ids.map((idQuestion) => (
 
-        <Question key={idQuestion} triggerEdit={triggerEdit} idQuestion={idQuestion} qOrder={entities[idQuestion].q_order} qText={entities[idQuestion].p_text} camera={entities[idQuestion].camera} btnNaInitial={entities[idQuestion].btn_na} areaTitle={entities[idQuestion].area_title} idCategory={category}/>
+        <Question key={idQuestion} triggerEdit={triggerEdit} idQuestion={idQuestion} qOrder={entities[idQuestion].q_order} qText={entities[idQuestion].p_text} camera={entities[idQuestion].camera} btnNaInitial={entities[idQuestion].btn_na} areaTitle={entities[idQuestion].area_title} idCategory={category} />
 
       ))
       : null
@@ -79,7 +79,7 @@ const QuestionList = () => {
                 <TableHeadCell className='text-center'>Pregunta</TableHeadCell>
                 <TableHeadCell className='text-center'>Evidencia con cámara</TableHeadCell>
                 <TableHeadCell className='text-center'>Botón no aplica</TableHeadCell>
-                <TableHeadCell></TableHeadCell>
+                <TableHeadCell />
               </TableHead>
               <TableBody>{questions}</TableBody>
             </Table>
@@ -90,7 +90,7 @@ const QuestionList = () => {
           <ModifiedFooter />
         </div>
       </div>
-      <QuestionAdd show={show} onClose={handleClose} section={section} />
+      <QuestionAdd show={show} onClose={handleClose} section={section} myCategory={category} />
     </>
   )
   return content

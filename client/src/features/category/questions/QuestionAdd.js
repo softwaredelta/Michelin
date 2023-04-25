@@ -11,7 +11,7 @@ import Toast from '../../../components/Toast'
 
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
 
-const QuestionAdd = ({ show, onClose, section }) => {
+const QuestionAdd = ({ show, onClose, section, myCategory }) => {
   const [addNewQuestion, {
     isSuccess,
     isError,
@@ -46,9 +46,9 @@ const QuestionAdd = ({ show, onClose, section }) => {
     e.preventDefault()
     const qText = getValues('qText')
     const idArea = getValues('idArea')
-    const usingCamera = getValues('usingCamera')
-    const btnNa = getValues('btnNa')
-    const idCategory = 1
+    const usingCamera = Number(getValues('usingCamera'))
+    const btnNa = Number(getValues('btnNa'))
+    const idCategory = myCategory
 
     const newQuestion = new FormData()
     newQuestion.append('qText', qText)

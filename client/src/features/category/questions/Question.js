@@ -1,15 +1,15 @@
-import { Checkbox } from "flowbite-react";
-import { TableRow } from "flowbite-react/lib/esm/components/Table/TableRow";
-import { TableCell } from "flowbite-react/lib/esm/components/Table/TableCell";
+import { Checkbox } from 'flowbite-react'
+import { TableRow } from 'flowbite-react/lib/esm/components/Table/TableRow'
+import { TableCell } from 'flowbite-react/lib/esm/components/Table/TableCell'
 import {
   useDeleteQuestionMutation,
-  useEditQuestionMutation,
-} from "../categoryApiSlice";
-import { useEffect, useState } from "react";
-import Toast from "../../../components/Toast";
-import SvgButton from "../../../components/SvgButton";
-import { BsFillTrashFill } from "react-icons/bs";
-import ConfirmationModal from "../../../components/ConfirmationModal";
+  useEditQuestionMutation
+} from '../categoryApiSlice'
+import { useEffect, useState } from 'react'
+import Toast from '../../../components/Toast'
+import SvgButton from '../../../components/SvgButton'
+import { BsFillTrashFill } from 'react-icons/bs'
+import ConfirmationModal from '../../../components/ConfirmationModal'
 
 const Question = ({
   triggerEdit,
@@ -21,32 +21,32 @@ const Question = ({
   areaTitle,
   idCategory
 }) => {
-  const [deleteQuestion, {isSuccess: isSuccessDelete}] = useDeleteQuestionMutation();
+  const [deleteQuestion, { isSuccess: isSuccessDelete }] = useDeleteQuestionMutation()
 
   const deleteQ = async (idC, idQ, order) => {
-    await deleteQuestion([{ idCategory: idC, idQuestion: idQ, order: order }]);
-  };
+    await deleteQuestion([{ idCategory: idC, idQuestion: idQ, order }])
+  }
 
   const confirmationText = '¿Estás seguro que deseas eliminar la pregunta?'
 
-  const [questionText, setQText] = useState(qText);
-  const [usingCamera, setUsingCamera] = useState(camera);
-  const [btnNa, setBtnNa] = useState(btnNaInitial);
-  const [showDelete, setShowDelete] = useState(false);
+  const [questionText, setQText] = useState(qText)
+  const [usingCamera, setUsingCamera] = useState(camera)
+  const [btnNa, setBtnNa] = useState(btnNaInitial)
+  const [showDelete, setShowDelete] = useState(false)
 
   const handleSetShowDelete = () => {
-    setShowDelete(true);
-  };
+    setShowDelete(true)
+  }
 
   const handleCloseDelete = () => {
-    setShowDelete(false);
-  };
+    setShowDelete(false)
+  }
 
-  const [editQuestion, { isSuccess }] = useEditQuestionMutation();
+  const [editQuestion, { isSuccess }] = useEditQuestionMutation()
 
-  const onQuestionTextChanged = (e) => setQText(e.target.value);
-  const onCameraChanged = (e) => setUsingCamera(e.target.checked);
-  const onBtnNaChanged = (e) => setBtnNa(e.target.checked);
+  const onQuestionTextChanged = (e) => setQText(e.target.value)
+  const onCameraChanged = (e) => setUsingCamera(e.target.checked)
+  const onBtnNaChanged = (e) => setBtnNa(e.target.checked)
 
   useEffect(() => {
     if (triggerEdit) {
@@ -55,54 +55,54 @@ const Question = ({
           questionText,
           usingCamera,
           btnNa,
-          idQuestion,
-        });
-      };
+          idQuestion
+        })
+      }
 
-      onEditQuestionsClicked();
+      onEditQuestionsClicked()
     }
-  }, [triggerEdit, questionText, usingCamera, btnNa, idQuestion, editQuestion]);
+  }, [triggerEdit, questionText, usingCamera, btnNa, idQuestion, editQuestion])
 
   useEffect(() => {
     if (isSuccess) {
       Toast.fire({
-        icon: "success",
-        title: "Los cambios han sido guardados",
-      });
+        icon: 'success',
+        title: 'Los cambios han sido guardados'
+      })
     }
     if (isSuccessDelete) {
       Toast.fire({
-        icon: "success",
-        title: "La pregunta fue borrada con éxito",
-      });
+        icon: 'success',
+        title: 'La pregunta fue borrada con éxito'
+      })
     }
-  }, [isSuccess, isSuccessDelete]);
+  }, [isSuccess, isSuccessDelete])
 
   return (
     <>
-      <TableRow key={idQuestion} className="border-b">
-        <TableCell className="text-center">{qOrder}</TableCell>
-        <TableCell className="text-center">{areaTitle}</TableCell>
-        <TableCell className="text-center">
+      <TableRow key={idQuestion} className='border-b'>
+        <TableCell className='text-center'>{qOrder}</TableCell>
+        <TableCell className='text-center'>{areaTitle}</TableCell>
+        <TableCell className='text-center'>
           <input
-            type="text"
+            type='text'
             value={questionText}
             onChange={onQuestionTextChanged}
           />
         </TableCell>
-        <TableCell className="text-center">
+        <TableCell className='text-center'>
           <Checkbox
-            className="scale-110"
+            className='scale-110'
             value={usingCamera}
             uncheckedvalue={0}
             checked={usingCamera}
             onChange={onCameraChanged}
           />
         </TableCell>
-        <TableCell className="text-center">
+        <TableCell className='text-center'>
           <Checkbox
             key={idQuestion}
-            className="scale-110"
+            className='scale-110'
             value={btnNa}
             uncheckedvalue={0}
             checked={btnNa}
@@ -111,14 +111,14 @@ const Question = ({
         </TableCell>
         <TableCell>
           <SvgButton
-            svgfile={<BsFillTrashFill color="#1d4089" />}
+            svgfile={<BsFillTrashFill color='#1d4089' />}
             method={handleSetShowDelete}
           />
         </TableCell>
       </TableRow>
-      <ConfirmationModal show={showDelete} onClose={handleCloseDelete} text={confirmationText} method={()=>deleteQ(idCategory, idQuestion, qOrder)} />
+      <ConfirmationModal show={showDelete} onClose={handleCloseDelete} text={confirmationText} method={() => deleteQ(idCategory, idQuestion, qOrder)} />
     </>
-  );
-};
+  )
+}
 
-export default Question;
+export default Question

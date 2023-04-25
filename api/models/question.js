@@ -61,34 +61,34 @@ module.exports = class Question {
     return rows[0]
   }
 
-  static async deleteQuestion(fastify, idCategory, idQuestion, order) {
+  static async deleteQuestion (fastify, idCategory, idQuestion, order) {
     const connection = await fastify.mysql.getConnection()
-    await connection.query(`START TRANSACTION`)
+    await connection.query('START TRANSACTION')
     const updateOrder = await connection.query(
-      `UPDATE Question SET Question.q_order = Question.q_order - 1 WHERE Question.q_order > ?`,
+      'UPDATE Question SET Question.q_order = Question.q_order - 1 WHERE Question.q_order > ?',
       [
         order
       ]
     )
     const rows = await connection.query(
-      `DELETE FROM categoryquestion WHERE id_question = ? AND id_category = ?`,
+      'DELETE FROM categoryquestion WHERE id_question = ? AND id_category = ?',
       [
         idQuestion, idCategory
       ]
     )
     const rows1 = await connection.query(
-      `DELETE FROM question WHERE id_question = ?`,
+      'DELETE FROM question WHERE id_question = ?',
       [
         idQuestion
       ]
     )
-    await connection.query(`COMMIT`)
-    
+    await connection.query('COMMIT')
+
     connection.release()
 
     return updateOrder[0] + rows[0] + rows1[0]
   }
-  
+
   static async editQuestion (fastify, idQuestion, questionText, usingCamera, btnNa) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
