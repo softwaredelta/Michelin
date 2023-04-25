@@ -8,27 +8,8 @@ import { TableRow } from "flowbite-react/lib/esm/components/Table/TableRow";
 import { TableCell } from "flowbite-react/lib/esm/components/Table/TableCell";
 import { MdModeEditOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useDeleteQuestionMutation } from "../categoryApiSlice";
-import { useState } from "react";
 
 const QuestionOverview = ({ category, section }) => {
-  // const [idQ, setIdQ] = useState();
-  const [
-    deleteQuestion,
-    { isSuccess: isSuccessDelete, isError: isErrorDelete },
-  ] = useDeleteQuestionMutation();
-
-  const deleteQ = async (idC, idQ, order) => {
-
-    console.log(idC, idQ, order);
-    // const deleteMyQuestion = new FormData();
-    // deleteMyQuestion.append("idCategory", idC)
-    // deleteMyQuestion.append("idQuestion", idQ)
-
-    //console.log.arguments(deleteMyQuestion);
-    // console.log(deleteMyQuestion.getAll('idQuestion'), deleteMyQuestion.getAll('idCategory'));
-    await deleteQuestion([{idCategory: idC, idQuestion: idQ, order: order}]);
-  };
 
   let questions;
   const navigate = useNavigate();
@@ -74,9 +55,6 @@ const QuestionOverview = ({ category, section }) => {
                 checked={entities[idQuestion].btn_na}
                 disabled
               />
-              <Button onClick={() => deleteQ(category, idQuestion, entities[idQuestion].q_order)}>
-                Delete
-              </Button>
             </TableCell>
           </TableRow>
         ))
