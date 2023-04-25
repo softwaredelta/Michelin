@@ -39,3 +39,35 @@ test("Create Question Fail test", async () => {
     console.log(`Error ${err}`);
   }
 });
+
+test("Update Question test", async () => {
+    const data = {
+    id_question: 1,
+    p_text: "Prueba update",
+    camera: 0,
+    btn_na: 1,
+  };
+
+  try {
+    await request(app).post("/question/edit").send(data);
+    expect(response.statusCode).toBe(200);
+  } catch (err) {
+    console.log(`Error ${err}`);
+  }
+});
+
+test("Update Question Fail test", async () => {
+    const data = {
+    id_question: null,
+    p_text: "Prueba update",
+    camera: 0,
+    btn_na: 1,
+  };
+
+  try {
+    await request(app).post("/question/edit").send(data);
+    expect(response.statusCode).not.toBe(200);
+  } catch (err) {
+    console.log(`Error ${err}`);
+  }
+});
