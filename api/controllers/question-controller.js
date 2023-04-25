@@ -24,3 +24,11 @@ exports.getQuestionsBySection = (request, reply) => {
 
   return questionData
 }
+
+exports.deleteQuestions = async (request, reply) => {
+  await Question.deleteQuestion(
+    this.fastify, request.body[0].idCategory, request.body[0].idQuestion, request.body[0].order
+    )
+  
+  return reply.code(200).send({ statusCode: 200 })
+}

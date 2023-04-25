@@ -21,6 +21,7 @@ async function questionRoutes (fastify, options) {
 
   fastify.get('/bySection/:idCategory/:idSection', questionController.getQuestionsBySection)
   fastify.get('/getAllQuestions', questionController.getQuestions)
+  fastify.post('/deleteQuestion', questionController.deleteQuestions)
 }
 
 module.exports = questionRoutes

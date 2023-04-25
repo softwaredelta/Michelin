@@ -123,7 +123,15 @@ export const categoryApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'Section', id: 'LIST' }]
       }
-    })
+    }),
+    deleteQuestion: builder.mutation({
+      query: (initialUserData) => ({
+        url: '/question/deleteQuestion',
+        method: 'POST',
+        body: initialUserData
+      }),
+      invalidatesTags: [{ type: 'Question', id: 'LIST' }]
+    }),
   })
 })
 
@@ -133,7 +141,8 @@ export const {
   useAddNewQuestionMutation,
   useGetCategoriesQuery,
   useGetAreaQuery,
-  useGetSectionsQuery
+  useGetSectionsQuery,
+  useDeleteQuestionMutation,
 } = categoryApiSlice
 
 export const selectQuestionResult =
