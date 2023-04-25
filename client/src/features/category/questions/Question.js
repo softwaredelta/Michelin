@@ -87,6 +87,7 @@ const Question = ({
         <TableCell className='text-center'>{areaTitle}</TableCell>
         <TableCell className='text-center'>
           <input
+            className='border-2'
             type='text'
             value={questionText}
             onChange={onQuestionTextChanged}

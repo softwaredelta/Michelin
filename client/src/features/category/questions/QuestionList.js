@@ -11,8 +11,11 @@ import { Button, Table } from 'flowbite-react'
 import { TableHead } from 'flowbite-react/lib/esm/components/Table/TableHead'
 import { TableHeadCell } from 'flowbite-react/lib/esm/components/Table/TableHeadCell'
 import { TableBody } from 'flowbite-react/lib/esm/components/Table/TableBody'
+import { useNavigate } from 'react-router-dom'
 
 const QuestionList = () => {
+  const navigate = useNavigate()
+
   const [show, setShow] = useState(false)
   const [triggerEdit, setTriggerEdit] = useState(0)
 
@@ -85,7 +88,10 @@ const QuestionList = () => {
             </Table>
           </div>
           <div className='justify-end my-4'>
-            <Button className='!bg-green-700' onClick={handleEdit}> Guardar Cambios </Button>
+            <div className='flex flex-row'>
+              <Button className='!bg-green-700 mr-3' onClick={handleEdit}> Guardar Cambios </Button>
+              <Button className='!bg-red-600' onClick={() => navigate('/question')}> Regresar </Button>
+            </div>
           </div>
           <ModifiedFooter />
         </div>
