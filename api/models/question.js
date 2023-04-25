@@ -3,7 +3,7 @@ module.exports = class Question {
   static async fetchAll (fastify) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-            `SELECT q.id_question, q.p_text, q.section, q.camera, q.btn_na, q.picture, q.q_order, cq.id_category 
+            `SELECT q.id_question, q.p_text, q.id_area, q.camera, q.btn_na, q.picture, q.q_order, cq.id_category 
             FROM question AS q, categoryquestion AS cq 
             WHERE q.id_question = cq.id_question`
     )
@@ -60,6 +60,7 @@ module.exports = class Question {
     connection.release()
     return rows[0]
   }
+
   static async editQuestion (fastify, idQuestion, questionText, usingCamera, btnNa) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(

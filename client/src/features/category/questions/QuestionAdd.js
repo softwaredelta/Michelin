@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAddNewQuestionMutation, useGetAreaQuery } from '../categoryApiSlice'
+import { useAddNewQuestionMutation, useGetAreasBySectionQuery } from '../categoryApiSlice'
 import { Checkbox, Select, Label, FileInput, Modal, Textarea, Tooltip } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
@@ -11,7 +11,7 @@ import Toast from '../../../components/Toast'
 
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
 
-const QuestionAdd = ({ show, onClose }) => {
+const QuestionAdd = ({ show, onClose, section }) => {
   const [addNewQuestion, {
     isSuccess,
     isError,
@@ -68,7 +68,7 @@ const QuestionAdd = ({ show, onClose }) => {
     isLoading: isLoadingArea,
     isSuccess: isSuccessArea,
     isError: isErrorArea
-  } = useGetAreaQuery()
+  } = useGetAreasBySectionQuery({ idSection: section })
 
   if (isLoadingArea) area = <option disabled value=''> Cargando... </option>
   if (isErrorArea) {
@@ -76,10 +76,10 @@ const QuestionAdd = ({ show, onClose }) => {
   }
 
   if (isSuccessArea) {
-    const { ids } = areas
+    const { ids, entities } = areas
     const listContent = ids?.length
       ? ids.map((idArea) => (
-        <AreaOption key={idArea} areaId={idArea} />
+        <AreaOption key={idArea} areaId={idArea} areaTitle={entities[idArea].area_title} />
       ))
       : null
     area = listContent

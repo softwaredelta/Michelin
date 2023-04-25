@@ -14,10 +14,9 @@ exports.postQuestion = async (request, reply) => {
 }
 
 exports.editQuestion = async (request, reply) => {
-  const { idQuestion } = request.params
   await Question.editQuestion(
     this.fastify,
-    idQuestion,
+    request.body.idQuestion,
     request.body.questionText,
     request.body.usingCamera,
     request.body.btnNa
