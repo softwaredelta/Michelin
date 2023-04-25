@@ -21,13 +21,18 @@ const SellingPointList = () => {
   const { data: sp, isLoading, isSuccess, isError, error } = useGetSPQuery()
 
   let content
-  if (isLoading) content = <p>Loading...</p>
+  let message
+  if (isLoading) content = <p>...</p>
   if (isError) {
     content = <p>{error?.data?.message}</p>
   }
 
   if (isSuccess) {
     const { ids } = sp
+    console.log(sp)
+    if (ids.length === 0){
+      message =  <p>No hay puntos de venta que mostrar</p>
+    }
     const listContent = ids?.length
       ? ids.map((idSP) => <SellingPoint key={idSP} spId={idSP} />)
       : null
@@ -44,7 +49,8 @@ const SellingPointList = () => {
                 method={handleSetShow}
               />
             </div>
-            <div className='container flex flex-wrap justify-items-stretch'>
+            {message}
+            <div className='container  flex flex-wrap justify-items-stretch'>
               {listContent}
             </div>
             <ModifiedFooter />
