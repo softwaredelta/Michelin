@@ -20,7 +20,7 @@ function App () {
         </Route>
         <Route path='question'>
           <Route index element={<SectionList />} />
-          <Route path='edit' element={<QuestionList />} />
+          <Route path='edit/:category/:section' element={<QuestionList />} />
         </Route>
         <Route path='sellingPoint'>
           <Route index element={<SellingPointList />} />

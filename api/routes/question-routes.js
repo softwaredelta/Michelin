@@ -18,8 +18,8 @@ async function questionRoutes (fastify, options) {
     '/postQuestion',
     { preHandler: upload.single('placeholder') },
     questionController.postQuestion)
-  
-  fastify.post('/edit/:idQuestion', questionController.editQuestion)
+
+  fastify.post('/edit', questionController.editQuestion)
   fastify.get('/bySection/:idCategory/:idSection', questionController.getQuestionsBySection)
   fastify.get('/getAllQuestions', questionController.getQuestions)
 }

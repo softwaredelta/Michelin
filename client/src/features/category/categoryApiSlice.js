@@ -24,7 +24,7 @@ export const categoryApiSlice = appSlice.injectEndpoints({
         if (result?.ids) {
           return [
             { type: 'Question', id: 'LIST' },
-            ...result.ids.map((id) => ({ tpye: 'Question', id: 'LIST' }))
+            ...result.ids.map((id) => ({ type: 'Question', id: 'LIST' }))
           ]
         } else return [{ type: 'Question', id: 'LIST' }]
       }
@@ -61,6 +61,14 @@ export const categoryApiSlice = appSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Question', id: 'LIST' }]
     }),
+    editQuestion: builder.mutation({
+      query: editedUserData => ({
+        url: '/question/edit',
+        method: 'POST',
+        body: { ...editedUserData }
+      }),
+      invalidatesTags: [{ type: 'Question', id: 'LIST' }]
+    }),
     getCategories: builder.query({
       query: () => '/category/getAllCategories',
       validateStatus: (response, result) => {
@@ -80,6 +88,30 @@ export const categoryApiSlice = appSlice.injectEndpoints({
             ...result.ids.map((id) => ({ type: 'Category', id: 'LIST' }))
           ]
         } else return [{ type: 'Category', id: 'LIST' }]
+      }
+    }),
+    getAreasBySection: builder.query({
+      query: (args) => {
+        const { idSection } = args
+        return `/section/getAreasBySection/${idSection}`
+      },
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedAreas = responseData.map((area) => {
+          area.id = area.id_area
+          return area
+        })
+        return categoryAdapter.setAll(initialState, loadedAreas)
+      },
+      providesTags: (result, error, arg) => {
+        if (result?.ids) {
+          return [
+            { type: 'Area', id: 'LIST' },
+            ...result.ids.map((id) => ({ type: 'Area', id: 'LIST' }))
+          ]
+        } else return [{ type: 'Area', id: 'LIST' }]
       }
     }),
     getArea: builder.query({
@@ -131,8 +163,10 @@ export const {
   useGetQuestionsQuery,
   useGetQuestionsBySectionQuery,
   useAddNewQuestionMutation,
+  useEditQuestionMutation,
   useGetCategoriesQuery,
   useGetAreaQuery,
+  useGetAreasBySectionQuery,
   useGetSectionsQuery
 } = categoryApiSlice
 

@@ -60,7 +60,7 @@ const QuestionOverview = ({ category, section }) => {
           <TableBody>{questions}</TableBody>
         </Table>
         <div className=' flex flex-row justify-end my-4'>
-          <Button className='!bg-zinc-500' onClick={() => navigate('/question/edit')}> <MdModeEditOutline className='mx-2' /> Editar Cuestionario </Button>
+          <Button className='!bg-zinc-500' onClick={() => navigate(`/question/edit/${category}/${section}`)}> <MdModeEditOutline className='mx-2' /> Editar Cuestionario </Button>
         </div>
       </AccordionContent>
     </>
