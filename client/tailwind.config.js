@@ -35,7 +35,9 @@ module.exports = {
           // Michelin blue
           200: '#27509b',
 
-          300: '#1d4089'
+          300: '#1d4089',
+          //Dark blue
+          400: '#212936'
 
         },
         ok: {
