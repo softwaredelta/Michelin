@@ -1,11 +1,8 @@
-import { useSelector } from 'react-redux'
-import { selectAreaById } from '../categoryApiSlice'
 
-const AreaOption = ({ areaId }) => {
-  const area = useSelector((state) => selectAreaById(state, areaId))
+const AreaOption = ({ areaId, areaTitle }) => {
   return (
     <>
-      <option value={area.id_area}>{area.area_title}</option>
+      <option value={areaId}>{areaTitle}</option>
     </>
   )
 }

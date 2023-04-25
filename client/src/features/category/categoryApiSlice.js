@@ -24,6 +24,30 @@ export const categoryApiSlice = appSlice.injectEndpoints({
         if (result?.ids) {
           return [
             { type: 'Question', id: 'LIST' },
+            ...result.ids.map((id) => ({ type: 'Question', id: 'LIST' }))
+          ]
+        } else return [{ type: 'Question', id: 'LIST' }]
+      }
+    }),
+    getQuestionsBySection: builder.query({
+      query: (args) => {
+        const { idCategory, idSection } = args
+        return `/question/bySection/${idCategory}/${idSection}`
+      },
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedQuestions = responseData.map((question) => {
+          question.id = question.id_question
+          return question
+        })
+        return categoryAdapter.setAll(initialState, loadedQuestions)
+      },
+      providesTags: (result, error, args) => {
+        if (result?.ids) {
+          return [
+            { type: 'Question', id: 'LIST' },
             ...result.ids.map((id) => ({ tpye: 'Question', id: 'LIST' }))
           ]
         } else return [{ type: 'Question', id: 'LIST' }]
@@ -34,6 +58,14 @@ export const categoryApiSlice = appSlice.injectEndpoints({
         url: '/question/postQuestion',
         method: 'POST',
         body: initialUserData
+      }),
+      invalidatesTags: [{ type: 'Question', id: 'LIST' }]
+    }),
+    editQuestion: builder.mutation({
+      query: editedUserData => ({
+        url: '/question/edit',
+        method: 'POST',
+        body: { ...editedUserData }
       }),
       invalidatesTags: [{ type: 'Question', id: 'LIST' }]
     }),
@@ -58,8 +90,11 @@ export const categoryApiSlice = appSlice.injectEndpoints({
         } else return [{ type: 'Category', id: 'LIST' }]
       }
     }),
-    getArea: builder.query({
-      query: () => '/question/getAreas',
+    getAreasBySection: builder.query({
+      query: (args) => {
+        const { idSection } = args
+        return `/section/getAreasBySection/${idSection}`
+      },
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError
       },
@@ -78,15 +113,70 @@ export const categoryApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'Area', id: 'LIST' }]
       }
+    }),
+    getArea: builder.query({
+      query: () => '/section/getAreas',
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedAreas = responseData.map((area) => {
+          area.id = area.id_area
+          return area
+        })
+        return categoryAdapter.setAll(initialState, loadedAreas)
+      },
+      providesTags: (result, error, arg) => {
+        if (result?.ids) {
+          return [
+            { type: 'Area', id: 'LIST' },
+            ...result.ids.map((id) => ({ type: 'Area', id: 'LIST' }))
+          ]
+        } else return [{ type: 'Area', id: 'LIST' }]
+      }
+    }),
+    getSections: builder.query({
+      query: () => '/section/getSections',
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedSections = responseData.map((section) => {
+          section.id = section.id_section
+          return section
+        })
+        return categoryAdapter.setAll(initialState, loadedSections)
+      },
+      providesTags: (result, error, arg) => {
+        if (result?.ids) {
+          return [
+            { type: 'Section', id: 'LIST' },
+            ...result.ids.map((id) => ({ type: 'Section', id: 'LIST' }))
+          ]
+        } else return [{ type: 'Section', id: 'LIST' }]
+      }
+    }),
+    deleteQuestion: builder.mutation({
+      query: (initialUserData) => ({
+        url: '/question/deleteQuestion',
+        method: 'POST',
+        body: initialUserData
+      }),
+      invalidatesTags: [{ type: 'Question', id: 'LIST' }]
     })
   })
 })
 
 export const {
   useGetQuestionsQuery,
+  useGetQuestionsBySectionQuery,
   useAddNewQuestionMutation,
+  useEditQuestionMutation,
   useGetCategoriesQuery,
-  useGetAreaQuery
+  useGetAreaQuery,
+  useGetSectionsQuery,
+  useDeleteQuestionMutation,
+  useGetAreasBySectionQuery
 } = categoryApiSlice
 
 export const selectQuestionResult =
@@ -94,6 +184,14 @@ export const selectQuestionResult =
 
 const selectQuestionsData = createSelector(
   selectQuestionResult,
+  (questionsResult) => questionsResult.data
+)
+
+export const selectQuestionsBySectionResult =
+  categoryApiSlice.endpoints.getQuestionsBySection.select()
+
+const selectQuestionsBySectionData = createSelector(
+  selectQuestionsBySectionResult,
   (questionsResult) => questionsResult.data
 )
 
@@ -113,12 +211,28 @@ const selectAreaData = createSelector(
   (areasResult) => areasResult.data
 )
 
+export const selectSectionResult =
+  categoryApiSlice.endpoints.getSections.select()
+
+const selectSectionData = createSelector(
+  selectSectionResult,
+  (sectionsResult) => sectionsResult.data
+)
+
 export const {
   selectAll: selectAllQuestions,
   selectById: selectQuestionById,
   selectIds: selectQuestionIds
 } = categoryAdapter.getSelectors(
   (state) => selectQuestionsData(state) ?? initialState
+)
+
+export const {
+  selectAll: selectAllQuestionsBySection,
+  selectById: selectQuestionByIdAndSection,
+  selectIds: selectQuestionIdsBySection
+} = categoryAdapter.getSelectors(
+  (state) => selectQuestionsBySectionData(state) ?? initialState
 )
 
 export const {
@@ -135,4 +249,12 @@ export const {
   selectIds: selectAreaIds
 } = categoryAdapter.getSelectors(
   (state) => selectAreaData(state) ?? initialState
+)
+
+export const {
+  selectAll: selectAllSections,
+  selectById: selectSectionById,
+  selectIds: selectSectionIds
+} = categoryAdapter.getSelectors(
+  (state) => selectSectionData(state) ?? initialState
 )

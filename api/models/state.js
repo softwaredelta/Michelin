@@ -1,9 +1,8 @@
-
 module.exports = class State {
   static async fetchAll (fastify) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_state, name FROM State'
+      'SELECT id_state, name FROM state'
     )
     connection.release()
     return rows[0]

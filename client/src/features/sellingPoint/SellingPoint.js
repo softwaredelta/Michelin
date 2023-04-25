@@ -6,14 +6,46 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { FaEdit } from 'react-icons/fa'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
-import { selectSPById } from './sellingPointApiSlice'
+import ConfirmationModal from '../../components/ConfirmationModal'
+import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
+import SellingPointEdit from './SellingPointEdit'
 
 const SellingPoint = ({ spId }) => {
+  const confirmationText = 'Estas seguro que deseas eliminar el punto de venta'
+
   const [flip, setFlip] = useState(false)
   const sp = useSelector(state => selectSPById(state, spId))
 
   const handleSetFlip = () => {
     setFlip(!flip)
+  }
+
+  const [DeleteSP] = useDeleteSPMutation()
+
+  const onDeleteSPClicked = async (e) => {
+    e.preventDefault()
+    await DeleteSP({ spId })
+    handleCloseDelete()
+  }
+
+  // Modal
+  const [showEdit, setShowEdit] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
+
+  const handleSetShowEdit = () => {
+    setShowEdit(true)
+  }
+
+  const handleSetShowDelete = () => {
+    setShowDelete(true)
+  }
+
+  const handleCloseEdit = () => {
+    setShowEdit(false)
+  }
+
+  const handleCloseDelete = () => {
+    setShowDelete(false)
   }
 
   return (
@@ -90,18 +122,20 @@ const SellingPoint = ({ spId }) => {
             <div className='flex-col'>
               <SvgButton
                 svgfile={<FaEdit color='#1d4089' />}
-                method={handleSetFlip}
+                method={handleSetShowEdit}
               />
             </div>
             <div className='flex-col'>
               <SvgButton
                 svgfile={<BsFillTrashFill color='#1d4089' />}
-                method={handleSetFlip}
+                method={handleSetShowDelete}
               />
             </div>
           </div>
         </Card>
       </ReactCardFlip>
+      <ConfirmationModal show={showDelete} onClose={handleCloseDelete} text={confirmationText} method={onDeleteSPClicked} />
+      <SellingPointEdit show={showEdit} onClose={handleCloseEdit} spId={spId} />
     </div>
   )
 }

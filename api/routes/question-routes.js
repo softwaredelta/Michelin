@@ -19,9 +19,10 @@ async function questionRoutes (fastify, options) {
     { preHandler: upload.single('placeholder') },
     questionController.postQuestion)
 
+  fastify.post('/edit', questionController.editQuestion)
   fastify.get('/bySection/:idCategory/:idSection', questionController.getQuestionsBySection)
   fastify.get('/getAllQuestions', questionController.getQuestions)
-  fastify.get('/getAreas', questionController.getAreas)
+  fastify.post('/deleteQuestion', questionController.deleteQuestions)
 }
 
 module.exports = questionRoutes

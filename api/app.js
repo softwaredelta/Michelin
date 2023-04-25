@@ -27,6 +27,7 @@ function buildFastify (opts = {}, testing) {
   fastify.register(require('./routes/question-routes'), { prefix: '/question' })
   fastify.register(require('./routes/category-routes'), { prefix: '/category' })
   fastify.register(require('./routes/state-routes'), { prefix: '/state' })
+  fastify.register(require('./routes/section-routes'), { prefix: '/section' })
 
   return fastify
 }

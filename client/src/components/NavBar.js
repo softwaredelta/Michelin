@@ -18,7 +18,7 @@ const NavBar = () => {
           <NavbarCollapse className='px-2'>
             <NavbarLink className='text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500'>Historial</NavbarLink>
             <NavbarLink className='text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500'>Métricas</NavbarLink>
-            <NavbarLink className='text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500'>Cuestionarios</NavbarLink>
+            <NavbarLink href='/question' className='text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500'>Cuestionarios</NavbarLink>
             <NavbarLink className='text-lg font-semibold dark:!text-trademark-50 !text-blues-200 hover:!text-gray-500'>
               <div className='flex md:order-2 text-lg'>
                 <Dropdown

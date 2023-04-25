@@ -1,4 +1,3 @@
-const Section = require('../models/section')
 const Question = require('../models/question')
 
 exports.postQuestion = async (request, reply) => {
@@ -14,6 +13,17 @@ exports.postQuestion = async (request, reply) => {
   return reply.code(200).send({ statusCode: 200 })
 }
 
+exports.editQuestion = async (request, reply) => {
+  await Question.editQuestion(
+    this.fastify,
+    request.body.idQuestion,
+    request.body.questionText,
+    request.body.usingCamera,
+    request.body.btnNa
+  )
+  return reply.code(200).send({ statusCode: 200 })
+}
+
 exports.getQuestions = (request, reply) => {
   const questionData = Question.fetchAll(this.fastify)
   return questionData
@@ -21,13 +31,15 @@ exports.getQuestions = (request, reply) => {
 
 exports.getQuestionsBySection = (request, reply) => {
   const { idCategory, idSection } = request.params
-  const questionData = Section.fetchQuestionsBySection(this.fastify, idCategory, idSection)
+  const questionData = Question.fetchQuestionsBySection(this.fastify, idCategory, idSection)
 
   return questionData
 }
 
-exports.getAreas = (request, reply) => {
-  const areaData = Section.fetchAreas(this.fastify)
+exports.deleteQuestions = async (request, reply) => {
+  await Question.deleteQuestion(
+    this.fastify, request.body[0].idCategory, request.body[0].idQuestion, request.body[0].order
+  )
 
-  return areaData
+  return reply.code(200).send({ statusCode: 200 })
 }
