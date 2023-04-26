@@ -22,9 +22,10 @@ const SellingPointList = () => {
 
   let content
   let message
-  if (isLoading) content = <p>Cargando...</p>
+  let listContent
+  if (isLoading) message = <p className='text-3xl font-semibold dark:!text-white'>Cargando...</p>
   if (isError) {
-    content = <p>{error?.data?.message}</p>
+    message = <p className='text-3xl font-semibold dark:!text-white'>No hay conexión con la base de datos</p>
   }
 
   if (isSuccess) {
@@ -33,10 +34,10 @@ const SellingPointList = () => {
     if (ids.length === 0) {
       message = <p className='text-3xl font-semibold dark:!text-white'>No hay puntos de venta que mostrar</p>
     }
-    const listContent = ids?.length
+    listContent = ids?.length
       ? ids.map((idSP) => <SellingPoint key={idSP} spId={idSP} />)
       : null
-
+  }
     content = (
       <>
         <div>
@@ -59,7 +60,7 @@ const SellingPointList = () => {
         <SellingPointAdd show={show} onClose={handleClose} />
       </>
     )
-  }
+  
   return content
 }
 
