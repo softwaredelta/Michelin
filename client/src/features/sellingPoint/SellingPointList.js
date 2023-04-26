@@ -18,9 +18,8 @@ const SellingPointList = () => {
     setShow(false)
   }
 
-  const { data: sp, isLoading, isSuccess, isError, error } = useGetSPQuery()
+  const { data: sp, isLoading, isSuccess, isError } = useGetSPQuery()
 
-  let content
   let message
   let listContent
   if (isLoading) message = <p className='text-3xl font-semibold dark:!text-white'>Cargando...</p>
@@ -38,29 +37,29 @@ const SellingPointList = () => {
       ? ids.map((idSP) => <SellingPoint key={idSP} spId={idSP} />)
       : null
   }
-    content = (
-      <>
-        <div>
-          <NavBar />
-          <div className='pt-20 p- w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
-            <Header myText='Punto de Venta' />
-            <div className='self-end mr-5'>
-              <Bluebutton
-                myText='+ Nuevo Punto de Venta'
-                method={handleSetShow}
-              />
-            </div>
-            {message}
-            <div className='container flex flex-wrap justify-items-stretch dark:!bg-blues-400'>
-              {listContent}
-            </div>
-            <ModifiedFooter />
+  const content = (
+    <>
+      <div>
+        <NavBar />
+        <div className='pt-20 p- w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
+          <Header myText='Punto de Venta' />
+          <div className='self-end mr-5'>
+            <Bluebutton
+              myText='+ Nuevo Punto de Venta'
+              method={handleSetShow}
+            />
           </div>
+          {message}
+          <div className='container flex flex-wrap justify-items-stretch dark:!bg-blues-400'>
+            {listContent}
+          </div>
+          <ModifiedFooter />
         </div>
-        <SellingPointAdd show={show} onClose={handleClose} />
-      </>
-    )
-  
+      </div>
+      <SellingPointAdd show={show} onClose={handleClose} />
+    </>
+  )
+
   return content
 }
 
