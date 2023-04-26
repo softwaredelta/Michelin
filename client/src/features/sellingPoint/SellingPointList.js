@@ -30,8 +30,8 @@ const SellingPointList = () => {
   if (isSuccess) {
     const { ids } = sp
     console.log(sp)
-    if (ids.length === 0){
-      message =  <p className='text-3xl font-semibold dark:!text-white'>No hay puntos de venta que mostrar</p>
+    if (ids.length === 0) {
+      message = <p className='text-3xl font-semibold dark:!text-white'>No hay puntos de venta que mostrar</p>
     }
     const listContent = ids?.length
       ? ids.map((idSP) => <SellingPoint key={idSP} spId={idSP} />)

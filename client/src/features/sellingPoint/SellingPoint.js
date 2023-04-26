@@ -1,145 +1,145 @@
-import { Card } from "flowbite-react";
-import { useState } from "react";
-import ReactCardFlip from "react-card-flip";
-import SvgButton from "../../components/SvgButton";
-import { FiMoreHorizontal } from "react-icons/fi";
-import { FaEdit } from "react-icons/fa";
-import { BsFillTrashFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
-import ConfirmationModal from "../../components/ConfirmationModal";
-import { selectSPById, useDeleteSPMutation } from "./sellingPointApiSlice";
-import SellingPointEdit from "./SellingPointEdit";
+import { Card } from 'flowbite-react'
+import { useState } from 'react'
+import ReactCardFlip from 'react-card-flip'
+import SvgButton from '../../components/SvgButton'
+import { FiMoreHorizontal } from 'react-icons/fi'
+import { FaEdit } from 'react-icons/fa'
+import { BsFillTrashFill } from 'react-icons/bs'
+import { useSelector } from 'react-redux'
+import ConfirmationModal from '../../components/ConfirmationModal'
+import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
+import SellingPointEdit from './SellingPointEdit'
 
 const SellingPoint = ({ spId }) => {
-  const confirmationText = "¿Estás seguro que deseas eliminar el Punto de Venta?";
+  const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
 
-  const [flip, setFlip] = useState(false);
-  const sp = useSelector((state) => selectSPById(state, spId));
+  const [flip, setFlip] = useState(false)
+  const sp = useSelector((state) => selectSPById(state, spId))
 
   const handleSetFlip = () => {
-    setFlip(!flip);
-  };
+    setFlip(!flip)
+  }
 
-  const [DeleteSP] = useDeleteSPMutation();
+  const [DeleteSP] = useDeleteSPMutation()
 
   const onDeleteSPClicked = async (e) => {
-    e.preventDefault();
-    await DeleteSP({ spId });
-    handleCloseDelete();
-  };
+    e.preventDefault()
+    await DeleteSP({ spId })
+    handleCloseDelete()
+  }
 
   // Modal
-  const [showEdit, setShowEdit] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
+  const [showEdit, setShowEdit] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
 
   const handleSetShowEdit = () => {
-    setShowEdit(true);
-  };
+    setShowEdit(true)
+  }
 
   const handleSetShowDelete = () => {
-    setShowDelete(true);
-  };
+    setShowDelete(true)
+  }
 
   const handleCloseEdit = () => {
-    setShowEdit(false);
-  };
+    setShowEdit(false)
+  }
 
   const handleCloseDelete = () => {
-    setShowDelete(false);
-  };
+    setShowDelete(false)
+  }
 
   return (
-    <div className="w-72 h-72 my-4 mx-6 flex flex-col">
+    <div className='w-72 h-72 my-4 mx-6 flex flex-col'>
       <ReactCardFlip
         isFlipped={flip}
-        flipDirection="horizontal"
-        className="min-w-full min-h-full !rounded-xl"
+        flipDirection='horizontal'
+        className='min-w-full min-h-full !rounded-xl'
       >
         <Card
-          imgSrc="https://cdn-prod-eu.yepgarage.info/upload/llantas-del-lago/fitters/llantas-de-lago-norte-1-lg.png?005111932"
-          className="!bg-blues-300 h-72 !rounded-xl !border-2"
+          imgSrc='https://cdn-prod-eu.yepgarage.info/upload/llantas-del-lago/fitters/llantas-de-lago-norte-1-lg.png?005111932'
+          className='!bg-blues-300 h-72 !rounded-xl !border-2'
         >
-          <div className="flex row justify-between">
-            <div className="flex-col mr-2">
-              <h5 className="text-2xl font-bold tracking-tight text-white dark:text-white">
+          <div className='flex row justify-between'>
+            <div className='flex-col mr-2'>
+              <h5 className='text-2xl font-bold tracking-tight text-white dark:text-white'>
                 {sp.name}
               </h5>
             </div>
-            <div className="flex col ml-2 mt-1">
+            <div className='flex col ml-2 mt-1'>
               <SvgButton
-                svgfile={<FiMoreHorizontal color="white" />}
+                svgfile={<FiMoreHorizontal color='white' />}
                 method={handleSetFlip}
-                className="hover:!fill-gray-500"
+                className='hover:!fill-gray-500'
               />
             </div>
           </div>
         </Card>
 
         <Card
-          className="h-72 !rounded-xl cursor-pointer dark:!bg-blues-300"
+          className='h-72 !rounded-xl cursor-pointer dark:!bg-blues-300'
           onClick={() => setFlip(!flip)}
         >
           <div className>
-            <div className="flex flex-row justify-center mb-1">
-              <div className="border-b py-2 min-w-full text-center">
-                <h3 className="text-xl font-bold tracking-tight text-blues-300 dark:text-white">
+            <div className='flex flex-row justify-center mb-1'>
+              <div className='border-b py-2 min-w-full text-center'>
+                <h3 className='text-xl font-bold tracking-tight text-blues-300 dark:text-white'>
                   {sp.name}
                 </h3>
               </div>
             </div>
-            <div className="flex flex-col my-2">
-              <div className="flex-col">
-                <h2 className="text-md font-bold tracking-tight text-blues-300 dark:text-white">
+            <div className='flex flex-col my-2'>
+              <div className='flex-col'>
+                <h2 className='text-md font-bold tracking-tight text-blues-300 dark:text-white'>
                   Zona:
                 </h2>
               </div>
-              <div className="flex-col">
-                <p className="text-md font-medium tracking-tight text-blues-300 dark:text-white">
+              <div className='flex-col'>
+                <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white'>
                   {sp.zone}
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col my-2">
-              <div className="flex-col min-w-0">
-                <h2 className="text-md font-bold tracking-tight text-blues-300 dark:text-white">
+            <div className='flex flex-col my-2'>
+              <div className='flex-col min-w-0'>
+                <h2 className='text-md font-bold tracking-tight text-blues-300 dark:text-white'>
                   Dirección:
                 </h2>
               </div>
-              <div className="flex-col">
-                <p className="text-md font-medium tracking-tight text-blues-300 dark:text-white truncate block">
+              <div className='flex-col'>
+                <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white truncate block'>
                   {sp.address}
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col my-2">
-              <div className="flex-col">
-                <h2 className="text-md font-bold tracking-tight text-blues-300 dark:text-white">
+            <div className='flex flex-col my-2'>
+              <div className='flex-col'>
+                <h2 className='text-md font-bold tracking-tight text-blues-300 dark:text-white'>
                   Teléfono:
                 </h2>
               </div>
-              <div className="flex-col">
-                <p className="text-md font-medium tracking-tight text-blues-300 dark:text-white">
+              <div className='flex-col'>
+                <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white'>
                   {sp.phone}
                 </p>
               </div>
             </div>
-            <div className="flex justify-end">
-              <div className="flex-col">
+            <div className='flex justify-end'>
+              <div className='flex-col'>
                 <SvgButton
                   svgfile={
-                    <FaEdit color="#1d4089" className="dark:fill-white dark:hover:!fill-trademark-50 hover:!fill-gray-500" />
+                    <FaEdit color='#1d4089' className='dark:fill-white dark:hover:!fill-trademark-50 hover:!fill-gray-500' />
                   }
                   method={handleSetShowEdit}
                 />
               </div>
-              <div className="flex-col">
+              <div className='flex-col'>
                 <SvgButton
                   svgfile={
                     <BsFillTrashFill
-                      color="#1d4089"
-                      className="dark:fill-white dark:hover:!fill-trademark-50 hover:!fill-gray-500"
+                      color='#1d4089'
+                      className='dark:fill-white dark:hover:!fill-trademark-50 hover:!fill-gray-500'
                     />
                   }
                   method={handleSetShowDelete}
@@ -157,7 +157,7 @@ const SellingPoint = ({ spId }) => {
       />
       <SellingPointEdit show={showEdit} onClose={handleCloseEdit} spId={spId} />
     </div>
-  );
-};
+  )
+}
 
-export default SellingPoint;
+export default SellingPoint
