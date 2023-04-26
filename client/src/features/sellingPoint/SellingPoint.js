@@ -11,10 +11,10 @@ import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
 import SellingPointEdit from './SellingPointEdit'
 
 const SellingPoint = ({ spId }) => {
-  const confirmationText = 'Estas seguro que deseas eliminar el punto de venta'
+  const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
 
   const [flip, setFlip] = useState(false)
-  const sp = useSelector(state => selectSPById(state, spId))
+  const sp = useSelector((state) => selectSPById(state, spId))
 
   const handleSetFlip = () => {
     setFlip(!flip)
@@ -69,72 +69,92 @@ const SellingPoint = ({ spId }) => {
               <SvgButton
                 svgfile={<FiMoreHorizontal color='white' />}
                 method={handleSetFlip}
+                className='hover:!fill-gray-500'
               />
             </div>
           </div>
         </Card>
 
-        <Card className='h-72 !rounded-xl cursor-pointer' onClick={() => setFlip(!flip)}>
-          <div className='flex flex-row justify-center'>
-            <h3 className='text-xl font-bold tracking-tight text-blues-300 dark:text-white'>
-              {sp.name}
-            </h3>
-          </div>
-          <div className='flex flex-col my-0'>
-            <div className='flex-col'>
-              <h2 className='text-lg font-bold tracking-tight text-blues-300 dark:text-white'>
-                Zona:
-              </h2>
+        <Card
+          className='h-72 !rounded-xl cursor-pointer dark:!bg-blues-300'
+          onClick={() => setFlip(!flip)}
+        >
+          <div className>
+            <div className='flex flex-row justify-center mb-1'>
+              <div className='border-b py-2 min-w-full text-center'>
+                <h3 className='text-xl font-bold tracking-tight text-blues-300 dark:text-white'>
+                  {sp.name}
+                </h3>
+              </div>
             </div>
-            <div className='flex-col'>
-              <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white'>
-                {sp.zone}
-              </p>
+            <div className='flex flex-col my-2'>
+              <div className='flex-col'>
+                <h2 className='text-md font-bold tracking-tight text-blues-300 dark:text-white'>
+                  Zona:
+                </h2>
+              </div>
+              <div className='flex-col'>
+                <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white'>
+                  {sp.zone}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className='flex flex-col my-0'>
-            <div className='flex-col min-w-0'>
-              <h2 className='text-lg font-bold tracking-tight text-blues-300 dark:text-white'>
-                Dirección:
-              </h2>
+            <div className='flex flex-col my-2'>
+              <div className='flex-col min-w-0'>
+                <h2 className='text-md font-bold tracking-tight text-blues-300 dark:text-white'>
+                  Dirección:
+                </h2>
+              </div>
+              <div className='flex-col'>
+                <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white truncate block'>
+                  {sp.address}
+                </p>
+              </div>
             </div>
-            <div className='flex-col'>
-              <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white truncate block'>
-                {sp.address}
-              </p>
-            </div>
-          </div>
 
-          <div className='flex flex-col'>
-            <div className='flex-col'>
-              <h2 className='text-lg font-bold tracking-tight text-blues-300 dark:text-white'>
-                Teléfono:
-              </h2>
+            <div className='flex flex-col my-2'>
+              <div className='flex-col'>
+                <h2 className='text-md font-bold tracking-tight text-blues-300 dark:text-white'>
+                  Teléfono:
+                </h2>
+              </div>
+              <div className='flex-col'>
+                <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white'>
+                  {sp.phone}
+                </p>
+              </div>
             </div>
-            <div className='flex-col'>
-              <p className='text-md font-medium tracking-tight text-blues-300 dark:text-white'>
-                {sp.phone}
-              </p>
-            </div>
-          </div>
-          <div className='flex justify-end'>
-            <div className='flex-col'>
-              <SvgButton
-                svgfile={<FaEdit color='#1d4089' />}
-                method={handleSetShowEdit}
-              />
-            </div>
-            <div className='flex-col'>
-              <SvgButton
-                svgfile={<BsFillTrashFill color='#1d4089' />}
-                method={handleSetShowDelete}
-              />
+            <div className='flex justify-end'>
+              <div className='flex-col'>
+                <SvgButton
+                  svgfile={
+                    <FaEdit color='#1d4089' className='dark:fill-white dark:hover:!fill-trademark-50 hover:!fill-gray-500' />
+                  }
+                  method={handleSetShowEdit}
+                />
+              </div>
+              <div className='flex-col'>
+                <SvgButton
+                  svgfile={
+                    <BsFillTrashFill
+                      color='#1d4089'
+                      className='dark:fill-white dark:hover:!fill-trademark-50 hover:!fill-gray-500'
+                    />
+                  }
+                  method={handleSetShowDelete}
+                />
+              </div>
             </div>
           </div>
         </Card>
       </ReactCardFlip>
-      <ConfirmationModal show={showDelete} onClose={handleCloseDelete} text={confirmationText} method={onDeleteSPClicked} />
+      <ConfirmationModal
+        show={showDelete}
+        onClose={handleCloseDelete}
+        text={confirmationText}
+        method={onDeleteSPClicked}
+      />
       <SellingPointEdit show={showEdit} onClose={handleCloseEdit} spId={spId} />
     </div>
   )

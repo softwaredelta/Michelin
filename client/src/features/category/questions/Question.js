@@ -13,6 +13,7 @@ import ConfirmationModal from '../../../components/ConfirmationModal'
 
 const Question = ({
   triggerEdit,
+  setTriggerEdit,
   idQuestion,
   qOrder,
   qText,
@@ -49,7 +50,7 @@ const Question = ({
   const onBtnNaChanged = (e) => setBtnNa(e.target.checked)
 
   useEffect(() => {
-    if (triggerEdit) {
+    if (triggerEdit === 1) {
       const onEditQuestionsClicked = async (e) => {
         await editQuestion({
           questionText,
@@ -60,8 +61,9 @@ const Question = ({
       }
 
       onEditQuestionsClicked()
+      setTriggerEdit(0)
     }
-  }, [triggerEdit, questionText, usingCamera, btnNa, idQuestion, editQuestion])
+  }, [triggerEdit, questionText, usingCamera, btnNa, idQuestion, editQuestion, setTriggerEdit])
 
   useEffect(() => {
     if (isSuccess) {
@@ -85,6 +87,7 @@ const Question = ({
         <TableCell className='text-center'>{areaTitle}</TableCell>
         <TableCell className='text-center'>
           <input
+            className='border-2'
             type='text'
             value={questionText}
             onChange={onQuestionTextChanged}

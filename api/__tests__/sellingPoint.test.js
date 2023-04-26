@@ -4,10 +4,10 @@ const app = buildFastify({}, testing = true)
 
 afterAll(() => app.close())
 
-test('Get All users test', async () => {
+test('Get All selling points', async () => {
   const response = await app.inject({
     method: 'GET',
-    url: '/user/list'
+    url: '/sellingPoint/list'
   })
 
   expect(response.statusCode).toBe(200)
