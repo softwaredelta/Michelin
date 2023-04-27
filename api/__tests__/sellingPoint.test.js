@@ -23,6 +23,25 @@ test('Create selling point', async () => {
   expect(response.statusCode).toBe(200)
 })
 
+test('Edit selling point', async () => {
+  const data = {
+    type: 1, //Example category
+    zone: 2, //Example state
+    address: "Dirección editada",
+    name: "Sucursal editada",
+    phone: "987654321",
+    spId: 1
+  };
+
+  const response = await app.inject({
+    method: 'POST',
+    url: '/sellingPoint/editSellingPoint',
+    payload: data
+  })
+
+  expect(response.statusCode).toBe(200)
+})
+
 test('Get All selling points', async () => {
   const response = await app.inject({
     method: 'GET',

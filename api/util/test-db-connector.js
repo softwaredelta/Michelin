@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const fastifyPlugin = require('fastify-plugin')
 
-const localTestConnectionString = 'mysql://root1:root@localhost/tests'
+const localTestConnectionString = 'mysql://root@localhost/tests'
 const gitTestConnectionString = `mysql://${process.env.TEST_MYSQL_USER}:${process.env.TEST_MYSQL_PASSWORD}@${process.env.TEST_MYSQL_HOST}:${process.env.TEST_MYSQL_PORT}/${process.env.TEST_MYSQL_DB}`
 
 const onTestEnv = process.env.ON_TEST_ENV === 'true' || false
@@ -193,7 +193,8 @@ async function createDB (fastify) {
   await connection.query(
     `
     INSERT INTO state (id_state, name) VALUES
-    (1, 'Ejemplo');
+    (1, 'Ejemplo'),
+    (2, 'Querétaro');
     `
   )
   connection.release()
