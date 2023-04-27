@@ -14,7 +14,6 @@ import Toast from '../../components/Toast'
 const SellingPointAdd = ({ show, onClose }) => {
   const {
     register,
-    handleSubmit,
     getValues,
     reset
   } = useForm()
@@ -65,6 +64,7 @@ const SellingPointAdd = ({ show, onClose }) => {
   }
 
   const onSaveSPClicked = async (e) => {
+    e.preventDefault()
     const name = getValues('name')
     const zone = getValues('select_zone')
     const type = getValues('select_type')
@@ -99,16 +99,10 @@ const SellingPointAdd = ({ show, onClose }) => {
     }
   }, [isSuccess, isError, reset])
 
-  const onError = () => {
-    Toast.fire({
-      icon: 'error',
-      title: '¡Tienes campos faltantes o Inválidos!'
-    })
-  }
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
-        <form onSubmit={handleSubmit(onSaveSPClicked, onError)}>
+        <form onSubmit={onSaveSPClicked}>
           <ModalHeader className='!bg-blues-200'>
             <div className='flex ml-14'>
               <div className='flex items-center flex-col mx-4 text-xl font-semibold text-white'>
@@ -119,13 +113,9 @@ const SellingPointAdd = ({ show, onClose }) => {
                   className='border-2 rounded-lg text-center text-mdh-4/5 w-72 dark:!text-black'
                   placeholder='Punto de Venta'
                   id='name'
-                  {...register('name', {
-                    required: true,
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('name')}
+                  required
+                  maxLength={255}
                 />
               </div>
             </div>
@@ -162,7 +152,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                 </div>
                 <div className='flex flex-row text-center my-4 text-lg font-semibold dark:text-white'>
                   <Tooltip
-                    content='Un máximo de 20 números'
+                    content='Un máximo de 10 números, sin guiones y no código de país'
                     trigger='hover'
                     className='dark:!bg-white dark:!text-black'
                   >
@@ -175,9 +165,8 @@ const SellingPointAdd = ({ show, onClose }) => {
                   className='mb-3 border-2 rounded-md'
                   id='select_zone'
                   name='select_zone'
-                  {...register('select_zone', {
-                    required: true
-                  })}
+                  {...register('select_zone')}
+                  required
                 >
                   <option value='' selected>
                     Selecciona un estado
@@ -189,9 +178,8 @@ const SellingPointAdd = ({ show, onClose }) => {
                   className='mb-3 border-2 rounded-md'
                   id='select_type'
                   name='select_type'
-                  {...register('select_type', {
-                    required: true
-                  })}
+                  {...register('select_type')}
+                  required
                 >
                   <option value='' name='option-disabled' selected>
                     Selecciona un tipo
@@ -201,25 +189,17 @@ const SellingPointAdd = ({ show, onClose }) => {
                 <textarea
                   className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white'
                   id='address'
-                  {...register('address', {
-                    required: true,
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('address')}
+                  required
+                  maxLength={255}
                 />
                 <input
                   className='border-2 rounded-md my-2 dark:bg-transparent dark:text-white'
                   id='phone'
-                  max={10}
-                  {...register('phone', {
-                    required: true,
-                    pattern: {
-                      value: /[0-9]{10}/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('phone')}
+                  required
+                  pattern='[0-9]{10}'
+                  maxLength={10}
                 />
               </div>
             </div>
@@ -231,12 +211,13 @@ const SellingPointAdd = ({ show, onClose }) => {
             >
               Crear
             </button>
-            <button
-              className='bg-gray-500 text-white py-2 px-4 rounded-md end'
+            <a
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer'
               onClick={onClose}
+              href={onClose}
             >
               Cancelar
-            </button>
+            </a>
           </ModalFooter>
         </form>
       </Modal>
