@@ -17,12 +17,11 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
 
   const {
     register,
-    handleSubmit,
     getValues,
     reset
   } = useForm()
 
-  const [editSP, { isSuccess }] = useEditSPMutation()
+  const [editSP, { isSuccess, isError }] = useEditSPMutation()
 
   let myCategory, myState
 
@@ -69,6 +68,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
   }
 
   const onEditSPClicked = async (e) => {
+    e.preventDefault()
     const name = getValues('name')
     const zone = getValues('select_zone')
     const type = getValues('select_type')
@@ -95,20 +95,23 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
         title: 'El Punto de Venta se ha editado de forma exitosa'
       })
     }
-  }, [isSuccess, reset])
+    if (isError) {
+      Toast.fire({
+        icon: 'error',
+        title: '¡Tienes campos faltantes o Inválidos!'
+      })
+    }
+  }, [isSuccess,isError, reset])
 
-  const onError = () => {
+  const onClosed = () => {
+    onClose()
     reset()
-    Toast.fire({
-      icon: 'error',
-      title: '¡Tienes campos faltantes o Inválidos!'
-    })
   }
 
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
-        <form onSubmit={handleSubmit(onEditSPClicked, onError)}>
+        <form onSubmit={onEditSPClicked}>
           <ModalHeader className='!bg-blues-200'>
             <div className='flex ml-14'>
               <div className='flex items-center flex-col mx-4 text-xl font-semibold text-white'>
@@ -118,14 +121,10 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                 <input
                   className='border-2 rounded-lg text-center text-mdh-4/5 w-72 dark:text-black'
                   id='name'
-                  {...register('name', {
-                    required: true,
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('name')}
                   defaultValue={sp.name}
+                  required
+                  maxLength={255}
                 />
 
               </div>
@@ -176,9 +175,8 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   className='mb-3 border-2 rounded-md'
                   id='select_zone'
                   name='select_zone'
-                  {...register('select_zone', {
-                    required: true
-                  })}
+                  {...register('select_zone')}
+                  required
                 >
                   <option value={sp.id_state} selected>
                     {sp.zone}
@@ -190,9 +188,8 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   className='mb-3 border-2 rounded-md'
                   id='select_type'
                   name='select_type'
-                  {...register('select_type', {
-                    required: true
-                  })}
+                  {...register('select_type')}
+                  required
                 >
                   <option value={sp.id_category}>{sp.category} </option>
                   {myCategory}
@@ -200,26 +197,19 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                 <textarea
                   className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white'
                   id='address'
-                  {...register('address', {
-                    required: true,
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('address')}
                   defaultValue={sp.address}
+                  required
+                  maxLength={255}
                 />
                 <input
                   className='border-2 rounded-md my-2 dark:bg-transparent dark:text-white'
                   id='phone'
-                  {...register('phone', {
-                    required: true,
-                    pattern: {
-                      value: /[0-9]{10}/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('phone')}
                   defaultValue={sp.phone}
+                  pattern='[0-9]{10}'
+                  required
+                  maxLength={10}
                 />
               </div>
             </div>
@@ -231,12 +221,13 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
             >
               Aceptar
             </button>
-            <button
-              className='bg-gray-500 text-white py-2 px-4 rounded-md end'
-              onClick={onClose}
+            <a
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer'
+              onClick={onClosed}
+              href={onClosed}
             >
               Cancelar
-            </button>
+            </a>
           </ModalFooter>
         </form>
       </Modal>
