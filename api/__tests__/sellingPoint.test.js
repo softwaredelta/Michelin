@@ -50,3 +50,17 @@ test('Get All selling points', async () => {
 
   expect(response.statusCode).toBe(200)
 })
+
+test('Delete selling point', async () => {
+  const data = {
+    spId: 1
+  };
+
+  const response = await app.inject({
+    method: 'POST',
+    url: '/sellingPoint/delete',
+    payload: data
+  })
+
+  expect(response.statusCode).toBe(200)
+})
