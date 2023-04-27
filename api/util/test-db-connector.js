@@ -2,10 +2,10 @@ require('dotenv').config()
 
 const fastifyPlugin = require('fastify-plugin')
 
-const localTestConnectionString = 'mysql://root:root@localhost/tests'
-const awsTestConnectionString = `mysql://${process.env.TEST_MYSQL_USER}:${process.env.TEST_MYSQL_PASSWORD}@${process.env.TEST_MYSQL_HOST}:${process.env.TEST_MYSQL_PORT}/${process.env.TEST_MYSQL_DB}`
+const localTestConnectionString = 'mysql://root1:root@localhost/tests'
+const gitTestConnectionString = `mysql://${process.env.TEST_MYSQL_USER}:${process.env.TEST_MYSQL_PASSWORD}@${process.env.TEST_MYSQL_HOST}:${process.env.TEST_MYSQL_PORT}/${process.env.TEST_MYSQL_DB}`
 
-const onDeployedEnv = false
+const onTestEnv = process.env.ON_TEST_ENV === 'true' || false
 
 async function createDB (fastify) {
   const connection = await fastify.mysql.getConnection()
@@ -202,7 +202,7 @@ async function createDB (fastify) {
 async function dbConnector (fastify, options) {
   await fastify.register(require('@fastify/mysql'), {
     promise: true,
-    connectionString: onDeployedEnv ? awsTestConnectionString : localTestConnectionString
+    connectionString: onTestEnv ? gitTestConnectionString : localTestConnectionString
   })
 
   await createDB(fastify)
