@@ -113,12 +113,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                   className='border-2 rounded-lg text-center text-mdh-4/5 w-72 dark:!text-black'
                   placeholder='Punto de Venta'
                   id='name'
-                  {...register('name', {
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('name')}
                   required
                   maxLength={255}
                 />

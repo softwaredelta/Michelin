@@ -101,7 +101,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
         title: '¡Tienes campos faltantes o Inválidos!'
       })
     }
-  }, [isSuccess,isError, reset])
+  }, [isSuccess, isError, reset])
 
   const onClosed = () => {
     onClose()
