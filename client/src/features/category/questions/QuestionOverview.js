@@ -25,7 +25,7 @@ const QuestionOverview = ({ category, section }) => {
 
   if (isLoadingQuestions) questions = <div> Cargando... </div>
   if (isErrorQuestions) {
-    questions = <div> Sin opciones válidas </div>
+    questions = <TableRow> Sin opciones válidas... </TableRow>
   }
 
   if (isSuccessQuestions) {
@@ -63,8 +63,9 @@ const QuestionOverview = ({ category, section }) => {
 
   const content = (
     <>
-      <AccordionContent>
-        <Table>
+      <AccordionContent className='h-96 overflow-y-scroll'>
+        <div className=''>
+          <Table>
           <TableHead>
             <TableHeadCell className='text-center'>Orden</TableHeadCell>
             <TableHeadCell className='text-center'>Pregunta</TableHeadCell>
@@ -77,7 +78,8 @@ const QuestionOverview = ({ category, section }) => {
           </TableHead>
           <TableBody>{questions}</TableBody>
         </Table>
-        <div className=' flex flex-row justify-end my-4'>
+        </div>
+        <div className=' flex flex-row justify-end my-10'>
           <Button className='!bg-zinc-500' onClick={() => navigate(`/question/edit/${category}/${section}`)}> <MdModeEditOutline className='mx-2' /> Editar Cuestionario </Button>
         </div>
       </AccordionContent>
