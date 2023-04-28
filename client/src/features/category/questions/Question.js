@@ -1,4 +1,4 @@
-import { Checkbox } from "flowbite-react";
+import { Checkbox, Textarea } from "flowbite-react";
 import { TableRow } from "flowbite-react/lib/esm/components/Table/TableRow";
 import { TableCell } from "flowbite-react/lib/esm/components/Table/TableCell";
 import {
@@ -10,7 +10,6 @@ import Toast from "../../../components/Toast";
 import SvgButton from "../../../components/SvgButton";
 import { BsFillTrashFill } from "react-icons/bs";
 import ConfirmationModal from "../../../components/ConfirmationModal";
-import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const Question = ({
   triggerEdit,
@@ -97,23 +96,21 @@ const Question = ({
         <TableCell className="text-center">{qOrder}</TableCell>
         <TableCell className="text-center">{areaTitle}</TableCell>
         <TableCell className="text-center">
-          <textarea
+          <Textarea
             className="border-2 rounded-md resize-none w-full"
             type="text"
             value={questionText}
             onChange={onQuestionTextChanged}
           />
           {questionText === "" && (
-            <div
-              className="text-xs text-red-700
-          "
-            >Esta pregunta no se va a guardar porque no tiene texto
+            <div className="text-xs text-red-700">
+              Esta pregunta no se va a guardar porque no tiene texto
             </div>
           )}
         </TableCell>
         <TableCell className="text-center">
           <Checkbox
-            className="scale-110"
+            className="scale-110 accent-blues-150"
             value={usingCamera}
             uncheckedvalue={0}
             checked={usingCamera}
@@ -123,7 +120,7 @@ const Question = ({
         <TableCell className="text-center">
           <Checkbox
             key={idQuestion}
-            className="scale-110"
+            className="scale-110 accent-blues-150"
             value={btnNa}
             uncheckedvalue={0}
             checked={btnNa}
@@ -132,7 +129,7 @@ const Question = ({
         </TableCell>
         <TableCell>
           <SvgButton
-            svgfile={<BsFillTrashFill color="#1d4089" />}
+            svgfile={<BsFillTrashFill className="fill-blues-150" />}
             method={handleSetShowDelete}
           />
         </TableCell>

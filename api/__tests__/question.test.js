@@ -71,3 +71,12 @@ test("Update Question Fail test", async () => {
     console.log(`Error ${err}`);
   }
 });
+
+test('Get All questions test', async () => {
+  const response = await app.inject({
+    method: 'GET',
+    url: '/question/getAllQuestions'
+  })
+
+  expect(response.statusCode).toBe(200)
+})

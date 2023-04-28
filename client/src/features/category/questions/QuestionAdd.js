@@ -160,7 +160,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                         Uso de camára
                       </Label>
                       </Tooltip>
-                      <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center scale-150 my-1' />
+                      <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center accent-blues-150 scale-150 my-1' />
 
                     </div>
                   </div>
@@ -176,7 +176,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                       </Label>
                       </Tooltip>
 
-                      <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1' />
+                      <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1 accent-blues-150' />
                     </div>
                   </div>
                 </div>
@@ -218,14 +218,14 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
           </ModalBody>
           <ModalFooter className='justify-end'>
             <button
-              className='bg-blues-200 text-white py-2 px-4 rounded-md'
+              className='bg-blues-200 text-white font-semibold py-2 px-4 rounded-md dark:hover:text-trademark-50'
               title='Create'
               type='submit'
             >
               Crear
             </button>
             <a
-              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer'
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer font-semibold dark:hover:text-trademark-50'
               onClick={onClose}
               href={onClose}
             >

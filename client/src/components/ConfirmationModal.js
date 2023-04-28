@@ -18,7 +18,7 @@ const ConfirmationModal = ({ show, onClose, text, method }) => {
               <Button color='failure' onClick={method}>
                 Confirmar
               </Button>
-              <Button color='gray' onClick={onClose}>
+              <Button className='!bg-gray-500' onClick={onClose}>
                 Cancelar
               </Button>
             </div>

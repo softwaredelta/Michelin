@@ -36,7 +36,7 @@ const QuestionOverview = ({ category, section }) => {
           <TableCell className='text-center'>
             {entities[idQuestion].q_order}
           </TableCell>
-          <TableCell className='text-center'>
+          <TableCell className='text-center max-w-md break-words'>
             {entities[idQuestion].p_text}
           </TableCell>
           <TableCell className='text-center'>
@@ -66,7 +66,7 @@ const QuestionOverview = ({ category, section }) => {
       <AccordionContent className='h-96 overflow-y-scroll'>
         <div className=''>
           <Table>
-          <TableHead>
+          <TableHead className=''>
             <TableHeadCell className='text-center'>Orden</TableHeadCell>
             <TableHeadCell className='text-center'>Pregunta</TableHeadCell>
             <TableHeadCell className='text-center'>
@@ -80,7 +80,7 @@ const QuestionOverview = ({ category, section }) => {
         </Table>
         </div>
         <div className=' flex flex-row justify-end my-10'>
-          <Button className='!bg-zinc-500' onClick={() => navigate(`/question/edit/${category}/${section}`)}> <MdModeEditOutline className='mx-2' /> Editar Cuestionario </Button>
+          <Button className='!bg-zinc-500 dark:!bg-blues-200 dark:hover:!bg-gray-500' onClick={() => navigate(`/question/edit/${category}/${section}`)}> <MdModeEditOutline className='mx-2' /> Editar Cuestionario </Button>
         </div>
       </AccordionContent>
     </>
