@@ -32,11 +32,11 @@ module.exports = {
           50: '#5054aa',
           // Titles
           100: '#132090',
-          //Light-blue
+          // Light-blue
           150: '#3663b5',
           // Michelin blue
           200: '#27509b',
-          //Blue button
+          // Blue button
           300: '#1d4089',
           // Dark blue
           400: '#212936'

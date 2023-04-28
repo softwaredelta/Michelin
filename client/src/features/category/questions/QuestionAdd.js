@@ -9,8 +9,6 @@ import AreaOption from './AreaOption'
 import { useForm } from 'react-hook-form'
 import Toast from '../../../components/Toast'
 
-import { AiOutlineQuestionCircle } from 'react-icons/ai'
-
 const QuestionAdd = ({ show, onClose, section, myCategory }) => {
   const [addNewQuestion, {
     isSuccess,
@@ -104,11 +102,11 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                     trigger='hover'
                     className='dark:!bg-white dark:!text-black'
                   >
-                     <Label
-                    htmlFor='qText'
-                    value='Pregunta'
-                    className='text-lg font-semibold mr-2 my-1'
-                  />
+                    <Label
+                      htmlFor='qText'
+                      value='Pregunta'
+                      className='text-lg font-semibold mr-2 my-1'
+                    />
                   </Tooltip>
                 </div>
 
@@ -128,10 +126,10 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                     className='dark:!bg-white dark:!text-black'
                   >
                     <Label
-                    htmlFor='idArea'
-                    value='Área'
-                    className='align-bottom mr-2 my-1 text-lg font-semibold'
-                  />
+                      htmlFor='idArea'
+                      value='Área'
+                      className='align-bottom mr-2 my-1 text-lg font-semibold'
+                    />
                   </Tooltip>
                 </div>
                 <Select
@@ -157,8 +155,8 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                         className='dark:!bg-white dark:!text-black'
                       >
                         <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mr-3'>
-                        Uso de camára
-                      </Label>
+                          Uso de camára
+                        </Label>
                       </Tooltip>
                       <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center accent-blues-150 scale-150 my-1' />
 
@@ -172,8 +170,8 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                         className='dark:!bg-white dark:!text-black'
                       >
                         <Label htmlFor='btnNa' className='align-top text-center text-lg font-semibold ml-2 mr-3'>
-                        Botón No Aplica
-                      </Label>
+                          Botón No Aplica
+                        </Label>
                       </Tooltip>
 
                       <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1 accent-blues-150' />
@@ -187,11 +185,11 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                       trigger='hover'
                       className='dark:!bg-white dark:!text-black'
                     >
-                       <Label
-                      htmlFor='placeholder'
-                      value='Imagen de ejemplo'
-                      className='align-bottom text-center text-lg font-semibold mr-1'
-                    />
+                      <Label
+                        htmlFor='placeholder'
+                        value='Imagen de ejemplo'
+                        className='align-bottom text-center text-lg font-semibold mr-1'
+                      />
                     </Tooltip>
                   </div>
                   <div id='fileUpload'>
