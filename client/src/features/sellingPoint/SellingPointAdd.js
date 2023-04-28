@@ -1,4 +1,4 @@
-import { Modal, Select } from 'flowbite-react'
+import { Modal, Select, Tooltip } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
@@ -14,11 +14,10 @@ import Toast from '../../components/Toast'
 const SellingPointAdd = ({ show, onClose }) => {
   const {
     register,
-    handleSubmit,
     getValues,
     reset
   } = useForm()
-  const [addNewSP, { isSuccess }] = useAddNewSPMutation()
+  const [addNewSP, { isSuccess, isError }] = useAddNewSPMutation()
 
   let myCategory, myState
 
@@ -65,6 +64,7 @@ const SellingPointAdd = ({ show, onClose }) => {
   }
 
   const onSaveSPClicked = async (e) => {
+    e.preventDefault()
     const name = getValues('name')
     const zone = getValues('select_zone')
     const type = getValues('select_type')
@@ -86,20 +86,23 @@ const SellingPointAdd = ({ show, onClose }) => {
   useEffect(() => {
     if (isSuccess) {
       reset()
+      Toast.fire({
+        icon: 'success',
+        title: 'Se ha creado un nuevo punto de venta'
+      })
     }
-  }, [isSuccess, reset])
-
-  const onError = () => {
-    Toast.fire({
-      icon: 'error',
-      title: '¡Tienes campos faltantes o Inválidos!'
-    })
-  }
+    if (isError) {
+      Toast.fire({
+        icon: 'error',
+        title: '¡Tienes campos faltantes o Inválidos!'
+      })
+    }
+  }, [isSuccess, isError, reset])
 
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
-        <form onSubmit={handleSubmit(onSaveSPClicked, onError)}>
+        <form onSubmit={onSaveSPClicked}>
           <ModalHeader className='!bg-blues-200'>
             <div className='flex ml-14'>
               <div className='flex items-center flex-col mx-4 text-xl font-semibold text-white'>
@@ -107,16 +110,12 @@ const SellingPointAdd = ({ show, onClose }) => {
               </div>
               <div className='flex flex-col mx-4'>
                 <input
-                  className='border-2 rounded-lg text-center text-mdh-4/5 w-72'
+                  className='border-2 rounded-lg text-center text-mdh-4/5 w-72 dark:!text-black'
                   placeholder='Punto de Venta'
                   id='name'
-                  {...register('name', {
-                    required: true,
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('name')}
+                  required
+                  maxLength={255}
                 />
               </div>
             </div>
@@ -124,27 +123,50 @@ const SellingPointAdd = ({ show, onClose }) => {
           <ModalBody>
             <div className='flex justify-center'>
               <div className='flex flex-col mx-4 items-end'>
-                <div className='flex-row align-bottom text-center my-2 text-lg font-semibold'>
-                  Zona:
+                <div className='flex flex-row align-bottom text-center my-2 text-lg font-semibold dark:text-white'>
+                  <Tooltip
+                    content='El estado donde se encuentra el punto de venta'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    Zona:
+                  </Tooltip>
                 </div>
-                <div className='flex-row text-center my-3 text-lg font-semibold'>
-                  Tipo:
+                <div className=' flex flex-row text-center my-3 text-lg font-semibold dark:text-white'>
+                  <Tooltip
+                    content='Si el punto de venta es Normal o Premium'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    Tipo:
+                  </Tooltip>
                 </div>
-                <div className='flex-row text-center my-5 text-lg font-semibold'>
-                  Dirección:
+                <div className='flex flex-row text-center my-5 text-lg font-semibold dark:text-white'>
+                  <Tooltip
+                    content='Un máximo de 255 caracteres'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    Dirección:
+                  </Tooltip>
                 </div>
-                <div className='flex-row text-center my-4 text-lg font-semibold'>
-                  Teléfono:
+                <div className='flex flex-row text-center my-4 text-lg font-semibold dark:text-white'>
+                  <Tooltip
+                    content='Un máximo de 10 números, sin guiones y no código de país'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    Teléfono:
+                  </Tooltip>
                 </div>
               </div>
               <div className='flex flex-col w-3/4'>
                 <Select
-                  className='mb-3'
+                  className='mb-3 border-2 rounded-md'
                   id='select_zone'
                   name='select_zone'
-                  {...register('select_zone', {
-                    required: true
-                  })}
+                  {...register('select_zone')}
+                  required
                 >
                   <option value='' selected>
                     Selecciona un estado
@@ -153,12 +175,11 @@ const SellingPointAdd = ({ show, onClose }) => {
                   {myState}
                 </Select>
                 <Select
-                  className='mb-3'
+                  className='mb-3 border-2 rounded-md'
                   id='select_type'
                   name='select_type'
-                  {...register('select_type', {
-                    required: true
-                  })}
+                  {...register('select_type')}
+                  required
                 >
                   <option value='' name='option-disabled' selected>
                     Selecciona un tipo
@@ -166,26 +187,19 @@ const SellingPointAdd = ({ show, onClose }) => {
                   {myCategory}
                 </Select>
                 <textarea
-                  className='border-2 rounded-md my-2 resize-none'
+                  className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white'
                   id='address'
-                  {...register('address', {
-                    required: true,
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('address')}
+                  required
+                  maxLength={255}
                 />
                 <input
-                  className='border-2 rounded-md my-2'
+                  className='border-2 rounded-md my-2 dark:bg-transparent dark:text-white'
                   id='phone'
-                  {...register('phone', {
-                    required: true,
-                    pattern: {
-                      value: /[0-9]{10}/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('phone')}
+                  required
+                  pattern='[0-9]{10}'
+                  maxLength={10}
                 />
               </div>
             </div>
@@ -195,14 +209,15 @@ const SellingPointAdd = ({ show, onClose }) => {
               className='bg-blues-200 text-white py-2 px-4 rounded-md'
               type='submit'
             >
-              Aceptar
+              Crear
             </button>
-            <button
-              className='bg-gray-500 text-white py-2 px-4 rounded-md end'
+            <a
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer'
               onClick={onClose}
+              href={onClose}
             >
               Cancelar
-            </button>
+            </a>
           </ModalFooter>
         </form>
       </Modal>

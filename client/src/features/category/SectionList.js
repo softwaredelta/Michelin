@@ -16,7 +16,7 @@ const SectionList = () => {
 
   if (isLoadingSections) sections = <div> Cargando... </div>
   if (isErrorSections) {
-    sections = <div> Sin opciones válidas </div>
+    sections = <div className='font-semibold text-3xl m-auto dark:text-white'> Sin opciones válidas </div>
   }
 
   if (isSuccessSections) {

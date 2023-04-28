@@ -40,7 +40,6 @@ const QuestionList = () => {
   if (isErrorQuestions) {
     questions = (
       <TableCell className="col-span-5">
-        {" "}
         No hay conexión con la base de datos
       </TableCell>
     );
@@ -87,7 +86,10 @@ const QuestionList = () => {
           <Header myText="Preguntas" />
           <div className="flex flex-row w-full justify-between my-2 py-4">
             <div className="flex flex-col">
-              <div onClick={() => navigate('/question')} className="flex flex-row items-center text-md font-semibold text-blues-200 cursor-pointer ml-5 hover:text-gray-500 dark:text-white dark:hover:text-trademark-50">
+              <div
+                onClick={() => navigate("/question")}
+                className="flex flex-row items-center text-md font-semibold text-blues-200 cursor-pointer ml-5 hover:text-gray-500 dark:text-white dark:hover:text-trademark-50"
+              >
                 <MdArrowBackIosNew size={17} className="mr-1" /> Regresar
               </div>
             </div>
@@ -118,8 +120,7 @@ const QuestionList = () => {
                 className="!bg-gray-500 mr-3 hover:!bg-gray-700 dark:hover:!bg-gray-500 dark:hover:!text-trademark-50 font-semibold"
                 onClick={() => navigate("/question")}
               >
-                {" "}
-                <MdOutlineCancel className="mr-2" /> Cancelar{" "}
+                <MdOutlineCancel className="mr-2" /> Cancelar
               </Button>
               <Button
                 className="!bg-blues-200 hover:!bg-blue-900 dark:hover:!text-trademark-50 dark:hover:!bg-blues-200 font-semibold"

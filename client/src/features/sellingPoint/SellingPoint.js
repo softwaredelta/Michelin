@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import ConfirmationModal from '../../components/ConfirmationModal'
 import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
 import SellingPointEdit from './SellingPointEdit'
+import Toast from '../../components/Toast'
 
 const SellingPoint = ({ spId }) => {
   const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
@@ -26,6 +27,10 @@ const SellingPoint = ({ spId }) => {
     e.preventDefault()
     await DeleteSP({ spId })
     handleCloseDelete()
+    Toast.fire({
+      icon: 'success',
+      title: 'Se ha eliminado un punto de venta'
+    })
   }
 
   // Modal

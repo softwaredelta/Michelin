@@ -18,13 +18,13 @@ const SellingPointList = () => {
     setShow(false)
   }
 
-  const { data: sp, isLoading, isSuccess, isError, error } = useGetSPQuery()
+  const { data: sp, isLoading, isSuccess, isError } = useGetSPQuery()
 
-  let content
   let message
-  if (isLoading) content = <p>Cargando...</p>
+  let listContent
+  if (isLoading) message = <p className='text-3xl font-semibold dark:!text-white'>Cargando...</p>
   if (isError) {
-    content = <p>{error?.data?.message}</p>
+    message = <p className='text-3xl font-semibold dark:!text-white'>No hay conexión con la base de datos</p>
   }
 
   if (isSuccess) {
@@ -33,33 +33,33 @@ const SellingPointList = () => {
     if (ids.length === 0) {
       message = <p className='text-3xl font-semibold dark:!text-white'>No hay puntos de venta que mostrar</p>
     }
-    const listContent = ids?.length
+    listContent = ids?.length
       ? ids.map((idSP) => <SellingPoint key={idSP} spId={idSP} />)
       : null
-
-    content = (
-      <>
-        <div>
-          <NavBar />
-          <div className='pt-20 p- w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
-            <Header myText='Punto de Venta' />
-            <div className='self-end mr-5'>
-              <Bluebutton
-                myText='+ Nuevo Punto de Venta'
-                method={handleSetShow}
-              />
-            </div>
-            {message}
-            <div className='container flex flex-wrap justify-items-stretch dark:!bg-blues-400'>
-              {listContent}
-            </div>
-            <ModifiedFooter />
-          </div>
-        </div>
-        <SellingPointAdd show={show} onClose={handleClose} />
-      </>
-    )
   }
+  const content = (
+    <>
+      <div>
+        <NavBar />
+        <div className='pt-20 p- w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
+          <Header myText='Punto de Venta' />
+          <div className='self-end mr-5'>
+            <Bluebutton
+              myText='+ Nuevo Punto de Venta'
+              method={handleSetShow}
+            />
+          </div>
+          {message}
+          <div className='container flex flex-wrap justify-items-stretch dark:!bg-blues-400'>
+            {listContent}
+          </div>
+          <ModifiedFooter />
+        </div>
+      </div>
+      <SellingPointAdd show={show} onClose={handleClose} />
+    </>
+  )
+
   return content
 }
 

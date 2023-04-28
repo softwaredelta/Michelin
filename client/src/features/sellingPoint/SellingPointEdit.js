@@ -1,4 +1,4 @@
-import { Modal, Select } from 'flowbite-react'
+import { Modal, Select, Tooltip } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
@@ -17,12 +17,11 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
 
   const {
     register,
-    handleSubmit,
     getValues,
     reset
   } = useForm()
 
-  const [editSP, { isSuccess }] = useEditSPMutation()
+  const [editSP, { isSuccess, isError }] = useEditSPMutation()
 
   let myCategory, myState
 
@@ -69,6 +68,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
   }
 
   const onEditSPClicked = async (e) => {
+    e.preventDefault()
     const name = getValues('name')
     const zone = getValues('select_zone')
     const type = getValues('select_type')
@@ -89,25 +89,29 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      // reset()
+      reset()
       Toast.fire({
         icon: 'success',
         title: 'El Punto de Venta se ha editado de forma exitosa'
       })
     }
-  }, [isSuccess, reset])
+    if (isError) {
+      Toast.fire({
+        icon: 'error',
+        title: '¡Tienes campos faltantes o Inválidos!'
+      })
+    }
+  }, [isSuccess, isError, reset])
 
-  const onError = () => {
-    Toast.fire({
-      icon: 'error',
-      title: '¡Tienes campos faltantes o Inválidos!'
-    })
+  const onClosed = () => {
+    onClose()
+    reset()
   }
 
   return (
     <>
       <Modal show={show} onClose={onClose} dismissible>
-        <form onSubmit={handleSubmit(onEditSPClicked, onError)}>
+        <form onSubmit={onEditSPClicked}>
           <ModalHeader className='!bg-blues-200'>
             <div className='flex ml-14'>
               <div className='flex items-center flex-col mx-4 text-xl font-semibold text-white'>
@@ -115,16 +119,12 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
               </div>
               <div className='flex flex-col mx-4'>
                 <input
-                  className='border-2 rounded-lg text-center text-mdh-4/5 w-72'
+                  className='border-2 rounded-lg text-center text-mdh-4/5 w-72 dark:text-black'
                   id='name'
-                  {...register('name', {
-                    required: true,
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('name')}
                   defaultValue={sp.name}
+                  required
+                  maxLength={255}
                 />
 
               </div>
@@ -133,27 +133,50 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
           <ModalBody>
             <div className='flex justify-center'>
               <div className='flex flex-col mx-4 items-end'>
-                <div className='flex-row align-bottom text-center my-2 text-lg font-semibold'>
-                  Zona:
+                <div className='flex-row align-bottom text-center my-2 text-lg font-semibold dark:text-white'>
+                  <Tooltip
+                    content='El estado donde se encuentra el punto de venta'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    Zona:
+                  </Tooltip>
                 </div>
-                <div className='flex-row text-center my-3 text-lg font-semibold'>
-                  Tipo:
+                <div className='flex-row text-center my-3 text-lg font-semibold dark:text-white'>
+                  <Tooltip
+                    content='Si el punto de venta es Normal o Premium'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    Tipo:
+                  </Tooltip>
                 </div>
-                <div className='flex-row text-center my-5 text-lg font-semibold'>
-                  Dirección:
+                <div className='flex-row text-center my-5 text-lg font-semibold dark:text-white'>
+                  <Tooltip
+                    content='Un máximo de 255 caracteres'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    Dirección:
+                  </Tooltip>
                 </div>
-                <div className='flex-row text-center my-4 text-lg font-semibold'>
-                  Teléfono:
+                <div className='flex-row text-center my-4 text-lg font-semibold dark:text-white'>
+                  <Tooltip
+                    content='Un máximo de 20 números'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    Teléfono:
+                  </Tooltip>
                 </div>
               </div>
               <div className='flex flex-col w-3/4'>
                 <Select
-                  className='mb-3'
+                  className='mb-3 border-2 rounded-md'
                   id='select_zone'
                   name='select_zone'
-                  {...register('select_zone', {
-                    required: true
-                  })}
+                  {...register('select_zone')}
+                  required
                 >
                   <option value={sp.id_state} selected>
                     {sp.zone}
@@ -162,39 +185,31 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   {myState}
                 </Select>
                 <Select
-                  className='mb-3'
+                  className='mb-3 border-2 rounded-md'
                   id='select_type'
                   name='select_type'
-                  {...register('select_type', {
-                    required: true
-                  })}
+                  {...register('select_type')}
+                  required
                 >
                   <option value={sp.id_category}>{sp.category} </option>
                   {myCategory}
                 </Select>
                 <textarea
-                  className='border-2 rounded-md my-2 resize-none'
+                  className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white'
                   id='address'
-                  {...register('address', {
-                    required: true,
-                    pattern: {
-                      value: /^\S+[a-zA-Z\s]*/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('address')}
                   defaultValue={sp.address}
+                  required
+                  maxLength={255}
                 />
                 <input
-                  className='border-2 rounded-md my-2'
+                  className='border-2 rounded-md my-2 dark:bg-transparent dark:text-white'
                   id='phone'
-                  {...register('phone', {
-                    required: true,
-                    pattern: {
-                      value: /[0-9]{10}/,
-                      message: 'error message'
-                    }
-                  })}
+                  {...register('phone')}
                   defaultValue={sp.phone}
+                  pattern='[0-9]{10}'
+                  required
+                  maxLength={10}
                 />
               </div>
             </div>
@@ -206,12 +221,13 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
             >
               Aceptar
             </button>
-            <button
-              className='bg-gray-500 text-white py-2 px-4 rounded-md end'
-              onClick={onClose}
+            <a
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer'
+              onClick={onClosed}
+              href={onClosed}
             >
               Cancelar
-            </button>
+            </a>
           </ModalFooter>
         </form>
       </Modal>
