@@ -3,7 +3,7 @@ import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import { useEditSPMutation, selectSPById } from './sellingPointApiSlice'
-import { useGetCategoriesQuery } from '../category/categoryApiSlice'
+import { useGetCategoriesQuery } from '../category/sectionApiSlice'
 import { useGetStateQuery } from './state/stateApiSlice'
 import StateOption from './state/StateOption'
 import CategoryOption from '../category/CategoryOption'
