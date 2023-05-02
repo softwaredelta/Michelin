@@ -18,3 +18,15 @@ exports.signup = async (request, reply) => {
   await User.createUser(this.fastify, request.body.name, request.body.lastName, request.body.idManager, request.body.mail, request.body.password)
   return reply.code(200).send({ statusCode: 200 })
 }
+
+exports.editUsers = async (request, reply) => {
+  await SellingPoint.editUser(
+    this.fastify,
+    request.body.name,
+    request.body.lastName,
+    request.body.mail,
+    request.body.idUser
+  )
+
+  return reply.code(200).send({ statusCode: 200 })
+}
