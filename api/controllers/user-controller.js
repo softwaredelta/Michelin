@@ -20,7 +20,7 @@ exports.signup = async (request, reply) => {
 }
 
 exports.editUsers = async (request, reply) => {
-  await SellingPoint.editUser(
+  await User.editUser(
     this.fastify,
     request.body.name,
     request.body.lastName,
@@ -29,4 +29,10 @@ exports.editUsers = async (request, reply) => {
   )
 
   return reply.code(200).send({ statusCode: 200 })
+}
+
+exports.postDeleteUsers = async (request, reply) => {
+  await User.deleteUser(
+    this.fastify,
+    request.body.idUser)
 }
