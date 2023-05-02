@@ -41,4 +41,12 @@ module.exports = class User {
     )
     connection.release()
   }
+
+  static async deleteUser (fastify, idUser) {
+    const connection = await fastify.mysql.getConnection()
+    await connection.query(
+      'DELETE FROM user WHERE id_user = ?',
+      [idUser]
+    )
+  }
 }
