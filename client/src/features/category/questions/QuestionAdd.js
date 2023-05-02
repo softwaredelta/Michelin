@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAddNewQuestionMutation, useGetAreasBySectionQuery } from '../categoryApiSlice'
+import { useAddNewQuestionMutation } from './questionApiSlice'
+import { useGetAreasBySectionQuery } from '../sectionApiSlice'
 import { Checkbox, Select, Label, FileInput, Modal, Textarea, Tooltip } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'

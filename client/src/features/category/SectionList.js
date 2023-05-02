@@ -2,7 +2,7 @@ import Header from '../../components/Header'
 import ModifiedFooter from '../../components/ModifiedFooter'
 import NavBar from '../../components/NavBar'
 import Section from './Section'
-import { useGetSectionsQuery } from './categoryApiSlice'
+import { useGetSectionsQuery } from './sectionApiSlice'
 
 const SectionList = () => {
   let sections
