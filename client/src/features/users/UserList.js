@@ -1,6 +1,8 @@
 import { useGetUsersQuery } from './usersApiSlice'
 import User from './User'
-
+import Bluebutton from '../../components/Bluebutton'
+import { useState } from 'react'
+import UserAdd from './UserAdd'
 const UsersList = () => {
   const {
     data: users,
@@ -16,13 +18,27 @@ const UsersList = () => {
     content = <p>{error?.data?.message}</p>
   }
 
+  const [show, setShow] = useState(false)
+
+  const handleSetShow = () => {
+    setShow(true)
+  }
+
+  const handleClose = () => {
+    setShow(false)
+  }
+  let tableContent
+
   if (isSuccess) {
     const { ids } = users
     console.log(users)
-    const tableContent = ids?.length
+    tableContent = ids?.length
       ? ids.map(idUser => <User key={idUser} userId={idUser} />)
       : null
-    content = (
+  }
+  content = (
+    <>
+      <Bluebutton myText='+ Nuevo Usuario' method={handleSetShow} />
       <table>
         <thead>
           <tr>
@@ -34,8 +50,12 @@ const UsersList = () => {
           {tableContent}
         </tbody>
       </table>
-    )
-  }
+      <UserAdd
+        show={show}
+        onClose={handleClose}
+      />
+    </>
+  )
   return content
 }
 

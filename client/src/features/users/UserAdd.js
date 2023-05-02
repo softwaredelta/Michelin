@@ -1,83 +1,186 @@
-import { useState, useEffect } from 'react'
-import { useAddNewUserMutation } from './usersApiSlice'
-import { useNavigate } from 'react-router-dom'
 
-const USER_REGEX = /^[A-z]{3,20}$/
-const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
+import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
+import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
+import { Tooltip, Label, Select, Modal } from 'flowbite-react'
+import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 
-const UserAdd = () => {
-  const [addNewUser, {
-    isLoading,
-    isSuccess
-  }] = useAddNewUserMutation()
-
-  const navigate = useNavigate()
-
-  const [name, setName] = useState('')
-  const [validName, setValidName] = useState(false)
-  const [password, setPassword] = useState('')
-  const [validPassword, setValidPassword] = useState(false)
-  const [lastName, setLastName] = useState('')
-  const [mail, setMail] = useState('')
-  const [idManager] = useState(1)
-
-  useEffect(() => {
-    setValidName(USER_REGEX.test(name))
-  }, [name])
-
-  useEffect(() => {
-    setValidPassword(PWD_REGEX.test(password))
-  }, [password])
-
-  useEffect(() => {
-    if (isSuccess) {
-      setName('')
-      setPassword('')
-      setMail('')
-      setLastName('')
-      navigate('/user')
-    }
-  }, [isSuccess, navigate])
-
-  const onNameChanged = e => setName(e.target.value)
-  const onPasswordChanged = e => setPassword(e.target.value)
-  const onLastNameChanged = e => setLastName(e.target.value)
-  const onMailChanged = e => setMail(e.target.value)
-
-  const canSave = [validName, validPassword].every(Boolean) && !isLoading
-
-  const onSaveUserClicked = async (e) => {
-    e.preventDefault()
-    if (canSave) {
-      await addNewUser({ name, lastName, idManager, mail, password })
-    }
-  }
-
+const UserAdd = ({ show, onClose }) => {
   const content = (
     <>
-      <form onSubmit={onSaveUserClicked}>
-        <h2>New User</h2>
-        <button title='Save' disabled={!canSave}>Save</button>
-        <label htmlFor='name'>
-          Name: <span>[3-20 letters]</span>
-        </label>
-        <input id='name' name='name' type='text' autoComplete='off' value={name} onChange={onNameChanged} />
+      <Modal show={show} onClose={onClose} dismissible>
+        <ModalHeader className='!bg-blues-200'>
+          <div className='flex ml-14'>
+            <div className='flex items-center flex-col mx-4 text-2xl font-semibold text-white'>
+              Nuevo Usuario
+            </div>
+          </div>
+        </ModalHeader>
+        <form>
+          <ModalBody>
+            <div className='flex justify-center'>
+              <div className='flex flex-col w-3/4'>
+                <div className=' flex flex-row'>
+                  <div className='col mr-9'>
+                    <div className='flex flex-row items-center'>
+                      <Tooltip
+                        content='-'
+                        trigger='hover'
+                        className='dark:!bg-white dark:!text-black'
+                      >
+                        <Label
+                          htmlFor='-'
+                          value='Nombre'
+                          className='text-lg font-semibold mr-2 my-1'
+                        />
+                      </Tooltip>
+                    </div>
+                    <input
+                      id='-'
+                      name='-'
+                      required
+                      autoComplete='off'
+                      className='border-2 rounded-md my-2 resize-none'
+                      maxLength='255'
+                    />
+                  </div>
+                  <div className='col'>
+                    <div className='flex flex-row items-center'>
+                      <Tooltip
+                        content='-'
+                        trigger='hover'
+                        className='dark:!bg-white dark:!text-black'
+                      >
+                        <Label
+                          htmlFor='-'
+                          value='Apellido'
+                          className='text-lg font-semibold mr-2 my-1'
+                        />
+                      </Tooltip>
+                    </div>
+                    <input
+                      id='-'
+                      name='-'
+                      required
+                      autoComplete='off'
+                      className='border-2 rounded-md my-2 resize-none'
+                      maxLength='255'
+                    />
 
-        <label htmlFor='password'>
-          Password: <span>[4-12 chars incl. !@#$%]</span>
-        </label>
-        <input id='password' name='password' type='password' value={password} onChange={onPasswordChanged} />
+                  </div>
+                </div>
 
-        <label htmlFor='lastName'>
-          Last Name: <span>[3-20 letters]</span>
-        </label>
-        <input id='lastName' name='lastName' type='text' autoComplete='off' value={lastName} onChange={onLastNameChanged} />
+                <div className='flex flex-row items-center'>
+                  <Tooltip
+                    content='-'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    <Label
+                      htmlFor='-'
+                      value='Email'
+                      className='text-lg font-semibold mr-2 my-1'
+                    />
+                  </Tooltip>
+                </div>
+                <input
+                  id='-'
+                  name='-'
+                  required
+                  autoComplete='off'
+                  className='border-2 rounded-md my-2 resize-none'
+                  maxLength='255'
+                />
+                <div className='flex flex-row items-center'>
+                  <Tooltip
+                    content='-'
+                    trigger='hover'
+                    className='dark:!bg-white dark:!text-black'
+                  >
+                    <Label
+                      htmlFor='-'
+                      value='Teléfono'
+                      className='text-lg font-semibold mr-2 my-1'
+                    />
+                  </Tooltip>
+                </div>
+                <input
+                  id='-'
+                  name='-'
+                  required
+                  autoComplete='off'
+                  className='border-2 rounded-md my-2 resize-none'
+                  maxLength='255'
+                />
+                <div className='flex flex-row'>
+                  <div className='col mr-9'>
+                    <div className='flex flex-row'>
+                      <Tooltip
+                        content='-'
+                        trigger='hover'
+                        className='dark:!bg-white dark:!text-black'
+                      >
+                        <Label
+                          htmlFor='-'
+                          value='Rol'
+                          className='align-bottom mr-2 my-1 text-lg font-semibold'
+                        />
+                      </Tooltip>
+                    </div>
+                    <Select
+                      id='-'
+                      name='-'
+                      required
+                      className='rounded-md my-2'
+                    >
+                      <option value='' selected> -- Selecciona una opción --</option>
+                    </Select>
+                  </div>
+                  <div className='col'>
+                    <div className='flex flex-row'>
+                      <Tooltip
+                        content='-'
+                        trigger='hover'
+                        className='dark:!bg-white dark:!text-black'
+                      >
+                        <Label
+                          htmlFor='-'
+                          value='Zona'
+                          className='align-bottom mr-2 my-1 text-lg font-semibold'
+                        />
+                      </Tooltip>
+                    </div>
+                    <Select
+                      id='-'
+                      name='-'
+                      required
+                      className='rounded-md my-2'
+                    >
+                      <option value='' selected> -- Selecciona una opción --</option>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <button
+              className='bg-blues-200 text-white font-semibold py-2 px-4 rounded-md dark:hover:text-trademark-50'
+              title='Create'
+              type='submit'
+            >
+              Crear
+            </button>
+            <a
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer font-semibold dark:hover:text-trademark-50'
+              onClick={onClose}
+              href={onClose}
+            >
+              Cancelar
+            </a>
+          </ModalFooter>
+        </form>
 
-        <label htmlFor='mail'>
-          Mail: <span>[3-20 letters]</span>
-        </label>
-        <input id='email' name='email' type='mail' autoComplete='off' value={mail} onChange={onMailChanged} />
-      </form>
+      </Modal>
     </>
   )
   return content
