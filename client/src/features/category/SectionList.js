@@ -16,7 +16,7 @@ const SectionList = () => {
 
   if (isLoadingSections) sections = <div> Cargando... </div>
   if (isErrorSections) {
-    sections = <div> Sin opciones válidas </div>
+    sections = <div className='font-semibold text-3xl m-auto dark:text-white'> Sin opciones válidas </div>
   }
 
   if (isSuccessSections) {
@@ -32,9 +32,9 @@ const SectionList = () => {
   const content = (
     <div>
       <NavBar />
-      <div className='pt-20 w-ful h-screen flex flex-col items-center'>
+      <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400 overflow-y-scroll'>
         <Header myText='Cuestionarios' />
-        <div className='container flex flex-wrap justify-items-stretch'>
+        <div className='container flex flex-wrap justify-items-stretch '>
           {sections}
         </div>
         <ModifiedFooter />

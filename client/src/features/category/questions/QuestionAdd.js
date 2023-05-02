@@ -9,8 +9,6 @@ import AreaOption from './AreaOption'
 import { useForm } from 'react-hook-form'
 import Toast from '../../../components/Toast'
 
-import { AiOutlineQuestionCircle } from 'react-icons/ai'
-
 const QuestionAdd = ({ show, onClose, section, myCategory }) => {
   const [addNewQuestion, {
     isSuccess,
@@ -98,18 +96,17 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
           <ModalBody>
             <div className='flex justify-center'>
               <div className='flex flex-col w-3/4'>
-                <div className='flex flex-row'>
-                  <Label
-                    htmlFor='qText'
-                    value='Pregunta'
-                    className='text-lg font-semibold mr-2 my-1'
-                  />
+                <div className='flex flex-row items-center'>
                   <Tooltip
                     content='Máximo 255 caracteres'
                     trigger='hover'
                     className='dark:!bg-white dark:!text-black'
                   >
-                    <AiOutlineQuestionCircle className='dark:!fill-white my-2' />
+                    <Label
+                      htmlFor='qText'
+                      value='Pregunta'
+                      className='text-lg font-semibold mr-2 my-1'
+                    />
                   </Tooltip>
                 </div>
 
@@ -119,21 +116,20 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                   name='qText'
                   required
                   autoComplete='off'
-                  className='border-2 rounded-md my-1'
+                  className='border-2 rounded-md my-2 resize-none'
                   maxLength='255'
                 />
                 <div className='flex flex-row'>
-                  <Label
-                    htmlFor='idArea'
-                    value='Área'
-                    className='align-bottom mr-2 my-1 text-lg font-semibold'
-                  />
                   <Tooltip
                     content='Donde aparecerá la pregunta dentro de la aplicación '
                     trigger='hover'
                     className='dark:!bg-white dark:!text-black'
                   >
-                    <AiOutlineQuestionCircle className='dark:!fill-white my-2' />
+                    <Label
+                      htmlFor='idArea'
+                      value='Área'
+                      className='align-bottom mr-2 my-1 text-lg font-semibold'
+                    />
                   </Tooltip>
                 </div>
                 <Select
@@ -141,7 +137,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                   name='idArea'
                   {...register('idArea')}
                   required
-                  className='rounded-md my-1'
+                  className='rounded-md my-2'
                 >
                   <option value='' selected> -- Selecciona una opción --</option>
                   {area}
@@ -150,53 +146,50 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                   value='Agregados'
                   className='align-bottom my-2 text-lg font-semibold'
                 />
-                <div className='flex flex-row -my-2 justify-center'>
+                <div className='flex flex-row my-1 justify-center'>
                   <div className='flex-col mx-2'>
                     <div className='flex flex-row'>
-                      <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mr-1'>
-                        Uso de camára
-                      </Label>
                       <Tooltip
                         content='Necesita evidencia fotográfica'
                         trigger='hover'
                         className='dark:!bg-white dark:!text-black'
                       >
-                        <AiOutlineQuestionCircle className='dark:!fill-white my-1 mr-2' />
+                        <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mr-3'>
+                          Uso de camára
+                        </Label>
                       </Tooltip>
-                      <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center scale-150 my-1' />
+                      <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center accent-blues-150 scale-150 my-1' />
 
                     </div>
                   </div>
                   <div className='flex-col'>
                     <div className='flex flex-row'>
-                      <Label htmlFor='btnNa' className='align-top text-center text-lg font-semibold ml-2 mr-1'>
-                        Botón No Aplica
-                      </Label>
                       <Tooltip
                         content='La respuesta puede ser omitida'
                         trigger='hover'
                         className='dark:!bg-white dark:!text-black'
                       >
-                        <AiOutlineQuestionCircle className='dark:!fill-white my-1 mr-2' />
+                        <Label htmlFor='btnNa' className='align-top text-center text-lg font-semibold ml-2 mr-3'>
+                          Botón No Aplica
+                        </Label>
                       </Tooltip>
 
-                      <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1' />
+                      <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1 accent-blues-150' />
                     </div>
                   </div>
                 </div>
                 <div className='flex-row my-5'>
                   <div className='flex flex-row'>
-                    <Label
-                      htmlFor='placeholder'
-                      value='Imagen de ejemplo'
-                      className='align-bottom text-center text-lg font-semibold mr-1'
-                    />
                     <Tooltip
                       content='Imagen predeterminada para la pregunta'
                       trigger='hover'
                       className='dark:!bg-white dark:!text-black'
                     >
-                      <AiOutlineQuestionCircle className='dark:!fill-white my-1' />
+                      <Label
+                        htmlFor='placeholder'
+                        value='Imagen de ejemplo'
+                        className='align-bottom text-center text-lg font-semibold mr-1'
+                      />
                     </Tooltip>
                   </div>
                   <div id='fileUpload'>
@@ -223,14 +216,14 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
           </ModalBody>
           <ModalFooter className='justify-end'>
             <button
-              className='bg-blues-200 text-white py-2 px-4 rounded-md'
+              className='bg-blues-200 text-white font-semibold py-2 px-4 rounded-md dark:hover:text-trademark-50'
               title='Create'
               type='submit'
             >
               Crear
             </button>
             <a
-              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer'
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer font-semibold dark:hover:text-trademark-50'
               onClick={onClose}
               href={onClose}
             >

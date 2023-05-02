@@ -1,4 +1,4 @@
-import { Checkbox } from 'flowbite-react'
+import { Checkbox, Textarea } from 'flowbite-react'
 import { TableRow } from 'flowbite-react/lib/esm/components/Table/TableRow'
 import { TableCell } from 'flowbite-react/lib/esm/components/Table/TableCell'
 import {
@@ -22,7 +22,8 @@ const Question = ({
   areaTitle,
   idCategory
 }) => {
-  const [deleteQuestion, { isSuccess: isSuccessDelete }] = useDeleteQuestionMutation()
+  const [deleteQuestion, { isSuccess: isSuccessDelete }] =
+    useDeleteQuestionMutation()
 
   const deleteQ = async (idC, idQ, order) => {
     await deleteQuestion([{ idCategory: idC, idQuestion: idQ, order }])
@@ -50,7 +51,7 @@ const Question = ({
   const onBtnNaChanged = (e) => setBtnNa(e.target.checked)
 
   useEffect(() => {
-    if (triggerEdit === 1) {
+    if (triggerEdit === 1 && questionText !== '') {
       const onEditQuestionsClicked = async (e) => {
         await editQuestion({
           questionText,
@@ -63,7 +64,15 @@ const Question = ({
       onEditQuestionsClicked()
       setTriggerEdit(0)
     }
-  }, [triggerEdit, questionText, usingCamera, btnNa, idQuestion, editQuestion, setTriggerEdit])
+  }, [
+    triggerEdit,
+    questionText,
+    usingCamera,
+    btnNa,
+    idQuestion,
+    editQuestion,
+    setTriggerEdit
+  ])
 
   useEffect(() => {
     if (isSuccess) {
@@ -72,6 +81,7 @@ const Question = ({
         title: 'Los cambios han sido guardados'
       })
     }
+
     if (isSuccessDelete) {
       Toast.fire({
         icon: 'success',
@@ -86,16 +96,21 @@ const Question = ({
         <TableCell className='text-center'>{qOrder}</TableCell>
         <TableCell className='text-center'>{areaTitle}</TableCell>
         <TableCell className='text-center'>
-          <input
-            className='border-2'
+          <Textarea
+            className='border-2 rounded-md resize-none w-full'
             type='text'
             value={questionText}
             onChange={onQuestionTextChanged}
           />
+          {questionText === '' && (
+            <div className='text-xs text-red-700'>
+              Esta pregunta no se va a guardar porque no tiene texto
+            </div>
+          )}
         </TableCell>
         <TableCell className='text-center'>
           <Checkbox
-            className='scale-110'
+            className='scale-110 accent-blues-150'
             value={usingCamera}
             uncheckedvalue={0}
             checked={usingCamera}
@@ -105,7 +120,7 @@ const Question = ({
         <TableCell className='text-center'>
           <Checkbox
             key={idQuestion}
-            className='scale-110'
+            className='scale-110 accent-blues-150'
             value={btnNa}
             uncheckedvalue={0}
             checked={btnNa}
@@ -114,12 +129,17 @@ const Question = ({
         </TableCell>
         <TableCell>
           <SvgButton
-            svgfile={<BsFillTrashFill color='#1d4089' />}
+            svgfile={<BsFillTrashFill className='fill-blues-150' />}
             method={handleSetShowDelete}
           />
         </TableCell>
       </TableRow>
-      <ConfirmationModal show={showDelete} onClose={handleCloseDelete} text={confirmationText} method={() => deleteQ(idCategory, idQuestion, qOrder)} />
+      <ConfirmationModal
+        show={showDelete}
+        onClose={handleCloseDelete}
+        text={confirmationText}
+        method={() => deleteQ(idCategory, idQuestion, qOrder)}
+      />
     </>
   )
 }
