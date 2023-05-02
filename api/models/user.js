@@ -30,4 +30,15 @@ module.exports = class User {
     )
     connection.release()
   }
+
+  static async editUser (fastify, name, lastName, mail, idUser) {
+    const connection = await fastify.mysql.getConnection()
+    await connection.query(
+      'UPDATE user SET name = ?, last_name = ?, mail = ? WHERE id_user = ?',
+      [
+        name, lastName, mail, idUser
+      ]
+    )
+    connection.release()
+  }
 }
