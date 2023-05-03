@@ -11,12 +11,8 @@ const InfoAccordion = ({ icon, content, sectionTitle }) => {
           <AccordionPanel>
             <AccordionTitle className='!bg-gradient-to-r from-white from-50% to-gray-50 dark:!bg-gradient-to-r dark:from-blues-300 from-50% dark:to-blues-200'>
               <div className='flex flex-row justify-between w-full'>
-                <div className='flex flex-col mx-3 -center'>
-                  {icon}
-                </div>
-                <div className='flex flex-col text-center text-2xl font-semibold  justify-center'>
-                  {sectionTitle}
-                </div>
+                <div className='flex flex-col mx-3 -center'>{icon}</div>
+                {sectionTitle}
               </div>
             </AccordionTitle>
             {content}
