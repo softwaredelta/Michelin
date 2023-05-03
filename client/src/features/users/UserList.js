@@ -1,5 +1,10 @@
 import { useGetUsersQuery } from './usersApiSlice'
 import User from './User'
+import InfoAccordion from '../../components/InfoAccordion'
+import { FaUser } from 'react-icons/fa'
+import UserAccordionTitle from '../../components/UserAccordionTitle'
+import NavBar from '../../components/NavBar'
+import ModifiedFooter from '../../components/ModifiedFooter'
 
 const UsersList = () => {
   const {
@@ -17,23 +22,25 @@ const UsersList = () => {
   }
 
   if (isSuccess) {
+    
     const { ids } = users
     console.log(users)
     const tableContent = ids?.length
-      ? ids.map(idUser => <User key={idUser} userId={idUser} />)
+      ? ids.map(idUser => <User key={idUser} userId={idUser}  />)
       : null
+    content = tableContent
+
     content = (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Last Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableContent}
-        </tbody>
-      </table>
+      <>
+        <div>
+          <NavBar />
+          <div className='pt-20 w-ful h-screen flex flex-col items-center'>
+            {content}
+            <div className='container flex flex-wrap justify-items-stretch' />
+            <ModifiedFooter />
+          </div>
+        </div>
+      </>
     )
   }
   return content
