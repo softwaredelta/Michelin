@@ -14,7 +14,7 @@ function App () {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
-        <Route path='login' element={<Login/>} />
+        <Route path='login' element={<Login />} />
         <Route path='user'>
           <Route index element={<ProtectedRoute> <UsersList /> </ProtectedRoute>} />
           <Route path='new' element={<ProtectedRoute> <UserAdd /> </ProtectedRoute>} />

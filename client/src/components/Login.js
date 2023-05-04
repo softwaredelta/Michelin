@@ -1,14 +1,13 @@
-import { useLoginUserMutation } from "../features/users/usersApiSlice"
+import { useLoginUserMutation } from '../features/users/usersApiSlice'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-import Toast from "./Toast"
+import Toast from './Toast'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-
-  const { register, getValues, reset } = useForm()
+  const { register, getValues } = useForm()
   const navigate = useNavigate()
-  
+
   const [loginUser, {
     isSuccess,
     isError,
@@ -19,7 +18,7 @@ const Login = () => {
     e.preventDefault()
     const myEmail = getValues('myEmail')
     const myPassword = getValues('myPassword')
-    
+
     await loginUser({ email: myEmail, password: myPassword })
   }
 
@@ -45,16 +44,17 @@ const Login = () => {
         height: '100vh'
       }}
       >
-        <div className="content-center" style={{
-          backgroundColor: 'rgba(23,23,150,0.4)',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          height: '100vh'
-        }}
+        <div
+          className='content-center' style={{
+            backgroundColor: 'rgba(23,23,150,0.4)',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            height: '100vh'
+          }}
         >
-          <div className="grid grid-cols-2 justify-end">
-            <div className="col-span-2">
+          <div className='grid grid-cols-2 justify-end'>
+            <div className='col-span-2'>
               <div className='bg-white rounded-3xl shadow-xl border-2 float-right grid px-10 py-14 mr-28 mt-44'>
                 <img
                   style={({ width: '12vh' }, { height: '12vh' })}
@@ -62,7 +62,7 @@ const Login = () => {
                   alt='Michelin Logo'
                 />
                 <form onSubmit={onLoginClicked}>
-                  <div className="grid items-center">
+                  <div className='grid items-center'>
                     <h2 className='ml-8 my-3'>Ingresa tu usuario</h2>
                     <input className='bg-stone-200 border-2 rounded-lg shadow-lg ml-8 w-5/6 mb-3 h-10 p-2' placeholder='example@michelin.com' type='email' id='myEmail' {...register('myEmail')} />
                     <h2 className='ml-8 my-3'>Ingresa tu contraseña </h2>
