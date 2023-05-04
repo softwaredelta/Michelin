@@ -36,18 +36,62 @@ export const usersApiSlice = appSlice.injectEndpoints({
       query: initialUserData => ({
         url: '/user/signup',
         method: 'POST',
-        body: { ...initialUserData }
+        body: initialUserData
       }),
       invalidatesTags: [
         { type: 'User', id: 'LIST' }
       ]
+    }),
+    getRoles: builder.query({
+      query: () => '/user/role',
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedRoles = responseData.map((role) => {
+          role.id = role.id_role
+          return role
+        })
+        return usersAdapter.setAll(initialState, loadedRoles)
+      },
+      providesTags: (result, error, arg) => {
+        if (result?.ids) {
+          return [
+            { type: 'Role', id: 'LIST' },
+            ...result.ids.map((id) => ({ type: 'Role', id: 'LIST' }))
+          ]
+        } else return [{ type: 'Role', id: 'LIST' }]
+      }
+    }),
+    getManagers: builder.query({
+      query: () => '/user/managers',
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedManagers = responseData.map((manager) => {
+          manager.id = manager.id_user
+          return manager
+        })
+        return usersAdapter.setAll(initialState, loadedManagers)
+      },
+      providesTags: (result, error, arg) => {
+        if (result?.ids) {
+          return [
+            { type: 'Manager', id: 'LIST' },
+            ...result.ids.map((id) => ({ type: 'Manager', id: 'LIST' }))
+          ]
+        } else return [{ type: 'Manager', id: 'LIST' }]
+      }
     })
   })
 })
 
 export const {
   useGetUsersQuery,
-  useAddNewUserMutation
+  useAddNewUserMutation,
+  useGetRolesQuery,
+  useGetManagersQuery
 } = usersApiSlice
 
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select()

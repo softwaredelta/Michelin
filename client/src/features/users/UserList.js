@@ -34,7 +34,6 @@ const UsersList = () => {
 
   if (isSuccess) {
     const { ids } = users
-    console.log(users)
     tableContent = ids?.length
       ? ids.map(idUser => <User key={idUser} userId={idUser} />)
       : null
