@@ -6,7 +6,7 @@ import UserAdd from './UserAdd'
 import NavBar from '../../components/NavBar'
 import ModifiedFooter from '../../components/ModifiedFooter'
 
-const UsersList = ({}) => {
+const UsersList = () => {
   const {
     data: users,
     isLoading,
@@ -45,12 +45,12 @@ const UsersList = ({}) => {
         <NavBar />
         <div className='pt-20 w-full h-screen flex flex-col items-center'>
           <Bluebutton myText='+ Nuevo Usuario' method={handleSetShow} />
-            <div className='content-center grid grid-cols-5 gap-10 w-8/12 ml-2 mb-6 py-4 border-b-2'>
-              <h2 className='font-semibold text-center ml-20'>Rol</h2>
-              <h2 className='font-semibold text-center ml-14'>Nombre</h2>
-              <h2 className='font-semibold text-center ml-2'>Zona</h2>
-              <h2 className='font-semibold text-center mr-2'>Número de Reportes</h2>
-              <h2 className='font-semibold text-center mr-20'>Manager</h2>
+          <div className='content-center grid grid-cols-5 gap-10 w-8/12 ml-2 mb-6 py-4 border-b-2'>
+            <h2 className='font-semibold text-center ml-20'>Rol</h2>
+            <h2 className='font-semibold text-center ml-14'>Nombre</h2>
+            <h2 className='font-semibold text-center ml-2'>Zona</h2>
+            <h2 className='font-semibold text-center mr-2'>Número de Reportes</h2>
+            <h2 className='font-semibold text-center mr-20'>Manager</h2>
           </div>
           <div className='h-3/5 overflow-y-scroll'>
             {tableContent}
@@ -70,4 +70,3 @@ const UsersList = ({}) => {
 }
 
 export default UsersList
-
