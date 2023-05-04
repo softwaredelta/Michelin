@@ -1,5 +1,40 @@
+import { useLoginUserMutation } from "../features/users/usersApiSlice"
+import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
+import Toast from "./Toast"
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+
+  const { register, getValues, reset } = useForm()
+  const navigate = useNavigate()
+  
+  const [loginUser, {
+    isSuccess,
+    isError,
+    error
+  }] = useLoginUserMutation()
+
+  const onLoginClicked = async (e) => {
+    e.preventDefault()
+    const myEmail = getValues('myEmail')
+    const myPassword = getValues('myPassword')
+    
+    await loginUser({ email: myEmail, password: myPassword })
+  }
+
+  useEffect(() => {
+    if (isError) {
+      Toast.fire({
+        icon: 'error',
+        title: 'Se produjo un error. Revisa las credenciales ingresadas o tu conexión a internet'
+      })
+    }
+    if (isSuccess) {
+      navigate('/')
+    }
+  }, [isSuccess, isError, error, navigate])
+
   return (
     <>
       <div style={{
@@ -10,7 +45,7 @@ const Login = () => {
         height: '100vh'
       }}
       >
-        <div style={{
+        <div className="content-center" style={{
           backgroundColor: 'rgba(23,23,150,0.4)',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
@@ -18,17 +53,27 @@ const Login = () => {
           height: '100vh'
         }}
         >
-          <div className='bg-white rounded-2xl border-2 w-1/3 h-3/5 float-right grid items-center text-center justify-center mr-14 mt-14'>
-            <img
-              style={({ width: '12vh' }, { height: '12vh' })}
-              src='/images/Michelin-Logo.png'
-              alt='Michelin Logo'
-            />
-            <h2>Ingresa tu usuario</h2>
-            <input className=' bg-stone-200 rounded-md border-2 shadow-lg' placeholder='example@michelin.com' />
-            <h2>Ingresa tu contraseña </h2>
-            <input type='password' className='bg-stone-200 rounded-md border-2 shadow-lg' placeholder='*******' />
-            <button className=' bg-yellow-300 rounded-md border-2 shadow-lg h-8'> Ingresar</button>
+          <div className="grid grid-cols-2 justify-end">
+            <div className="col-span-2">
+              <div className='bg-white rounded-3xl shadow-xl border-2 float-right grid px-10 py-14 mr-28 mt-44'>
+                <img
+                  style={({ width: '12vh' }, { height: '12vh' })}
+                  src='/images/Michelin-Logo.png'
+                  alt='Michelin Logo'
+                />
+                <form onSubmit={onLoginClicked}>
+                  <div className="grid items-center">
+                    <h2 className='ml-8 my-3'>Ingresa tu usuario</h2>
+                    <input className='bg-stone-200 border-2 rounded-lg shadow-lg ml-8 w-5/6 mb-3 h-10 p-2' placeholder='example@michelin.com' type='email' id='myEmail' {...register('myEmail')} />
+                    <h2 className='ml-8 my-3'>Ingresa tu contraseña </h2>
+                    <input className='bg-stone-200 rounded-lg border-2 shadow-lg ml-8 w-5/6 mb-3 h-10 p-2' placeholder='*******' type='password' id='myPassword' {...register('myPassword')} />
+                  </div>
+                  <div className='w-full grid items-center'>
+                    <button className=' bg-yellow-300 rounded-lg border-2 border-yellow-300 shadow-lg px-14 py-2 my-6 mx-auto hover:bg-yellow-400 hover:border-yellow-400' type='submit'> Ingresar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
