@@ -15,13 +15,13 @@ module.exports = class User {
       'SELECT id_user, name, password FROM users WHERE mail =?', [email]
     )
     connection.release()
-    //const match = rows[0].length > 0 && await fastify.bcrypt.compare(password, rows[0][0].password)
-    const match = rows[0].length > 0 && password == rows[0][0].password
+    // const match = rows[0].length > 0 && await fastify.bcrypt.compare(password, rows[0][0].password)
+    const match = rows[0].length > 0 && password === rows[0][0].password
     return match
   }
 
   static async createUser (fastify, name, lastName, idManager, email, password) {
-    //const passwordEncrypted = await fastify.bcrypt.hash(password)
+    // const passwordEncrypted = await fastify.bcrypt.hash(password)
     const passwordEncrypted = password
     const connection = await fastify.mysql.getConnection()
     await connection.query(

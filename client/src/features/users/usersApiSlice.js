@@ -39,7 +39,7 @@ export const usersApiSlice = appSlice.injectEndpoints({
         body: { ...userData }
       }),
       transformResponse: responseData => {
-        localStorage.setItem('token', responseData.token)
+        localStorage.setItem('token', responseData.token) // eslint-disable-line
         return true
       },
       invalidatesTags: [
