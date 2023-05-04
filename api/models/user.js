@@ -3,7 +3,13 @@ module.exports = class User {
   static async fetchAll (fastify) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user, name, last_name FROM users'
+      `SELECT u.id_user, u.name, u.last_name, 
+      m.name AS manager_name, m.last_name AS manager_last_name, 
+      r.name AS role_name, 
+      s.name AS state_name, 
+      (SELECT COUNT(*) FROM form AS f WHERE u.id_user = f.id_user) AS form_count
+      FROM users AS u, users as m, role as r, state as s, stateuser as su
+      WHERE u.id_manager = m.id_user AND u.id_role = r.id_role AND u.id_user = su.id_user AND su.id_state = s.id_state`
     )
     connection.release()
     return rows[0]
