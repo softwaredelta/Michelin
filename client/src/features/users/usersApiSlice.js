@@ -32,6 +32,20 @@ export const usersApiSlice = appSlice.injectEndpoints({
         } else return [{ type: 'User', id: 'LIST' }]
       }
     }),
+    loginUser: builder.mutation({
+      query: userData => ({
+        url: '/user/login',
+        method: 'POST',
+        body: { ...userData }
+      }),
+      transformResponse: responseData => {
+        localStorage.setItem('token', responseData.token)
+        return true
+      },
+      invalidatesTags: [
+        { type: 'User', id: 'LIST' }
+      ]
+    }),
     addNewUser: builder.mutation({
       query: initialUserData => ({
         url: '/user/signup',
@@ -47,7 +61,8 @@ export const usersApiSlice = appSlice.injectEndpoints({
 
 export const {
   useGetUsersQuery,
-  useAddNewUserMutation
+  useAddNewUserMutation,
+  useLoginUserMutation
 } = usersApiSlice
 
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select()
