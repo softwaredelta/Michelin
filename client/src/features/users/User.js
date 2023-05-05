@@ -9,10 +9,12 @@ const User = ({ userId }) => {
   if (user) {
     return (
       // Example
-      <InfoAccordion
-        icon={<FaUser size={40} className='fill-zinc-500 dark:fill-gray-100' />}
-        sectionTitle={<UserAccordionTitle role='TBM' name='Pedro Picapiedra' zone='Querétaro' reports={4} manager='Example' />}
-      />
+      <div className='flex flex-row justify-center'>
+        <InfoAccordion
+          icon={<FaUser size={40} className='fill-zinc-500 dark:fill-gray-100' />}
+          sectionTitle={<UserAccordionTitle role={user.role_name} name={`${user.name} ${user.last_name}`} zone={user.state_name} reports={user.form_count} manager={`${user.manager_name} ${user.manager_last_name}`} />}
+        />
+      </div>
     )
   } else return null
 }
