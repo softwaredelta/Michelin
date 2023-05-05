@@ -70,7 +70,7 @@ module.exports = class User {
   static async editUser (fastify, name, lastName, mail, idUser) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'UPDATE user SET name = ?, last_name = ?, mail = ? WHERE id_user = ?',
+      'UPDATE users SET name = ?, last_name = ?, mail = ? WHERE id_user = ?',
       [
         name, lastName, mail, idUser
       ]
@@ -80,8 +80,11 @@ module.exports = class User {
 
   static async deleteUser (fastify, idUser) {
     const connection = await fastify.mysql.getConnection()
+    await connection.query('DELETE FROM stateuser WHERE id_user = ?',
+    [idUser]
+    )
     await connection.query(
-      'DELETE FROM user WHERE id_user = ?',
+      'DELETE FROM users WHERE id_user = ?',
       [idUser]
     )
   }

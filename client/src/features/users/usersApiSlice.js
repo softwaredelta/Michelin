@@ -97,6 +97,16 @@ export const usersApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'Manager', id: 'LIST' }]
       }
+    }),
+    deleteUser: builder.mutation({
+      query: initialUserData => ({
+        url: '/user/delete',
+        method: 'POST',
+        body: initialUserData
+      }),
+      invalidatesTags: [
+        { type: 'User', id: 'LIST' }
+      ]
     })
   })
 })
@@ -106,7 +116,8 @@ export const {
   useAddNewUserMutation,
   useGetRolesQuery,
   useGetManagersQuery,
-  useLoginUserMutation
+  useLoginUserMutation,
+  useDeleteUserMutation
 } = usersApiSlice
 
 export const selectUsersResult = usersApiSlice.endpoints.getUsers.select()

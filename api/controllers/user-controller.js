@@ -45,5 +45,5 @@ exports.editUsers = async (request, reply) => {
 exports.postDeleteUsers = async (request, reply) => {
   await User.deleteUser(
     this.fastify,
-    request.body.idUser)
+    request.body[0].idUser)
 }
