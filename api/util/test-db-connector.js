@@ -12,8 +12,6 @@ async function createDB (fastify) {
 
   await connection.query('DROP TABLE IF EXISTS categoryquestion;')
   await connection.query('DROP TABLE IF EXISTS stateuser;')
-  await connection.query('DROP TABLE IF EXISTS userrole;')
-  await connection.query('DROP TABLE IF EXISTS role;')
   await connection.query('DROP TABLE IF EXISTS question;')
   await connection.query('DROP TABLE IF EXISTS sellingpoint;')
   await connection.query('DROP TABLE IF EXISTS state;')
@@ -22,7 +20,17 @@ async function createDB (fastify) {
   await connection.query('DROP TABLE IF EXISTS section;')
   await connection.query('DROP TABLE IF EXISTS category;')
   await connection.query('DROP TABLE IF EXISTS users;')
+  await connection.query('DROP TABLE IF EXISTS role;')
 
+  await connection.query(
+    `
+    CREATE TABLE role(
+    id_role INT(2) AUTO_INCREMENT,
+    name VARCHAR(15) NOT NULL,
+    PRIMARY KEY (id_role)
+    );
+    `
+  )
   await connection.query(
     `
     CREATE TABLE users(
@@ -32,7 +40,9 @@ async function createDB (fastify) {
     id_manager INT(10) NOT NULL,
     mail VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id_user) 
+    id_role INT(2) NOT NULL,
+    PRIMARY KEY (id_user),
+    FOREIGN KEY (id_role) REFERENCES role(id_role)
     );
     `
   )
@@ -123,26 +133,6 @@ async function createDB (fastify) {
     PRIMARY KEY (id_sp),
     FOREIGN KEY (id_state) REFERENCES state(id_state),
     FOREIGN KEY (id_category) REFERENCES category(id_category)
-    );
-    `
-  )
-  await connection.query(
-    `
-    CREATE TABLE role(
-    id_role INT(2) AUTO_INCREMENT,
-    name VARCHAR(15) NOT NULL,
-    PRIMARY KEY (id_role)
-    );
-    `
-  )
-  await connection.query(
-    `
-    CREATE TABLE userrole(
-    id_user INT(10) NOT NULL,
-    id_role INT(10) NOT NULL,
-    CONSTRAINT id_user_role PRIMARY KEY (id_user, id_role),
-    FOREIGN KEY (id_user) REFERENCES users(id_user),
-    FOREIGN KEY (id_role) REFERENCES role(id_role)
     );
     `
   )

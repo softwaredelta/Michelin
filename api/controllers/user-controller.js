@@ -15,6 +15,35 @@ exports.login = async (request, reply) => {
 }
 
 exports.signup = async (request, reply) => {
-  await User.createUser(this.fastify, request.body.name, request.body.lastName, request.body.idManager, request.body.mail, request.body.password)
+  console.log(request.body)
+  await User.createUser(this.fastify, request.body.name, request.body.lastName, request.body.idManager, request.body.mail, request.body.password, request.body.role, request.body.state)
   return reply.code(200).send({ statusCode: 200 })
+}
+
+exports.getRoles = async (request, reply) => {
+  const roleData = User.getRoles(this.fastify)
+  return roleData
+}
+
+exports.getManagers = async (request, reply) => {
+  const managerData = User.getManager(this.fastify)
+  return managerData
+}
+
+exports.editUsers = async (request, reply) => {
+  await User.editUser(
+    this.fastify,
+    request.body.name,
+    request.body.lastName,
+    request.body.mail,
+    request.body.idUser
+  )
+
+  return reply.code(200).send({ statusCode: 200 })
+}
+
+exports.postDeleteUsers = async (request, reply) => {
+  await User.deleteUser(
+    this.fastify,
+    request.body.idUser)
 }

@@ -4,7 +4,7 @@ import { TableCell } from 'flowbite-react/lib/esm/components/Table/TableCell'
 import {
   useDeleteQuestionMutation,
   useEditQuestionMutation
-} from '../categoryApiSlice'
+} from './questionApiSlice'
 import { useEffect, useState } from 'react'
 import Toast from '../../../components/Toast'
 import SvgButton from '../../../components/SvgButton'
