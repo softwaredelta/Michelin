@@ -19,15 +19,26 @@ module.exports = class User {
     return match
   }
 
-  static async createUser (fastify, name, lastName, idManager, email, password, idRole) {
+  static async createUser (fastify, name, lastName, idManager, email, password, idRole, idState) {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
-    await connection.query(
+    const queryRes = await connection.query(
       'INSERT INTO users(name, last_name, id_manager, mail, password, id_role) VALUES (?,?,?,?,?, ?)',
       [
         name, lastName, idManager, email, passwordEncrypted, idRole
       ]
     )
+
+    const userId = queryRes[0].insertId
+    for (let i = 0; i < (idState.length); i++) {
+      await connection.query(
+        'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+        [
+          userId, idState[i]
+        ]
+      )
+    }
+
     connection.release()
   }
 

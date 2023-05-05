@@ -15,7 +15,8 @@ exports.login = async (request, reply) => {
 }
 
 exports.signup = async (request, reply) => {
-  await User.createUser(this.fastify, request.body.name, request.body.lastName, request.body.idManager, request.body.mail, request.body.password, request.body.role)
+  console.log(request.body)
+  await User.createUser(this.fastify, request.body.name, request.body.lastName, request.body.idManager, request.body.mail, request.body.password, request.body.role, request.body.state)
   return reply.code(200).send({ statusCode: 200 })
 }
 

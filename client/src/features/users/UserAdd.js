@@ -9,13 +9,13 @@ import Toast from '../../components/Toast'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useGetStateQuery } from '../sellingPoint/state/stateApiSlice'
-import StateOption from '../sellingPoint/state/StateOption'
+import StatesOption from './managers/StatesOption'
 import AreaOption from '../category/questions/AreaOption'
 import Swal from 'sweetalert2'
 
 const UserAdd = ({ show, onClose }) => {
   const [addNewUser, {
-    isSuccess,
+    isSuccess: isSuccessUser,
     isError,
     error
   }] = useAddNewUserMutation()
@@ -63,7 +63,7 @@ const UserAdd = ({ show, onClose }) => {
     const { ids } = state
 
     const listContent = ids?.length
-      ? ids.map((idState) => <StateOption key={idState} zoneId={idState} />)
+      ? ids.map((idState) => <StatesOption key={idState} zoneId={idState} />)
       : null
 
     myState = listContent
@@ -105,9 +105,20 @@ const UserAdd = ({ show, onClose }) => {
     const idManager = getValues('idManager')
     const mail = getValues('mail')
     const role = getValues('role')
-
+    const state = getValues('state')
     onClose()
-    await addNewUser({ name, lastName, idManager, mail, password, role })
+    Swal.fire({
+      title: 'Contraseña',
+      text: 'Esta es la contraseña para este usuario ' + password,
+      icon: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        addNewUser({ name, lastName, idManager, mail, password, role, state })
+      }
+    })
   }
 
   useEffect(() => {
@@ -117,22 +128,14 @@ const UserAdd = ({ show, onClose }) => {
         title: 'Se produjo un error'
       })
     }
-    if (isSuccess) {
-      reset()
+    if (isSuccessUser) {
       Toast.fire({
         icon: 'success',
         title: 'Se creo una nuevo usuario'
       })
-      Swal.fire({
-        title: 'Contraseña',
-        text: 'Esta es la contraseña para este usuario ' + password,
-        icon: 'warning',
-        showCancelButton: false,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33'
-      })
+      reset()
     }
-  }, [isSuccess, isError, error, password, reset, navigate])
+  }, [isSuccessUser, isError, error, reset, navigate])
 
   const content = (
     <>
@@ -200,7 +203,7 @@ const UserAdd = ({ show, onClose }) => {
                 </div>
                 <div className='flex flex-row items-center'>
                   <Tooltip
-                    content='mail'
+                    content='Correo Electronico'
                     trigger='hover'
                     className='dark:!bg-white dark:!text-black'
                   >
@@ -284,10 +287,12 @@ const UserAdd = ({ show, onClose }) => {
                       </Tooltip>
                     </div>
                     <Select
+                      multiple
                       id='state'
                       name='state'
                       required
                       className='rounded-md my-2'
+                      {...register('state')}
                     >
                       <option value='' selected> -- Selecciona una opción --</option>
                       {myState}
