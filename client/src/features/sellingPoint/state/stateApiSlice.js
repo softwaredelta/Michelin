@@ -31,12 +31,37 @@ export const stateApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'State', id: 'LIST' }]
       }
-    })
+    }),
+    getStatesByUser: builder.query({
+      query: (args) => {
+        const { idUser } = args
+        return `/state/statesByUser/${idUser}`
+      },
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedForm = responseData.map(state => {
+          state.id = state.id_state
+          return state
+        })
+        return stateAdapter.setAll(initialState, loadedForm)
+      },
+      providesTags: (result, error, arg) => {
+        if (result?.ids) {
+          return [
+            { type: 'State', id: 'LIST' },
+            ...result.ids.map(id => ({ type: 'State', id: 'LIST' }))
+          ]
+        } else return [{ type: 'State', id: 'LIST' }]
+      }
+    }),
   })
 })
 
 export const {
-  useGetStateQuery
+  useGetStateQuery,
+  useGetStatesByUserQuery
 } = stateApiSlice
 
 export const selectStateResult = stateApiSlice.endpoints.getState.select()

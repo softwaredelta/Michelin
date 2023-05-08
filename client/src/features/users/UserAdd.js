@@ -244,6 +244,7 @@ const UserAdd = ({ show, onClose }) => {
                   {...register('idManager')}
                 >
                   <option value='' selected> -- Selecciona una opción --</option>
+                  <option value={0}> Sin manager</option>
                   {manager}
                 </Select>
                 <div className='flex flex-row'>

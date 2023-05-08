@@ -29,7 +29,7 @@ const NavBar = () => {
                 >
                   <DropdownItem href='/sellingPoint' className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'> <a href='/sellingPoint'>Puntos de Venta</a></DropdownItem>
                   <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'>Equipos</DropdownItem>
-                  <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'>Usuario</DropdownItem>
+                  <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'> <a href='/user'> Usuarios </a></DropdownItem>
                 </Dropdown>
               </div>
             </NavbarLink>

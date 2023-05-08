@@ -3,13 +3,13 @@ module.exports = class User {
   static async fetchAll (fastify) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      `SELECT u.id_user, u.name, u.last_name, 
+      `SELECT u.id_user, u.name, u.last_name, u.id_manager, u.mail,
       m.name AS manager_name, m.last_name AS manager_last_name, 
       r.name AS role_name, 
       s.name AS state_name, 
       (SELECT COUNT(*) FROM form AS f WHERE u.id_user = f.id_user) AS form_count
       FROM users AS u, users as m, role as r, state as s, stateuser as su
-      WHERE u.id_manager = m.id_user AND u.id_role = r.id_role AND u.id_user = su.id_user AND su.id_state = s.id_state`
+      WHERE (u.id_manager = m.id_user OR u.id_manager = 0) AND u.id_role = r.id_role AND u.id_user = su.id_user AND su.id_state = s.id_state`
     )
     connection.release()
     return rows[0]
@@ -67,13 +67,37 @@ module.exports = class User {
     return rows[0]
   }
 
-  static async editUser (fastify, name, lastName, mail, idUser) {
+  static async editUser (fastify, name, lastName, idUser, states) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'UPDATE user SET name = ?, last_name = ?, mail = ? WHERE id_user = ?',
+      'UPDATE user SET name = ?, last_name = ? WHERE id_user = ?',
       [
-        name, lastName, mail, idUser
+        name, lastName, idUser
       ]
+    )
+
+    await connection.query(
+      'DELETE FROM stateuser WHERE id_user = ?', 
+      [idUser]
+    )
+
+    for(let idState in states){
+      await connection.query(
+        'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+        [
+          idUser, idState
+        ]
+      )
+    }
+    connection.release()
+  }
+
+  static async generateNewPassword (fastify, idUser, password) {
+    const passwordEncrypted = await fastify.bcrypt.hash(password)
+    const connection = await fastify.mysql.getConnection()
+    await connection.query(
+      'UPDATE user SET password = ? WHERE id_user = ?',
+      [passwordEncrypted, idUser]
     )
     connection.release()
   }
@@ -84,5 +108,6 @@ module.exports = class User {
       'DELETE FROM user WHERE id_user = ?',
       [idUser]
     )
+    connection.release()
   }
 }
