@@ -55,6 +55,7 @@ const UserAdd = ({ show, onClose }) => {
   }
 
   let myState
+
   if (isErrorState) {
     myState = <option disabled> Sin opciones válidas </option>
   }
@@ -97,7 +98,9 @@ const UserAdd = ({ show, onClose }) => {
 
     return str
   }
+
   const password = random()
+
   const onCreateUserClicked = async (e) => {
     e.preventDefault()
     const name = getValues('name')
@@ -128,6 +131,7 @@ const UserAdd = ({ show, onClose }) => {
         title: 'Se produjo un error'
       })
     }
+    
     if (isSuccessUser) {
       Toast.fire({
         icon: 'success',

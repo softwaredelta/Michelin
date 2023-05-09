@@ -16,6 +16,7 @@ const UsersList = () => {
   } = useGetUsersQuery()
 
   let content
+
   if (isLoading) content = <p>Loading...</p>
   if (isError) {
     content = <p>{error?.data?.message}</p>
@@ -30,6 +31,7 @@ const UsersList = () => {
   const handleClose = () => {
     setShow(false)
   }
+  
   let tableContent
 
   if (isSuccess) {
