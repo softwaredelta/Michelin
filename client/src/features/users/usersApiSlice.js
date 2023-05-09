@@ -56,6 +56,26 @@ export const usersApiSlice = appSlice.injectEndpoints({
         { type: 'User', id: 'LIST' }
       ]
     }),
+    editUser: builder.mutation({
+      query: userData => ({
+        url: '/user/edit',
+        method: 'POST',
+        body: { ...userData }
+      }),
+      invalidatesTags: [
+        { type: 'User', id: 'LIST' }
+      ]
+    }),
+    newUserPassword: builder.mutation({
+      query: userData => ({
+        url: '/user/newPassword',
+        method: 'POST',
+        body: { ...userData }
+      }),
+      invalidatesTags: [
+        { type: 'User', id: 'LIST' }
+      ]
+    }),
     getRoles: builder.query({
       query: () => '/user/role',
       validateStatus: (response, result) => {
@@ -114,6 +134,8 @@ export const usersApiSlice = appSlice.injectEndpoints({
 export const {
   useGetUsersQuery,
   useAddNewUserMutation,
+  useEditUserMutation,
+  useNewUserPasswordMutation,
   useGetRolesQuery,
   useGetManagersQuery,
   useLoginUserMutation,

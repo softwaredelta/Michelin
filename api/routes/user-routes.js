@@ -16,7 +16,9 @@ async function userRoutes (fastify, options) {
 
   fastify.post('/signup', userController.signup)
 
-  fastify.post('/edit', userController.editUsers)
+  fastify.post('/edit', userController.editUser)
+
+  fastify.post('/newPassword', userController.generateNewUserPassword)
 
   fastify.post('/delete', userController.postDeleteUsers)
 
