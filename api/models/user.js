@@ -84,8 +84,13 @@ module.exports = class User {
     [idUser]
     )
     await connection.query(
-      'DELETE FROM users WHERE id_user = ?',
+      'UPDATE user SET id_manager = 0 WHERE id_manager = ?',
       [idUser]
     )
+    await connection.query(
+      'DELETE FROM user WHERE id_user = ?',
+      [idUser]
+    )
+    connection.release()
   }
 }
