@@ -131,7 +131,7 @@ const UserAdd = ({ show, onClose }) => {
         title: 'Se produjo un error'
       })
     }
-    
+
     if (isSuccessUser) {
       Toast.fire({
         icon: 'success',
