@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux'
 import {
   selectUserById,
   useEditUserMutation,
-  useNewUserPasswordMutation
-  , useDeleteUserMutation
+  useNewUserPasswordMutation,
+  useDeleteUserMutation
 } from './usersApiSlice'
 import { useGetStatesByUserQuery } from '../sellingPoint/state/stateApiSlice'
 import { useEffect, useState } from 'react'
@@ -15,7 +15,6 @@ import Swal from 'sweetalert2'
 import Toast from '../../components/Toast'
 import { useForm } from 'react-hook-form'
 import MultipleCheckbox from '../../components/MultipleCheckbox'
-
 import ConfirmationModal from '../../components/ConfirmationModal'
 
 const UserOverview = ({ userId }) => {
