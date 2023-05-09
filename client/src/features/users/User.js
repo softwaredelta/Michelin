@@ -14,7 +14,6 @@ const User = ({ userId }) => {
 
   if (user) {
     return (
-      // Example
       <div className="flex flex-row justify-center">
         <InfoAccordion
           icon={

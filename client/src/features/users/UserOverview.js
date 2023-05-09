@@ -19,9 +19,11 @@ const UserOverview = ({ userId }) => {
   const { register, getValues } = useForm();
 
   const user = useSelector((state) => selectUserById(state, userId));
-  const [editUser, { isSuccess: isSuccessEdit, isError: isErrorEdit }] = useEditUserMutation();
 
-  const [newPassword, { isSuccessPassword, isErrorPassword }] =
+  const [editUser, { isSuccess: isSuccessEdit, isError: isErrorEdit }] =
+    useEditUserMutation();
+
+  const [newPassword, { isError: isErrorPassword }] =
     useNewUserPasswordMutation();
 
   const {
@@ -43,8 +45,6 @@ const UserOverview = ({ userId }) => {
     stateList = auxList;
     e.target.checked();
     e.target.value();
-
-    console.log(e.target.checked)
   };
 
   if (isErrorStates) {
@@ -82,13 +82,16 @@ const UserOverview = ({ userId }) => {
 
   useEffect(() => {
     stateList = stateData; // eslint-disable-line
-    
   });
 
   const onEditUserClicked = async (e) => {
     e.preventDefault();
 
     let count = 0;
+    const name = getValues("name");
+    const lastName = getValues("lastName");
+    const idUser = userId;
+    const states = stateList;
 
     for (let myState in stateList.entities) {
       if (stateList.entities[myState].id_user === user.id) {
@@ -96,22 +99,22 @@ const UserOverview = ({ userId }) => {
       }
     }
     if (count !== 0) {
-      const name = getValues("name");
-      const lastName = getValues("lastName");
-      const idUser = userId;
-      const states = stateList;
       await editUser({
         name,
         lastName,
         idUser,
         states,
       });
-    }
-    else {
+    } else {
       Toast.fire({
-        icon: 'error',
-        title: 'No se pudo guardar, verifica tus campos'
-      })
+        icon: "error",
+        title:
+          "No se pudo guardar el usuario " +
+          name +
+          " " +
+          lastName +
+          " verifica tus campos",
+      });
     }
   };
 
@@ -127,8 +130,8 @@ const UserOverview = ({ userId }) => {
 
       return str;
     };
-    
-    const myNewPassword = password()
+
+    const myNewPassword = password();
     await newPassword({
       idUser: userId,
       newPassword: myNewPassword,
@@ -154,10 +157,16 @@ const UserOverview = ({ userId }) => {
     if (isSuccessEdit) {
       Toast.fire({
         icon: "success",
-        title: "Se creó un nuevo usuario",
+        title: "Se guardó el usuario con éxito",
       });
+      if (isErrorPassword) {
+        Toast.fire({
+          icon: "error",
+          title: "No se pudo generar nueva contraseña",
+        });
+      }
     }
-  }, [isSuccessEdit, isErrorEdit]);
+  }, [isSuccessEdit, isErrorEdit, isErrorPassword]);
 
   return (
     <>
@@ -167,11 +176,15 @@ const UserOverview = ({ userId }) => {
             <div className="flex flex-col">
               <div className="flex flex-row">
                 <div className="flex flex-col mx-5">
-                  <div className="flex flex-row my-2 font-semibold dark:!text-white">Nombre</div>
+                  <div className="flex flex-row my-2 font-semibold dark:!text-white">
+                    Nombre
+                  </div>
                   <div className="flex flex-row my-2 font-semibold dark:!text-white">
                     Apellido
                   </div>
-                  <div className="flex flex-row my-2 font-semibold dark:!text-white">Correo</div>
+                  <div className="flex flex-row my-2 font-semibold dark:!text-white">
+                    Correo
+                  </div>
                 </div>
                 <div className="flex flex-col">
                   <div className="flex flex-row my-2">
@@ -194,7 +207,8 @@ const UserOverview = ({ userId }) => {
                   </div>
                   <div className="flex flex-row my-2">
                     <input
-                      className="border rounded-md" disabled
+                      className="border rounded-md"
+                      disabled
                       defaultValue={user.mail}
                     />
                   </div>
@@ -203,7 +217,9 @@ const UserOverview = ({ userId }) => {
             </div>
             <div className="flex flex-col">
               <div className="flex flew-row">
-                <div className="flex flex-col font-semibold mx-5 dark:!text-white">Zona</div>
+                <div className="flex flex-col font-semibold mx-5 dark:!text-white">
+                  Zona
+                </div>
                 <div className="flex flex-col h-36 border overflow-y-scroll rounded-lg">
                   <div className="flex flex-row text-sm px-3 pb-2 pt-1 dark:!text-white">
                     Selecciona una o más opciones
@@ -213,13 +229,18 @@ const UserOverview = ({ userId }) => {
               </div>
             </div>
             <div className="flex flex-col mx-10">
-                <div className="flex flex-col font-semibold dark:!text-white text-center">Generar nueva contraseña</div>
-                <div className="flex flex-col my-2">
-                <Button className="w-2/3 self-center !border-blues-200 !bg-white !text-blues-200" onClick={onGeneratePasswordClicked}>
+              <div className="flex flex-col font-semibold dark:!text-white text-center">
+                Generar nueva contraseña
+              </div>
+              <div className="flex flex-col my-2">
+                <Button
+                  className="w-2/3 self-center !border-blues-200 !bg-white !text-blues-200"
+                  onClick={onGeneratePasswordClicked}
+                >
                   <BsDice5 className="mx-1" />
                   Generar
-                  </Button>
-                </div>
+                </Button>
+              </div>
             </div>
           </div>
           <div className=" flex flex-row justify-end my-2">
@@ -231,7 +252,6 @@ const UserOverview = ({ userId }) => {
             </Button>
             <Button
               className="!bg-white dark:!bg-zinc-500 dark:hover:!bg-zinc-700 dark:hover:!border-zinc-700 dark:text-white text-zinc-500 border-zinc-500"
-              type="submit"
             >
               <BsFillTrashFill className="mx-2" /> Eliminar
             </Button>
