@@ -6,10 +6,16 @@ module.exports = class User {
       `SELECT u.id_user, u.name, u.last_name, u.id_manager, u.mail,
       m.name AS manager_name, m.last_name AS manager_last_name, 
       r.name AS role_name, 
-      s.name AS state_name, 
+      s.name as state_name,
       (SELECT COUNT(*) FROM form AS f WHERE u.id_user = f.id_user) AS form_count
-      FROM users AS u, users as m, role as r, state as s, stateuser as su
-      WHERE (u.id_manager = m.id_user OR u.id_manager = 0) AND u.id_role = r.id_role AND u.id_user = su.id_user AND su.id_state = s.id_state`
+      FROM users AS u
+      JOIN role AS r
+      ON u.id_role = r.id_role
+      LEFT OUTER JOIN users as m
+      ON u.id_manager = m.id_user
+      LEFT OUTER JOIN state as s
+      ON s.id_state = (SELECT s.id_state FROM state as s, stateuser as su WHERE s.id_state = su.id_state AND su.id_user = u.id_user LIMIT 1)
+      `
     )
     connection.release()
     return rows[0]
@@ -70,7 +76,7 @@ module.exports = class User {
   static async editUser (fastify, name, lastName, idUser, states) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'UPDATE user SET name = ?, last_name = ? WHERE id_user = ?',
+      'UPDATE users SET name = ?, last_name = ? WHERE id_user = ?',
       [
         name, lastName, idUser
       ]
@@ -78,16 +84,18 @@ module.exports = class User {
 
     await connection.query(
       'DELETE FROM stateuser WHERE id_user = ?', 
-      [idUser]
+      [ idUser ]
     )
 
-    for(let idState in states){
-      await connection.query(
-        'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
-        [
-          idUser, idState
-        ]
-      )
+    for(let idState in states.entities){
+      if(states.entities[idState].id_user === idUser){
+        await connection.query(
+          'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+          [
+            idUser, idState
+          ]
+        )
+      }
     }
     connection.release()
   }
@@ -96,7 +104,7 @@ module.exports = class User {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'UPDATE user SET password = ? WHERE id_user = ?',
+      'UPDATE users SET password = ? WHERE id_user = ?',
       [passwordEncrypted, idUser]
     )
     connection.release()

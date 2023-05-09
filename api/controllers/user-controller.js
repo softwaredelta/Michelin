@@ -51,7 +51,7 @@ exports.editUser = async (request, reply) => {
 }
 
 exports.generateNewUserPassword = async (request, reply) => {
-  await User.generateNewPassword(this.fastify, request.body.idUser, request.body.password)
+  await User.generateNewPassword(this.fastify, request.body.idUser, request.body.newPassword)
   return reply.code(200).send({ statusCode: 200 })
 }
 
