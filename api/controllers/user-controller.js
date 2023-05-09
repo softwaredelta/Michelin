@@ -16,7 +16,15 @@ exports.login = async (request, reply) => {
 
 exports.signup = async (request, reply) => {
   console.log(request.body)
-  await User.createUser(this.fastify, request.body.name, request.body.lastName, request.body.idManager, request.body.mail, request.body.password, request.body.role, request.body.state)
+  await User.createUser(this.fastify,
+    request.body.name,
+    request.body.lastName,
+    request.body.idManager,
+    request.body.mail,
+    request.body.password,
+    request.body.role,
+    request.body.state)
+
   return reply.code(200).send({ statusCode: 200 })
 }
 
@@ -30,20 +38,25 @@ exports.getManagers = async (request, reply) => {
   return managerData
 }
 
-exports.editUsers = async (request, reply) => {
+exports.editUser = async (request, reply) => {
   await User.editUser(
     this.fastify,
     request.body.name,
     request.body.lastName,
-    request.body.mail,
-    request.body.idUser
+    request.body.idUser,
+    request.body.states
   )
 
+  return reply.code(200).send({ statusCode: 200 })
+}
+
+exports.generateNewUserPassword = async (request, reply) => {
+  await User.generateNewPassword(this.fastify, request.body.idUser, request.body.newPassword)
   return reply.code(200).send({ statusCode: 200 })
 }
 
 exports.postDeleteUsers = async (request, reply) => {
   await User.deleteUser(
     this.fastify,
-    request.body.idUser)
+    request.body[0].idUser)
 }

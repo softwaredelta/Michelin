@@ -1,4 +1,4 @@
-const UserAccordionTitle = ({ role, name, zone, reports, manager }) => {
+const UserAccordionTitle = ({ idUser, role, name, zone, reports, manager }) => {
   return (
     <>
       <div className='flex flex-row'>

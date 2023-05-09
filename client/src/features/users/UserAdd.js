@@ -55,6 +55,7 @@ const UserAdd = ({ show, onClose }) => {
   }
 
   let myState
+
   if (isErrorState) {
     myState = <option disabled> Sin opciones válidas </option>
   }
@@ -77,7 +78,7 @@ const UserAdd = ({ show, onClose }) => {
     const { ids, entities } = managers
     const listContent = ids?.length
       ? ids.map((idManager) => (
-        <AreaOption key={idManager} areaId={idManager} areaTitle={entities[idManager].name} />
+        <AreaOption key={idManager} areaId={idManager} areaTitle={`${entities[idManager].name} ${entities[idManager].last_name}`} />
       ))
       : null
     manager = listContent
@@ -97,7 +98,9 @@ const UserAdd = ({ show, onClose }) => {
 
     return str
   }
+
   const password = random()
+
   const onCreateUserClicked = async (e) => {
     e.preventDefault()
     const name = getValues('name')
@@ -128,6 +131,7 @@ const UserAdd = ({ show, onClose }) => {
         title: 'Se produjo un error'
       })
     }
+
     if (isSuccessUser) {
       Toast.fire({
         icon: 'success',
@@ -244,6 +248,7 @@ const UserAdd = ({ show, onClose }) => {
                   {...register('idManager')}
                 >
                   <option value='' selected> -- Selecciona una opción --</option>
+                  <option value={0}> Sin manager</option>
                   {manager}
                 </Select>
                 <div className='flex flex-row'>
