@@ -7,7 +7,7 @@ const InfoAccordion = ({ icon, content, sectionTitle }) => {
   return (
     <>
       <div className='w-11/12 mb-6'>
-        <Accordion alwaysOpen>
+        <Accordion collapseAll alwaysOpen>
           <AccordionPanel>
             <AccordionTitle className='!bg-gradient-to-r from-white from-50% to-gray-50 dark:!bg-gradient-to-r dark:from-blues-300 dark:to-blues-200'>
               <div className='flex flex-row justify-between w-full'>

@@ -34,24 +34,31 @@ module.exports = class User {
   static async createUser (fastify, name, lastName, idManager, email, password, idRole, idState) {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
-    const queryRes = await connection.query(
-      'INSERT INTO users(name, last_name, id_manager, mail, password, id_role) VALUES (?,?,?,?,?, ?)',
-      [
-        name, lastName, idManager, email, passwordEncrypted, idRole
-      ]
+    const rows = await connection.query(
+      'SELECT id_user FROM users WHERE mail = ?',[email]
     )
-
-    const userId = queryRes[0].insertId
-    for (let i = 0; i < (idState.length); i++) {
-      await connection.query(
-        'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+    const match = rows[0].length < 0
+    if (match){
+      const queryRes = await connection.query(
+        'INSERT INTO users(name, last_name, id_manager, mail, password, id_role) VALUES (?,?,?,?,?, ?)',
         [
-          userId, idState[i]
+          name, lastName, idManager, email, passwordEncrypted, idRole
         ]
       )
+  
+      const userId = queryRes[0].insertId
+      for (let i = 0; i < (idState.length); i++) {
+        await connection.query(
+          'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+          [
+            userId, idState[i]
+          ]
+        )
+      }  
     }
-
+    
     connection.release()
+    return match
   }
 
   static async getRoles (fastify) {

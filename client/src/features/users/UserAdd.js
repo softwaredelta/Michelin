@@ -125,7 +125,12 @@ const UserAdd = ({ show, onClose }) => {
   }
 
   useEffect(() => {
-    if (isError) {
+    if (error === 400){
+      Toast.fire({
+        icon: 'error',
+        title: 'Usuario repetido'
+      })
+    }else if (isError) {
       Toast.fire({
         icon: 'error',
         title: 'Se produjo un error'
@@ -226,6 +231,7 @@ const UserAdd = ({ show, onClose }) => {
                   autoComplete='off'
                   className='border-2 rounded-md my-2 resize-none'
                   maxLength='255'
+                  type='email'
                 />
                 <div className='flex flex-row items-center'>
                   <Tooltip
@@ -299,7 +305,7 @@ const UserAdd = ({ show, onClose }) => {
                       className='rounded-md my-2'
                       {...register('state')}
                     >
-                      <option value='' selected> -- Selecciona una opción --</option>
+                      <option value='' selected> - Selecciona una o varias opciones -</option>
                       {myState}
                     </Select>
                   </div>

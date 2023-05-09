@@ -11,16 +11,8 @@ const UsersList = () => {
     data: users,
     isLoading,
     isSuccess,
-    isError,
-    error
+    isError
   } = useGetUsersQuery()
-
-  let content
-
-  if (isLoading) content = <p>Loading...</p>
-  if (isError) {
-    content = <p>{error?.data?.message}</p>
-  }
 
   const [show, setShow] = useState(false)
 
@@ -33,9 +25,17 @@ const UsersList = () => {
   }
 
   let tableContent
-
+  let message
+  let content
+  if (isLoading) message = <p>Loading...</p>
+  if (isError) {
+    message = <p className='text-3xl font-semibold dark:!text-white'>No hay conexion con la base de datos</p>
+  }
   if (isSuccess) {
     const { ids } = users
+    if (ids.length === 0) {
+      message = <p className='text-3xl font-semibold dark:!text-white'>No hay usuarios que mostrar</p>
+    }
     tableContent = ids?.length
       ? ids.map(idUser => <User key={idUser} userId={idUser} />)
       : null
@@ -55,6 +55,7 @@ const UsersList = () => {
           </div>
           <div className='h-3/5 overflow-y-scroll'>
             {tableContent}
+            {message}
           </div>
           <div className='container flex flex-wrap justify-items-stretch' />
           <ModifiedFooter />
