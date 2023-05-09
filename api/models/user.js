@@ -83,12 +83,12 @@ module.exports = class User {
     )
 
     await connection.query(
-      'DELETE FROM stateuser WHERE id_user = ?', 
-      [ idUser ]
+      'DELETE FROM stateuser WHERE id_user = ?',
+      [idUser]
     )
 
-    for(let idState in states.entities){
-      if(states.entities[idState].id_user === idUser){
+    for (const idState in states.entities) {
+      if (states.entities[idState].id_user === idUser) {
         await connection.query(
           'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
           [

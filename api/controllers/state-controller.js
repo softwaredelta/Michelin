@@ -9,4 +9,3 @@ exports.getStatesByUser = (request, reply) => {
   const stateData = State.fetchByUser(this.fastify, request.params.idUser)
   return stateData
 }
-

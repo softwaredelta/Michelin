@@ -55,7 +55,7 @@ export const stateApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'State', id: 'LIST' }]
       }
-    }),
+    })
   })
 })
 
