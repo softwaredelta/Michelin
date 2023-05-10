@@ -65,9 +65,9 @@ module.exports = class Question {
     const connection = await fastify.mysql.getConnection()
     await connection.query('START TRANSACTION')
     const updateOrder = await connection.query(
-      'UPDATE question SET question.q_order = question.q_order - 1 WHERE question.q_order > ?',
+      'UPDATE question SET question.q_order = question.q_order - 1 WHERE question.q_order > ? AND question.id_area = (SELECT question.id_area FROM question WHERE id_question = ?)  ',
       [
-        order
+        order, idQuestion
       ]
     )
     const rows = await connection.query(
