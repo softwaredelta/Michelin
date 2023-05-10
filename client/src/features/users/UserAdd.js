@@ -125,22 +125,17 @@ const UserAdd = ({ show, onClose }) => {
   }
 
   useEffect(() => {
-    if (error === 400){
+    if (isError) {
       Toast.fire({
         icon: 'error',
-        title: 'Usuario repetido'
-      })
-    }else if (isError) {
-      Toast.fire({
-        icon: 'error',
-        title: 'Se produjo un error'
+        title: 'El usuario ya existe o se produjo un error'
       })
     }
 
     if (isSuccessUser) {
       Toast.fire({
         icon: 'success',
-        title: 'Se creo una nuevo usuario'
+        title: 'Se creó un nuevo usuario'
       })
       reset()
     }

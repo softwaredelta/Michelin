@@ -26,7 +26,7 @@ const UsersList = () => {
 
   let tableContent
   let message
-  let content
+
   if (isLoading) message = <p>Loading...</p>
   if (isError) {
     message = <p className='text-3xl font-semibold dark:!text-white'>No hay conexion con la base de datos</p>
@@ -40,7 +40,7 @@ const UsersList = () => {
       ? ids.map(idUser => <User key={idUser} userId={idUser} />)
       : null
   }
-  content = (
+  const content = (
     <>
       <div>
         <NavBar />

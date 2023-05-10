@@ -15,18 +15,17 @@ exports.login = async (request, reply) => {
 }
 
 exports.signup = async (request, reply) => {
- if(await User.createUser(this.fastify,
+  if (await User.createUser(this.fastify,
     request.body.name,
     request.body.lastName,
     request.body.idManager,
     request.body.mail,
     request.body.password,
     request.body.role,
-    request.body.state) === true){
-      return reply.code(200).send({ statusCode: 200 })
-    }
-  else{
-    return reply.code(400).send({statusCode: 400})
+    request.body.state) === true) {
+    return reply.code(200).send({ statusCode: 200 })
+  } else {
+    return reply.code(400).send({ statusCode: 400 })
   }
 }
 
