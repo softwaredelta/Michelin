@@ -187,6 +187,21 @@ async function createDB (fastify) {
     (2, 'Querétaro');
     `
   )
+
+  await connection.query(
+    `
+    INSERT INTO role (id_role, name) VALUES
+    (1, 'TBM'),
+    (2, 'Manager');
+    `
+  )
+
+  await connection.query(
+    `
+    INSERT INTO users (id_user, name, last_name, id_manager, mail, password, id_role) VALUES
+    (1, 'Example', 'User', 0, 'example@gmail.com', 'newPassword', 2);
+    `
+  )
   connection.release()
 }
 
