@@ -6,9 +6,14 @@ exports.getUsers = (request, reply) => {
 }
 
 exports.login = async (request, reply) => {
-  if (await User.verifyUser(this.fastify, request.body.email, request.body.password) === true) {
+  const userResult = await User.verifyUser(this.fastify, request.body.email, request.body.password)
+  if (userResult.status === true) {
     const token = this.fastify.jwt.sign({ mail: request.body.email })
-    reply.code(200).send({ token })
+    reply.code(200).send(
+      {
+        token, role: userResult.id_role, name: userResult.name, lastName: userResult.last_name
+      }
+    )
   } else {
     reply.code(400).send({ statusCode: 400 })
   }

@@ -24,6 +24,21 @@ test('Create User', async () => {
   expect(response.statusCode).toBe(200)
 })
 
+test('Log In', async () => {
+  const data = {
+    email: 'newuser@gmail.com',
+    password: 'SECRET'
+  }
+
+  const response = await app.inject({
+    method: 'POST',
+    url: '/user/login',
+    payload: data
+  })
+
+  expect(response.statusCode).toBe(200)
+})
+
 test('Edit User', async () => {
   const data = {
     name: 'Modified',
