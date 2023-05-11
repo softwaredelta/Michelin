@@ -1,13 +1,18 @@
 const Question = require('../models/question')
 
 exports.postQuestion = async (request, reply) => {
+  // If placeholder file was sent, select uploaded file
+  const placeholderName = (typeof request.body.file !== 'undefined' && request.body.file !== null)
+    ? request.file.filename
+    : 'default-placeholder.jpg'
+
   await Question.addQuestion(
     this.fastify,
     request.body.qText,
     request.body.idArea,
     request.body.usingCamera,
     request.body.btnNa,
-    request.file.filename,
+    placeholderName,
     request.body.idCategory)
 
   return reply.code(200).send({ statusCode: 200 })
