@@ -8,7 +8,7 @@ test('Create User', async () => {
   const data = {
     name: 'New',
     lastName: 'User',
-    idManager: 'Dirección ejemplo',
+    idManager: 1,
     mail: 'newuser@gmail.com',
     password: 'SECRET',
     role: 1, //Example role, TBM
