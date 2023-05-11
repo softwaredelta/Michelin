@@ -197,7 +197,6 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                     <FileInput
                       id='placeholder'
                       name='placeholder'
-                      required
                       className='rounded-md my-2.5'
                       onChange={onPlaceHolderChanged}
                       accept='.jpg, .jpeg'
