@@ -43,3 +43,7 @@ exports.deleteQuestions = async (request, reply) => {
 
   return reply.code(200).send({ statusCode: 200 })
 }
+
+exports.getPlaceholder = async (request, reply) => {
+  return reply.sendFile('/placeholders/' + request.params.fileName)
+}
