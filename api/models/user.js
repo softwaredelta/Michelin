@@ -24,34 +24,45 @@ module.exports = class User {
   static async verifyUser (fastify, email, password) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user, name, password FROM users WHERE mail =?', [email]
+      'SELECT id_role, name, last_name, password FROM users WHERE mail =?', [email]
     )
     connection.release()
     const match = rows[0].length > 0 && await fastify.bcrypt.compare(password, rows[0][0].password)
-    return match
+    if (match) {
+      return { status: true, id_role: rows[0][0].id_role, name: rows[0][0].name, last_name: rows[0][0].last_name }
+    } else {
+      return { status: false }
+    }
   }
 
   static async createUser (fastify, name, lastName, idManager, email, password, idRole, idState) {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
-    const queryRes = await connection.query(
-      'INSERT INTO users(name, last_name, id_manager, mail, password, id_role) VALUES (?,?,?,?,?, ?)',
-      [
-        name, lastName, idManager, email, passwordEncrypted, idRole
-      ]
+    const rows = await connection.query(
+      'SELECT id_user FROM users WHERE mail = ?', [email]
     )
-
-    const userId = queryRes[0].insertId
-    for (let i = 0; i < (idState.length); i++) {
-      await connection.query(
-        'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+    const match = rows[0].length === 0
+    if (match) {
+      const queryRes = await connection.query(
+        'INSERT INTO users(name, last_name, id_manager, mail, password, id_role) VALUES (?,?,?,?,?, ?)',
         [
-          userId, idState[i]
+          name, lastName, idManager, email, passwordEncrypted, idRole
         ]
       )
+
+      const userId = queryRes[0].insertId
+      for (let i = 0; i < (idState.length); i++) {
+        await connection.query(
+          'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+          [
+            userId, idState[i]
+          ]
+        )
+      }
     }
 
     connection.release()
+    return match
   }
 
   static async getRoles (fastify) {
@@ -111,6 +122,10 @@ module.exports = class User {
 
   static async deleteUser (fastify, idUser) {
     const connection = await fastify.mysql.getConnection()
+    await connection.query(
+      'DELETE FROM stateuser WHERE id_user = ?',
+      [idUser]
+    )
     await connection.query(
       'UPDATE users SET id_manager = 0 WHERE id_manager = ?',
       [idUser]
