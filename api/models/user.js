@@ -41,7 +41,7 @@ module.exports = class User {
     const rows = await connection.query(
       'SELECT id_user FROM users WHERE mail = ?', [email]
     )
-    const match = rows[0].length < 0
+    const match = rows[0].length === 0
     if (match) {
       const queryRes = await connection.query(
         'INSERT INTO users(name, last_name, id_manager, mail, password, id_role) VALUES (?,?,?,?,?, ?)',
