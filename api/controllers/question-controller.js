@@ -2,7 +2,7 @@ const Question = require('../models/question')
 
 exports.postQuestion = async (request, reply) => {
   // If placeholder file was sent, select uploaded file
-  const placeholderName = (typeof request.body.file !== 'undefined' && request.body.file !== null)
+  const placeholderName = (typeof request.file !== 'undefined' && request.file !== null)
     ? request.file.filename
     : 'default-placeholder.jpg'
 

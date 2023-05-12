@@ -32,6 +32,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
     }
     if (isSuccess) {
       reset()
+      setPlaceHolder('') // reset placeholder
       Toast.fire({
         icon: 'success',
         title: 'Se creo una nueva pregunta'
