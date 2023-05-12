@@ -32,6 +32,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
     }
     if (isSuccess) {
       reset()
+      setPlaceHolder('') // reset placeholder
       Toast.fire({
         icon: 'success',
         title: 'Se creo una nueva pregunta'
@@ -197,7 +198,6 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                     <FileInput
                       id='placeholder'
                       name='placeholder'
-                      required
                       className='rounded-md my-2.5'
                       onChange={onPlaceHolderChanged}
                       accept='.jpg, .jpeg'
