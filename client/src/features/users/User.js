@@ -12,8 +12,10 @@ const User = ({ userId }) => {
       ? 'Sin manager'
       : `${user.manager_name} ${user.manager_last_name}`
 
+  let content
+
   if (user) {
-    return (
+    content = (
       <div className='flex flex-row justify-center'>
         <InfoAccordion
           icon={
@@ -28,11 +30,14 @@ const User = ({ userId }) => {
               manager={userManager}
             />
           }
-          content={<UserOverview userId={userId} />}
+          accordionContent={<UserOverview userId={userId} />}
         />
       </div>
     )
-  } else return null
+  } else {
+    content = null
+  }
+  return content
 }
 
 export default User

@@ -17,11 +17,10 @@ const Section = ({ idSection, sectionTitle }) => {
             {sectionTitle}
           </div>
         }
-        content={<QuestionOverview category={1} section={idSection} />}
+        accordionContent={<QuestionOverview category={1} section={idSection} />}
       />
     </>
   )
-
   return content
 }
 

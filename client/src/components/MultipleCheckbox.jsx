@@ -1,7 +1,7 @@
 import { Checkbox } from 'flowbite-react'
 
 const MultipleCheckbox = ({ idElement, myValue, myOnChange, myName }) => {
-  return (
+  const content = (
     <div className='flex flex-row mb-1'>
       <div className='flex flex-col mx-2'>
         <Checkbox
@@ -19,6 +19,7 @@ const MultipleCheckbox = ({ idElement, myValue, myOnChange, myName }) => {
       </div>
     </div>
   )
+  return content
 }
 
 export default MultipleCheckbox

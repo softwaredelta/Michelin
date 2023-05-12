@@ -4,7 +4,7 @@ import { selectStateById } from '../../sellingPoint/state/stateApiSlice'
 const StatesOption = ({ zoneId }) => {
   const zone = useSelector((state) => selectStateById(state, zoneId))
 
-  return (
+  const content = (
     <>
       <option value={zone.id}>
         {zone.name}
@@ -12,6 +12,7 @@ const StatesOption = ({ zoneId }) => {
 
     </>
   )
+  return content
 }
 
 export default StatesOption

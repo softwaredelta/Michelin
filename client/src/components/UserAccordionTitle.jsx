@@ -1,5 +1,5 @@
 const UserAccordionTitle = ({ idUser, role, name, zone, reports, manager }) => {
-  return (
+  const content = (
     <>
       <div className='flex flex-row'>
         <div className='grid grid-cols-5 gap-20 w-full'>
@@ -12,6 +12,7 @@ const UserAccordionTitle = ({ idUser, role, name, zone, reports, manager }) => {
       </div>
     </>
   )
+  return content
 }
 
 export default UserAccordionTitle

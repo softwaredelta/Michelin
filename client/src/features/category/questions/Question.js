@@ -22,19 +22,21 @@ const Question = ({
   areaTitle,
   idCategory
 }) => {
+  const confirmationText = '¿Estás seguro que deseas eliminar la pregunta?'
+
   const [deleteQuestion, { isSuccess: isSuccessDelete }] =
     useDeleteQuestionMutation()
 
-  const deleteQ = async (idC, idQ, order) => {
-    await deleteQuestion([{ idCategory: idC, idQuestion: idQ, order }])
-  }
-
-  const confirmationText = '¿Estás seguro que deseas eliminar la pregunta?'
+  const [editQuestion, { isSuccess }] = useEditQuestionMutation()
 
   const [questionText, setQText] = useState(qText)
   const [usingCamera, setUsingCamera] = useState(camera)
   const [btnNa, setBtnNa] = useState(btnNaInitial)
   const [showDelete, setShowDelete] = useState(false)
+
+  const onQuestionTextChanged = (e) => setQText(e.target.value)
+  const onCameraChanged = (e) => setUsingCamera(e.target.checked)
+  const onBtnNaChanged = (e) => setBtnNa(e.target.checked)
 
   const handleSetShowDelete = () => {
     setShowDelete(true)
@@ -44,11 +46,9 @@ const Question = ({
     setShowDelete(false)
   }
 
-  const [editQuestion, { isSuccess }] = useEditQuestionMutation()
-
-  const onQuestionTextChanged = (e) => setQText(e.target.value)
-  const onCameraChanged = (e) => setUsingCamera(e.target.checked)
-  const onBtnNaChanged = (e) => setBtnNa(e.target.checked)
+  const deleteQ = async (idC, idQ, order) => {
+    await deleteQuestion([{ idCategory: idC, idQuestion: idQ, order }])
+  }
 
   useEffect(() => {
     if (triggerEdit === 1 && questionText !== '') {
@@ -90,7 +90,7 @@ const Question = ({
     }
   }, [isSuccess, isSuccessDelete])
 
-  return (
+  const content = (
     <>
       <TableRow key={idQuestion} className='border-b'>
         <TableCell className='text-center'>{qOrder}</TableCell>
@@ -142,6 +142,7 @@ const Question = ({
       />
     </>
   )
+  return content
 }
 
 export default Question

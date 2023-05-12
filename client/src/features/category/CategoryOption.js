@@ -3,11 +3,13 @@ import { selectCategoryById } from './sectionApiSlice'
 
 const CategoryOption = ({ categoryId }) => {
   const category = useSelector((state) => selectCategoryById(state, categoryId))
-  return (
+
+  const content = (
     <>
       <option id='type' value={category.id}>{category.name}</option>
     </>
   )
+  return content
 }
 
 export default CategoryOption

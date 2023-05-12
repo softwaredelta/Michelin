@@ -21,8 +21,6 @@ const QuestionList = () => {
   const [show, setShow] = useState(false)
   const [triggerEdit, setTriggerEdit] = useState(0)
 
-  let questions
-
   const { section, category } = useParams()
 
   const {
@@ -35,7 +33,10 @@ const QuestionList = () => {
     idSection: section
   })
 
+  let questions
+
   if (isLoadingQuestions) questions = <div> Cargando... </div>
+
   if (isErrorQuestions) {
     questions = (
       <TableCell className='col-span-5'>
@@ -62,6 +63,7 @@ const QuestionList = () => {
         />
       ))
       : null
+
     questions = listContent
   }
 

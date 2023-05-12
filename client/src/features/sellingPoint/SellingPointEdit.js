@@ -23,8 +23,6 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
 
   const [editSP, { isSuccess, isError }] = useEditSPMutation()
 
-  let myCategory, myState
-
   const {
     data: category,
     isSuccess: isSuccessCategory,
@@ -36,6 +34,33 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
     isSuccess: isSuccessState,
     isError: isErrorState
   } = useGetStateQuery()
+
+  let myCategory, myState
+
+  const onEditSPClicked = async (e) => {
+    e.preventDefault()
+    const name = getValues('name')
+    const zone = getValues('select_zone')
+    const type = getValues('select_type')
+    const address = getValues('address')
+    const phone = getValues('phone')
+    const spId = sp.id_sp
+
+    await editSP({
+      type,
+      zone,
+      address,
+      name,
+      phone,
+      spId
+    })
+    onClose()
+  }
+
+  const onClosed = () => {
+    onClose()
+    reset()
+  }
 
   if (isErrorCategory) {
     myCategory = <option disabled> Sin opciones válidas </option>
@@ -67,26 +92,6 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
     myState = listContent
   }
 
-  const onEditSPClicked = async (e) => {
-    e.preventDefault()
-    const name = getValues('name')
-    const zone = getValues('select_zone')
-    const type = getValues('select_type')
-    const address = getValues('address')
-    const phone = getValues('phone')
-    const spId = sp.id_sp
-    await editSP({
-      type,
-      zone,
-      address,
-      name,
-      phone,
-      spId
-    })
-
-    onClose()
-  }
-
   useEffect(() => {
     if (isSuccess) {
       reset()
@@ -95,6 +100,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
         title: 'El Punto de Venta se ha editado de forma exitosa'
       })
     }
+
     if (isError) {
       Toast.fire({
         icon: 'error',
@@ -103,12 +109,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
     }
   }, [isSuccess, isError, reset])
 
-  const onClosed = () => {
-    onClose()
-    reset()
-  }
-
-  return (
+  const content = (
     <>
       <Modal show={show} onClose={onClose} dismissible>
         <form onSubmit={onEditSPClicked}>
@@ -233,6 +234,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
       </Modal>
     </>
   )
+  return content
 }
 
 export default SellingPointEdit

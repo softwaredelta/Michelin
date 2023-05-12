@@ -1,10 +1,11 @@
 
 const AreaOption = ({ areaId, areaTitle }) => {
-  return (
+  const content = (
     <>
       <option value={areaId}>{areaTitle}</option>
     </>
   )
+  return content
 }
 
 export default AreaOption

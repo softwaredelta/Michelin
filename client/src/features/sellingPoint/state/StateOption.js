@@ -3,11 +3,13 @@ import { selectStateById } from './stateApiSlice'
 
 const StateOption = ({ zoneId }) => {
   const zone = useSelector((state) => selectStateById(state, zoneId))
-  return (
+
+  const content = (
     <>
       <option value={zone.id}>{zone.name}</option>
     </>
   )
+  return content
 }
 
 export default StateOption

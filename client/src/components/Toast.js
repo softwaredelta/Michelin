@@ -11,4 +11,5 @@ const Toast = Swal.mixin({
   timer: 3000,
   timerProgressBar: true
 })
+
 export default Toast

@@ -5,8 +5,6 @@ import Section from './Section'
 import { useGetSectionsQuery } from './sectionApiSlice'
 
 const SectionList = () => {
-  let sections
-
   const {
     data: sectionData,
     isLoading: isLoadingSections,
@@ -14,18 +12,23 @@ const SectionList = () => {
     isError: isErrorSections
   } = useGetSectionsQuery()
 
+  let sections
+
   if (isLoadingSections) sections = <div> Cargando... </div>
+
   if (isErrorSections) {
     sections = <div className='font-semibold text-3xl m-auto dark:text-white'> Sin opciones válidas </div>
   }
 
   if (isSuccessSections) {
     const { ids, entities } = sectionData
+
     const listContent = ids?.length
       ? ids.map((idSection) => (
         <Section key={idSection} sectionTitle={entities[idSection].section_name} idSection={idSection} />
       ))
       : null
+
     sections = listContent
   }
 
@@ -41,7 +44,6 @@ const SectionList = () => {
       </div>
     </div>
   )
-
   return content
 }
 
