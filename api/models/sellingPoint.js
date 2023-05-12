@@ -29,12 +29,12 @@ module.exports = class SellingPoint {
     )
   }
 
-  static async editSellingPoint (fastify, type, zone, address, name, phone, spId) {
+  static async editSellingPoint (fastify, type, zone, address, name, phone, idSp) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
       'UPDATE sellingpoint SET id_category = ?, id_state = ?, address = ?, name = ?, phone = ? WHERE id_sp = ?',
       [
-        type, zone, address, name, phone, spId
+        type, zone, address, name, phone, idSp
       ]
     )
     connection.release()

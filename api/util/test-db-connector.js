@@ -7,6 +7,7 @@ const gitTestConnectionString = `mysql://${process.env.TEST_MYSQL_USER}:${proces
 
 const onTestEnv = process.env.ON_TEST_ENV === 'true' || false
 
+// Drop and create testing db
 async function createDB (fastify) {
   const connection = await fastify.mysql.getConnection()
 

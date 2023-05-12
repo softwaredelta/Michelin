@@ -10,7 +10,6 @@ import { MdModeEditOutline } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
 const QuestionOverview = ({ category, section }) => {
-  let questions
   const navigate = useNavigate()
 
   const {
@@ -23,7 +22,10 @@ const QuestionOverview = ({ category, section }) => {
     idSection: section
   })
 
+  let questions
+
   if (isLoadingQuestions) questions = <div> Cargando... </div>
+
   if (isErrorQuestions) {
     questions = <TableRow> Sin opciones válidas... </TableRow>
   }
@@ -58,6 +60,7 @@ const QuestionOverview = ({ category, section }) => {
         </TableRow>
       ))
       : null
+
     questions = listContent
   }
 

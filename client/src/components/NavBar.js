@@ -3,8 +3,9 @@ import { DropdownItem } from 'flowbite-react/lib/esm/components/Dropdown/Dropdow
 import { NavbarBrand } from 'flowbite-react/lib/esm/components/Navbar/NavbarBrand'
 import { NavbarCollapse } from 'flowbite-react/lib/esm/components/Navbar/NavbarCollapse'
 import { NavbarLink } from 'flowbite-react/lib/esm/components/Navbar/NavbarLink'
+
 const NavBar = () => {
-  return (
+  const content = (
     <>
       <div className='mb-5'>
         <Navbar className='border-b-2 fixed top-0 z-30 w-full dark:!bg-blues-400' fluid rounded={false}>
@@ -39,6 +40,7 @@ const NavBar = () => {
       </div>
     </>
   )
+  return content
 }
 
 export default NavBar

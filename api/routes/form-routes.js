@@ -11,6 +11,7 @@ const storage = multer.diskStorage({
   }
 })
 const upload = multer({ storage })
+
 async function formRoutes (fastify, options) {
   formController.fastify = fastify
 

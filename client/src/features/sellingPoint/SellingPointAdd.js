@@ -17,9 +17,8 @@ const SellingPointAdd = ({ show, onClose }) => {
     getValues,
     reset
   } = useForm()
-  const [addNewSP, { isSuccess, isError }] = useAddNewSPMutation()
 
-  let myCategory, myState
+  const [addNewSP, { isSuccess, isError }] = useAddNewSPMutation()
 
   const {
     data: category,
@@ -32,6 +31,28 @@ const SellingPointAdd = ({ show, onClose }) => {
     isSuccess: isSuccessState,
     isError: isErrorState
   } = useGetStateQuery()
+
+  let myCategory, myState
+
+  const onSaveSPClicked = async (e) => {
+    e.preventDefault()
+    const name = getValues('name')
+    const zone = getValues('select_zone')
+    const type = getValues('select_type')
+    const address = getValues('address')
+    const phone = getValues('phone')
+
+    await addNewSP({
+      type,
+      zone,
+      address,
+      rating: 0,
+      name,
+      phone
+    })
+
+    onClose()
+  }
 
   if (isErrorCategory) {
     myCategory = <option disabled> Sin opciones válidas </option>
@@ -63,26 +84,6 @@ const SellingPointAdd = ({ show, onClose }) => {
     myState = listContent
   }
 
-  const onSaveSPClicked = async (e) => {
-    e.preventDefault()
-    const name = getValues('name')
-    const zone = getValues('select_zone')
-    const type = getValues('select_type')
-    const address = getValues('address')
-    const phone = getValues('phone')
-
-    await addNewSP({
-      type,
-      zone,
-      address,
-      rating: 0,
-      name,
-      phone
-    })
-
-    onClose()
-  }
-
   useEffect(() => {
     if (isSuccess) {
       reset()
@@ -91,6 +92,7 @@ const SellingPointAdd = ({ show, onClose }) => {
         title: 'Se ha creado un nuevo punto de venta'
       })
     }
+
     if (isError) {
       Toast.fire({
         icon: 'error',
@@ -99,7 +101,7 @@ const SellingPointAdd = ({ show, onClose }) => {
     }
   }, [isSuccess, isError, reset])
 
-  return (
+  const content = (
     <>
       <Modal show={show} onClose={onClose} dismissible>
         <form onSubmit={onSaveSPClicked}>
@@ -223,6 +225,7 @@ const SellingPointAdd = ({ show, onClose }) => {
       </Modal>
     </>
   )
+  return content
 }
 
 export default SellingPointAdd

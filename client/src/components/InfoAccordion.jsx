@@ -1,10 +1,9 @@
 import { Accordion } from 'flowbite-react'
 import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle'
 import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel'
-// import QuestionOverview from "../features/category/questions/QuestionOverview";
 
-const InfoAccordion = ({ icon, content, sectionTitle }) => {
-  return (
+const InfoAccordion = ({ icon, accordionContent, sectionTitle }) => {
+  const content = (
     <>
       <div className='w-11/12 mb-6'>
         <Accordion collapseAll alwaysOpen>
@@ -15,12 +14,13 @@ const InfoAccordion = ({ icon, content, sectionTitle }) => {
                 {sectionTitle}
               </div>
             </AccordionTitle>
-            {content}
+            {accordionContent}
           </AccordionPanel>
         </Accordion>
       </div>
     </>
   )
+  return content
 }
 
 export default InfoAccordion

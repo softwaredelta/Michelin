@@ -14,12 +14,13 @@ import Toast from '../../components/Toast'
 const SellingPoint = ({ spId }) => {
   const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
 
-  const [flip, setFlip] = useState(false)
   const sp = useSelector((state) => selectSPById(state, spId))
 
-  const handleSetFlip = () => {
-    setFlip(!flip)
-  }
+  // Modal
+  const [showEdit, setShowEdit] = useState(false)
+  const [showDelete, setShowDelete] = useState(false)
+
+  const [flip, setFlip] = useState(false)
 
   const [DeleteSP] = useDeleteSPMutation()
 
@@ -27,15 +28,16 @@ const SellingPoint = ({ spId }) => {
     e.preventDefault()
     await DeleteSP({ spId })
     handleCloseDelete()
+
     Toast.fire({
       icon: 'success',
       title: 'Se ha eliminado un punto de venta'
     })
   }
 
-  // Modal
-  const [showEdit, setShowEdit] = useState(false)
-  const [showDelete, setShowDelete] = useState(false)
+  const handleSetFlip = () => {
+    setFlip(!flip)
+  }
 
   const handleSetShowEdit = () => {
     setShowEdit(true)
@@ -53,7 +55,7 @@ const SellingPoint = ({ spId }) => {
     setShowDelete(false)
   }
 
-  return (
+  const content = (
     <div className='w-72 h-72 my-4 mx-6 flex flex-col'>
       <ReactCardFlip
         isFlipped={flip}
@@ -163,6 +165,7 @@ const SellingPoint = ({ spId }) => {
       <SellingPointEdit show={showEdit} onClose={handleCloseEdit} spId={spId} />
     </div>
   )
+  return content
 }
 
 export default SellingPoint

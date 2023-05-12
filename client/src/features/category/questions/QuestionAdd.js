@@ -11,34 +11,26 @@ import { useForm } from 'react-hook-form'
 import Toast from '../../../components/Toast'
 
 const QuestionAdd = ({ show, onClose, section, myCategory }) => {
+  const { register, getValues, reset } = useForm()
+
+  const navigate = useNavigate()
+
   const [addNewQuestion, {
     isSuccess,
     isError,
     error
   }] = useAddNewQuestionMutation()
 
-  const { register, getValues, reset } = useForm()
+  const {
+    data: areas,
+    isLoading: isLoadingArea,
+    isSuccess: isSuccessArea,
+    isError: isErrorArea
+  } = useGetAreasBySectionQuery({ idSection: section })
 
-  const navigate = useNavigate()
+  let area
 
   const [placeholder, setPlaceHolder] = useState('')
-
-  useEffect(() => {
-    if (isError) {
-      Toast.fire({
-        icon: 'error',
-        title: 'Se produjo un error'
-      })
-    }
-    if (isSuccess) {
-      reset()
-      setPlaceHolder('') // reset placeholder
-      Toast.fire({
-        icon: 'success',
-        title: 'Se creo una nueva pregunta'
-      })
-    }
-  }, [isSuccess, isError, error, reset, navigate])
 
   const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]) }
 
@@ -61,16 +53,8 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
     await addNewQuestion(newQuestion)
   }
 
-  let area
-
-  const {
-    data: areas,
-    isLoading: isLoadingArea,
-    isSuccess: isSuccessArea,
-    isError: isErrorArea
-  } = useGetAreasBySectionQuery({ idSection: section })
-
   if (isLoadingArea) area = <option disabled value=''> Cargando... </option>
+
   if (isErrorArea) {
     area = <option disabled selected value=''> Sin opciones válidas </option>
   }
@@ -82,8 +66,28 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
         <AreaOption key={idArea} areaId={idArea} areaTitle={entities[idArea].area_title} />
       ))
       : null
+
     area = listContent
   }
+
+  useEffect(() => {
+    if (isError) {
+      Toast.fire({
+        icon: 'error',
+        title: 'Se produjo un error'
+      })
+    }
+
+    if (isSuccess) {
+      reset()
+      setPlaceHolder('') // reset placeholder
+      Toast.fire({
+        icon: 'success',
+        title: 'Se creo una nueva pregunta'
+      })
+    }
+  }, [isSuccess, isError, error, reset, navigate])
+
   const content = (
     <>
       <Modal show={show} onClose={onClose} dismissible>

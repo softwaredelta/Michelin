@@ -8,7 +8,9 @@ async function sectionRoutes (fastify) {
       onRequest: [fastify.authenticate]
     },
     sectionController.getSections)
+
   fastify.get('/getAreas', sectionController.getAreas)
+
   fastify.get('/getAreasBySection/:idSection', sectionController.getAreasBySection)
 }
 

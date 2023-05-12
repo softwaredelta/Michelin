@@ -16,7 +16,7 @@ const SPCard = ({ spId }) => {
     setFlip(!flip)
   }
 
-  return (
+  const content = (
     <div className='w-72 h-72 my-4 mx-6 flex flex-col'>
       <ReactCardFlip
         isFlipped={flip}
@@ -104,6 +104,7 @@ const SPCard = ({ spId }) => {
       </ReactCardFlip>
     </div>
   )
+  return content
 }
 
 export default SPCard

@@ -4,7 +4,7 @@ import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
 
 const ConfirmationModal = ({ show, onClose, text, method }) => {
-  return (
+  const content = (
     <>
       <Modal show={show} size='md' popup onClose={onClose} dismissible>
         <ModalHeader />
@@ -27,6 +27,7 @@ const ConfirmationModal = ({ show, onClose, text, method }) => {
       </Modal>
     </>
   )
+  return content
 }
 
 export default ConfirmationModal
