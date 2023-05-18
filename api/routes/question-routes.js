@@ -11,6 +11,7 @@ const storage = multer.diskStorage({
   }
 })
 const upload = multer({ storage })
+
 async function questionRoutes (fastify, options) {
   questionController.fastify = fastify
 
@@ -20,9 +21,13 @@ async function questionRoutes (fastify, options) {
     questionController.postQuestion)
 
   fastify.post('/edit', questionController.editQuestion)
+
   fastify.get('/bySection/:idCategory/:idSection', questionController.getQuestionsBySection)
+
   fastify.get('/getAllQuestions', questionController.getQuestions)
+
   fastify.post('/deleteQuestion', questionController.deleteQuestions)
+
   fastify.get('/placeholder/:fileName', questionController.getPlaceholder)
 }
 

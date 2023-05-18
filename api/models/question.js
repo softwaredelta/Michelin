@@ -49,7 +49,7 @@ module.exports = class Question {
   static async fetchQuestionsBySection (fastify, idCategory, idSection) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-        `SELECT q.id_question, q.p_text, q.camera, q.btn_na, q.picture, q.q_order, a.area_title, s.id_section
+        `SELECT q.id_question, q.p_text, q.id_area, q.camera, q.btn_na, q.picture, q.q_order, a.area_title
         FROM question AS q, categoryquestion AS cq, section AS s, area AS a
         WHERE q.id_question = cq.id_question AND q.id_area = a.id_area AND a.id_section = s.id_section AND s.id_section = ? AND cq.id_category = ?
         ORDER BY a.id_area ASC, q.q_order ASC`,
@@ -65,7 +65,7 @@ module.exports = class Question {
     const connection = await fastify.mysql.getConnection()
     await connection.query('START TRANSACTION')
     const updateOrder = await connection.query(
-      'UPDATE question SET question.q_order = question.q_order - 1 WHERE question.q_order > ? AND question.id_area = (SELECT question.id_area FROM question WHERE id_question = ?)  ',
+      'UPDATE question SET question.q_order = question.q_order - 1 WHERE question.q_order > ? AND question.id_area = (SELECT question.id_area WHERE id_question = ?)',
       [
         order, idQuestion
       ]

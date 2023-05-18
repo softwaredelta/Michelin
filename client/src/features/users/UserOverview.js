@@ -39,6 +39,10 @@ const UserOverview = ({ userId }) => {
   let myStates
   let [stateList] = useState(stateData)
 
+  const [showDelete, setShowDelete] = useState(false)
+
+  const confirmationText = '¿Estás seguro que deseas eliminar el usuario'
+
   const handleInputChange = (e) => {
     const auxList = JSON.parse(JSON.stringify(stateList))
     auxList.entities[e.target.id].id_user === null
@@ -48,32 +52,6 @@ const UserOverview = ({ userId }) => {
     e.target.checked()
     e.target.value()
   }
-
-  if (isErrorStates) {
-    myStates = <option disabled> Sin opciones válidas </option>
-  }
-
-  if (isSuccessStates) {
-    const { ids, entities } = stateData
-
-    const listContent = ids?.length
-      ? ids.map((idState) => (
-        <MultipleCheckbox
-          key={idState}
-          idElement={idState}
-          myValue={entities[idState].id_user !== null ? 1 : 0}
-          myOnChange={handleInputChange}
-          myName={entities[idState].name}
-        />
-      ))
-      : null
-
-    myStates = listContent
-  }
-
-  useEffect(() => {
-    stateList = stateData; // eslint-disable-line
-  })
 
   const onEditUserClicked = async (e) => {
     e.preventDefault()
@@ -145,8 +123,6 @@ const UserOverview = ({ userId }) => {
     await deleteUser([{ idUser: idU }])
   }
 
-  const [showDelete, setShowDelete] = useState(false)
-
   const handleSetShowDelete = () => {
     setShowDelete(true)
   }
@@ -155,7 +131,31 @@ const UserOverview = ({ userId }) => {
     setShowDelete(false)
   }
 
-  const confirmationText = '¿Estás seguro que deseas eliminar el usuario'
+  if (isErrorStates) {
+    myStates = <option disabled> Sin opciones válidas </option>
+  }
+
+  if (isSuccessStates) {
+    const { ids, entities } = stateData
+
+    const listContent = ids?.length
+      ? ids.map((idState) => (
+        <MultipleCheckbox
+          key={idState}
+          idElement={idState}
+          myValue={entities[idState].id_user !== null ? 1 : 0}
+          myOnChange={handleInputChange}
+          myName={entities[idState].name}
+        />
+      ))
+      : null
+
+    myStates = listContent
+  }
+
+  useEffect(() => {
+    stateList = stateData; // eslint-disable-line
+  })
 
   useEffect(() => {
     if (isErrorEdit) {
@@ -184,7 +184,7 @@ const UserOverview = ({ userId }) => {
     }
   }, [isSuccessEdit, isErrorEdit, isErrorPassword, isSuccessDelete])
 
-  return (
+  const content = (
     <>
       <AccordionContent className='h-60'>
         <form onSubmit={onEditUserClicked}>
@@ -280,6 +280,7 @@ const UserOverview = ({ userId }) => {
       />
     </>
   )
+  return content
 }
 
 export default UserOverview

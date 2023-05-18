@@ -1,10 +1,9 @@
-// import Wrapper from './Wrapper'
 
 import ModifiedFooter from './ModifiedFooter'
 import NavBar from './NavBar'
 
 const Public = () => {
-  return (
+  const content = (
     <>
       <div>
         <NavBar />
@@ -15,5 +14,6 @@ const Public = () => {
       </div>
     </>
   )
+  return content
 }
 export default Public

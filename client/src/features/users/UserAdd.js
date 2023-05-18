@@ -14,6 +14,10 @@ import AreaOption from '../category/questions/AreaOption'
 import Swal from 'sweetalert2'
 
 const UserAdd = ({ show, onClose }) => {
+  const { register, getValues, reset } = useForm()
+
+  const navigate = useNavigate()
+
   const [addNewUser, {
     isSuccess: isSuccessUser,
     isError,
@@ -25,14 +29,12 @@ const UserAdd = ({ show, onClose }) => {
     isSuccess: isSuccessRole,
     isError: isErrorRole
   } = useGetRolesQuery()
-  let role
 
   const {
     data: managers,
     isSuccess: isSuccessManager,
     isError: isErrorManager
   } = useGetManagersQuery()
-  let manager
 
   const {
     data: state,
@@ -40,53 +42,9 @@ const UserAdd = ({ show, onClose }) => {
     isError: isErrorState
   } = useGetStateQuery()
 
-  if (isErrorRole) {
-    role = <option disabled selected value=''> Sin opciones válidas </option>
-  }
-
-  if (isSuccessRole) {
-    const { ids, entities } = roles
-    const listContent = ids?.length
-      ? ids.map((idRole) => (
-        <AreaOption key={idRole} areaId={idRole} areaTitle={entities[idRole].name} />
-      ))
-      : null
-    role = listContent
-  }
-
+  let role
+  let manager
   let myState
-
-  if (isErrorState) {
-    myState = <option disabled> Sin opciones válidas </option>
-  }
-
-  if (isSuccessState) {
-    const { ids } = state
-
-    const listContent = ids?.length
-      ? ids.map((idState) => <StatesOption key={idState} zoneId={idState} />)
-      : null
-
-    myState = listContent
-  }
-
-  if (isErrorManager) {
-    manager = <option disabled selected value=''> Sin opciones válidas </option>
-  }
-
-  if (isSuccessManager) {
-    const { ids, entities } = managers
-    const listContent = ids?.length
-      ? ids.map((idManager) => (
-        <AreaOption key={idManager} areaId={idManager} areaTitle={`${entities[idManager].name} ${entities[idManager].last_name}`} />
-      ))
-      : null
-    manager = listContent
-  }
-
-  const { register, getValues, reset } = useForm()
-
-  const navigate = useNavigate()
 
   const random = (length = 8) => {
     const chars =
@@ -109,6 +67,7 @@ const UserAdd = ({ show, onClose }) => {
     const mail = getValues('mail')
     const role = getValues('role')
     const state = getValues('state')
+
     onClose()
     Swal.fire({
       title: 'Contraseña',
@@ -122,6 +81,52 @@ const UserAdd = ({ show, onClose }) => {
         addNewUser({ name, lastName, idManager, mail, password, role, state })
       }
     })
+  }
+
+  if (isErrorRole) {
+    role = <option disabled selected value=''> Sin opciones válidas </option>
+  }
+
+  if (isSuccessRole) {
+    const { ids, entities } = roles
+
+    const listContent = ids?.length
+      ? ids.map((idRole) => (
+        <AreaOption key={idRole} areaId={idRole} areaTitle={entities[idRole].name} />
+      ))
+      : null
+
+    role = listContent
+  }
+
+  if (isErrorState) {
+    myState = <option disabled> Sin opciones válidas </option>
+  }
+
+  if (isSuccessState) {
+    const { ids } = state
+
+    const listContent = ids?.length
+      ? ids.map((idState) => <StatesOption key={idState} zoneId={idState} />)
+      : null
+
+    myState = listContent
+  }
+
+  if (isErrorManager) {
+    manager = <option disabled selected value=''> Sin opciones válidas </option>
+  }
+
+  if (isSuccessManager) {
+    const { ids, entities } = managers
+
+    const listContent = ids?.length
+      ? ids.map((idManager) => (
+        <AreaOption key={idManager} areaId={idManager} areaTitle={`${entities[idManager].name} ${entities[idManager].last_name}`} />
+      ))
+      : null
+
+    manager = listContent
   }
 
   useEffect(() => {

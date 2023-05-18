@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const { register, getValues } = useForm()
+
   const navigate = useNavigate()
 
   const [loginUser, {
@@ -34,7 +35,7 @@ const Login = () => {
     }
   }, [isSuccess, isError, error, navigate])
 
-  return (
+  const content = (
     <>
       <div style={{
         backgroundImage: 'url(/images/vehiculo_login.jpg)',
@@ -80,6 +81,7 @@ const Login = () => {
 
     </>
   )
+  return content
 }
 
 export default Login

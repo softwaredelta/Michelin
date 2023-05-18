@@ -10,6 +10,11 @@ import Bluebutton from '../../components/Bluebutton'
 const SellingPointList = () => {
   const [show, setShow] = useState(false)
 
+  const { data: sp, isLoading, isSuccess, isError } = useGetSPQuery()
+
+  let message
+  let listContent
+
   const handleSetShow = () => {
     setShow(true)
   }
@@ -18,24 +23,24 @@ const SellingPointList = () => {
     setShow(false)
   }
 
-  const { data: sp, isLoading, isSuccess, isError } = useGetSPQuery()
-
-  let message
-  let listContent
   if (isLoading) message = <p className='text-3xl font-semibold dark:!text-white'>Cargando...</p>
+
   if (isError) {
     message = <p className='text-3xl font-semibold dark:!text-white'>No hay conexión con la base de datos</p>
   }
 
   if (isSuccess) {
     const { ids } = sp
+
     if (ids.length === 0) {
       message = <p className='text-3xl font-semibold dark:!text-white'>No hay puntos de venta que mostrar</p>
     }
+
     listContent = ids?.length
       ? ids.map((idSP) => <SellingPoint key={idSP} spId={idSP} />)
       : null
   }
+
   const content = (
     <>
       <div>
@@ -58,7 +63,6 @@ const SellingPointList = () => {
       <SellingPointAdd show={show} onClose={handleClose} />
     </>
   )
-
   return content
 }
 

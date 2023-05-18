@@ -16,6 +16,9 @@ const UsersList = () => {
 
   const [show, setShow] = useState(false)
 
+  let tableContent
+  let message
+
   const handleSetShow = () => {
     setShow(true)
   }
@@ -24,22 +27,24 @@ const UsersList = () => {
     setShow(false)
   }
 
-  let tableContent
-  let message
-
   if (isLoading) message = <p>Loading...</p>
+
   if (isError) {
     message = <p className='text-3xl font-semibold dark:!text-white'>No hay conexion con la base de datos</p>
   }
+
   if (isSuccess) {
     const { ids } = users
+
     if (ids.length === 0) {
       message = <p className='text-3xl font-semibold dark:!text-white'>No hay usuarios que mostrar</p>
     }
+
     tableContent = ids?.length
       ? ids.map(idUser => <User key={idUser} userId={idUser} />)
       : null
   }
+
   const content = (
     <>
       <div>
@@ -67,7 +72,6 @@ const UsersList = () => {
       />
     </>
   )
-
   return content
 }
 
