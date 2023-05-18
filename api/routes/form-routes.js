@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
     cb(null, './uploads/temp')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, Date.now() + '-' + file.originalname)
   }
 })
 const upload = multer({ storage })
@@ -17,7 +17,7 @@ async function formRoutes (fastify, options) {
 
   fastify.post(
     '/postForm',
-    { preHandler: upload.single('reportImages') },
+    { preHandler: upload.array('images', 40) },
     formController.postForm)
 
   fastify.get('/report/:fileName', formController.loadReport)
