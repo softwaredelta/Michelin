@@ -15,6 +15,10 @@ const upload = multer({ storage })
 async function formRoutes (fastify, options) {
   formController.fastify = fastify
 
+  fastify.get('/getAllForms', formController.getForms)
+
+  fastify.get('/getByUser/:idUser', formController.getFormsByUser)
+
   fastify.post(
     '/postForm',
     { preHandler: upload.array('images', 40) },

@@ -34,6 +34,17 @@ exports.loadReport = (request, reply) => {
   reply.send(stream).type('application/pdf').code(200)
 }
 
+exports.getForms = (request, reply) => {
+  const formData = Form.fetchAll(this.fastify)
+  return formData
+}
+
+exports.getFormsByUser= (request, reply) => {
+  const { idUser } = request.params
+  const formData = Form.fetchByUser(this.fastify, idUser)
+  return formData
+}
+
 function getCurrentDateTimeSQL () { // Date for query
   const date = new Date()
 
