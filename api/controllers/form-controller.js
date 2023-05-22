@@ -1,27 +1,49 @@
 const Form = require('../models/form')
+const SellingPoint = require('../models/sellingPoint')
+const ReportUtil = require('../util/report-util')
+
 const PDFDocument = require('pdfkit')
 const fs = require('fs')
 
 exports.postForm = async (request, reply) => {
-  // Create PDF
-  const doc = new PDFDocument()
-  doc.pipe(fs.createWriteStream('./uploads/reports/' + request.body.fileName + '.pdf'))
-  for (const fileNum in request.files) {
-    console.log(request.files[fileNum])
-    doc.image('./uploads/temp/' + request.files[fileNum].filename, 0, 0, {
-      height: doc.page.height,
-      width: doc.page.width
-    })
-    doc.addPage()
-    fs.unlinkSync('./uploads/temp/' + request.files[fileNum].filename)
-  }
-  doc.end()
+  // Get selling point data for report section
+  const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
 
-  await Form.createForm(this.fastify, 1, 2, 1, 1, 1, 1, 'test sp', request.body.fileName, 1, '01/01/2020')
+  // Create PDF
+  const doc = new PDFDocument({ autoFirstPage: false })
+  doc.pipe(fs.createWriteStream('./uploads/reports/' + request.body.fileName + '.pdf'))
+  await ReportUtil.generateReport(doc, request.body, sellingPointData)
+
+  await Form.createForm(this.fastify,
+    request.body.idCategory,
+    request.body.idUser,
+    request.body.exteriorGrade,
+    request.body.interiorGrade,
+    request.body.clientGrade,
+    request.body.managerGrade,
+    sellingPointData[0].name,
+    request.body.fileName + '.pdf',
+    request.body.duration,
+    getCurrentDateTimeSQL())
+
   return reply.code(200).send({ statusCode: 200 })
 }
 
 exports.loadReport = (request, reply) => {
   const stream = require('fs').createReadStream('./uploads/reports/' + request.params.fileName)
   reply.send(stream).type('application/pdf').code(200)
+}
+
+function getCurrentDateTimeSQL () { // Date for query
+  const date = new Date()
+
+  const currentDate =
+    date.getFullYear() +
+    ('0' + (date.getMonth() + 1)).slice(-2) +
+    ('0' + date.getDate()).slice(-2) +
+    ('0' + date.getHours()).slice(-2) +
+    ('0' + date.getMinutes()).slice(-2) +
+    ('0' + date.getSeconds()).slice(-2)
+
+  return currentDate
 }
