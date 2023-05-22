@@ -1,7 +1,7 @@
 
 module.exports = class Form {
   static async createForm (fastify, idCategory, idUser, exteriorGrade, interiorGrade, clientGrade, storeManagerGrade, spName, fileName, duration, date) {
-    /*console.log(idCategory)
+    /* console.log(idCategory)
     console.log(idUser)
     console.log(exteriorGrade)
     console.log(interiorGrade)
