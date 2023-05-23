@@ -9,6 +9,7 @@ const fs = require('fs')
 exports.postForm = async (request, reply) => {
   // Get selling point data for report section
   const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
+  const userData = await User.fetchIdByMail(this.fastify, request.body.mail)
 
   // Create PDF
   const doc = new PDFDocument({ autoFirstPage: false })
@@ -17,7 +18,7 @@ exports.postForm = async (request, reply) => {
 
   await Form.createForm(this.fastify,
     request.body.idCategory,
-    request.body.idUser,
+    userData[0].id_user,
     request.body.exteriorGrade,
     request.body.interiorGrade,
     request.body.clientGrade,
