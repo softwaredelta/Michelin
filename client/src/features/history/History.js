@@ -8,9 +8,9 @@ const History = () => {
     <>
       <div>
         <NavBar />
-        <div className="pt-20 p- w-full h-screen flex flex-col items-center dark:!bg-blues-400">
-          <Header myText="Historial" />
-          <div className="pt-5 w-full h-screen flex flex-col items-center dark:!bg-blues-400">
+        <div className="pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400">
+                  <Header myText="Historial" />
+          <div className="container pt-5 w-full h-screen overflow-y-scroll flex flex-col items-center dark:!bg-blues-400">
             <div className="content-center grid grid-cols-3 w-7/12 ml-4 mb-6 py-4 border-b-2 dark:border-blues-200">
               <h2 className="font-semibold text-center mr-14 dark:!text-white">
                 Nombre
@@ -22,17 +22,48 @@ const History = () => {
                 Fecha
               </h2>
             </div>
-            <div className="h-3/5 overflow-y-scroll">
-              <Report name={"example"} zone={"Querétaro"} date={"22/05/2023"} />
+            <div className="h-4/5 overflow-y-scroll">
               <Report
-                name={"adkjkajdkjsakdj"}
-                zone={"Querétaro"}
-                date={"22/05/2023"}
+                spName={"PDV Juriquilla"}
+                spZone={"Querétaro"}
+                repDate={"22/05/2023"}
+                userName={"example"}
+                repTime={"13 minutos"}
+                repLink={
+                  "https://fotografias.flooxernow.com/clipping/cmsimages02/2022/07/13/404F0395-B90B-459E-BF14-5E9D64CAA45F/gato-boy-gatito-bandit_69.jpg?crop=1280,720,x0,y0&width=1280&height=720&optimize=high&format=webply"
+                }
+                intPercentage={22}
+                extPercentage={12}
+                clientPercentage={36}
+                managerPercentage={67}
               />
               <Report
-                name={"ajdireukdkandjkashkdhkjdcksk"}
-                zone={"Querétaro"}
-                date={"22/05/2023"}
+                spName={"PDV Juriquilla"}
+                spZone={"Querétaro"}
+                repDate={"22/05/2023"}
+                userName={"example"}
+                repTime={"13 minutos"}
+                repLink={
+                  "https://fotografias.flooxernow.com/clipping/cmsimages02/2022/07/13/404F0395-B90B-459E-BF14-5E9D64CAA45F/gato-boy-gatito-bandit_69.jpg?crop=1280,720,x0,y0&width=1280&height=720&optimize=high&format=webply"
+                }
+                intPercentage={22}
+                extPercentage={12}
+                clientPercentage={36}
+                managerPercentage={67}
+              />
+              <Report
+                spName={"PDV Juriquilla"}
+                spZone={"Querétaro"}
+                repDate={"22/05/2023"}
+                userName={"example"}
+                repTime={"13 minutos"}
+                repLink={
+                  "https://fotografias.flooxernow.com/clipping/cmsimages02/2022/07/13/404F0395-B90B-459E-BF14-5E9D64CAA45F/gato-boy-gatito-bandit_69.jpg?crop=1280,720,x0,y0&width=1280&height=720&optimize=high&format=webply"
+                }
+                intPercentage={22}
+                extPercentage={12}
+                clientPercentage={36}
+                managerPercentage={67}
               />
             </div>
           </div>
