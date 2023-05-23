@@ -7,12 +7,11 @@ const UserAccordionTitle = ({ name, zone, date }) => {
           <div className='text text-center w-28 break-words'> {zone} </div>
           <div className='text text-center w-28 break-words'> {date} </div>
         </div>
-          </div>
-          
+      </div>
+
     </>
   )
   return content
 }
 
 export default UserAccordionTitle
-
