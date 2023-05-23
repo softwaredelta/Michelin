@@ -17,7 +17,7 @@ const NavBar = () => {
             />
           </NavbarBrand>
           <NavbarCollapse className='px-2'>
-            <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Historial</NavbarLink>
+            <NavbarLink href='/history' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Historial</NavbarLink>
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Métricas</NavbarLink>
             <NavbarLink href='/question' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Cuestionarios</NavbarLink>
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>
