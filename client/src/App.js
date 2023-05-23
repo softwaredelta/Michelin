@@ -6,6 +6,7 @@ import UsersList from './features/users/UserList'
 import SellingPointList from './features/sellingPoint/SellingPointList'
 import QuestionList from './features/category/questions/QuestionList'
 import SectionList from './features/category/SectionList'
+import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
 import GradeChart from './components/GradeChart'
 
@@ -25,6 +26,9 @@ function App () {
         </Route>
         <Route path='sellingPoint'>
           <Route index element={<ProtectedRoute> <SellingPointList /> </ProtectedRoute>} />
+        </Route>
+        <Route path='history'>
+          <Route index element={<ProtectedRoute> <History /> </ProtectedRoute>} />
         </Route>
       </Route>
     </Routes>
