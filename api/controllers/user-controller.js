@@ -12,7 +12,7 @@ exports.login = async (request, reply) => {
     const token = this.fastify.jwt.sign({ mail: request.body.email })
     reply.code(200).send(
       {
-        token, role: userResult.id_role, name: userResult.name, lastName: userResult.last_name, mail: request.body.mail
+        token, role: userResult.id_role, name: userResult.name, lastName: userResult.last_name, mail: request.body.email
       }
     )
   } else {
