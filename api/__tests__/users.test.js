@@ -11,8 +11,8 @@ test('Create User', async () => {
     idManager: 1,
     mail: 'newuser@gmail.com',
     password: 'SECRET',
-    role: 1, //Example role, TBM
-    state: {0:1} //Example state
+    role: 1, // Example role, TBM
+    state: { 0: 1 } // Example state
   }
 
   const response = await app.inject({
@@ -44,7 +44,7 @@ test('Edit User', async () => {
     name: 'Modified',
     lastName: 'Modified Last',
     idUser: 2,
-    states: { entities: { 1:{ id_user: 2}}} //Example states
+    states: { entities: { 1: { id_user: 2 } } } // Example states
   }
 
   const response = await app.inject({
@@ -67,7 +67,7 @@ test('Get All users test', async () => {
 
 test('Delete user', async () => {
   const data = {
-    0:{idUser: 1} //Example user
+    0: { idUser: 1 } // Example user
   }
 
   const response = await app.inject({
