@@ -1,6 +1,6 @@
-import SellingPointTitle from "../../components/SellingPointTitle";
-import InfoAccordion from "../../components/InfoAccordion";
-import ReportOverview from "./ReportOverview";
+import SellingPointTitle from '../../components/SellingPointTitle'
+import InfoAccordion from '../../components/InfoAccordion'
+import ReportOverview from './ReportOverview'
 
 const Report = ({
   spName,
@@ -12,11 +12,11 @@ const Report = ({
   intPercentage,
   extPercentage,
   clientPercentage,
-  managerPercentage,
+  managerPercentage
 }) => {
   const content = (
     <>
-      <div className="flex flex-row justify-center">
+      <div className='flex flex-row justify-center'>
         <InfoAccordion
           sectionTitle={
             <SellingPointTitle name={spName} zone={spZone} date={repDate} />
@@ -35,8 +35,8 @@ const Report = ({
         />
       </div>
     </>
-  );
-  return content;
-};
+  )
+  return content
+}
 
-export default Report;
+export default Report
