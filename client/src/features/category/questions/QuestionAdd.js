@@ -161,7 +161,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                         className='dark:!bg-white dark:!text-black'
                       >
                         <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mr-3'>
-                          Uso de camára
+                          Uso de cámara
                         </Label>
                       </Tooltip>
                       <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center accent-blues-150 scale-150 my-1' />
