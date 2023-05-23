@@ -7,11 +7,13 @@ import SellingPointList from './features/sellingPoint/SellingPointList'
 import QuestionList from './features/category/questions/QuestionList'
 import SectionList from './features/category/SectionList'
 import ProtectedRoute from './utils/ProtectedRoute'
+import GradeChart from './components/GradeChart'
 
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
+        <Route path='prueba' element={<GradeChart />} />
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='login' element={<Login />} />
         <Route path='user'>
