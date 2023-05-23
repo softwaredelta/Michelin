@@ -11,8 +11,11 @@ const initialState = formAdapter.getInitialState()
 
 export const formApiSlice = appSlice.injectEndpoints({
   endpoints: builder => ({
-    getForm: builder.query({
-      query: () => '/form/report/:fileName',
+    getFormsByUser: builder.query({
+      query: (args) => {
+        const { idUser } = args
+        return `/form/getByUser/${idUser}`
+      },
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError
       },
@@ -31,16 +34,6 @@ export const formApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'Form', id: 'LIST' }]
       }
-    }),
-    addNewForm: builder.mutation({
-      query: initialUserData => ({
-        url: '/form/postForm',
-        method: 'POST',
-        body: { ...initialUserData }
-      }),
-      invalidatesTags: [
-        { type: 'Form', id: 'LIST' }
-      ]
     })
   })
 })
