@@ -1,5 +1,6 @@
 const Form = require('../models/form')
 const SellingPoint = require('../models/sellingPoint')
+const User = require('../models/user')
 const ReportUtil = require('../util/report-util')
 
 const PDFDocument = require('pdfkit')
@@ -8,6 +9,7 @@ const fs = require('fs')
 exports.postForm = async (request, reply) => {
   // Get selling point data for report section
   const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
+  const userData = await User.fetchIdByMail(this.fastify, request.body.mail)
 
   // Create PDF
   const doc = new PDFDocument({ autoFirstPage: false })
@@ -16,14 +18,14 @@ exports.postForm = async (request, reply) => {
 
   await Form.createForm(this.fastify,
     request.body.idCategory,
-    request.body.idUser,
+    userData[0].id_user,
     request.body.exteriorGrade,
     request.body.interiorGrade,
     request.body.clientGrade,
     request.body.managerGrade,
     sellingPointData[0].name,
     request.body.fileName + '.pdf',
-    request.body.duration,
+    (Math.floor(request.body.duration / 60) * 100) + (request.body.duration % 60),
     getCurrentDateTimeSQL())
 
   return reply.code(200).send({ statusCode: 200 })
@@ -32,6 +34,21 @@ exports.postForm = async (request, reply) => {
 exports.loadReport = (request, reply) => {
   const stream = require('fs').createReadStream('./uploads/reports/' + request.params.fileName)
   reply.send(stream).type('application/pdf').code(200)
+}
+
+exports.getFormsByUser = async (request, reply) => {
+  const { idUser } = request.params
+
+  const userData = await User.getUserRole(this.fastify, idUser)
+  let formData
+
+  if (userData[0].id_role === 1) {
+    formData = Form.fetchByUser(this.fastify, idUser)
+  } else {
+    formData = Form.fetchAll(this.fastify)
+  }
+
+  return formData
 }
 
 function getCurrentDateTimeSQL () { // Date for query
