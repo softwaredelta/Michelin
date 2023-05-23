@@ -1,5 +1,6 @@
 const Form = require('../models/form')
 const SellingPoint = require('../models/sellingPoint')
+const User = require('../models/user')
 const ReportUtil = require('../util/report-util')
 
 const PDFDocument = require('pdfkit')
@@ -23,7 +24,7 @@ exports.postForm = async (request, reply) => {
     request.body.managerGrade,
     sellingPointData[0].name,
     request.body.fileName + '.pdf',
-    request.body.duration,
+    (Math.floor(request.body.duration / 60) * 100) + (request.body.duration % 60),
     getCurrentDateTimeSQL())
 
   return reply.code(200).send({ statusCode: 200 })
@@ -34,14 +35,18 @@ exports.loadReport = (request, reply) => {
   reply.send(stream).type('application/pdf').code(200)
 }
 
-exports.getForms = (request, reply) => {
-  const formData = Form.fetchAll(this.fastify)
-  return formData
-}
-
-exports.getFormsByUser= (request, reply) => {
+exports.getFormsByUser = async (request, reply) => {
   const { idUser } = request.params
-  const formData = Form.fetchByUser(this.fastify, idUser)
+
+  const userData = await User.getUserRole(this.fastify, idUser)
+  let formData
+
+  if (userData[0].id_role === 1) {
+    formData = Form.fetchByUser(this.fastify, idUser)
+  } else {
+    formData = Form.fetchAll(this.fastify)
+  }
+
   return formData
 }
 

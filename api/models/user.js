@@ -74,6 +74,15 @@ module.exports = class User {
     return rows[0]
   }
 
+  static async getUserRole (fastify, idUser) {
+    const connection = await fastify.mysql.getConnection()
+    const rows = await connection.query(
+      'SELECT id_role FROM users WHERE id_user = ?', [idUser]
+    )
+    connection.release()
+    return rows[0]
+  }
+
   static async getManager (fastify) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
