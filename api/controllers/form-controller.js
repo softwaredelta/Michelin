@@ -7,7 +7,6 @@ const PDFDocument = require('pdfkit')
 const fs = require('fs')
 
 exports.postForm = async (request, reply) => {
-  /*
   // Get selling point data for report section
   const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
   const userData = await User.fetchUserByMail(this.fastify, request.body.mail)
@@ -27,24 +26,7 @@ exports.postForm = async (request, reply) => {
     sellingPointData[0].name,
     request.body.fileName + '.pdf',
     (Math.floor(request.body.duration / 60) * 100) + (request.body.duration % 60),
-    getCurrentDateTimeSQL())  */
-    let encodedImage = request.body.data
-
-      const doc = new PDFDocument({ autoFirstPage: false })
-  doc.pipe(fs.createWriteStream('./uploads/reports/profavor.pdf'))
-
-  doc.addPage({ margin: 15 })
-
-  try {
-    doc.image(Buffer.from(encodedImage, 'base64'), 390, 80, {
-      fit: [170, 150],
-      align: 'center'
-    })
-  } catch (err) {
-    console.log(err)
-  }
-
-  doc.end()
+    getCurrentDateTimeSQL())
   
   return reply.code(200).send({ statusCode: 200 })
 }

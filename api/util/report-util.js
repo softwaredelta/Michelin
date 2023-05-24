@@ -219,11 +219,11 @@ function addDoubleOption (doc, currentRect, question) {
 
   // Add question uploaded image
   try {
-    doc.image('./uploads/temp/' + question.fileName, 390, singleRectPos[currentRect.index] + 5, {
+    let img = Buffer.from(question.file, 'base64')
+    doc.image(img, 390, singleRectPos[currentRect.index] + 5, {
       fit: [170, 150],
       align: 'center'
     })
-    fs.unlinkSync('./uploads/temp/' + question.fileName) // Delete temp image
   } catch (err) {
     console.log(err)
   }
