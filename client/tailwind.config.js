@@ -61,7 +61,11 @@ module.exports = {
           50: '#e3e3e3',
           100: '#c2c0c0'
         }
-      }
+      },
+      
+      fontFamily: {
+        michelin: ["Michelin"],
+      },
     }
   },
   plugins: [Myclass]

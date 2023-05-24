@@ -24,8 +24,6 @@ const GradeChart = ({ percent, zone }) => {
             class='text-gray-300'
             stroke-width='5'
             stroke='currentColor'
-            fill='none'
-            fill-opacity='0.0'
             r='30'
             cx='40'
             cy='40'
@@ -37,8 +35,6 @@ const GradeChart = ({ percent, zone }) => {
             stroke-dashoffset={circumference - (percent / 100) * circumference}
             stroke-linecap='round'
             stroke='currentColor'
-            fill='none'
-            fill-opacity='0.0'
             r='30'
             cx='40'
             cy='40'
