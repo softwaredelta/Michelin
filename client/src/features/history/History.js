@@ -7,7 +7,7 @@ import { useGetFormsByUserQuery } from '../form/formApiSlice'
 const History = () => {
   const { data: forms, isLoading, isSuccess, isError } = useGetFormsByUserQuery({ mail: localStorage.getItem('mail') }) // eslint-disable-line
 
-  const baseReportRoute = 'http://localhost:3080/form/report/'
+  const baseReportRoute = 'https://back2basics.software/api'
 
   let tableContent
   let message
