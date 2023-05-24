@@ -8,13 +8,17 @@ import QuestionList from './features/category/questions/QuestionList'
 import SectionList from './features/category/SectionList'
 import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
-import GradeChart from './components/GradeChart'
+import AnsButtons from './components/AnsButtons'
+import TourQuestion from './components/TourQuestion'
+import ProgressBar from './components/ProgressBar'
 
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route path='prueba' element={<GradeChart />} />
+        <Route path='prueba' element={<AnsButtons />} />
+        <Route path='prueba2' element={<TourQuestion />} />
+        <Route path='progressbar' element={<ProgressBar />} />
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='login' element={<Login />} />
         <Route path='user'>
