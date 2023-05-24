@@ -10,17 +10,19 @@ const History = () => {
         <NavBar />
         <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
           <Header myText='Historial' />
-          <div className='container pt-5 w-full h-screen overflow-y-scroll flex flex-col items-center dark:!bg-blues-400'>
-            <div className='content-center grid grid-cols-3 w-7/12 ml-4 mb-6 py-4 border-b-2 dark:border-blues-200'>
-              <h2 className='font-semibold text-center mr-14 dark:!text-white'>
-                Nombre
-              </h2>
-              <h2 className='font-semibold text-center mr-6 dark:!text-white'>
-                Estado
-              </h2>
-              <h2 className='font-semibold text-center dark:!text-white'>
-                Fecha
-              </h2>
+          <div className='container pt-5 h-screen overflow-y-scroll w-10/12 items-center dark:!bg-blues-400'>
+            <div className='content-start w-full ml-4 mb-6 py-4 border-b-2 dark:border-blues-200'>
+              <div className='flex flex-row w-9/12 justify-between'>
+                <h2 className='font-semibold text-center ml-28 dark:!text-white'>
+                  Nombre
+                </h2>
+                <h2 className='font-semibold text-center  dark:!text-white'>
+                  Estado
+                </h2>
+                <h2 className='font-semibold text-center mr-40 dark:!text-white'>
+                  Fecha
+                </h2>
+              </div>
             </div>
             <div className='h-4/5 overflow-y-scroll'>
               <Report
