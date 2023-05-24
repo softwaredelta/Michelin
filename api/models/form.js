@@ -23,17 +23,25 @@ module.exports = class Form {
     return rows[0]
   }
 
+  static async fetchCount (fastify, idUser) {
+    const connection = await fastify.mysql.getConnection()
+    const rows = await connection.query(
+      'SELECT COUNT(id_form) AS count FROM form'
+    )
+    connection.release()
+    return rows[0]
+  }
+
+  static async fetchCountByUser (fastify, idUser) {
+    const connection = await fastify.mysql.getConnection()
+    const rows = await connection.query(
+      'SELECT COUNT(id_form) AS count FROM form WHERE id_user = ?', [idUser]
+    )
+    connection.release()
+    return rows[0]
+  }
+
   static async createForm (fastify, idCategory, idUser, exteriorGrade, interiorGrade, clientGrade, storeManagerGrade, spName, fileName, duration, date) {
-    /* console.log(idCategory)
-    console.log(idUser)
-    console.log(exteriorGrade)
-    console.log(interiorGrade)
-    console.log(clientGrade)
-    console.log(storeManagerGrade)
-    console.log(spName)
-    console.log(fileName)
-    console.log(duration)
-    console.log(date) */
     const connection = await fastify.mysql.getConnection()
     await connection.query(
       `INSERT INTO form(id_category, id_user, exterior_grade, interior_grade, client_grade, store_manager_grade, sp_name, file_link, duration, date) 

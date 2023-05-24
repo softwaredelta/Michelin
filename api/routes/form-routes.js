@@ -15,7 +15,9 @@ const upload = multer({ storage })
 async function formRoutes (fastify, options) {
   formController.fastify = fastify
 
-  fastify.get('/getByUser/:idUser', formController.getFormsByUser)
+  fastify.get('/getByUser/:mail', formController.getFormsByUser)
+
+  fastify.get('/getCountByUser/:mail', formController.getFormCountByUser)
 
   fastify.post(
     '/postForm',

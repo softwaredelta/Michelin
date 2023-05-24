@@ -21,10 +21,10 @@ module.exports = class User {
     return rows[0]
   }
 
-  static async fetchIdByMail (fastify, mail) {
+  static async fetchUserByMail (fastify, mail) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user FROM users WHERE mail = ?', [mail]
+      'SELECT id_user, id_role FROM users WHERE mail = ?', [mail]
     )
     connection.release()
     return rows[0]
@@ -78,15 +78,6 @@ module.exports = class User {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
       'SELECT id_role, name FROM role'
-    )
-    connection.release()
-    return rows[0]
-  }
-
-  static async getUserRole (fastify, idUser) {
-    const connection = await fastify.mysql.getConnection()
-    const rows = await connection.query(
-      'SELECT id_role FROM users WHERE id_user = ?', [idUser]
     )
     connection.release()
     return rows[0]
