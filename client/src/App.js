@@ -9,7 +9,7 @@ import SectionList from './features/category/SectionList'
 import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
 import AnsButtons from './components/AnsButtons'
-import TourQuestion from './components/TourQuestion'
+import TourCard from './components/TourCard'
 import ProgressBar from './components/ProgressBar'
 
 function App () {
@@ -17,7 +17,7 @@ function App () {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path='prueba' element={<AnsButtons />} />
-        <Route path='prueba2' element={<TourQuestion />} />
+        <Route path='prueba2' element={<TourCard />} />
         <Route path='progressbar' element={<ProgressBar />} />
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='login' element={<Login />} />

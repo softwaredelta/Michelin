@@ -7,8 +7,12 @@ const AnsButtons = () => {
     <>
       <div class='flex flex-col text-center'>
         <div class='flex-row'>
-          <GreenBibendum />
-          <RedBibendum />
+          {/* <div className=""> */}
+            <GreenBibendum />
+          {/* </div> */}
+          {/* <div className=""> */}
+            <RedBibendum />
+          {/* </div> */}
         </div>
         <div class='text-center'>
           <NaButton />
