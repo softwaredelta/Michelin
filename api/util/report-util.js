@@ -224,7 +224,6 @@ function addDoubleOption (doc, currentRect, question) {
       align: 'center'
     })
     fs.unlinkSync('./uploads/temp/' + question.fileName) // Delete temp image
-    
   } catch (err) {
     console.log(err)
   }
