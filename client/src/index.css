@@ -2,9 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Michelin";
+  src: url("../public/font/Michelin-Black.ttf");
+}
+
+/* @font-face {
+  font-family: 'Michelin';
+  src: url('Michelin-SemiBold.ttf');
+  src: local('Michelin SemiBold Regular'), local('Michelin-SemiBold'),
+      url('Michelin-SemiBold.eot?#iefix') format('embedded-opentype'),
+      url('Michelin-SemiBold.woff2') format('woff2'),
+      url('Michelin-SemiBold.woff') format('woff'),
+      url('Michelin-SemiBold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+} */
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Michelin', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
