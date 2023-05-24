@@ -27,7 +27,7 @@ exports.postForm = async (request, reply) => {
     request.body.fileName + '.pdf',
     (Math.floor(request.body.duration / 60) * 100) + (request.body.duration % 60),
     getCurrentDateTimeSQL())
-  
+
   return reply.code(200).send({ statusCode: 200 })
 }
 
