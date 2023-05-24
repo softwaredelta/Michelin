@@ -9,7 +9,7 @@ const NavBar = () => {
     <>
       <div className='mb-5'>
         <Navbar className='border-b-2 fixed top-0 z-30 w-full dark:!bg-blues-400' fluid rounded={false}>
-          <NavbarBrand className='px-4' href=''>
+          <NavbarBrand className='px-4' href='/'>
             <img
               style={({ width: '100px' }, { height: '60px' })}
               src='https://logos-download.com/wp-content/uploads/2016/03/Michelin_brand_Logo_2017.png'
