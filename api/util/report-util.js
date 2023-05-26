@@ -219,7 +219,7 @@ function addDoubleOption (doc, currentRect, question) {
 
   // Add question uploaded image
   try {
-    doc.image('./uploads/temp/' + question.fileName, 390, singleRectPos[currentRect.index] + 5, {
+    doc.image('./uploads/temp/' + question.file, 390, singleRectPos[currentRect.index] + 5, {
       fit: [170, 150],
       align: 'center'
     })

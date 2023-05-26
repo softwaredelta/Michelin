@@ -13,8 +13,8 @@ export const formApiSlice = appSlice.injectEndpoints({
   endpoints: builder => ({
     getFormsByUser: builder.query({
       query: (args) => {
-        const { idUser } = args
-        return `/form/getByUser/${idUser}`
+        const { mail } = args
+        return `/form/getByUser/${mail}`
       },
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError
@@ -34,16 +34,28 @@ export const formApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'Form', id: 'LIST' }]
       }
+    }),
+    getFormCountByUser: builder.query({
+      query: (args) => {
+        const { mail } = args
+        return `/form/getCountByUser/${mail}`
+      },
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: responseData => {
+        return responseData[0].count
+      }
     })
   })
 })
 
 export const {
-  useGetFormQuery,
-  useAddNewFormMutation
+  useGetFormsByUserQuery,
+  useGetFormCountByUserQuery
 } = formApiSlice
 
-export const selectFormResult = formApiSlice.endpoints.getForm.select()
+export const selectFormResult = formApiSlice.endpoints.getFormsByUser.select()
 
 const selectFormData = createSelector(
   selectFormResult,
