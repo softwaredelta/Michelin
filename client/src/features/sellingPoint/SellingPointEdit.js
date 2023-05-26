@@ -173,7 +173,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
               </div>
               <div className='flex flex-col w-3/4'>
                 <Select
-                  className='mb-3 border-2 rounded-md'
+                  className='mb-3 rounded-md'
                   id='select_zone'
                   name='select_zone'
                   {...register('select_zone')}
@@ -186,7 +186,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   {myState}
                 </Select>
                 <Select
-                  className='mb-3 border-2 rounded-md'
+                  className='mb-3 rounded-md'
                   id='select_type'
                   name='select_type'
                   {...register('select_type')}
@@ -196,7 +196,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   {myCategory}
                 </Select>
                 <textarea
-                  className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white'
+                  className='border-2 rounded-md my-2 pl-2 resize-none dark:bg-transparent dark:text-white'
                   id='address'
                   {...register('address')}
                   defaultValue={sp.address}
@@ -204,7 +204,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   maxLength={255}
                 />
                 <input
-                  className='border-2 rounded-md my-2 dark:bg-transparent dark:text-white'
+                  className='border-2 rounded-md my-2 pl-2 dark:bg-transparent dark:text-white'
                   id='phone'
                   {...register('phone')}
                   defaultValue={sp.phone}
@@ -215,7 +215,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
               </div>
             </div>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter className='justify-end'>
             <button
               className='bg-blues-200 text-white py-2 px-4 rounded-md'
               type='submit'
