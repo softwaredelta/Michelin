@@ -2,8 +2,64 @@ import Report from '../features/history/Report'
 import Header from './Header'
 import ModifiedFooter from './ModifiedFooter'
 import NavBar from './NavBar'
+import { useGetFormsByUserQuery, useGetFormCountByUserQuery } from '../features/form/formApiSlice'
 
 const Public = () => {
+  const { data: forms, isLoading, isSuccess, isError } = useGetFormsByUserQuery({ mail: localStorage.getItem('mail') }) // eslint-disable-line
+  const {
+    data: count,
+    isSuccess: isSuccesCount
+  } = useGetFormCountByUserQuery({ mail: localStorage.getItem('mail') }) // eslint-disable-line
+
+  const baseReportRoute = 'http://localhost:3080/form/report/'
+
+  let tableContent
+  let message
+  let countContent = 0
+
+  if (isLoading) message = <p>Loading...</p>
+
+  if (isError) {
+    message = (
+      <p className='text-3xl font-semibold dark:!text-white'>
+        No hay conexion con la base de datos
+      </p>
+    )
+  }
+
+  if (isSuccess) {
+    const { ids, entities } = forms
+    if (ids.length === 0) {
+      message = (
+        <p className='text-3xl font-semibold dark:!text-white'>
+          No hay recorridos registrados
+        </p>
+      )
+    }
+
+    if (isSuccesCount) {
+      countContent = count
+    }
+
+    tableContent = ids?.length
+      ? ids.map((idForm) =>
+        <Report
+          key={idForm}
+          spName={entities[idForm].sp_name}
+          spZone={entities[idForm].zone}
+          repDate={`${(entities[idForm].date).substring(8, 10)}/${(entities[idForm].date).substring(5, 7)}/${(entities[idForm].date).substring(0, 4)}`}
+          userName={`${entities[idForm].user_name} ${entities[idForm].user_last_name}`}
+          repTime={`${(entities[idForm].duration).substring(3, 5)} minutos`}
+          repLink={baseReportRoute + entities[idForm].file_link}
+          intPercentage={entities[idForm].interior_grade}
+          extPercentage={entities[idForm].exterior_grade}
+          clientPercentage={entities[idForm].client_grade}
+          managerPercentage={entities[idForm].store_manager_grade}
+        />
+      )
+      : null
+  }
+
   const content = (
     <>
       <div>
@@ -45,7 +101,7 @@ const Public = () => {
                     stroke-width='6px'
                     dy='.3em'
                   >
-                    1
+                    {countContent}
                   </text>
                 </svg>
               </div>
@@ -67,42 +123,8 @@ const Public = () => {
               </div>
             </div>
             <div className='h-96 w-10/12 self-center overflow-y-scroll m-auto'>
-              <Report
-                spName='PDV Juriquilla'
-                spZone='Querétaro'
-                repDate='22/05/2023'
-                userName='example'
-                repTime='13 minutos'
-                repLink='https://fotografias.flooxernow.com/clipping/cmsimages02/2022/07/13/404F0395-B90B-459E-BF14-5E9D64CAA45F/gato-boy-gatito-bandit_69.jpg?crop=1280,720,x0,y0&width=1280&height=720&optimize=high&format=webply'
-                intPercentage={22}
-                extPercentage={12}
-                clientPercentage={36}
-                managerPercentage={67}
-              />
-              <Report
-                spName='PDV Juriquilla'
-                spZone='Querétaro'
-                repDate='22/05/2023'
-                userName='example'
-                repTime='13 minutos'
-                repLink='https://fotografias.flooxernow.com/clipping/cmsimages02/2022/07/13/404F0395-B90B-459E-BF14-5E9D64CAA45F/gato-boy-gatito-bandit_69.jpg?crop=1280,720,x0,y0&width=1280&height=720&optimize=high&format=webply'
-                intPercentage={22}
-                extPercentage={12}
-                clientPercentage={36}
-                managerPercentage={67}
-              />
-              <Report
-                spName='PDV Juriquilla'
-                spZone='Querétaro'
-                repDate='22/05/2023'
-                userName='example'
-                repTime='13 minutos'
-                repLink='https://fotografias.flooxernow.com/clipping/cmsimages02/2022/07/13/404F0395-B90B-459E-BF14-5E9D64CAA45F/gato-boy-gatito-bandit_69.jpg?crop=1280,720,x0,y0&width=1280&height=720&optimize=high&format=webply'
-                intPercentage={22}
-                extPercentage={12}
-                clientPercentage={36}
-                managerPercentage={67}
-              />
+              {tableContent}
+              {message}
             </div>
           </div>
           <ModifiedFooter />
