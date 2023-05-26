@@ -13,8 +13,8 @@ import ManagerRoute from './utils/ManagerRoute'
 function App () {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="home">
+      <Route path='/' element={<Layout />}>
+        <Route path='home'>
           <Route
             index
             element={
@@ -23,61 +23,61 @@ function App () {
             }
           />
         </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="user">
+        <Route path='login' element={<Login />} />
+        <Route path='user'>
           <Route index element={<UsersList />} />
         </Route>
-        <Route path="question">
+        <Route path='question'>
           <Route
             index
             element={
               <ProtectedRoute>
-                {" "}
+                {' '}
                 <ManagerRoute>
-                  {" "}
-                  <SectionList />{" "}
-                </ManagerRoute>{" "}
+                  {' '}
+                  <SectionList />{' '}
+                </ManagerRoute>{' '}
               </ProtectedRoute>
             }
           />
           <Route
-            path="edit/:category/:section"
+            path='edit/:category/:section'
             element={
               <ProtectedRoute>
-                {" "}
+                {' '}
                 <ManagerRoute>
-                  {" "}
-                  <QuestionList />{" "}
+                  {' '}
+                  <QuestionList />{' '}
                 </ManagerRoute>
               </ProtectedRoute>
             }
           />
         </Route>
-        <Route path="sellingPoint">
+        <Route path='sellingPoint'>
           <Route
             index
             element={
               <ProtectedRoute>
-                {" "}
-                <SellingPointList />{" "}
+                {' '}
+                <SellingPointList />{' '}
               </ProtectedRoute>
             }
           />
         </Route>
-        <Route path="history">
+        <Route path='history'>
           <Route
             index
             element={
               <ProtectedRoute>
-                {" "}
-                <History />{" "}
+                {' '}
+                <History />{' '}
               </ProtectedRoute>
             }
           />
         </Route>
       </Route>
     </Routes>
-  );
+  )
 }
 
 export default App
