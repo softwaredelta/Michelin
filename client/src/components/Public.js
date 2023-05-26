@@ -2,43 +2,54 @@ import Report from '../features/history/Report'
 import Header from './Header'
 import ModifiedFooter from './ModifiedFooter'
 import NavBar from './NavBar'
+import { Button } from 'flowbite-react'
 
 const Public = () => {
+  const name = 'Michelin'
+
   const content = (
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center'>
+        <div className='w-full h-screen flex flex-col items-center'>
           <div className='container flex flex-wrap justify-items-stretch' />
-          <div className='self-start ml-7 my-2 mb-5'>
-            <h2 className='text-3xl font-miche font-extrabold underline text-blues-200'>
-              ¡Bienvenido example!
-            </h2>
-          </div>
-          <div className='w-full h-56 flex justify-center rounded'>
+
+          <div className='relative w-full h-96 !bg-zinc-800 mt-6'>
             <img
-              className='object-none object-left w-5/12 h-auto rounded-lg'
+              className='object-cover object-left w-full h-96 overflow-hidden opacity-50'
               src='/images/vehiculo_login.jpg'
               alt='imagen de vehículo'
             />
-            <div className='bg-blues-300 w-3/12 rounded-lg'>
-              <div className='text-center text-white font-semibold pt-10 text-xl'>
-                Número de recorridos realizados
+
+            <div className='absolute self-start text-2xl text-blue-300 bottom-48 left-10 z-20'>
+              <h2 className='text-3xl font-michelin underline text-white mt-2 shadow-xl'>
+                ¡Bienvenido {name}!
+              </h2>
+              <div className='justify-self-end'>
+                <Button className='mt-4 px-5 text-3xl shadow-xl !bg-trademark-50 !text-blues-200 !font-bold !rounded-full hover:!bg-yellow-500 dark:!bg-blues-300 dark:!text-trademark-50 dark:hover:!bg-blue-950 dark:hover:!text-yellow-500'>
+                  Iniciar Recorrido
+                </Button>
+              </div>
+            </div>
+
+            <div className='absolute mr-24 self-center bottom-20 right-11 z-20 rounded-xl border-2 px-5'>
+              <div className='text-center text-white font-semibold pt-5 text-xl'>
+                Número de Recorridos Realizados
               </div>
               <div class='flex items-center justify-center m-auto'>
-                <svg class='w-52 h-52' fill='none' fill-opacity='0.0'>
+                <svg class='w-auto h-auto' fill='none' fill-opacity='0.0'>
                   <circle
                     class='text-white'
                     stroke-width='5'
                     stroke='currentColor'
                     r='50'
-                    cx='100'
-                    cy='75'
+                    cx='50%'
+                    cy='50%'
                   />
                   <text
                     class='text-3xl text-white'
-                    x='48%'
-                    y='37%'
+                    x='50%'
+                    y='50%'
                     text-anchor='middle'
                     fillOpacity={1.0}
                     fill='currentColor'
@@ -51,17 +62,18 @@ const Public = () => {
               </div>
             </div>
           </div>
+
           <div className='self-start w-full mt-8'>
             <Header myText='Historial' />
-            <div className='content-start w-9/12 ml-4 mb-6 py-4 border-b-2 dark:border-blues-200'>
+            <div className='self-center m-auto w-9/12 mb-6 py-4 border-b-2 dark:border-blues-200'>
               <div className='flex flex-row w-9/12 justify-between'>
-                <h2 className='font-semibold text-center ml-28 dark:!text-white'>
+                <h2 className='font-semibold ml-14 small:text-sm md:text-base dark:!text-blues-200'>
                   Nombre
                 </h2>
-                <h2 className='font-semibold text-center  dark:!text-white'>
+                <h2 className='font-semibold md:mr-1 small:text-sm small:mr-3 md:text-base md:m-0 dark:!text-blues-200'>
                   Estado
                 </h2>
-                <h2 className='font-semibold text-center mr-40 dark:!text-white'>
+                <h2 className='font-semibold lg:mr-24 small:text-sm small:-mr-1 md:text-base md:-mr-12 dark:!text-blues-200'>
                   Fecha
                 </h2>
               </div>

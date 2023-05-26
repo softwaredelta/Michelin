@@ -16,7 +16,7 @@ const ReportOverview = ({
       <AccordionContent className='h-40 dark:!bg-slate-700'>
         <form>
           <div className='flex w-full justify-between mr-80'>
-            <div className='flex flex-row justify-between w-11/12'>
+            <div className='flex flex-row justify-between lg:w-11/12'>
               <div className='flex flex-col mx-5'>
                 <div className='flex flex-row my-2 dark:!text-white'>
                   <p className='font-semibold mr-2'> TBM Asignado:</p>
