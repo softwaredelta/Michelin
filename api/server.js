@@ -1,6 +1,7 @@
 
 const server = require('./app')({
-  logger: true
+  logger: true,
+  bodyLimit: 30 * 1024 * 1024
 },
 false
 )

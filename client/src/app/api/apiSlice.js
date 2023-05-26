@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const appSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://back2basics.software/api/',
+    baseUrl: 'http://localhost:3080/',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token') // eslint-disable-line
       if (token) {
