@@ -11,7 +11,6 @@ import {
 const Public = () => {
   const name = "Michelin";
 
-  const Public = () => {
     const {
       data: forms,
       isLoading,
@@ -155,5 +154,5 @@ const Public = () => {
     );
     return content;
   };
-};
+
 export default Public;

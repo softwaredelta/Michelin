@@ -83,51 +83,51 @@ const QuestionList = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400 overflow-y-scroll'>
-          <Header myText='Preguntas' />
-          <div className='flex flex-row w-full justify-between my-2 py-4'>
-            <div className='flex flex-col'>
+        <div className="pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400">
+          <Header myText="Preguntas" />
+          <div className="flex flex-row w-full justify-between my-2 py-4">
+            <div className="flex flex-col">
               <div
-                onClick={() => navigate('/question')}
-                className='flex flex-row items-center text-md font-semibold text-blues-200 cursor-pointer ml-5 hover:text-gray-500 dark:text-white dark:hover:text-trademark-50'
+                onClick={() => navigate("/question")}
+                className="flex flex-row items-center text-md font-semibold text-blues-200 cursor-pointer ml-5 hover:text-gray-500 dark:text-white dark:hover:text-trademark-50"
               >
-                <MdArrowBackIosNew size={17} className='mr-1' /> Regresar
+                <MdArrowBackIosNew size={17} className="mr-1" /> Regresar
               </div>
             </div>
-            <div className='flex flex-col mr-5'>
-              <Bluebutton myText='+ Nueva Pregunta' method={handleSetShow} />
+            <div className="flex flex-col mr-5">
+              <Bluebutton myText="+ Nueva Pregunta" method={handleSetShow} />
             </div>
           </div>
-          <div className='container justify-items-stretch w-max-full h-3/5 overflow-y-scroll border'>
-            <Table className='table-full'>
+          <div className="container justify-items-stretch w-max-full h-3/5 overflow-y-scroll border">
+            <Table className="table-full">
               <TableHead>
-                <TableHeadCell className='text-center'>Orden</TableHeadCell>
-                <TableHeadCell className='text-center'>Área</TableHeadCell>
-                <TableHeadCell className='text-center'>Pregunta</TableHeadCell>
-                <TableHeadCell className='text-center'>
+                <TableHeadCell className="text-center">Orden</TableHeadCell>
+                <TableHeadCell className="text-center">Área</TableHeadCell>
+                <TableHeadCell className="text-center">Pregunta</TableHeadCell>
+                <TableHeadCell className="text-center">
                   Evidencia con cámara
                 </TableHeadCell>
-                <TableHeadCell className='text-center'>
+                <TableHeadCell className="text-center">
                   Botón no aplica
                 </TableHeadCell>
                 <TableHeadCell />
               </TableHead>
-              <TableBody className='h-3/5'>{questions}</TableBody>
+              <TableBody className="h-3/5">{questions}</TableBody>
             </Table>
           </div>
-          <div className='justify-end my-8'>
-            <div className='flex flex-row'>
+          <div className="justify-end my-8">
+            <div className="flex flex-row">
               <Button
-                className='!bg-gray-500 mr-3 hover:!bg-gray-700 dark:hover:!bg-gray-500 dark:hover:!text-trademark-50 font-semibold'
-                onClick={() => navigate('/question')}
+                className="!bg-gray-500 mr-3 hover:!bg-gray-700 dark:hover:!bg-gray-500 dark:hover:!text-trademark-50 font-semibold"
+                onClick={() => navigate("/question")}
               >
-                <MdOutlineCancel className='mr-2' /> Cancelar
+                <MdOutlineCancel className="mr-2" /> Cancelar
               </Button>
               <Button
-                className='!bg-blues-200 hover:!bg-blue-900 dark:hover:!text-trademark-50 dark:hover:!bg-blues-200 font-semibold'
+                className="!bg-blues-200 hover:!bg-blue-900 dark:hover:!text-trademark-50 dark:hover:!bg-blues-200 font-semibold"
                 onClick={handleEdit}
               >
-                <RiSaveFill className='mr-2' /> Guardar Cambios
+                <RiSaveFill className="mr-2" /> Guardar Cambios
               </Button>
             </div>
           </div>
@@ -141,7 +141,7 @@ const QuestionList = () => {
         myCategory={category}
       />
     </>
-  )
+  );
   return content
 }
 

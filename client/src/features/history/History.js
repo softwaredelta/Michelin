@@ -57,7 +57,7 @@ const History = () => {
         <NavBar />
         <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
           <Header myText='Historial' />
-          <div className='container pt-5 h-screen overflow-y-scroll w-10/12 items-center dark:!bg-blues-400'>
+          <div className='container pt-5 h-screen overflow-y-hidden w-10/12 items-center dark:!bg-blues-400'>
             <div className='content-start w-full ml-0 mb-6 py-4 border-b-2 dark:border-blues-200'>
               <div className='flex flex-row w-9/12 justify-between'>
                 <h2 className='font-semibold text-center ml-28 dark:!text-white'>

@@ -27,7 +27,7 @@ const ReportOverview = ({
                   <p className='font-medium'> {time} </p>
                 </div>
                 <a href={repLink} target='_blank' rel='noreferrer'>
-                  <div className='flex flex-row w-5/6 my-2 font-semibold dark:!text-white border-b border-black dark:!border-white cursor-pointer'>
+                  <div className='flex flex-row w-4/6 my-2 font-semibold dark:!text-white border-b border-black dark:!border-white cursor-pointer'>
                     Ver Reporte PDF
                     <AiFillFilePdf className='ml-2 my-1' />
                   </div>
@@ -43,7 +43,7 @@ const ReportOverview = ({
                 <GradeChart percent={clientPercentage} zone='Cliente' />
               </div>
               <div className='flex flex-col'>
-                <GradeChart percent={managerPercentage} zone='Manager' />
+                <GradeChart percent={managerPercentage} zone='Gerente' />
               </div>
             </div>
           </div>

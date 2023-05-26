@@ -36,7 +36,7 @@ const NavBar = () => {
     <>
       <div className='mb-5'>
         <Navbar className='border-b-2 fixed top-0 z-30 w-full dark:!bg-blues-400' fluid rounded={false}>
-          <NavbarBrand className='px-4' href='/'>
+          <NavbarBrand className='px-4' href='/home'>
             <img
               style={({ width: '100px' }, { height: '60px' })}
               src='/images/Michelin-Logo.png'
