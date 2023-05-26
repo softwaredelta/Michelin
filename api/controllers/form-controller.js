@@ -17,7 +17,7 @@ exports.postForm = async (request, reply) => {
   await ReportUtil.generateReport(doc, request.body, sellingPointData)
 
   await Form.createForm(this.fastify,
-    request.body.idCategory,
+    sellingPointData[0].id_category,
     userData[0].id_user,
     request.body.exteriorGrade,
     request.body.interiorGrade,
