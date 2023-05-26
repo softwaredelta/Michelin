@@ -51,7 +51,7 @@ async function createDB (fastify) {
     `
     CREATE TABLE category(
     id_category INT(3) AUTO_INCREMENT,
-    name VARCHAR(8) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id_category)
     );
     `
