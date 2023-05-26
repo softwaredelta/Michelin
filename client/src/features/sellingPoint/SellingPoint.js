@@ -15,12 +15,12 @@ const SellingPoint = ({ spId }) => {
   const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
 
   const sp = useSelector((state) => selectSPById(state, spId))
-  
+
   const [showEdit, setShowEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
 
   const [flip, setFlip] = useState(false)
-  const img = '/images/'+sp.category+'.jpg'
+  const img = '/images/' + sp.category + '.jpg'
 
   const [DeleteSP] = useDeleteSPMutation()
 
