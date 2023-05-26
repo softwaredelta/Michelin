@@ -41,6 +41,7 @@ export const usersApiSlice = appSlice.injectEndpoints({
       transformResponse: responseData => {
         localStorage.setItem('token', responseData.token) // eslint-disable-line
         localStorage.setItem('mail', responseData.mail) // eslint-disable-line
+        localStorage.setItem('role', responseData.role) // eslint-disable-line
         return true
       },
       invalidatesTags: [

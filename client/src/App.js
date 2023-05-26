@@ -8,21 +8,20 @@ import QuestionList from './features/category/questions/QuestionList'
 import SectionList from './features/category/SectionList'
 import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
-import GradeChart from './components/GradeChart'
-
+import ManagerRoute from './utils/ManagerRoute'
+// AdminRoute in UsersList
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route path='prueba' element={<GradeChart />} />
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='login' element={<Login />} />
         <Route path='user'>
           <Route index element={<UsersList />} />
         </Route>
         <Route path='question'>
-          <Route index element={<ProtectedRoute> <SectionList /> </ProtectedRoute>} />
-          <Route path='edit/:category/:section' element={<ProtectedRoute> <QuestionList /> </ProtectedRoute>} />
+          <Route index element={<ProtectedRoute> <ManagerRoute> <SectionList /> </ManagerRoute> </ProtectedRoute>} />
+          <Route path='edit/:category/:section' element={<ProtectedRoute> <ManagerRoute> <QuestionList /> </ManagerRoute></ProtectedRoute>} />
         </Route>
         <Route path='sellingPoint'>
           <Route index element={<ProtectedRoute> <SellingPointList /> </ProtectedRoute>} />
