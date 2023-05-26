@@ -87,7 +87,7 @@ const Public = () => {
 
             <div className='absolute self-start text-2xl text-blue-300 bottom-48 left-10 z-20'>
               <h2 className='text-3xl font-michelin underline text-white mt-2 shadow-xl'>
-                ¡Bienvenido {name}!
+                ¡¡Bienvenido {name}!!
               </h2>
               <div className='justify-self-end'>
                 <Button className='mt-4 px-5 text-3xl shadow-xl !bg-trademark-50 !text-blues-200 !font-bold !rounded-full hover:!bg-yellow-500 dark:!bg-blues-300 dark:!text-trademark-50 dark:hover:!bg-blue-950 dark:hover:!text-yellow-500'>
