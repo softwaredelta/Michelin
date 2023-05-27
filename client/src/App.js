@@ -9,11 +9,16 @@ import SectionList from './features/category/SectionList'
 import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
 import ManagerRoute from './utils/ManagerRoute'
+import FormStart from './features/form/FormStart'
+import SPCard from './components/SPCard'
+import SPAcordion from './components/SPAcordion'
+
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
+      <Route path='prueba' element={<SPCard spId={1} />} />
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='login' element={<Login />} />
         <Route path='user'>
@@ -28,6 +33,9 @@ function App () {
         </Route>
         <Route path='history'>
           <Route index element={<ProtectedRoute> <History /> </ProtectedRoute>} />
+        </Route>
+        <Route path='form'>
+          <Route index element={<ProtectedRoute> <FormStart /> </ProtectedRoute>} />
         </Route>
       </Route>
     </Routes>

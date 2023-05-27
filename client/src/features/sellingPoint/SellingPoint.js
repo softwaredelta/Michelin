@@ -10,6 +10,8 @@ import ConfirmationModal from '../../components/ConfirmationModal'
 import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
 import SellingPointEdit from './SellingPointEdit'
 import Toast from '../../components/Toast'
+import SPCard from '../../components/SPCard'
+import SPAcordion from '../../components/SPAcordion'
 
 const SellingPoint = ({ spId }) => {
   const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
@@ -19,8 +21,8 @@ const SellingPoint = ({ spId }) => {
   const [showEdit, setShowEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
 
-  const [flip, setFlip] = useState(false)
-  const img = '/images/' + sp.category + '.jpg'
+  // const [flip, setFlip] = useState(false)
+  // const img = '/images/' + sp.category + '.jpg'
 
   const [DeleteSP] = useDeleteSPMutation()
 
@@ -35,9 +37,9 @@ const SellingPoint = ({ spId }) => {
     })
   }
 
-  const handleSetFlip = () => {
-    setFlip(!flip)
-  }
+  // const handleSetFlip = () => {
+  //   setFlip(!flip)
+  // }
 
   const handleSetShowEdit = () => {
     setShowEdit(true)
@@ -57,7 +59,7 @@ const SellingPoint = ({ spId }) => {
 
   const content = (
     <div className='w-72 h-72 my-4 mx-6 flex flex-col'>
-      <ReactCardFlip
+      {/* <ReactCardFlip
         isFlipped={flip}
         flipDirection='horizontal'
         className='min-w-full min-h-full !rounded-xl'
@@ -155,7 +157,9 @@ const SellingPoint = ({ spId }) => {
             </div>
           </div>
         </Card>
-      </ReactCardFlip>
+      </ReactCardFlip> */}
+      <SPAcordion spId={spId}/>
+      <SPCard spId={spId} />
       <ConfirmationModal
         show={showDelete}
         onClose={handleCloseDelete}
