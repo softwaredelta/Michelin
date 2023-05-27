@@ -3,7 +3,7 @@ import { useState } from "react"
 const GreenBibendum = ({section, area, index}) => {
   let Form = CurrentForm.getInstance()
   const [disable,setDisable] = useState(false)
-  const onClickAnswer = e => {
+  const onClickAnswer =() => {
     setDisable(true)
     Form.setAnswer(section, area, index, 1)
   }
