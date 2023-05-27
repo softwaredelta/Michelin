@@ -142,7 +142,7 @@ export default class CurrentForm {
 
     this.questions[currentSection][area][question].answer = newAnswer
 
-    if (newAnswer !== 4 || newAnswer !== 2) {
+    if (newAnswer !== 4 && newAnswer !== 2) {
       this.questions[currentSection][area][question].fileName = ''
       this.questions[currentSection][area][question].file = null
     }

@@ -11,21 +11,17 @@ const AreaAccordion = ({section, area, index}) => {
     let listContent
 
     const questions = Form.getQuestionsByArea(section,index)
-    console.log(questions)
     listContent = questions?.length
     ? questions.map((question, id) =>(
         <TourQuestion key={question.idQuestion} question = {question} area ={index} section={section} index={id} />
     ))
     : <p className="dark:text-white italic text-2xl text-center"> No hay preguntas en esta área</p>
-    let disable = false
-    const myFunction = () =>{
-        disable = true
-    }
+    
     const content =(
-        <Accordion collapseAll alwaysOpen onClose={myFunction}>
+        <Accordion collapseAll alwaysOpen>
             <AccordionPanel>
                 <AccordionTitle>
-                    <AreaTitle number={index} title={area.areaTitle}/>
+                    <AreaTitle number={index} title={area.areaTitle} questions={questions.length}/>
                 </AccordionTitle>
                 <AccordionContent>
                     {listContent}
