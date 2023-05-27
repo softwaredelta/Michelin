@@ -127,7 +127,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                 />
                 <div className='flex flex-row'>
                   <Tooltip
-                    content='Donde aparecerá la pregunta dentro de la aplicación '
+                    content='Dónde aparecerá la pregunta dentro de la aplicación '
                     trigger='hover'
                     className='dark:!bg-white dark:!text-black'
                   >
@@ -145,7 +145,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                   required
                   className='rounded-md my-2'
                 >
-                  <option value='' selected> -- Selecciona una opción --</option>
+                  <option value='' selected> Selecciona una opción </option>
                   {area}
                 </Select>
                 <Label
