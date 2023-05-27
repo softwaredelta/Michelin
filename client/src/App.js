@@ -17,12 +17,12 @@ function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-      <Route path='prueba'>
-        <Route index element={<Preview/>}></Route>
-        <Route path='preparacion' element={<Preparation/>} />
-        <Route path='exterior' element={<Exterior/>} />
-        
-      </Route>
+        <Route path='prueba'>
+          <Route index element={<Preview />} />
+          <Route path='preparacion' element={<Preparation />} />
+          <Route path='exterior' element={<Exterior />} />
+
+        </Route>
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='login' element={<Login />} />
         <Route path='user'>

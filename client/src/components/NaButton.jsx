@@ -1,12 +1,10 @@
-import { useState } from "react"
-import CurrentForm from "../services/CurrentForm"
+import CurrentForm from '../services/CurrentForm'
 
-const NaButton = ({section, area, index, buttonNa}) => {
+const NaButton = ({ section, area, index, buttonNa }) => {
+  const Form = CurrentForm.getInstance()
+  const disable = false
 
-  let Form = CurrentForm.getInstance()
-  let disable = false
-
-  const myFunction =() =>{
+  const myFunction = () => {
     Form.setAnswer(section, area, index, 3)
     console.log(Form.questions)
   }

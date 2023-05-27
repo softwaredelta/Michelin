@@ -1,9 +1,8 @@
-import CurrentForm from "../services/CurrentForm"
-import { useState } from "react"
-const GreenBibendum = ({section, area, index}) => {
-  let Form = CurrentForm.getInstance()
-  let disable = false
-  const myFunction =() =>{
+import CurrentForm from '../services/CurrentForm'
+const GreenBibendum = ({ section, area, index }) => {
+  const Form = CurrentForm.getInstance()
+  const disable = false
+  const myFunction = () => {
     Form.setAnswer(section, area, index, 1)
     console.log(Form.questions)
   }

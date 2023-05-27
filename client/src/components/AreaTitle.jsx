@@ -1,4 +1,4 @@
-const AreaTitle = ({number, title, questions}) => {
+const AreaTitle = ({ number, title, questions }) => {
   const content = (
     <>
       <div class='flex flex-row justify-center'>
@@ -11,7 +11,7 @@ const AreaTitle = ({number, title, questions}) => {
         <div class='col my-2 justify-center'>
           <h1 className='text-blues-200 text-3xl text-center ml-10'> 0/{questions} </h1>
         </div>
-        
+
       </div>
     </>
   )
