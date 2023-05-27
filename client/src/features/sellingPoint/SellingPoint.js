@@ -11,7 +11,6 @@ import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
 import SellingPointEdit from './SellingPointEdit'
 import Toast from '../../components/Toast'
 import SPCard from '../../components/SPCard'
-import SPAcordion from '../../components/SPAcordion'
 
 const SellingPoint = ({ spId }) => {
   const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
@@ -158,7 +157,6 @@ const SellingPoint = ({ spId }) => {
           </div>
         </Card>
       </ReactCardFlip> */}
-      <SPAcordion spId={spId}/>
       <SPCard spId={spId} />
       <ConfirmationModal
         show={showDelete}
