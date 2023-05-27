@@ -9,11 +9,17 @@ import SectionList from './features/category/SectionList'
 import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
 import ManagerRoute from './utils/ManagerRoute'
+import Preparation from './features/form/tour/Preparation'
+import Preview from './features/form/tour/Preview'
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
+      <Route path='prueba'>
+        <Route index element={<Preview/>}></Route>
+        <Route path='preparacion' element={<Preparation/>} />
+      </Route>
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='login' element={<Login />} />
         <Route path='user'>
