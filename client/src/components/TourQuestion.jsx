@@ -1,24 +1,15 @@
-import { Accordion } from 'flowbite-react'
-import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle'
-import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel'
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent'
-import AreaTitle from './AreaTitle'
 import AnsButtons from './AnsButtons'
+import CurrentForm from '../services/CurrentForm'
 
-const TourQuestion = () => {
+const TourQuestion = ({question, area, section, index}) => {
+  
   const content = (
     <>
-      <Accordion collapseAll alwaysOpen>
-        <AccordionPanel>
-          <AccordionTitle>
-            <AreaTitle />
-          </AccordionTitle>
           <AccordionContent className='text-center'>
-            <p className='dark:text-white italic text-2xl text-center'> Pregunta muy larga que aqui iría jijijajaj mucho texto vamos a cambiarle el tamaño </p>
-            <AnsButtons />
+            <p className='dark:text-white italic text-2xl text-center'> {question.questionText}</p>
+            <AnsButtons question={question} area={area} section={section} index={index} />
           </AccordionContent>
-        </AccordionPanel>
-      </Accordion>
     </>
   )
   return content

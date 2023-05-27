@@ -1,17 +1,24 @@
 import GreenBibendum from './GreenBibendum'
 import RedBibendum from './RedBibendum'
 import NaButton from './NaButton'
+import CurrentForm from '../services/CurrentForm'
 
-const AnsButtons = () => {
+const AnsButtons = ({question, area, section, index}) => {
+
+  let Form = CurrentForm.getInstance()
+  let camera = question.camera
+  let buttonNa = question.buttonNa
+
+
   const content = (
     <>
       <div class='flex flex-col text-center'>
         <div class='flex-row'>
-          <GreenBibendum />
-          <RedBibendum />
+          <GreenBibendum  section={section} area={area} index={index}/>
+          <RedBibendum  section={section} area={area} index={index} camera={camera}/>
         </div>
         <div class='text-center'>
-          <NaButton />
+          <NaButton section={section} area={area} index={index} buttonNa={buttonNa}/>
         </div>
       </div>
     </>
