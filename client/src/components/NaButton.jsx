@@ -4,15 +4,16 @@ import CurrentForm from "../services/CurrentForm"
 const NaButton = ({section, area, index, buttonNa}) => {
 
   let Form = CurrentForm.getInstance()
-  const [disable,setDisable] = useState(false)
-  const onClickAnswer = e => {
-  setDisable(true)
-  Form.setAnswer(section, area, index, 3)
-  console.log(Form.questions["preparation"][area][index].answer)
+  let disable = false
+
+  const myFunction =() =>{
+    Form.setAnswer(section, area, index, 3)
+    console.log(Form.questions)
   }
+
   const content = (
     <>
-      <button className='scale-50' disabled={disable}><img src='/images/naButton.png' onClick={onClickAnswer()} /></button>
+      <button className='scale-50 hover:opacity-40' disabled={disable} onClick={myFunction}><img src='/images/naButton.png' /></button>
     </>
   )
   return content

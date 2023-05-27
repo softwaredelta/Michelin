@@ -11,6 +11,7 @@ import ProtectedRoute from './utils/ProtectedRoute'
 import ManagerRoute from './utils/ManagerRoute'
 import Preparation from './features/form/tour/Preparation'
 import Preview from './features/form/tour/Preview'
+import Exterior from './features/form/tour/Exterior'
 // AdminRoute in UsersList
 function App () {
   return (
@@ -19,6 +20,8 @@ function App () {
       <Route path='prueba'>
         <Route index element={<Preview/>}></Route>
         <Route path='preparacion' element={<Preparation/>} />
+        <Route path='exterior' element={<Exterior/>} />
+        
       </Route>
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='login' element={<Login />} />

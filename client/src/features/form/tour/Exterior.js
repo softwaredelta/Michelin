@@ -2,14 +2,14 @@ import CurrentForm from "../../../services/CurrentForm"
 import ProgressBar from "../../../components/ProgressBar"
 import AreaAccordion from "../../../components/AreaAccordion"
 
-const Preparation = () => {
+const Exterior = () => {
 let Form = CurrentForm.getInstance()
-const areas = Form.getAreasBySection(1)
+const areas = Form.getAreasBySection(2)
 let listContent
   
     listContent = areas?.length
      ? areas.map((area, id) => (
-       <AreaAccordion key={area.idArea} section={1} area={area} index={id}/>
+       <AreaAccordion key={area.idArea} section={2} area={area} index={id}/>
      ))
      : null 
     
@@ -24,4 +24,4 @@ let listContent
   return content
 }
 
-export default Preparation
+export default Exterior
