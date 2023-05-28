@@ -50,7 +50,7 @@ const FormStart = () => {
 
       setListContent(contentInfo)
     }
-  }, [isSuccess])
+  }, [isSuccess, sp])
 
   const content = (
     <>
