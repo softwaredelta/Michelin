@@ -8,7 +8,7 @@ const ManagerRoute = ({ children }) => {
   if (role == 2 || role == 3) { //eslint-disable-line
     return children
   } else {
-    return <Navigate to='/' replace />
+    return <Navigate to='/home' replace />
   }
 }
 
