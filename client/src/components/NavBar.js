@@ -36,15 +36,15 @@ const NavBar = () => {
     <>
       <div className='mb-5'>
         <Navbar className='border-b-2 fixed top-0 z-30 w-full dark:!bg-blues-400' fluid rounded={false}>
-          <NavbarBrand className='px-4' href='/'>
+          <NavbarBrand className='px-4' href='/home'>
             <img
               style={({ width: '100px' }, { height: '60px' })}
-              src='https://logos-download.com/wp-content/uploads/2016/03/Michelin_brand_Logo_2017.png'
+              src='/images/Michelin-Logo.png'
               alt='Michelin Logo'
             />
           </NavbarBrand>
           <NavbarCollapse className='px-2'>
-            <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Recorrido</NavbarLink>
+            <NavbarLink href='/form/' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Recorrido</NavbarLink>
             <NavbarLink href='/history' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Historial</NavbarLink>
             <NavbarLink href='/sellingPoint' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Puntos de Venta</NavbarLink>
             {manager}

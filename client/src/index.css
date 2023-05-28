@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: "Michelin";
   src: url("../public/font/Michelin-Black.ttf");
-}
+} */
 
 /* @font-face {
   font-family: 'Michelin';
@@ -19,9 +19,10 @@
   font-style: italic;
 } */
 
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Michelin', 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -67,4 +68,30 @@ code {
 
 .swal2-container {
   z-index: 10000;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Noto Sans';
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.eot');
+  src:
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.eot?#iefix') format('embedded-opentype'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.woff2') format('woff2'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.woff') format('woff'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.ttf') format('truetype'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.svg#noto_sansbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Michelin';
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.eot');
+  src:
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.eot?#iefix') format('embedded-opentype'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.woff2') format('woff2'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.woff') format('woff'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.ttf') format('truetype'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.svg#Michelin-Black') format('svg');
+  font-weight: 900;
 }

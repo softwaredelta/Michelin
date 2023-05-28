@@ -12,6 +12,8 @@ const SPCard = ({ spId }) => {
   const [flip, setFlip] = useState(false)
   const sp = useSelector(state => selectSPById(state, spId))
 
+  const img = '/images/' + sp.category + '.jpg'
+
   const handleSetFlip = () => {
     setFlip(!flip)
   }
@@ -24,7 +26,7 @@ const SPCard = ({ spId }) => {
         className='min-w-full min-h-full !rounded-xl'
       >
         <Card
-          imgSrc='https://cdn-prod-eu.yepgarage.info/upload/llantas-del-lago/fitters/llantas-de-lago-norte-1-lg.png?005111932'
+          imgSrc={img}
           className='!bg-blues-300 h-72 !rounded-xl !border-2'
         >
           <div className='flex row justify-between'>
