@@ -11,16 +11,15 @@ import ProtectedRoute from './utils/ProtectedRoute'
 import ManagerRoute from './utils/ManagerRoute'
 import FormStart from './features/form/FormStart'
 import SPCard from './components/SPCard'
-import SPAcordion from './components/SPAcordion'
 
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-      <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
-      <Route path='prueba' element={<SPCard spId={1} />} />
-      <Route path='home'>
+        <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
+        <Route path='prueba' element={<SPCard spId={1} />} />
+        <Route path='home'>
           <Route
             index
             element={

@@ -1,13 +1,6 @@
-import { Card } from 'flowbite-react'
 import { useState } from 'react'
-import ReactCardFlip from 'react-card-flip'
-import SvgButton from '../../components/SvgButton'
-import { FiMoreHorizontal } from 'react-icons/fi'
-import { FaEdit } from 'react-icons/fa'
-import { BsFillTrashFill } from 'react-icons/bs'
-import { useSelector } from 'react-redux'
 import ConfirmationModal from '../../components/ConfirmationModal'
-import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
+import { useDeleteSPMutation } from './sellingPointApiSlice'
 import SellingPointEdit from './SellingPointEdit'
 import Toast from '../../components/Toast'
 import SPCard from '../../components/SPCard'
@@ -15,7 +8,7 @@ import SPCard from '../../components/SPCard'
 const SellingPoint = ({ spId }) => {
   const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
 
-  const sp = useSelector((state) => selectSPById(state, spId))
+  // const sp = useSelector((state) => selectSPById(state, spId))
 
   const [showEdit, setShowEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
@@ -39,14 +32,14 @@ const SellingPoint = ({ spId }) => {
   // const handleSetFlip = () => {
   //   setFlip(!flip)
   // }
-
+  /*
   const handleSetShowEdit = () => {
     setShowEdit(true)
   }
 
   const handleSetShowDelete = () => {
     setShowDelete(true)
-  }
+  } */
 
   const handleCloseEdit = () => {
     setShowEdit(false)
