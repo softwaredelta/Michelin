@@ -17,16 +17,20 @@ const AreaAccordion = ({ section, area, index }) => {
     : <p className='dark:text-white italic text-2xl text-center'> No hay preguntas en esta área</p>
 
   const content = (
+    <div className='flex flex-row justify-center'>
+    <div className='mb-6'>
     <Accordion collapseAll alwaysOpen>
       <AccordionPanel>
         <AccordionTitle>
           <AreaTitle number={index} title={area.areaTitle} questions={questions.length} />
         </AccordionTitle>
-        <AccordionContent>
+        <AccordionContent >
           {listContent}
         </AccordionContent>
       </AccordionPanel>
     </Accordion>
+    </div>
+    </div>
   )
   return content
 }

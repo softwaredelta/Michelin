@@ -137,6 +137,18 @@ export default class CurrentForm {
     return this.questions[currentSection][area]
   }
 
+  getAnsweredQuestionsByArea(section, area) {
+    const currentSection = this.selectSection(section)
+    let answerCount = 0
+    this.questions[currentSection][area].forEach(question => {
+      if(question.answer !== 0) {
+        answerCount += 1
+      }
+    })
+
+    return answerCount
+  }
+
   setAnswer (section, area, question, newAnswer) {
     const currentSection = this.selectSection(section)
 

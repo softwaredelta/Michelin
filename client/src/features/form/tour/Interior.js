@@ -2,13 +2,13 @@ import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/ProgressBar'
 import AreaAccordion from '../../../components/AreaAccordion'
 
-const Exterior = () => {
+const Interior = () => {
   const Form = CurrentForm.getInstance()
-  const areas = Form.getAreasBySection(2)
+  const areas = Form.getAreasBySection(3)
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
-      <AreaAccordion key={area.idArea} section={2} area={area} index={id} />
+      <AreaAccordion key={area.idArea} section={3} area={area} index={id} />
     ))
     : null
 
@@ -23,4 +23,4 @@ const Exterior = () => {
   return content
 }
 
-export default Exterior
+export default Interior

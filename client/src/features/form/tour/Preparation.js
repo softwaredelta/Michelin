@@ -14,9 +14,11 @@ const Preparation = () => {
 
   const content = (
     <>
-      <ProgressBar />
-      <div className='container flex flex-wrap justify-items-stretch overflow-y-scroll'>
+      <div>
+      <ProgressBar /> 
+      <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
         {listContent}
+      </div>
       </div>
     </>
   )

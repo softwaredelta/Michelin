@@ -12,22 +12,16 @@ import ManagerRoute from './utils/ManagerRoute'
 import FormStart from './features/form/FormStart'
 import SPCard from './components/SPCard'
 import Preparation from './features/form/tour/Preparation'
-import Preview from './features/form/tour/Preview'
 import Exterior from './features/form/tour/Exterior'
-
+import Interior from './features/form/tour/Interior'
+import Client from './features/form/tour/Client'
+import Manager from './features/form/tour/Manager'
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route path='prueba'>
-          <Route index element={<Preview />} />
-          <Route path='preparacion' element={<Preparation />} />
-          <Route path='exterior' element={<Exterior />} />
-
-        </Route>
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
-        <Route path='prueba' element={<SPCard spId={1} />} />
         <Route path='home'>
           <Route
             index
@@ -91,6 +85,11 @@ function App () {
         </Route>
         <Route path='form'>
           <Route index element={<ProtectedRoute> <FormStart /> </ProtectedRoute>} />
+          <Route path='preparation' element={<ProtectedRoute> <Preparation /> </ProtectedRoute>} />
+          <Route path='exterior' element={<Exterior />} />
+          <Route path='interior' element={<Interior />} />
+          <Route path='client' element={<Client />} />
+          <Route path='manager' element={<Manager />} />
         </Route>
       </Route>
     </Routes>

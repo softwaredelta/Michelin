@@ -5,8 +5,12 @@ import { useGetSPQuery } from '../sellingPoint/sellingPointApiSlice'
 import Header from '../../components/Header'
 import SPAcordion from '../../components/SPAcordion'
 import { BsSearch } from 'react-icons/bs'
+import CurrentForm from '../../services/CurrentForm'
 
 const FormStart = () => {
+  let Form = CurrentForm.getInstance()
+  Form.loadFormInfo()
+  
   const { data: sp, isLoading, isSuccess, isError } = useGetSPQuery()
 
   let message
