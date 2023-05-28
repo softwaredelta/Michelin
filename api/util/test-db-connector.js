@@ -203,6 +203,13 @@ async function createDB (fastify) {
     (1, 'Example', 'User', 0, 'example@gmail.com', 'newPassword', 2);
     `
   )
+
+  await connection.query(
+    `
+    INSERT INTO sellingpoint (id_sp, id_category, id_state, address, rating, name, phone) VALUES
+    (1, 1, 1, 'Example Address 1', 5, 'New Selling Point', 123456987);
+    `
+  )
   connection.release()
 }
 
