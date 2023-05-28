@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiRoute = 'http://localhost:3080/'
+const apiRoute = 'https://back2basics.software/api/'
 
 export default class CurrentForm {
   static instance = null
@@ -41,7 +41,7 @@ export default class CurrentForm {
 
   async loadFormInfo () {
     await this.loadAllAreas()
-    this.loadAllQuestions()
+    await this.loadAllQuestions()
   }
 
   setStartTime () {
@@ -134,8 +134,7 @@ export default class CurrentForm {
 
   getQuestionsByArea (section, area) {
     const currentSection = this.selectSection(section)
-
-    return this.questions[currentSection]
+    return this.questions[currentSection][area]
   }
 
   setAnswer (section, area, question, newAnswer) {
@@ -143,7 +142,7 @@ export default class CurrentForm {
 
     this.questions[currentSection][area][question].answer = newAnswer
 
-    if (newAnswer !== 4 || newAnswer !== 2) {
+    if (newAnswer !== 4 && newAnswer !== 2) {
       this.questions[currentSection][area][question].fileName = ''
       this.questions[currentSection][area][question].file = null
     }
