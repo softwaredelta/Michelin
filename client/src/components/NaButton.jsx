@@ -18,7 +18,7 @@ const NaButton = ({
   const content = (
     <>
       <button className={className} disabled={disable} onClick={myFunction}>
-        <img src='/images/naButton.png' />
+        <img src='/images/naButton.png' alt='No aplica' />
       </button>
     </>
   )

@@ -28,7 +28,7 @@ const RedBibendum = ({
   const content = (
     <>
       <button className={className} onClick={myFunction} disabled={disable}>
-        <img src='/images/redBibendum.png' />
+        <img src='/images/redBibendum.png' alt='No' />
       </button>
       {photo}
       {currImg}

@@ -18,7 +18,7 @@ const GreenBibendum = ({
   const content = (
     <>
       <button className={className} disabled={disable} onClick={myFunction}>
-        <img src='/images/greenBibendum.png' />
+        <img src='/images/greenBibendum.png' alt='Sí' />
       </button>
     </>
   )

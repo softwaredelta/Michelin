@@ -35,7 +35,6 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   )
 
   const onImageChanged = (e) => {
-    console.log(e.target.files[0])
     Form.setFile(section, area, index, e.target.files[0])
     Form.setAnswer(section, area, index, 4)
     setImageUploaded(true)
@@ -63,7 +62,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
       <>
         <button className='scale-50 rounded-full bg-white bg-fixed opacity-100 transition duration-300 ease-in-out hover:opacity-40'>
           <label htmlFor={selectImageName} className='cursor-pointer'>
-            <img src='/images/uploadFile.png' />
+            <img src='/images/uploadFile.png' alt='Subir imagen' />
             <FileInput
               id={selectImageName}
               name={selectImageName}
