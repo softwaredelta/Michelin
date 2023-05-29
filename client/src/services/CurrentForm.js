@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiRoute = 'https://back2basics.software/api/'
+const apiRoute = 'http://localhost:3080/'
 
 export default class CurrentForm {
   static instance = null
@@ -45,11 +45,13 @@ export default class CurrentForm {
   }
 
   setStartTime () {
-    this.startTime = Date.getTime()
+    let currentDate = new Date()
+    this.startTime = currentDate.getTime()
   }
 
   setEndTime () {
-    this.endTIme = Date.getTime()
+    let currentDate = new Date()
+    this.endTIme = currentDate.getTime()
   }
 
   async loadAllQuestions () {
@@ -232,7 +234,7 @@ export default class CurrentForm {
       localStorage.getItem('name') + ' ' + localStorage.getItem('lastName')
     ); // eslint-disable-line
     this.uploadImages.forEach((image) => {
-      formData.append('images[]', image.file, image.fileName)
+      formData.append('images', image.file, image.fileName)
     })
 
     this.uploadImages = []
@@ -270,7 +272,7 @@ export default class CurrentForm {
             sumNa++
             break
           case 4:
-            this.uploadedImages[imgIndex] = {
+            this.uploadImages[imgIndex] = {
               file: question.file,
               fileName: question.fileName
             }
