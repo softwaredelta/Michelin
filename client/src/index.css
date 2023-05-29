@@ -95,3 +95,11 @@ code {
     url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.svg#Michelin-Black') format('svg');
   font-weight: 900;
 }
+
+@font-face {
+  font-family: 'MichelinLight';
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.eot');
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.eot?#iefix') format('embedded-opentype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.woff2') format('woff2'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.woff') format('woff'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.ttf') format('truetype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.svg#Michelin-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}

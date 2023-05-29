@@ -16,6 +16,7 @@ const SPAcordion = ({ spId }) => {
 
   const startPreparation = () => {
     Form.setIdSp(spId)
+    Form.setStartTime()
     navigate('/form/preparation')
   }
 
@@ -46,13 +47,14 @@ const SPAcordion = ({ spId }) => {
                         <p className='font-semibold mr-2'> Teléfono:</p>
                         <p className='font-medium'> {sp.phone} </p>
                       </div>
-                      <div className='self-end mr-5'>
+                      
+                    </div>
+                    <div className='self-end text-xl font-michelin underline text-white'>
                         <Bluebutton
                           myText='Iniciar Recorrido'
                           method={startPreparation}
                         />
                       </div>
-                    </div>
                   </div>
                 </div>
               </AccordionContent>

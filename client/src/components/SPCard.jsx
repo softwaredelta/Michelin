@@ -6,8 +6,7 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { FaEdit } from 'react-icons/fa'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
-import { selectSPById } from '../features/sellingPoint/sellingPointApiSlice'
-import { useDeleteSPMutation } from '../features/sellingPoint/sellingPointApiSlice'
+import { selectSPById, useDeleteSPMutation } from '../features/sellingPoint/sellingPointApiSlice'
 import Toast from './Toast'
 import ConfirmationModal from './ConfirmationModal'
 import SellingPointEdit from '../features/sellingPoint/SellingPointEdit'
@@ -155,7 +154,7 @@ const SPCard = ({ spId }) => {
             </div>
           </div>
         </Card>
-      </ReactCardFlip> 
+      </ReactCardFlip>
       <ConfirmationModal
         show={showDelete}
         onClose={handleCloseDelete}

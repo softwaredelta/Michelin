@@ -70,8 +70,10 @@ export default class CurrentForm {
 
   async loadAreas (section) {
     const areaNames = []
-    const loadedAreas = await axios.get(apiRoute + `section/getAreasBySection/${section}`)
-    loadedAreas.data.forEach(area => {
+    const loadedAreas = await axios.get(
+      apiRoute + `section/getAreasBySection/${section}`
+    )
+    loadedAreas.data.forEach((area) => {
       areaNames.push({ idArea: area.id_area, areaTitle: area.area_title })
     })
 
@@ -82,7 +84,9 @@ export default class CurrentForm {
     const currentSection = this.selectSection(section)
 
     const sectionQuestions = []
-    const loadedQuestions = await axios.get(apiRoute + `question/bySection/${category}/${section}`)
+    const loadedQuestions = await axios.get(
+      apiRoute + `question/bySection/${category}/${section}`
+    )
     if (loadedQuestions.data.length < 1) {
       return []
     }
@@ -90,7 +94,7 @@ export default class CurrentForm {
     let currentArea = loadedQuestions.data[0].id_area
     let areaQuestions = []
 
-    loadedQuestions.data.forEach(question => {
+    loadedQuestions.data.forEach((question) => {
       if (currentArea !== question.id_area) {
         currentArea = question.id_area
         sectionQuestions[areaIndex] = areaQuestions
@@ -137,11 +141,11 @@ export default class CurrentForm {
     return this.questions[currentSection][area]
   }
 
-  getAnsweredQuestionsByArea(section, area) {
+  getAnsweredQuestionsByArea (section, area) {
     const currentSection = this.selectSection(section)
     let answerCount = 0
-    this.questions[currentSection][area].forEach(question => {
-      if(question.answer !== 0) {
+    this.questions[currentSection][area].forEach((question) => {
+      if (question.answer !== 0) {
         answerCount += 1
       }
     })
@@ -165,7 +169,8 @@ export default class CurrentForm {
     const currentSection = this.selectSection(section)
 
     this.questions[currentSection][area][question].file = file
-    this.questions[currentSection][area][question].fileName = currentDate.getTime() + '-' + file.name
+    this.questions[currentSection][area][question].fileName =
+      currentDate.getTime() + '-' + file.name
   }
 
   selectSection (section) {
@@ -206,7 +211,7 @@ export default class CurrentForm {
     const managerJson = this.SectionJson(5)
 
     const formData = new FormData()
-    formData.append('mail', localStorage.getItem('mail')) // eslint-disable-line
+    formData.append("mail", localStorage.getItem("mail")); // eslint-disable-line
     formData.append('exteriorGrade', this.grades.exterior)
     formData.append('interiorGrade', this.grades.interior)
     formData.append('clientGrade', this.grades.client)
@@ -222,8 +227,11 @@ export default class CurrentForm {
     formData.append('client', clientJson)
     formData.append('manager', managerJson)
 
-    formData.append('userName', localStorage.getItem('name') + ' ' + localStorage.getItem('lastName')) // eslint-disable-line
-    this.uploadImages.forEach(image => {
+    formData.append(
+      'userName',
+      localStorage.getItem('name') + ' ' + localStorage.getItem('lastName')
+    ); // eslint-disable-line
+    this.uploadImages.forEach((image) => {
       formData.append('images[]', image.file, image.fileName)
     })
 
@@ -245,8 +253,8 @@ export default class CurrentForm {
     let sumNa = 0
 
     let json = '{"questions": ['
-    this.questions[currentSection].forEach(questions => {
-      questions.forEach(question => {
+    this.questions[currentSection].forEach((questions) => {
+      questions.forEach((question) => {
         sumTotal++
 
         json += '{"text":"' + question.questionText + '",'
@@ -262,7 +270,10 @@ export default class CurrentForm {
             sumNa++
             break
           case 4:
-            this.uploadedImages[imgIndex] = { file: question.file, fileName: question.fileName }
+            this.uploadedImages[imgIndex] = {
+              file: question.file,
+              fileName: question.fileName
+            }
             imgIndex += 1
             break
           default:
@@ -271,7 +282,9 @@ export default class CurrentForm {
       })
     })
 
-    this.grades[currentSection] = Math.floor((sumYes / (sumTotal - sumNa)) * 100)
+    this.grades[currentSection] = Math.floor(
+      (sumYes / (sumTotal - sumNa)) * 100
+    )
 
     json = json.substring(0, json.length - 1)
     json += ']}'

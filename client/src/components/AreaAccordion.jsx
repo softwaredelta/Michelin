@@ -5,32 +5,33 @@ import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/Ac
 import TourQuestion from './TourQuestion'
 import AreaTitle from './AreaTitle'
 import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle'
+import { useState } from 'react'
 
 const AreaAccordion = ({ section, area, index }) => {
   const Form = CurrentForm.getInstance()
 
   const questions = Form.getQuestionsByArea(section, index)
+
+  const [answerCount, setAnswerCount] = useState(Form.getAnsweredQuestionsByArea(section, index))
+
   const listContent = questions?.length
     ? questions.map((question, id) => (
-      <TourQuestion key={question.idQuestion} question={question} area={index} section={section} index={id} />
+      <TourQuestion key={question.idQuestion} question={question} area={index} section={section} index={id} setAnswerCount={setAnswerCount} />
     ))
     : <p className='dark:text-white italic text-2xl text-center'> No hay preguntas en esta área</p>
 
   const content = (
-    <div className='flex flex-row justify-center'>
-    <div className='mb-6'>
+
     <Accordion collapseAll alwaysOpen>
       <AccordionPanel>
         <AccordionTitle>
-          <AreaTitle number={index} title={area.areaTitle} questions={questions.length} />
+          <AreaTitle number={index} title={area.areaTitle} questions={questions.length} answered={answerCount} />
         </AccordionTitle>
-        <AccordionContent >
+        <AccordionContent>
           {listContent}
         </AccordionContent>
       </AccordionPanel>
     </Accordion>
-    </div>
-    </div>
   )
   return content
 }

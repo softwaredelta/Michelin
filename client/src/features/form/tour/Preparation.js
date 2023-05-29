@@ -1,6 +1,7 @@
 import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/ProgressBar'
 import AreaAccordion from '../../../components/AreaAccordion'
+import ModifiedFooter from '../../../components/ModifiedFooter'
 
 const Preparation = () => {
   const Form = CurrentForm.getInstance()
@@ -15,10 +16,12 @@ const Preparation = () => {
   const content = (
     <>
       <div>
-      <ProgressBar /> 
-      <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
-        {listContent}
-      </div>
+        <ProgressBar />
+        <div className='pt-20 w-full min-h-screen flex flex-col items-center dark:!bg-blues-400'>
+          <div className='container flex flex-wrap justify-items-stretch' />
+
+          <div className='w-2/5 mb-6'>{listContent}</div>
+        </div>
       </div>
     </>
   )

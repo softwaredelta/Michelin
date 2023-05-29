@@ -31,7 +31,7 @@ const Public = () => {
   if (isError) {
     message = (
       <p className='text-3xl font-semibold dark:!text-white'>
-        No hay conexion con la base de datos
+        No hay conexión con la base de datos
       </p>
     )
   }

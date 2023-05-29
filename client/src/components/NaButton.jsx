@@ -1,17 +1,26 @@
 import CurrentForm from '../services/CurrentForm'
+import { useState } from 'react'
 
-const NaButton = ({ section, area, index, buttonNa }) => {
+const NaButton = ({
+  section,
+  area,
+  index,
+  buttonNa,
+  disable,
+  className,
+  childtoParent
+}) => {
   const Form = CurrentForm.getInstance()
-  const disable = false
-
   const myFunction = () => {
     Form.setAnswer(section, area, index, 3)
-    console.log(Form.questions)
+    childtoParent(3)
   }
 
   const content = (
     <>
-      <button className='scale-50 hover:opacity-40' disabled={disable} onClick={myFunction}><img src='/images/naButton.png' /></button>
+      <button className={className} disabled={disable} onClick={myFunction}>
+        <img src='/images/naButton.png' />
+      </button>
     </>
   )
   return content
