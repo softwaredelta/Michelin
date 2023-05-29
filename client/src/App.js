@@ -10,12 +10,14 @@ import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
 import ManagerRoute from './utils/ManagerRoute'
 import FormStart from './features/form/FormStart'
+import Example from './components/Example'
 
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
+        <Route path='prueba' element={<Example />} />
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='home'>
           <Route
