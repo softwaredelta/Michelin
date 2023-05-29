@@ -23,17 +23,29 @@ const SellingPointList = () => {
     setShow(false)
   }
 
-  if (isLoading) message = <p className='text-3xl font-semibold dark:!text-white'>Cargando...</p>
+  if (isLoading) {
+    message = (
+      <p className='text-3xl font-semibold dark:!text-white'>Cargando...</p>
+    )
+  }
 
   if (isError) {
-    message = <p className='text-3xl font-semibold dark:!text-white'>No hay conexión con la base de datos</p>
+    message = (
+      <p className='text-3xl font-semibold dark:!text-white'>
+        No hay conexión con la base de datos
+      </p>
+    )
   }
 
   if (isSuccess) {
     const { ids } = sp
 
     if (ids.length === 0) {
-      message = <p className='text-3xl font-semibold dark:!text-white'>No hay puntos de venta que mostrar</p>
+      message = (
+        <p className='text-3xl font-semibold dark:!text-white'>
+          No hay puntos de venta que mostrar
+        </p>
+      )
     }
 
     listContent = ids?.length
@@ -45,7 +57,7 @@ const SellingPointList = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 p- w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
+        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
           <Header myText='Punto de Venta' />
           <div className='self-end mr-5'>
             <Bluebutton

@@ -84,7 +84,7 @@ const QuestionList = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400 overflow-y-scroll'>
+        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
           <Header myText='Preguntas' />
           <div className='flex flex-row w-full justify-between my-2 py-4'>
             <div className='flex flex-col'>

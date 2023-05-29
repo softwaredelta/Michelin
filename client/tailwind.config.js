@@ -40,7 +40,6 @@ module.exports = {
           300: '#1d4089',
           // Dark blue
           400: '#212936'
-
         },
         ok: {
           // Ok/Save button
@@ -64,7 +63,12 @@ module.exports = {
       },
 
       fontFamily: {
-        michelin: ['Michelin']
+        michelin: ['Michelin'],
+        michelinl: ['MichelinLight']
+      },
+
+      screens: {
+        small: '475px'
       }
     }
   },

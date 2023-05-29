@@ -31,7 +31,7 @@ const Login = () => {
       })
     }
     if (isSuccess) {
-      navigate('/')
+      navigate('/home')
     }
   }, [isSuccess, isError, error, navigate])
 

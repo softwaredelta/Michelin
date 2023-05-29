@@ -10,7 +10,7 @@ const InfoAccordion = ({ icon, accordionContent, sectionTitle }) => {
           <AccordionPanel>
             <AccordionTitle className='!bg-gradient-to-r from-white from-50% to-gray-50 dark:!bg-gradient-to-r dark:from-blues-300 dark:to-blues-200'>
               <div className='flex flex-row justify-between w-full'>
-                <div className='flex flex-col mx-3 center'>{icon}</div>
+                <div className='flex flex-col md:mx-3 small:m-0 center'>{icon}</div>
                 {sectionTitle}
               </div>
             </AccordionTitle>

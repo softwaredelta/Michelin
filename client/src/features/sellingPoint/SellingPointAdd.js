@@ -164,7 +164,7 @@ const SellingPointAdd = ({ show, onClose }) => {
               </div>
               <div className='flex flex-col w-3/4'>
                 <Select
-                  className='mb-3 border-2 rounded-md'
+                  className='mb-3 rounded-md'
                   id='select_zone'
                   name='select_zone'
                   {...register('select_zone')}
@@ -177,7 +177,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                   {myState}
                 </Select>
                 <Select
-                  className='mb-3 border-2 rounded-md'
+                  className='mb-3 rounded-md'
                   id='select_type'
                   name='select_type'
                   {...register('select_type')}
@@ -189,14 +189,14 @@ const SellingPointAdd = ({ show, onClose }) => {
                   {myCategory}
                 </Select>
                 <textarea
-                  className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white'
+                  className='border-2 rounded-md my-2 pl-2 resize-none dark:bg-transparent dark:text-white'
                   id='address'
                   {...register('address')}
                   required
                   maxLength={255}
                 />
                 <input
-                  className='border-2 rounded-md my-2 dark:bg-transparent dark:text-white'
+                  className='border-2 rounded-md my-2 pl-2 dark:bg-transparent dark:text-white'
                   id='phone'
                   {...register('phone')}
                   required
@@ -206,7 +206,7 @@ const SellingPointAdd = ({ show, onClose }) => {
               </div>
             </div>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter className='justify-end'>
             <button
               className='bg-blues-200 text-white py-2 px-4 rounded-md'
               type='submit'
