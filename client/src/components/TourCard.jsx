@@ -10,7 +10,16 @@ const TourCard = () => {
           <div className="w-full h-full overflow-y-auto"> {/* Componente de lógica con preguntas*/}
             <div className="flex flex-col">
               <div className="flex flex-col">
-                <AreaTitle />
+                <AreaTitle myVar={"Holis"}/>
+              </div>
+              <div className="flex flex-col">
+                <TourQuestion />
+                <TourQuestion />
+                <TourQuestion />
+                <TourQuestion />
+              </div>
+              <div className="flex flex-col">
+                <AreaTitle myVar={"Holis2"} />
               </div>
               <div className="flex flex-col">
                 <TourQuestion />

@@ -17,7 +17,7 @@ const Example = () => {
               <div className="flex-col w-full my-auto">
                 <ImageCard />
                 <div className="relative left-5 top-32">
-                  <VisualKey />
+                  <VisualKey myLink={"#Holis2"}/>
                 </div>
               </div>
             </div>
