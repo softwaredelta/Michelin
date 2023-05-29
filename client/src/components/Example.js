@@ -1,8 +1,7 @@
 import ImageCard from "./ImageCard";
-import ModifiedFooter from "./ModifiedFooter";
-import NavBar from "./NavBar";
 import TourCard from "./TourCard";
 import VisualKey from "./VisualKey";
+import YellowButton from "./YellowButton";
 
 const Example = () => {
   return (
@@ -17,7 +16,10 @@ const Example = () => {
               <div className="flex-col w-full my-auto">
                 <ImageCard />
                 <div className="relative left-5 top-32">
-                  <VisualKey myLink={"#Holis2"}/>
+                  <VisualKey myLink={"#Holis2"} />
+                </div>
+                <div>
+                  <YellowButton myText={"Holis"} />
                 </div>
               </div>
             </div>
