@@ -63,7 +63,8 @@ module.exports = {
       },
 
       fontFamily: {
-        michelin: ['Michelin']
+        michelin: ['Michelin'],
+        michelinl: ['MichelinLight']
       },
 
       screens: {

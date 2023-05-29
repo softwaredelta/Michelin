@@ -5,9 +5,14 @@ import Report from '../history/Report'
 import { useGetFormsByUserQuery } from '../form/formApiSlice'
 
 const History = () => {
-  const { data: forms, isLoading, isSuccess, isError } = useGetFormsByUserQuery({ mail: localStorage.getItem('mail') }) // eslint-disable-line
+  const {
+    data: forms,
+    isLoading,
+    isSuccess,
+    isError
+  } = useGetFormsByUserQuery({ mail: localStorage.getItem("mail") }); // eslint-disable-line
 
-  const baseReportRoute = 'http://localhost:3080/form/report/'
+  const baseReportRoute = 'https://back2basics.software/api/form/report/'
 
   let tableContent
   let message
@@ -17,7 +22,7 @@ const History = () => {
   if (isError) {
     message = (
       <p className='text-3xl font-semibold dark:!text-white'>
-        No hay conexion con la base de datos
+        No hay conexión con la base de datos
       </p>
     )
   }
@@ -33,21 +38,23 @@ const History = () => {
     }
 
     tableContent = ids?.length
-      ? ids.map((idForm) =>
+      ? ids.map((idForm) => (
         <Report
           key={idForm}
           spName={entities[idForm].sp_name}
           spZone={entities[idForm].zone}
-          repDate={`${(entities[idForm].date).substring(8, 10)}/${(entities[idForm].date).substring(5, 7)}/${(entities[idForm].date).substring(0, 4)}`}
+          repDate={`${entities[idForm].date.substring(8, 10)}/${entities[
+              idForm
+            ].date.substring(5, 7)}/${entities[idForm].date.substring(0, 4)}`}
           userName={`${entities[idForm].user_name} ${entities[idForm].user_last_name}`}
-          repTime={`${(entities[idForm].duration).substring(3, 5)} minutos`}
+          repTime={`${entities[idForm].duration.substring(3, 5)} minutos`}
           repLink={baseReportRoute + entities[idForm].file_link}
           intPercentage={entities[idForm].interior_grade}
           extPercentage={entities[idForm].exterior_grade}
           clientPercentage={entities[idForm].client_grade}
           managerPercentage={entities[idForm].store_manager_grade}
         />
-      )
+      ))
       : null
   }
 

@@ -20,7 +20,7 @@ const Public = () => {
   const { data: count, isSuccess: isSuccesCount } =
       useGetFormCountByUserQuery({ mail: localStorage.getItem("mail") }); // eslint-disable-line
 
-  const baseReportRoute = 'http://localhost:3080/form/report/'
+  const baseReportRoute = 'https://back2basics.software/api/form/report/'
 
   let tableContent
   let message
@@ -31,7 +31,7 @@ const Public = () => {
   if (isError) {
     message = (
       <p className='text-3xl font-semibold dark:!text-white'>
-        No hay conexion con la base de datos
+        No hay conexión con la base de datos
       </p>
     )
   }

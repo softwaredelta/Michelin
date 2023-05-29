@@ -5,8 +5,12 @@ import { useGetSPQuery } from '../sellingPoint/sellingPointApiSlice'
 import Header from '../../components/Header'
 import SPAcordion from '../../components/SPAcordion'
 import { BsSearch } from 'react-icons/bs'
+import CurrentForm from '../../services/CurrentForm'
 
 const FormStart = () => {
+  const Form = CurrentForm.getInstance()
+  Form.loadFormInfo()
+
   const { data: sp, isLoading, isSuccess, isError } = useGetSPQuery()
 
   let message
@@ -56,7 +60,7 @@ const FormStart = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
+        <div className='pt-20 w-full min-h-screen flex flex-col items-center dark:!bg-blues-400'>
           <Header myText='Iniciar una auditoría' />
           <div className='self-end mr-24 items-center'>
             <div className='grid grid-cols-2 grid-rows-1'>
@@ -70,7 +74,7 @@ const FormStart = () => {
             </div>
           </div>
           {message}
-          <div className='w-full justify-center place-content-center items-center justify-items-center center'>
+          <div className='w-full'>
             {listContent}
           </div>
           <ModifiedFooter />
