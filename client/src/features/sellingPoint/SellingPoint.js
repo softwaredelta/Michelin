@@ -1,26 +1,20 @@
-import { Card } from 'flowbite-react'
 import { useState } from 'react'
-import ReactCardFlip from 'react-card-flip'
-import SvgButton from '../../components/SvgButton'
-import { FiMoreHorizontal } from 'react-icons/fi'
-import { FaEdit } from 'react-icons/fa'
-import { BsFillTrashFill } from 'react-icons/bs'
-import { useSelector } from 'react-redux'
 import ConfirmationModal from '../../components/ConfirmationModal'
-import { selectSPById, useDeleteSPMutation } from './sellingPointApiSlice'
+import { useDeleteSPMutation } from './sellingPointApiSlice'
 import SellingPointEdit from './SellingPointEdit'
 import Toast from '../../components/Toast'
+import SPCard from '../../components/SPCard'
 
 const SellingPoint = ({ spId }) => {
   const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
 
-  const sp = useSelector((state) => selectSPById(state, spId))
+  // const sp = useSelector((state) => selectSPById(state, spId))
 
-  // Modal
   const [showEdit, setShowEdit] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
 
-  const [flip, setFlip] = useState(false)
+  // const [flip, setFlip] = useState(false)
+  // const img = '/images/' + sp.category + '.jpg'
 
   const [DeleteSP] = useDeleteSPMutation()
 
@@ -35,17 +29,17 @@ const SellingPoint = ({ spId }) => {
     })
   }
 
-  const handleSetFlip = () => {
-    setFlip(!flip)
-  }
-
+  // const handleSetFlip = () => {
+  //   setFlip(!flip)
+  // }
+  /*
   const handleSetShowEdit = () => {
     setShowEdit(true)
   }
 
   const handleSetShowDelete = () => {
     setShowDelete(true)
-  }
+  } */
 
   const handleCloseEdit = () => {
     setShowEdit(false)
@@ -57,13 +51,13 @@ const SellingPoint = ({ spId }) => {
 
   const content = (
     <div className='w-72 h-72 my-4 mx-6 flex flex-col'>
-      <ReactCardFlip
+      {/* <ReactCardFlip
         isFlipped={flip}
         flipDirection='horizontal'
         className='min-w-full min-h-full !rounded-xl'
       >
         <Card
-          imgSrc='https://cdn-prod-eu.yepgarage.info/upload/llantas-del-lago/fitters/llantas-de-lago-norte-1-lg.png?005111932'
+          imgSrc={img}
           className='!bg-blues-300 h-72 !rounded-xl !border-2'
         >
           <div className='flex row justify-between'>
@@ -155,7 +149,8 @@ const SellingPoint = ({ spId }) => {
             </div>
           </div>
         </Card>
-      </ReactCardFlip>
+      </ReactCardFlip> */}
+      <SPCard spId={spId} />
       <ConfirmationModal
         show={showDelete}
         onClose={handleCloseDelete}

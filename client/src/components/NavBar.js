@@ -5,35 +5,50 @@ import { NavbarCollapse } from 'flowbite-react/lib/esm/components/Navbar/NavbarC
 import { NavbarLink } from 'flowbite-react/lib/esm/components/Navbar/NavbarLink'
 
 const NavBar = () => {
+  const role = localStorage.getItem('role') // eslint-disable-line
+  let admin = (
+    <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>
+      <div className='flex md:order-2 text-lg'>
+        <Dropdown
+          arrowIcon
+          inline
+          className='!text-lg'
+          label='Administración'
+        >
+          <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'>Equipos</DropdownItem>
+          <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'> <a href='/user'> Usuarios </a></DropdownItem>
+        </Dropdown>
+      </div>
+    </NavbarLink>
+  )
+  let manager
+  if (role != 3){ //eslint-disable-line
+    admin = null
+  }
+
+  if (role == 2 || role == 3){ //eslint-disable-line
+    manager = (
+      <NavbarLink href='/question' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Cuestionarios</NavbarLink>
+    )
+  }
+
   const content = (
     <>
       <div className='mb-5'>
         <Navbar className='border-b-2 fixed top-0 z-30 w-full dark:!bg-blues-400' fluid rounded={false}>
-          <NavbarBrand className='px-4' href='/'>
+          <NavbarBrand className='px-4' href='/home'>
             <img
               style={({ width: '100px' }, { height: '60px' })}
-              src='https://logos-download.com/wp-content/uploads/2016/03/Michelin_brand_Logo_2017.png'
+              src='/images/Michelin-Logo.png'
               alt='Michelin Logo'
             />
           </NavbarBrand>
           <NavbarCollapse className='px-2'>
+            <NavbarLink href='/form/' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Recorrido</NavbarLink>
             <NavbarLink href='/history' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Historial</NavbarLink>
-            <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Métricas</NavbarLink>
-            <NavbarLink href='/question' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Cuestionarios</NavbarLink>
-            <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>
-              <div className='flex md:order-2 text-lg'>
-                <Dropdown
-                  arrowIcon
-                  inline
-                  className='!text-lg'
-                  label='Administración'
-                >
-                  <DropdownItem href='/sellingPoint' className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'> <a href='/sellingPoint'>Puntos de Venta</a></DropdownItem>
-                  <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'>Equipos</DropdownItem>
-                  <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'> <a href='/user'> Usuarios </a></DropdownItem>
-                </Dropdown>
-              </div>
-            </NavbarLink>
+            <NavbarLink href='/sellingPoint' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Puntos de Venta</NavbarLink>
+            {manager}
+            {admin}
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Cuenta</NavbarLink>
           </NavbarCollapse>
         </Navbar>

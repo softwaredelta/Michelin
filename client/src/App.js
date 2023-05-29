@@ -8,31 +8,72 @@ import QuestionList from './features/category/questions/QuestionList'
 import SectionList from './features/category/SectionList'
 import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
-import AnsButtons from './components/AnsButtons'
-import TourCard from './components/TourCard'
-import ProgressBar from './components/ProgressBar'
+import ManagerRoute from './utils/ManagerRoute'
+import FormStart from './features/form/FormStart'
 
+// AdminRoute in UsersList
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route path='prueba' element={<AnsButtons />} />
-        <Route path='prueba2' element={<TourCard />} />
-        <Route path='progressbar' element={<ProgressBar />} />
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
+        <Route path='home'>
+          <Route
+            index
+            element={
+              <ProtectedRoute> <Public />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
         <Route path='login' element={<Login />} />
         <Route path='user'>
           <Route index element={<UsersList />} />
         </Route>
         <Route path='question'>
-          <Route index element={<ProtectedRoute> <SectionList /> </ProtectedRoute>} />
-          <Route path='edit/:category/:section' element={<ProtectedRoute> <QuestionList /> </ProtectedRoute>} />
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <ManagerRoute>
+                  <SectionList />
+                </ManagerRoute>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='edit/:category/:section'
+            element={
+              <ProtectedRoute>
+                <ManagerRoute>
+                  <QuestionList />
+                </ManagerRoute>
+              </ProtectedRoute>
+            }
+          />
         </Route>
         <Route path='sellingPoint'>
-          <Route index element={<ProtectedRoute> <SellingPointList /> </ProtectedRoute>} />
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <SellingPointList />
+              </ProtectedRoute>
+            }
+          />
         </Route>
         <Route path='history'>
-          <Route index element={<ProtectedRoute> <History /> </ProtectedRoute>} />
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <History />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+        <Route path='form'>
+          <Route index element={<ProtectedRoute> <FormStart /> </ProtectedRoute>} />
         </Route>
       </Route>
     </Routes>

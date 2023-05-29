@@ -51,7 +51,7 @@ async function createDB (fastify) {
     `
     CREATE TABLE category(
     id_category INT(3) AUTO_INCREMENT,
-    name VARCHAR(8) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     PRIMARY KEY (id_category)
     );
     `
@@ -201,6 +201,13 @@ async function createDB (fastify) {
     `
     INSERT INTO users (id_user, name, last_name, id_manager, mail, password, id_role) VALUES
     (1, 'Example', 'User', 0, 'example@gmail.com', 'newPassword', 2);
+    `
+  )
+
+  await connection.query(
+    `
+    INSERT INTO sellingpoint (id_sp, id_category, id_state, address, rating, name, phone) VALUES
+    (1, 1, 1, 'Example Address 1', 5, 'New Selling Point', 123456987);
     `
   )
   connection.release()

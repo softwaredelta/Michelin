@@ -104,7 +104,7 @@ const Question = ({
           />
           {questionText === '' && (
             <div className='text-xs text-red-700'>
-              Esta pregunta no se va a guardar porque no tiene texto
+              Esta pregunta no se editará porque no tiene texto
             </div>
           )}
         </TableCell>

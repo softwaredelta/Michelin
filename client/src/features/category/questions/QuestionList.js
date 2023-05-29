@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom'
 import { TableCell } from 'flowbite-react/lib/esm/components/Table/TableCell'
 import { RiSaveFill } from 'react-icons/ri'
 import { MdOutlineCancel, MdArrowBackIosNew } from 'react-icons/md'
+
 const QuestionList = () => {
   const navigate = useNavigate()
 
@@ -83,7 +84,7 @@ const QuestionList = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400 overflow-y-scroll'>
+        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
           <Header myText='Preguntas' />
           <div className='flex flex-row w-full justify-between my-2 py-4'>
             <div className='flex flex-col'>

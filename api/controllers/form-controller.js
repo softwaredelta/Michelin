@@ -9,7 +9,7 @@ const fs = require('fs')
 exports.postForm = async (request, reply) => {
   // Get selling point data for report section
   const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
-  const userData = await User.fetchIdByMail(this.fastify, request.body.mail)
+  const userData = await User.fetchUserByMail(this.fastify, request.body.mail)
 
   // Create PDF
   const doc = new PDFDocument({ autoFirstPage: false })
@@ -17,7 +17,7 @@ exports.postForm = async (request, reply) => {
   await ReportUtil.generateReport(doc, request.body, sellingPointData)
 
   await Form.createForm(this.fastify,
-    request.body.idCategory,
+    sellingPointData[0].id_category,
     userData[0].id_user,
     request.body.exteriorGrade,
     request.body.interiorGrade,
@@ -37,15 +37,30 @@ exports.loadReport = (request, reply) => {
 }
 
 exports.getFormsByUser = async (request, reply) => {
-  const { idUser } = request.params
+  const { mail } = request.params
 
-  const userData = await User.getUserRole(this.fastify, idUser)
+  const userData = await User.fetchUserByMail(this.fastify, mail)
   let formData
 
   if (userData[0].id_role === 1) {
-    formData = Form.fetchByUser(this.fastify, idUser)
+    formData = Form.fetchByUser(this.fastify, userData[0].id_user)
   } else {
     formData = Form.fetchAll(this.fastify)
+  }
+
+  return formData
+}
+
+exports.getFormCountByUser = async (request, reply) => {
+  const { mail } = request.params
+
+  const userData = await User.fetchUserByMail(this.fastify, mail)
+  let formData
+
+  if (userData[0].id_role === 1) {
+    formData = Form.fetchCountByUser(this.fastify, userData[0].id_user)
+  } else {
+    formData = Form.fetchCount(this.fastify)
   }
 
   return formData

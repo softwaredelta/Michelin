@@ -73,7 +73,11 @@ function addHeader (doc, userName) {
   doc.fillColor(blueColor)
   doc.fontSize(12).font('./uploads/fonts/RobotoSlab-Regular.ttf')
   doc.text(getCurrentDate(), 26, 20, {})
-  doc.text('Recorrido BACK TO BASICS 2023 - ' + userName, 90, 20, { align: 'center' })
+  doc.text('Recorrido BACK TO BASICS 2023 - ' + userName, 160, 20, { align: 'center', width: 300 })
+  doc.image('./uploads/assets/Michelin-Logo.png', 470, 10, {
+    fit: [120, 100],
+    align: 'center'
+  })
 }
 
 function addSellingPointSection (doc, currentRect, duration) {
