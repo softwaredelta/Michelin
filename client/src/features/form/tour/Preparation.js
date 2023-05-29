@@ -1,7 +1,6 @@
 import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/ProgressBar'
 import AreaAccordion from '../../../components/AreaAccordion'
-import ModifiedFooter from '../../../components/ModifiedFooter'
 
 const Preparation = () => {
   const Form = CurrentForm.getInstance()

@@ -1,6 +1,4 @@
-import { FileInput } from 'flowbite-react'
 import CurrentForm from '../services/CurrentForm'
-import { useState } from 'react'
 const RedBibendum = ({
   section,
   area,

@@ -4,13 +4,12 @@ import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/Acco
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent'
 import { useSelector } from 'react-redux'
 import { selectSPById } from '../features/sellingPoint/sellingPointApiSlice'
-import { FaExternalLinkSquareAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import CurrentForm from '../services/CurrentForm'
 import Bluebutton from './Bluebutton'
 
 const SPAcordion = ({ spId }) => {
-  let Form = CurrentForm.getInstance()
+  const Form = CurrentForm.getInstance()
   const sp = useSelector(state => selectSPById(state, spId))
   const navigate = useNavigate()
 
@@ -47,14 +46,14 @@ const SPAcordion = ({ spId }) => {
                         <p className='font-semibold mr-2'> Teléfono:</p>
                         <p className='font-medium'> {sp.phone} </p>
                       </div>
-                      
+
                     </div>
                     <div className='self-end text-xl font-michelin underline text-white'>
-                        <Bluebutton
-                          myText='Iniciar Recorrido'
-                          method={startPreparation}
-                        />
-                      </div>
+                      <Bluebutton
+                        myText='Iniciar Recorrido'
+                        method={startPreparation}
+                      />
+                    </div>
                   </div>
                 </div>
               </AccordionContent>

@@ -44,15 +44,15 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   const childtoParent = (childdata) => {
     setAnswer(childdata)
 
-    if (childdata === 1 || childdata == 3) {
+    if (childdata === 1 || childdata === 3) {
       setImageUploaded(false)
     }
     setAnswerCount(Form.getAnsweredQuestionsByArea(section, area))
   }
 
-  disableGRN = answer == 1
-  disableNA = answer == 3
-  disableRED = answer == 2 || answer == 4
+  disableGRN = answer === 1
+  disableNA = answer === 3
+  disableRED = answer === 2 || answer === 4
   classNameGRN = disableGRN ? classNameDis : classNameDflt
   classNameRED = disableRED ? classNameDis : classNameDflt
   classNameNA = disableNA ? classNameDis : classNameDflt

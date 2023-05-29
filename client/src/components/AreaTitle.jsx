@@ -1,8 +1,4 @@
-import CurrentForm from '../services/CurrentForm'
-
 const AreaTitle = ({ number, title, questions, answered }) => {
-  const Form = CurrentForm.getInstance()
-
   const content = (
     <>
       <div class='flex flex-row justify-start pr-8'>

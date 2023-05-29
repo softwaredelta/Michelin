@@ -45,12 +45,12 @@ export default class CurrentForm {
   }
 
   setStartTime () {
-    let currentDate = new Date()
+    const currentDate = new Date()
     this.startTime = currentDate.getTime()
   }
 
   setEndTime () {
-    let currentDate = new Date()
+    const currentDate = new Date()
     this.endTIme = currentDate.getTime()
   }
 
@@ -231,8 +231,8 @@ export default class CurrentForm {
 
     formData.append(
       'userName',
-      localStorage.getItem('name') + ' ' + localStorage.getItem('lastName')
-    ); // eslint-disable-line
+      localStorage.getItem('name') + ' ' + localStorage.getItem('lastName') // eslint-disable-line
+    )
     this.uploadImages.forEach((image) => {
       formData.append('images', image.file, image.fileName)
     })
