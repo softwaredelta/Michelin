@@ -5,20 +5,24 @@ import { HiDocumentText } from 'react-icons/hi'
 const Section = ({ idSection, sectionTitle }) => {
   const content = (
     <>
-      <InfoAccordion
-        icon={
-          <HiDocumentText
-            size={40}
-            className='fill-zinc-500 dark:fill-gray-100'
-          />
-        }
-        sectionTitle={
-          <div className='flex flex-col text-center text-2xl font-semibold  justify-center'>
-            {sectionTitle}
-          </div>
-        }
-        accordionContent={<QuestionOverview category={1} section={idSection} />}
-      />
+      <div className='flex-row w-11/12 mx-auto'>
+        <InfoAccordion
+          icon={
+            <HiDocumentText
+              size={40}
+              className='fill-zinc-500 dark:fill-gray-100'
+            />
+          }
+          sectionTitle={
+            <div className='text-center text-2xl font-semibold justify-center dark:!text-white'>
+              {sectionTitle}
+            </div>
+          }
+          accordionContent={
+            <QuestionOverview category={1} section={idSection} />
+          }
+        />
+      </div>
     </>
   )
   return content

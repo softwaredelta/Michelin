@@ -186,26 +186,26 @@ const UserOverview = ({ userId }) => {
 
   const content = (
     <>
-      <AccordionContent className='h-60'>
+      <AccordionContent className='h-60 !bg-white dark:!bg-blues-500'>
         <form onSubmit={onEditUserClicked}>
-          <div className='flex justify-between mr-80'>
+          <div className='flex justify-between'>
             <div className='flex flex-col'>
               <div className='flex flex-row'>
                 <div className='flex flex-col mx-5'>
-                  <div className='flex flex-row my-2 font-semibold dark:!text-white'>
+                  <div className='flex flex-row my-2 font-semibold dark:!text-white p-1'>
                     Nombre
                   </div>
-                  <div className='flex flex-row my-2 font-semibold dark:!text-white'>
+                  <div className='flex flex-row my-2 font-semibold dark:!text-white p-1'>
                     Apellido
                   </div>
-                  <div className='flex flex-row my-2 font-semibold dark:!text-white'>
+                  <div className='flex flex-row my-2 font-semibold dark:!text-white p-1'>
                     Correo
                   </div>
                 </div>
                 <div className='flex flex-col'>
                   <div className='flex flex-row my-2'>
                     <input
-                      className='border rounded-md'
+                      className='border rounded-md dark:bg-transparent dark:text-white p-1'
                       defaultValue={user.name}
                       id='name'
                       {...register('name')}
@@ -214,7 +214,7 @@ const UserOverview = ({ userId }) => {
                   </div>
                   <div className='flex flex-row my-2'>
                     <input
-                      className='border rounded-md'
+                      className='border rounded-md dark:bg-transparent dark:text-white p-1'
                       defaultValue={user.last_name}
                       id='lastName'
                       {...register('lastName')}
@@ -223,7 +223,7 @@ const UserOverview = ({ userId }) => {
                   </div>
                   <div className='flex flex-row my-2'>
                     <input
-                      className='border rounded-md'
+                      className='border rounded-md dark:bg-transparent dark:text-white p-1'
                       disabled
                       defaultValue={user.mail}
                     />
@@ -233,7 +233,7 @@ const UserOverview = ({ userId }) => {
             </div>
             <div className='flex flex-col'>
               <div className='flex flew-row'>
-                <div className='flex flex-col font-semibold mx-5 dark:!text-white'>
+                <div className='flex flex-col font-semibold mx-5 dark:!text-white p-1 my-1 text-l'>
                   Zona
                 </div>
                 <div className='flex flex-col h-36 border overflow-y-scroll rounded-lg'>
@@ -250,7 +250,7 @@ const UserOverview = ({ userId }) => {
               </div>
               <div className='flex flex-col my-2'>
                 <Button
-                  className='w-2/3 self-center !border-blues-200 !bg-white !text-blues-200 dark:!bg-blues-200 dark:!text-white'
+                  className='w-5/6 self-center !border-blues-200 !bg-white !text-blues-200 dark:!bg-blues-200 dark:!text-white'
                   onClick={onGeneratePasswordClicked}
                 >
                   <BsDice5 className='mx-1' />

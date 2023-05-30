@@ -219,7 +219,7 @@ export default class CurrentForm {
     formData.append('clientGrade', this.grades.client)
     formData.append('managerGrade', this.grades.manager)
     formData.append('spId', this.idSp)
-    formData.append('fileName', 'Reporte_' + currentDate.getTime())
+    formData.append('fileName', `Reporte_${localStorage.getItem('name')}_${currentDate.getTime()}`)
     formData.append('duration', (this.endTime - this.startTime) / 60000)
     formData.append('comment', comment)
     formData.append('managerName', managerName)

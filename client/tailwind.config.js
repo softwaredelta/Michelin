@@ -39,7 +39,9 @@ module.exports = {
           // Blue button
           300: '#1d4089',
           // Dark blue
-          400: '#212936'
+          400: '#212936',
+          // #192e59
+          500: '#0F111A'
         },
         ok: {
           // Ok/Save button
@@ -64,11 +66,13 @@ module.exports = {
 
       fontFamily: {
         michelin: ['Michelin'],
-        michelinl: ['MichelinLight']
+        michelinl: ['MichelinLight'],
+        michelinsb: ['MichelinSemiBold']
       },
 
       screens: {
-        small: '475px'
+        small: '475px',
+        iPadAir: '1180px'
       }
     }
   },

@@ -1,4 +1,4 @@
-import { Modal, Select, Tooltip } from 'flowbite-react'
+import { Modal, Select } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
@@ -107,12 +107,12 @@ const SellingPointAdd = ({ show, onClose }) => {
         <form onSubmit={onSaveSPClicked}>
           <ModalHeader className='!bg-blues-200'>
             <div className='flex ml-14'>
-              <div className='flex items-center flex-col mx-4 text-xl font-semibold text-white'>
+              <div className='flex items-center flex-col mx-4 my-auto text-xl font-semibold text-white'>
                 Nombre:
               </div>
-              <div className='flex flex-col mx-4'>
-                <input
-                  className='border-2 rounded-lg text-center text-mdh-4/5 w-72 dark:!text-black'
+              <div className='flex flex-col mx-4 my-auto'>
+                <textarea
+                  className='border-2 rounded-lg text-center text-md h-10 w-72 dark:!text-black resize-none'
                   placeholder='Punto de Venta'
                   id='name'
                   {...register('name')}
@@ -124,47 +124,23 @@ const SellingPointAdd = ({ show, onClose }) => {
           </ModalHeader>
           <ModalBody>
             <div className='flex justify-center'>
-              <div className='flex flex-col mx-4 items-end'>
-                <div className='flex flex-row align-bottom text-center my-2 text-lg font-semibold dark:text-white'>
-                  <Tooltip
-                    content='El estado donde se encuentra el punto de venta'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    Zona:
-                  </Tooltip>
+              <div className='flex flex-col mx-4 h-8/12 items-end'>
+                <div className='flex flex-row iPadAir:mt-2align-bottom h-2/12 text-center my-2 text-lg font-semibold dark:text-white'>
+                  Zona:
                 </div>
-                <div className=' flex flex-row text-center my-3 text-lg font-semibold dark:text-white'>
-                  <Tooltip
-                    content='Si el punto de venta es Normal o Premium'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    Tipo:
-                  </Tooltip>
+                <div className=' flex flex-row text-center h-2/12 my-3 text-lg font-semibold dark:text-white'>
+                  Tipo:
                 </div>
-                <div className='flex flex-row text-center my-5 text-lg font-semibold dark:text-white'>
-                  <Tooltip
-                    content='Un máximo de 255 caracteres'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    Dirección:
-                  </Tooltip>
+                <div className='flex flex-row text-center h-2/12 my-5 text-lg font-semibold dark:text-white'>
+                  Dirección:
                 </div>
-                <div className='flex flex-row text-center my-4 text-lg font-semibold dark:text-white'>
-                  <Tooltip
-                    content='Un máximo de 10 números, sin guiones y no código de país'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    Teléfono:
-                  </Tooltip>
+                <div className='flex flex-row text-center h-2/12 my-4 text-lg font-semibold dark:text-white'>
+                  Teléfono:
                 </div>
               </div>
               <div className='flex flex-col w-3/4'>
                 <Select
-                  className='mb-3 rounded-md'
+                  className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
                   id='select_zone'
                   name='select_zone'
                   {...register('select_zone')}
@@ -177,7 +153,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                   {myState}
                 </Select>
                 <Select
-                  className='mb-3 rounded-md'
+                  className='lg:mb-3 xl:mb-3 rounded-md dark:border-2'
                   id='select_type'
                   name='select_type'
                   {...register('select_type')}
@@ -189,18 +165,19 @@ const SellingPointAdd = ({ show, onClose }) => {
                   {myCategory}
                 </Select>
                 <textarea
-                  className='border-2 rounded-md my-2 pl-2 resize-none dark:bg-transparent dark:text-white'
+                  className='border-2 rounded-md my-2 iPadAir:mt-4 lg:mt-3 lg:mb-2 xl:mt-1 xl:mb-3 pl-2 resize-none dark:bg-transparent dark:text-white'
                   id='address'
                   {...register('address')}
                   required
                   maxLength={255}
                 />
+
                 <input
                   className='border-2 rounded-md my-2 pl-2 dark:bg-transparent dark:text-white'
                   id='phone'
                   {...register('phone')}
-                  required
                   pattern='[0-9]{10}'
+                  required
                   maxLength={10}
                 />
               </div>

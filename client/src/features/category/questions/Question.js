@@ -93,14 +93,17 @@ const Question = ({
   const content = (
     <>
       <TableRow key={idQuestion} className='border-b'>
-        <TableCell className='text-center'>{qOrder}</TableCell>
-        <TableCell className='text-center'>{areaTitle}</TableCell>
+        <TableCell className='text-center dark:text-white'>{qOrder}</TableCell>
+        <TableCell className='text-center dark:text-white'>
+          {areaTitle}
+        </TableCell>
         <TableCell className='text-center'>
           <Textarea
-            className='border-2 rounded-md resize-none w-full'
+            className='border-2 rounded-md resize-none w-full p-2'
             type='text'
             value={questionText}
             onChange={onQuestionTextChanged}
+            rows='4'
           />
           {questionText === '' && (
             <div className='text-xs text-red-700'>
@@ -110,7 +113,7 @@ const Question = ({
         </TableCell>
         <TableCell className='text-center'>
           <Checkbox
-            className='scale-110 accent-blues-150'
+            className='scale-150 accent-blues-150'
             value={usingCamera}
             uncheckedvalue={0}
             checked={usingCamera}
@@ -120,7 +123,7 @@ const Question = ({
         <TableCell className='text-center'>
           <Checkbox
             key={idQuestion}
-            className='scale-110 accent-blues-150'
+            className='scale-150 accent-blues-150'
             value={btnNa}
             uncheckedvalue={0}
             checked={btnNa}

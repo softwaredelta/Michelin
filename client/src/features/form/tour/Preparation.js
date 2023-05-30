@@ -1,8 +1,11 @@
 import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/ProgressBar'
 import AreaAccordion from '../../../components/AreaAccordion'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Preparation = () => {
+  const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
   const areas = Form.getAreasBySection(1)
 
@@ -11,6 +14,13 @@ const Preparation = () => {
       <AreaAccordion key={area.idArea} section={1} area={area} index={id} />
     ))
     : null
+
+  useEffect(() => {
+    console.log(Form.idSp)
+    if (Form.idSp == 0) {
+      navigate('/form')
+    }
+  })
 
   const content = (
     <>
