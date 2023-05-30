@@ -1,4 +1,4 @@
-import { Modal, Select, Tooltip } from 'flowbite-react'
+import { Modal, Select } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
@@ -115,19 +115,19 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
         <form onSubmit={onEditSPClicked}>
           <ModalHeader className='!bg-blues-200'>
             <div className='flex ml-14'>
-              <div className='flex items-center flex-col mx-4 text-xl font-semibold text-white'>
+              <div className='flex items-center flex-col mx-4 my-auto text-xl font-semibold text-white'>
                 Nombre:
               </div>
               <div className='flex flex-col mx-4'>
-                <input
-                  className='border-2 rounded-lg text-center text-mdh-4/5 w-72 dark:text-black'
+                <textarea
+                  className='border-2 rounded-lg text-center text-md my-auto h-4/5 w-72 dark:text-black resize-none'
                   id='name'
                   {...register('name')}
                   defaultValue={sp.name}
                   required
                   maxLength={255}
+                  rows='2'
                 />
-
               </div>
             </div>
           </ModalHeader>
@@ -135,45 +135,21 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
             <div className='flex justify-center'>
               <div className='flex flex-col mx-4 items-end'>
                 <div className='flex-row align-bottom text-center my-2 text-lg font-semibold dark:text-white'>
-                  <Tooltip
-                    content='El estado donde se encuentra el punto de venta'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    Zona:
-                  </Tooltip>
+                  Zona:
                 </div>
                 <div className='flex-row text-center my-3 text-lg font-semibold dark:text-white'>
-                  <Tooltip
-                    content='Si el punto de venta es Normal o Premium'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    Tipo:
-                  </Tooltip>
+                  Tipo:
                 </div>
                 <div className='flex-row text-center my-5 text-lg font-semibold dark:text-white'>
-                  <Tooltip
-                    content='Un máximo de 255 caracteres'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    Dirección:
-                  </Tooltip>
+                  Dirección:
                 </div>
                 <div className='flex-row text-center my-4 text-lg font-semibold dark:text-white'>
-                  <Tooltip
-                    content='Un máximo de 20 números'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    Teléfono:
-                  </Tooltip>
+                  Teléfono:
                 </div>
               </div>
               <div className='flex flex-col w-3/4'>
                 <Select
-                  className='mb-3 rounded-md'
+                  className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
                   id='select_zone'
                   name='select_zone'
                   {...register('select_zone')}
@@ -186,7 +162,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   {myState}
                 </Select>
                 <Select
-                  className='mb-3 rounded-md'
+                  className='lg:mb-3 xl:mb-3 rounded-md dark:border-2'
                   id='select_type'
                   name='select_type'
                   {...register('select_type')}
@@ -196,13 +172,14 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   {myCategory}
                 </Select>
                 <textarea
-                  className='border-2 rounded-md my-2 pl-2 resize-none dark:bg-transparent dark:text-white'
+                  className='border-2 rounded-md my-2 iPadAir:mt-4 lg:mt-3 lg:mb-2 xl:mt-1 xl:mb-3 pl-2 resize-none dark:bg-transparent dark:text-white'
                   id='address'
                   {...register('address')}
                   defaultValue={sp.address}
                   required
                   maxLength={255}
                 />
+
                 <input
                   className='border-2 rounded-md my-2 pl-2 dark:bg-transparent dark:text-white'
                   id='phone'

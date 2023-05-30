@@ -15,6 +15,7 @@ import Exterior from './features/form/tour/Exterior'
 import Interior from './features/form/tour/Interior'
 import Client from './features/form/tour/Client'
 import Manager from './features/form/tour/Manager'
+import Finalize from './features/form/tour/Finalize'
 // AdminRoute in UsersList
 function App () {
   return (
@@ -89,6 +90,7 @@ function App () {
           <Route path='interior' element={<Interior />} />
           <Route path='client' element={<Client />} />
           <Route path='manager' element={<Manager />} />
+          <Route path='finalize' element={<Finalize />} />
         </Route>
       </Route>
     </Routes>

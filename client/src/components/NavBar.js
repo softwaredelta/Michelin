@@ -6,6 +6,10 @@ import { NavbarLink } from 'flowbite-react/lib/esm/components/Navbar/NavbarLink'
 
 const NavBar = () => {
   const role = localStorage.getItem('role') // eslint-disable-line
+  const onLogoutClicked = () => {
+    localStorage.clear() // eslint-disable-line
+  }
+
   let admin = (
     <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>
       <div className='flex md:order-2 text-lg'>
@@ -35,7 +39,11 @@ const NavBar = () => {
   const content = (
     <>
       <div className='mb-5'>
-        <Navbar className='border-b-2 fixed top-0 z-30 w-full dark:!bg-blues-400' fluid rounded={false}>
+        <Navbar
+          className='border-b fixed top-0 z-30 w-full dark:!bg-stone-950 dark:!border-stone-800'
+          fluid
+          rounded={false}
+        >
           <NavbarBrand className='px-4' href='/home'>
             <img
               style={({ width: '100px' }, { height: '60px' })}
@@ -44,12 +52,28 @@ const NavBar = () => {
             />
           </NavbarBrand>
           <NavbarCollapse className='px-2'>
-            <NavbarLink href='/form/' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Recorrido</NavbarLink>
-            <NavbarLink href='/history' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Historial</NavbarLink>
-            <NavbarLink href='/sellingPoint' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Puntos de Venta</NavbarLink>
+
+            <NavbarLink
+              href='/history'
+              className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
+            >
+              Historial
+            </NavbarLink>
+            <NavbarLink
+              href='/sellingPoint'
+              className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
+            >
+              Puntos de Venta
+            </NavbarLink>
             {manager}
             {admin}
-            <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Cuenta</NavbarLink>
+            <NavbarLink
+              href='/login'
+              className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
+              onClick={onLogoutClicked}
+            >
+              Cerrar Sesión
+            </NavbarLink>
           </NavbarCollapse>
         </Navbar>
       </div>

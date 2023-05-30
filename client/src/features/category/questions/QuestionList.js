@@ -84,7 +84,7 @@ const QuestionList = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
+        <div className='pt-20 w-full h-screen flex flex-col items-center bg-gradient-to-b from-white to-gray-100 dark:!bg-gradient-to-b dark:!from-blues-500 dark:!to-blues-500'>
           <Header myText='Preguntas' />
           <div className='flex flex-row w-full justify-between my-2 py-4'>
             <div className='flex flex-col'>
@@ -99,16 +99,22 @@ const QuestionList = () => {
               <Bluebutton myText='+ Nueva Pregunta' method={handleSetShow} />
             </div>
           </div>
-          <div className='container justify-items-stretch w-max-full h-3/5 overflow-y-scroll border'>
+          <div className='container justify-items-stretch w-11/12 h-3/5 overflow-y-scroll rounded-lg'>
             <Table className='table-full'>
               <TableHead>
-                <TableHeadCell className='text-center'>Orden</TableHeadCell>
-                <TableHeadCell className='text-center'>Área</TableHeadCell>
-                <TableHeadCell className='text-center'>Pregunta</TableHeadCell>
-                <TableHeadCell className='text-center'>
+                <TableHeadCell className='text-center dark:text-white'>
+                  Orden
+                </TableHeadCell>
+                <TableHeadCell className='text-center dark:text-white'>
+                  Área
+                </TableHeadCell>
+                <TableHeadCell className='text-center dark:text-white'>
+                  Pregunta
+                </TableHeadCell>
+                <TableHeadCell className='text-center dark:text-white'>
                   Evidencia con cámara
                 </TableHeadCell>
-                <TableHeadCell className='text-center'>
+                <TableHeadCell className='text-center dark:text-white'>
                   Botón no aplica
                 </TableHeadCell>
                 <TableHeadCell />

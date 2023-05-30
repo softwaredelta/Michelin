@@ -57,7 +57,7 @@ const SellingPointList = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
+        <div className='pt-20 w-full min-h-screen flex flex-col items-center bg-gradient-to-b from-white to-gray-100 dark:!bg-gradient-to-b dark:!from-blues-500 dark:!to-blues-500'>
           <Header myText='Punto de Venta' />
           <div className='self-end mr-5'>
             <Bluebutton
@@ -66,7 +66,7 @@ const SellingPointList = () => {
             />
           </div>
           {message}
-          <div className='container flex flex-wrap justify-items-stretch dark:!bg-blues-400'>
+          <div className='container flex flex-wrap justify-items-stretch'>
             {listContent}
           </div>
           <ModifiedFooter />
