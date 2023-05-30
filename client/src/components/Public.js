@@ -19,7 +19,7 @@ const Public = () => {
     isError
   } = useGetFormsByUserQuery({ mail: localStorage.getItem("mail") }); // eslint-disable-line
   const { data: count, isSuccess: isSuccesCount } = useGetFormCountByUserQuery({
-    mail: localStorage.getItem('mail')
+    mail: localStorage.getItem('mail') // eslint-disable-line
   }); // eslint-disable-line
 
   const baseReportRoute = 'https://back2basics.software/api/form/report/'
