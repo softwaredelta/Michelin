@@ -5,7 +5,8 @@ module.exports = class Form {
     const rows = await connection.query(
       `SELECT f.id_form, u.name AS user_name, u.last_name AS user_last_name, f.exterior_grade, f.interior_grade, f.client_grade, f.store_manager_grade, f.sp_name, f.file_link, f.duration, f.date, s.name AS zone
       FROM form as f, users as u, sellingpoint as sp, state as s
-      WHERE f.id_user = u.id_user AND f.sp_name = sp.name AND sp.id_state = s.id_state`
+      WHERE f.id_user = u.id_user AND f.sp_name = sp.name AND sp.id_state = s.id_state
+      ORDER BY f.date DESC`
     )
     connection.release()
     return rows[0]
@@ -16,7 +17,8 @@ module.exports = class Form {
     const rows = await connection.query(
       `SELECT f.id_form, u.name AS user_name, u.last_name AS user_last_name, f.exterior_grade, f.interior_grade, f.client_grade, f.store_manager_grade, f.sp_name, f.file_link, f.duration, f.date, s.name AS zone
       FROM form as f, users as u, sellingpoint as sp, state as s
-      WHERE f.id_user = u.id_user AND f.sp_name = sp.name AND sp.id_state = s.id_state AND f.id_user = ?`,
+      WHERE f.id_user = u.id_user AND f.sp_name = sp.name AND sp.id_state = s.id_state AND f.id_user = ?
+      ORDER BY f.date DESC`,
       [idUser]
     )
     connection.release()

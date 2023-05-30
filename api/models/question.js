@@ -64,7 +64,8 @@ module.exports = class Question {
   static async deleteQuestion (fastify, idCategory, idQuestion, order) {
     const connection = await fastify.mysql.getConnection()
     const updateOrder = await connection.query(
-      'UPDATE question as q SET q.q_order = q.q_order - 1 WHERE q.q_order > ? AND q.id_area = (SELECT qu.id_area FROM question as qu WHERE id_question = ?)',
+      `UPDATE question SET q_order = q_order - 1 
+       WHERE q_order > ? AND id_area = (SELECT areaid FROM (SELECT id_area as areaid FROM question WHERE id_question = ?) AS qa)`,
       [
         order, idQuestion
       ]
