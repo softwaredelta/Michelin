@@ -9,6 +9,9 @@ const Finalize = () => {
 
   const onFinalizeTourClicked = async (e) => {
     e.preventDefault()
+    Form.setEndTime()
+    console.log(Form.endTime)
+    console.log(Form.startTime)
     const manager = getValues('manager')
     const comments = getValues('comments')
 
