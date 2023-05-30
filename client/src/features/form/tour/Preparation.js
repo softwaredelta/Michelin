@@ -16,8 +16,7 @@ const Preparation = () => {
     : null
 
   useEffect(() => {
-    console.log(Form.idSp)
-    if (Form.idSp == 0) {
+    if (Form.idSp === 0) {
       navigate('/form')
     }
   })

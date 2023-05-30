@@ -4,10 +4,8 @@ import { NavbarCollapse } from 'flowbite-react/lib/esm/components/Navbar/NavbarC
 import { NavbarLink } from 'flowbite-react/lib/esm/components/Navbar/NavbarLink'
 import { HiHome } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
-import CurrentForm from '../services/CurrentForm'
 
 const ProgressBar = () => {
-  const Form = CurrentForm.getInstance()
   const navigate = useNavigate()
 
   const content = (
