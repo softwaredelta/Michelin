@@ -4,10 +4,8 @@ import { NavbarCollapse } from 'flowbite-react/lib/esm/components/Navbar/NavbarC
 import { NavbarLink } from 'flowbite-react/lib/esm/components/Navbar/NavbarLink'
 import { HiHome } from 'react-icons/hi'
 import { useNavigate } from 'react-router-dom'
-import CurrentForm from '../services/CurrentForm'
 
 const ProgressBar = () => {
-  const Form = CurrentForm.getInstance()
   const navigate = useNavigate()
 
   const content = (
@@ -25,7 +23,7 @@ const ProgressBar = () => {
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => navigate('/form/interior')}>Interior</NavbarLink>
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => navigate('/form/client')}>Cliente</NavbarLink>
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => navigate('/form/manager')}>Gerente</NavbarLink>
-            <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => Form.postForm('Ejemplo', 'Ejemplo')}>Finalizar</NavbarLink>
+            <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => navigate('/form/finalize')}>Finalizar</NavbarLink>
           </NavbarCollapse>
         </Navbar>
       </div>

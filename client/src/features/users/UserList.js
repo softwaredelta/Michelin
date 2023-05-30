@@ -52,26 +52,26 @@ const UsersList = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
+        <div className='pt-20 w-full h-screen flex flex-col items-center bg-gradient-to-b from-white to-gray-100 dark:!bg-gradient-to-b dark:!from-blues-500 dark:!to-blues-500'>
           <Bluebutton myText='+ Nuevo Usuario' method={handleSetShow} />
-          <div className='content-center grid grid-cols-5 gap-10 w-8/12 ml-2 mb-6 py-4 border-b-2 dark:border-blues-200'>
-            <h2 className='font-semibold text-center ml-20 dark:!text-white'>
+          <div className='content-center grid grid-cols-5 2xl:gap-10 lg:gap-12 2xl:w-8/12 lg:w-10/12 2xl:ml-2 lg:ml-5 mb-6 py-4 border-b-2 dark:border-blues-200'>
+            <h2 className='font-semibold text-center 2xl:ml-20 iPadAir:ml-28 lg:ml-12 dark:!text-white'>
               Rol
             </h2>
-            <h2 className='font-semibold text-center ml-14 dark:!text-white'>
+            <h2 className='font-semibold text-center 2xl:ml-14 iPadAir:ml-16 lg:ml-5 dark:!text-white'>
               Nombre
             </h2>
-            <h2 className='font-semibold text-center ml-2 dark:!text-white'>
+            <h2 className='font-semibold text-center 2xl:ml-2 iPadAir:mr-2 lg:m-0 dark:!text-white'>
               Zona
             </h2>
-            <h2 className='font-semibold text-center mr-2 dark:!text-white'>
+            <h2 className='font-semibold text-center 2xl:mr-2 iPadAir:mr-16 lg:mr-5 dark:!text-white'>
               Número de Reportes
             </h2>
-            <h2 className='font-semibold text-center mr-20 dark:!text-white'>
-              Manager
+            <h2 className='font-semibold text-center 2xl:mr-20 iPadAir:mr-40 lg:mr-12 dark:!text-white'>
+              Mánager
             </h2>
           </div>
-          <div className='h-3/5 overflow-y-scroll'>
+          <div className='h-4/5 overflow-y-scroll'>
             {tableContent}
             {message}
           </div>

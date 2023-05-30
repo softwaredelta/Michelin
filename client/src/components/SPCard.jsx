@@ -63,11 +63,11 @@ const SPCard = ({ spId }) => {
       >
         <Card
           imgSrc={img}
-          className='!bg-blues-300 h-72 !rounded-xl !border-2'
+          className='!bg-gradient-to-b from-blues-150 to-blues-300 h-72 !rounded-xl !border-2'
         >
           <div className='flex row justify-between'>
             <div className='flex-col mr-2'>
-              <h5 className='text-2xl font-bold tracking-tight text-white dark:text-white'>
+              <h5 className='text-2xl font-bold tracking-tight text-white dark:text-white truncate'>
                 {sp.name}
               </h5>
             </div>
@@ -82,13 +82,16 @@ const SPCard = ({ spId }) => {
         </Card>
 
         <Card
-          className='h-72 !rounded-xl cursor-pointer dark:!bg-blues-300'
+          className='h-72 !rounded-xl cursor-pointer dark:!bg-gradient-to-b dark:from-blues-150 dark:to-blues-300'
           onClick={() => setFlip(!flip)}
         >
           <div className>
             <div className='flex flex-row justify-center mb-1'>
               <div className='border-b py-2 min-w-full text-center'>
-                <h3 className='text-xl font-bold tracking-tight text-blues-300 dark:text-white'>
+                <h3
+                  className='text-xl font-bold tracking-tight text-blues-300 dark:text-white truncate overflow-hidden'
+                  maxlength='10'
+                >
                   {sp.name}
                 </h3>
               </div>
@@ -135,7 +138,10 @@ const SPCard = ({ spId }) => {
               <div className='flex-col'>
                 <SvgButton
                   svgfile={
-                    <FaEdit color='#1d4089' className='dark:fill-white dark:hover:!fill-trademark-50 hover:!fill-gray-500' />
+                    <FaEdit
+                      color='#1d4089'
+                      className='dark:fill-white dark:hover:!fill-trademark-50 hover:!fill-gray-500'
+                    />
                   }
                   method={handleSetShowEdit}
                 />

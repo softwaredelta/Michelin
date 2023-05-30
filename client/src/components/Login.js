@@ -56,7 +56,7 @@ const Login = () => {
         >
           <div className='grid grid-cols-2 justify-end'>
             <div className='col-span-2'>
-              <div className='bg-white rounded-3xl shadow-xl border-2 float-right grid px-10 py-14 mr-28 mt-44'>
+              <div className='bg-white rounded-3xl shadow-xl border-2 float-right grid px-10 2xl:py-14 mr-28 mt-44 '>
                 <img
                   style={({ width: '12vh' }, { height: '12vh' })}
                   src='/images/Michelin-Logo.png'

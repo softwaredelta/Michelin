@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAddNewQuestionMutation } from './questionApiSlice'
 import { useGetAreasBySectionQuery } from '../sectionApiSlice'
-import { Checkbox, Select, Label, FileInput, Modal, Textarea, Tooltip } from 'flowbite-react'
+import { Checkbox, Select, Label, FileInput, Modal, Textarea } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
@@ -83,7 +83,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
       setPlaceHolder('') // reset placeholder
       Toast.fire({
         icon: 'success',
-        title: 'Se creo una nueva pregunta'
+        title: 'Se creó una nueva pregunta'
       })
     }
   }, [isSuccess, isError, error, reset, navigate])
@@ -103,17 +103,11 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
             <div className='flex justify-center'>
               <div className='flex flex-col w-3/4'>
                 <div className='flex flex-row items-center'>
-                  <Tooltip
-                    content='Máximo 255 caracteres'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    <Label
-                      htmlFor='qText'
-                      value='Pregunta'
-                      className='text-lg font-semibold mr-2 my-1'
-                    />
-                  </Tooltip>
+                  <Label
+                    htmlFor='qText'
+                    value='Pregunta'
+                    className='text-lg font-semibold mr-2 my-1'
+                  />
                 </div>
 
                 <Textarea
@@ -122,28 +116,23 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                   name='qText'
                   required
                   autoComplete='off'
-                  className='border-2 rounded-md my-2 resize-none'
+                  className='border-2 rounded-md my-2 resize-none p-2'
                   maxLength='255'
+                  rows='4'
                 />
                 <div className='flex flex-row'>
-                  <Tooltip
-                    content='Dónde aparecerá la pregunta dentro de la aplicación '
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    <Label
-                      htmlFor='idArea'
-                      value='Área'
-                      className='align-bottom mr-2 my-1 text-lg font-semibold'
-                    />
-                  </Tooltip>
+                  <Label
+                    htmlFor='idArea'
+                    value='Área'
+                    className='align-bottom mr-2 my-1 text-lg font-semibold'
+                  />
                 </div>
                 <Select
                   id='idArea'
                   name='idArea'
                   {...register('idArea')}
                   required
-                  className='rounded-md my-2'
+                  className='rounded-md my-2 dark:border-2'
                 >
                   <option value='' selected> Selecciona una opción </option>
                   {area}
@@ -155,30 +144,21 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                 <div className='flex flex-row my-1 justify-center'>
                   <div className='flex-col mx-2'>
                     <div className='flex flex-row'>
-                      <Tooltip
-                        content='Necesita evidencia fotográfica'
-                        trigger='hover'
-                        className='dark:!bg-white dark:!text-black'
-                      >
-                        <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mr-3'>
-                          Uso de cámara
-                        </Label>
-                      </Tooltip>
+
+                      <Label htmlFor='usingCamara' className='align-top text-center text-lg font-semibold mr-3'>
+                        Uso de cámara
+                      </Label>
+
                       <Checkbox id='usingCamera' {...register('usingCamera')} name='usingCamera' value={1} uncheckedvalue={0} className='align-center accent-blues-150 scale-150 my-1' />
 
                     </div>
                   </div>
                   <div className='flex-col'>
                     <div className='flex flex-row'>
-                      <Tooltip
-                        content='La respuesta puede ser omitida'
-                        trigger='hover'
-                        className='dark:!bg-white dark:!text-black'
-                      >
-                        <Label htmlFor='btnNa' className='align-top text-center text-lg font-semibold ml-2 mr-3'>
-                          Botón No Aplica
-                        </Label>
-                      </Tooltip>
+
+                      <Label htmlFor='btnNa' className='align-top text-center text-lg font-semibold ml-2 mr-3'>
+                        Botón No Aplica
+                      </Label>
 
                       <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1 accent-blues-150' />
                     </div>
@@ -186,23 +166,19 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
                 </div>
                 <div className='flex-row my-5'>
                   <div className='flex flex-row'>
-                    <Tooltip
-                      content='Imagen predeterminada para la pregunta'
-                      trigger='hover'
-                      className='dark:!bg-white dark:!text-black'
-                    >
-                      <Label
-                        htmlFor='placeholder'
-                        value='Imagen de ejemplo'
-                        className='align-bottom text-center text-lg font-semibold mr-1'
-                      />
-                    </Tooltip>
+
+                    <Label
+                      htmlFor='placeholder'
+                      value='Imagen de ejemplo'
+                      className='align-bottom text-center text-lg font-semibold mr-1'
+                    />
+
                   </div>
                   <div id='fileUpload'>
                     <FileInput
                       id='placeholder'
                       name='placeholder'
-                      className='rounded-md my-2.5'
+                      className='rounded-md my-2.5 dark:border-'
                       onChange={onPlaceHolderChanged}
                       accept='.jpg, .jpeg'
                     />
