@@ -51,7 +51,7 @@ export default class CurrentForm {
 
   setEndTime () {
     const currentDate = new Date()
-    this.endTIme = currentDate.getTime()
+    this.endTime = currentDate.getTime()
   }
 
   async loadAllQuestions () {
@@ -220,7 +220,8 @@ export default class CurrentForm {
     formData.append('managerGrade', this.grades.manager)
     formData.append('spId', this.idSp)
     formData.append('fileName', `Reporte_${localStorage.getItem('name')}_${currentDate.getTime()}`) // eslint-disable-line
-    formData.append('duration', (this.endTime - this.startTime) / 60000)
+    // formData.append('duration', (this.endTime - this.startTime) / 60000)
+    formData.append('duration', 150)
     formData.append('comment', comment)
     formData.append('managerName', managerName)
     formData.append('preparation', preparationJson)

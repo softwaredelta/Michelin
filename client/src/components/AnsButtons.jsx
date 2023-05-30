@@ -56,7 +56,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   classNameRED = disableRED ? classNameDis : classNameDflt
   classNameNA = disableNA ? classNameDis : classNameDflt
 
-  const selectImageName = section + area + index + 'selectImg'
+  const selectImageName = `s${section}a${area}i${index}selectImg`
   if ((camera === 1 && answer === 2) || answer === 4) {
     photo = (
       <>
