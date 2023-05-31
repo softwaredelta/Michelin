@@ -11,6 +11,7 @@ function buildFastify (opts = {}, testing) {
   fastify.register(require('./util/env-setup'))
   fastify.register(require('./util/jwt-setup'))
   fastify.register(require('./util/static-setup'))
+  fastify.register(require('./util/rating-update'))
 
   fastify.register(require('fastify-multer').contentParser)
 

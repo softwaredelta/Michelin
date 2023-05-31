@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiRoute = 'https://back2basics.software/api/'
+const apiRoute = 'https://back2basics.software/'
 
 export default class CurrentForm {
   static instance = null
@@ -249,7 +249,6 @@ export default class CurrentForm {
 
   SectionJson (section) {
     const currentSection = this.selectSection(section)
-    let imgIndex = 0
 
     let sumYes = 0
     let sumTotal = 0
@@ -273,11 +272,10 @@ export default class CurrentForm {
             sumNa++
             break
           case 4:
-            this.uploadImages[imgIndex] = {
+            this.uploadImages.push({
               file: question.file,
               fileName: question.fileName
-            }
-            imgIndex += 1
+            })
             break
           default:
             break

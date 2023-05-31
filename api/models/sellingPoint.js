@@ -1,3 +1,5 @@
+const PlacesApi = require('../util/places-api-util')
+
 module.exports = class SellingPoint {
   static async fetchAll (fastify) {
     const connection = await fastify.mysql.getConnection()
@@ -49,6 +51,37 @@ module.exports = class SellingPoint {
         type, zone, address, name, phone, idSp
       ]
     )
+    connection.release()
+  }
+
+  static async updateSellingPointRating (fastify) {
+    const connection = await fastify.mysql.getConnection()
+    const spData = await connection.query(
+      'SELECT sp.id_sp, sp.address, sp.rating, sp.name FROM sellingpoint as sp'
+    )
+
+    await spData[0].forEach(async sp => {
+      let newRating = sp.rating
+
+      try { // Check for errors in Google API Call
+        let apiRating = await PlacesApi.getRatingFromAPI(sp.address)
+
+        // If search by address can't be found, try by sp name
+        apiRating = (typeof apiRating === 'undefined') ? await PlacesApi.getRatingFromAPI(sp.name) : apiRating
+
+        // Assign if new rating was found
+        newRating = (typeof apiRating === 'undefined') ? newRating : apiRating
+      } catch (err) {
+        console.log(err)
+      }
+
+      await connection.query(
+        'UPDATE sellingpoint SET rating = ? WHERE id_sp = ?',
+        [
+          newRating, sp.id_sp
+        ]
+      )
+    })
     connection.release()
   }
 }
