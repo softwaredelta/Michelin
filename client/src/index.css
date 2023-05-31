@@ -71,20 +71,6 @@ code {
 }
 
 @font-face {
-  font-display: swap;
-  font-family: 'Noto Sans';
-  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.eot');
-  src:
-    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.eot?#iefix') format('embedded-opentype'),
-    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.woff2') format('woff2'),
-    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.woff') format('woff'),
-    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.ttf') format('truetype'),
-    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/notosans-bold.svg#noto_sansbold') format('svg');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'Michelin';
   src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.eot');
   src:
@@ -94,4 +80,27 @@ code {
     url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.ttf') format('truetype'),
     url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.svg#Michelin-Black') format('svg');
   font-weight: 900;
+}
+
+@font-face {
+  font-family: 'MichelinLight';
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.eot');
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.eot?#iefix') format('embedded-opentype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.woff2') format('woff2'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.woff') format('woff'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.ttf') format('truetype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.svg#Michelin-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MichelinSemiBold';
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.eot');
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.eot?#iefix') format('embedded-opentype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.woff2') format('woff2'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.woff') format('woff'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.ttf') format('truetype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.svg#Michelin-SemiBold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+.truncate{
+  width: 200px;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
 }

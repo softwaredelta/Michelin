@@ -1,7 +1,7 @@
 
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
-import { Tooltip, Label, Select, Modal } from 'flowbite-react'
+import { Label, Select, Modal } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { useAddNewUserMutation, useGetRolesQuery, useGetManagersQuery } from './usersApiSlice'
 import { useForm } from 'react-hook-form'
@@ -161,19 +161,13 @@ const UserAdd = ({ show, onClose }) => {
             <div className='flex justify-center'>
               <div className='flex flex-col w-3/4'>
                 <div className=' flex flex-row'>
-                  <div className='col mr-9'>
+                  <div className='flex-col mr-9'>
                     <div className='flex flex-row items-center'>
-                      <Tooltip
-                        content='Nombre del nuevo Usuario'
-                        trigger='hover'
-                        className='dark:!bg-white dark:!text-black'
-                      >
-                        <Label
-                          htmlFor='name'
-                          value='Nombre'
-                          className='text-lg font-semibold mr-2 my-1'
-                        />
-                      </Tooltip>
+                      <Label
+                        htmlFor='name'
+                        value='Nombre'
+                        className='text-lg font-semibold mr-2 my-1'
+                      />
                     </div>
                     <input
                       id='name'
@@ -181,23 +175,17 @@ const UserAdd = ({ show, onClose }) => {
                       {...register('name')}
                       required
                       autoComplete='off'
-                      className='border-2 rounded-md my-2 resize-none'
+                      className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2'
                       maxLength='255'
                     />
                   </div>
-                  <div className='col'>
+                  <div className='flex-col w-full'>
                     <div className='flex flex-row items-center'>
-                      <Tooltip
-                        content='Apellidos del Usuario'
-                        trigger='hover'
-                        className='dark:!bg-white dark:!text-black'
-                      >
-                        <Label
-                          htmlFor='lastName'
-                          value='Apellidos'
-                          className='text-lg font-semibold mr-2 my-1'
-                        />
-                      </Tooltip>
+                      <Label
+                        htmlFor='lastName'
+                        value='Apellidos'
+                        className='text-lg font-semibold mr-2 my-1'
+                      />
                     </div>
                     <input
                       id='lastName'
@@ -205,23 +193,17 @@ const UserAdd = ({ show, onClose }) => {
                       {...register('lastName')}
                       required
                       autoComplete='off'
-                      className='border-2 rounded-md my-2 resize-none'
+                      className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2'
                       maxLength='255'
                     />
                   </div>
                 </div>
                 <div className='flex flex-row items-center'>
-                  <Tooltip
-                    content='Correo Electronico'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    <Label
-                      htmlFor='mail'
-                      value='Correo Electronico'
-                      className='text-lg font-semibold mr-2 my-1'
-                    />
-                  </Tooltip>
+                  <Label
+                    htmlFor='mail'
+                    value='Correo Electrónico'
+                    className='text-lg font-semibold mr-2 my-1'
+                  />
                 </div>
                 <input
                   id='mail'
@@ -229,83 +211,72 @@ const UserAdd = ({ show, onClose }) => {
                   {...register('mail')}
                   required
                   autoComplete='off'
-                  className='border-2 rounded-md my-2 resize-none'
+                  className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2'
                   maxLength='255'
                   type='email'
                 />
                 <div className='flex flex-row items-center'>
-                  <Tooltip
-                    content='Manager Asignado'
-                    trigger='hover'
-                    className='dark:!bg-white dark:!text-black'
-                  >
-                    <Label
-                      htmlFor='idManager'
-                      value='Manager asignado'
-                      className='text-lg font-semibold mr-2 my-1'
-                    />
-                  </Tooltip>
+                  <Label
+                    htmlFor='idManager'
+                    value='Mánager asignado'
+                    className='text-lg font-semibold mr-2 my-1'
+                  />
                 </div>
                 <Select
                   id='idManager'
                   name='idManager'
                   required
-                  className='rounded-md my-2'
+                  className='rounded-md my-2 dark:border-2'
                   {...register('idManager')}
                 >
-                  <option value='' selected> -- Selecciona una opción --</option>
+                  <option value='' selected>
+                    {' '}
+                    Selecciona una opción
+                  </option>
                   <option value={0}> Sin manager</option>
                   {manager}
                 </Select>
                 <div className='flex flex-row'>
                   <div className='col mr-9'>
                     <div className='flex flex-row'>
-                      <Tooltip
-                        content='Rol del usuario '
-                        trigger='hover'
-                        className='dark:!bg-white dark:!text-black'
-                      >
-                        <Label
-                          htmlFor='role'
-                          value='Rol'
-                          className='align-bottom mr-2 my-1 text-lg font-semibold'
-                        />
-                      </Tooltip>
+                      <Label
+                        htmlFor='role'
+                        value='Rol'
+                        className='align-bottom mr-2 my-1 text-lg font-semibold'
+                      />
                     </div>
                     <Select
                       id='role'
                       name='role'
                       required
                       {...register('role')}
-                      className='rounded-md my-2'
+                      className='rounded-md my-2 dark:border-2'
                     >
-                      <option value='' selected> -- Selecciona una opción --</option>
+                      <option value='' selected>
+                        {' '}
+                        Selecciona una opción
+                      </option>
                       {role}
                     </Select>
                   </div>
                   <div className='col'>
                     <div className='flex flex-row'>
-                      <Tooltip
-                        content='Estados de la republica'
-                        trigger='hover'
-                        className='dark:!bg-white dark:!text-black'
-                      >
-                        <Label
-                          htmlFor='state'
-                          value='Zona'
-                          className='align-bottom mr-2 my-1 text-lg font-semibold'
-                        />
-                      </Tooltip>
+                      <Label
+                        htmlFor='state'
+                        value='Zona'
+                        className='align-bottom mr-2 my-1 text-lg font-semibold'
+                      />
                     </div>
                     <Select
-                      multiple
                       id='state'
                       name='state'
                       required
-                      className='rounded-md my-2'
+                      className='rounded-md my-2 dark:border-2'
                       {...register('state')}
                     >
-                      <option value='' selected> - Selecciona una o varias opciones -</option>
+                      <option value='' selected>
+                        Selecciona una opción
+                      </option>
                       {myState}
                     </Select>
                   </div>
@@ -313,7 +284,7 @@ const UserAdd = ({ show, onClose }) => {
               </div>
             </div>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter className='justify-end'>
             <button
               className='bg-blues-200 text-white font-semibold py-2 px-4 rounded-md dark:hover:text-trademark-50'
               title='Create'
@@ -330,7 +301,6 @@ const UserAdd = ({ show, onClose }) => {
             </a>
           </ModalFooter>
         </form>
-
       </Modal>
     </>
   )

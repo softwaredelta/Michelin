@@ -5,9 +5,14 @@ import Report from '../history/Report'
 import { useGetFormsByUserQuery } from '../form/formApiSlice'
 
 const History = () => {
-  const { data: forms, isLoading, isSuccess, isError } = useGetFormsByUserQuery({ mail: localStorage.getItem('mail') }) // eslint-disable-line
+  const {
+    data: forms,
+    isLoading,
+    isSuccess,
+    isError
+  } = useGetFormsByUserQuery({ mail: localStorage.getItem("mail") }); // eslint-disable-line
 
-  const baseReportRoute = 'http://localhost:3080/form/report/'
+  const baseReportRoute = 'https://back2basics.software/api/form/report/'
 
   let tableContent
   let message
@@ -17,7 +22,7 @@ const History = () => {
   if (isError) {
     message = (
       <p className='text-3xl font-semibold dark:!text-white'>
-        No hay conexion con la base de datos
+        No hay conexión con la base de datos
       </p>
     )
   }
@@ -33,21 +38,23 @@ const History = () => {
     }
 
     tableContent = ids?.length
-      ? ids.map((idForm) =>
+      ? ids.map((idForm) => (
         <Report
           key={idForm}
           spName={entities[idForm].sp_name}
           spZone={entities[idForm].zone}
-          repDate={`${(entities[idForm].date).substring(8, 10)}/${(entities[idForm].date).substring(5, 7)}/${(entities[idForm].date).substring(0, 4)}`}
+          repDate={`${entities[idForm].date.substring(8, 10)}/${entities[
+              idForm
+            ].date.substring(5, 7)}/${entities[idForm].date.substring(0, 4)}`}
           userName={`${entities[idForm].user_name} ${entities[idForm].user_last_name}`}
-          repTime={`${(entities[idForm].duration).substring(3, 5)} minutos`}
+          repTime={`${entities[idForm].duration.substring(3, 5)} minutos`}
           repLink={baseReportRoute + entities[idForm].file_link}
           intPercentage={entities[idForm].interior_grade}
           extPercentage={entities[idForm].exterior_grade}
           clientPercentage={entities[idForm].client_grade}
           managerPercentage={entities[idForm].store_manager_grade}
         />
-      )
+      ))
       : null
   }
 
@@ -55,18 +62,18 @@ const History = () => {
     <>
       <div>
         <NavBar />
-        <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
-          <Header myText='Historial' />
-          <div className='container pt-5 h-screen overflow-y-hidden w-10/12 items-center dark:!bg-blues-400'>
+        <div className='pt-20 w-full h-screen flex flex-col items-center bg-gradient-to-b from-white to-gray-100 dark:!bg-gradient-to-b dark:!from-blues-500 dark:!to-blues-500'>
+          <Header myText='Historial de Auditorías' />
+          <div className='container pt-5 h-screen overflow-y-hidden w-10/12 items-center dark:!bg-blues-500'>
             <div className='content-start w-full ml-0 mb-6 py-4 border-b-2 dark:border-blues-200'>
-              <div className='flex flex-row w-9/12 justify-between'>
-                <h2 className='font-semibold text-center ml-28 dark:!text-white'>
+              <div className='flex flex-row xl:w-9/12 lg:w-10/12 md:w-10/12 justify-between'>
+                <h2 className='font-semibold 2xl:ml-28 xl:ml-32 iPadAir:ml-22 lg:ml-24 small:text-sm md:text-base dark:!text-white'>
                   Nombre
                 </h2>
-                <h2 className='font-semibold text-center dark:!text-white'>
+                <h2 className='font-semibold 2xl:mr-0 xl:mr-5 iPadAir:mr-1 lg:ml-3 md:mr-1 md:text-base md:m-0 small:text-sm small:mr-3 dark:!text-white'>
                   Estado
                 </h2>
-                <h2 className='font-semibold text-center mr-40 dark:!text-white'>
+                <h2 className='font-semibold 2xl:mr-32 xl:mr-12 iPadAir:mr-52 lg:mr-24 md:text-base md:-mr-12 small:text-sm small:-mr-1 dark:!text-white'>
                   Fecha
                 </h2>
               </div>

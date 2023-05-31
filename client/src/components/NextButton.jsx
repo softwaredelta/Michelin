@@ -1,4 +1,4 @@
-const ImageCard = () => {
+const NextButton = () => {
   return (
     <>
       <div className='w-full'>
@@ -12,4 +12,4 @@ const ImageCard = () => {
   )
 }
 
-export default ImageCard
+export default NextButton

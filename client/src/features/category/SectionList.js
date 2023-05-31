@@ -35,9 +35,9 @@ const SectionList = () => {
   const content = (
     <div>
       <NavBar />
-      <div className='pt-20 w-full h-screen flex flex-col items-center dark:!bg-blues-400'>
+      <div className='pt-20 w-full h-screen flex flex-col items-center bg-gradient-to-b from-white to-gray-100 dark:!bg-gradient-to-b dark:!from-blues-500 dark:!to-blues-500'>
         <Header myText='Cuestionarios' />
-        <div className='container flex flex-wrap justify-items-stretch overflow-y-scroll'>
+        <div className='container flex flex-col justify-items-stretch overflow-y-scroll'>
           {sections}
         </div>
         <ModifiedFooter />

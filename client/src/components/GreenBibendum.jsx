@@ -1,11 +1,25 @@
-const myfunction = () => {
-  console.log('CLICKED')
-}
+import CurrentForm from '../services/CurrentForm'
 
-const GreenBibendum = () => {
+const GreenBibendum = ({
+  section,
+  area,
+  index,
+  disable,
+  className,
+  childtoParent
+}) => {
+  const Form = CurrentForm.getInstance()
+
+  const myFunction = () => {
+    Form.setAnswer(section, area, index, 1)
+    childtoParent(1)
+  }
+
   const content = (
     <>
-      <button className='scale-50 rounded-full bg-white bg-fixed opacity-100 transition duration-300 ease-in-out hover:opacity-40'><img src='/images/greenBibendum.png' onClick={myfunction} /></button>
+      <button className={className} disabled={disable} onClick={myFunction}>
+        <img src='/images/greenBibendum.png' alt='Sí' />
+      </button>
     </>
   )
   return content

@@ -1,15 +1,17 @@
-import { TbCircleNumber1 } from 'react-icons/tb'
-
-const AreaTitle = ({ myVar }) => {
+const AreaTitle = ({ number, title, questions, answered }) => {
   const content = (
     <>
-      <div id={myVar} class='flex flex-row justify-start'>
-        <div class='flex-col'>
-          <TbCircleNumber1 className='stroke-blues-200' size={50} />
+      <div class='flex flex-row justify-start pr-8'>
+        <div class='col m-auto justify-start'>
+          <h1 className='text-blues-200 text-3xl text-start ml-10'>{number}</h1>
         </div>
-        <div class='col my-2 justify-start'>
-          <h1 className='text-blues-200 text-3xl text-center ml-10'> Estacionamiento </h1>
+        <div class='col m-auto justify-start w-5/6'>
+          <h1 className='text-blues-200 text-3xl text-start ml-10'> {title} </h1>
         </div>
+        <div class='col m-auto justify-start'>
+          <h1 className='text-blues-200 text-3xl text-start ml-10'> {answered}/{questions} </h1>
+        </div>
+
       </div>
     </>
   )

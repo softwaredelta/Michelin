@@ -10,14 +10,17 @@ import History from './features/history/History'
 import ProtectedRoute from './utils/ProtectedRoute'
 import ManagerRoute from './utils/ManagerRoute'
 import FormStart from './features/form/FormStart'
-import Example from './components/Example'
-
+import Preparation from './features/form/tour/Preparation'
+import Exterior from './features/form/tour/Exterior'
+import Interior from './features/form/tour/Interior'
+import Client from './features/form/tour/Client'
+import Manager from './features/form/tour/Manager'
+import Finalize from './features/form/tour/Finalize'
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route path='prueba' element={<Example />} />
         <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
         <Route path='home'>
           <Route
@@ -76,6 +79,12 @@ function App () {
         </Route>
         <Route path='form'>
           <Route index element={<ProtectedRoute> <FormStart /> </ProtectedRoute>} />
+          <Route path='preparation' element={<ProtectedRoute> <Preparation /> </ProtectedRoute>} />
+          <Route path='exterior' element={<Exterior />} />
+          <Route path='interior' element={<Interior />} />
+          <Route path='client' element={<Client />} />
+          <Route path='manager' element={<Manager />} />
+          <Route path='finalize' element={<Finalize />} />
         </Route>
       </Route>
     </Routes>

@@ -40,7 +40,7 @@ const GradeChart = ({ percent, zone }) => {
             cy='40'
 
           />
-          <text class={color} x='50%' y='50%' text-anchor='middle' fillOpacity={1.0} fill='currentColor' stroke-width='1px' dy='.3em'>{percent}%</text>
+          <text className={'font-bold ' + color} x='50%' y='50%' text-anchor='middle' fillOpacity={1.0} fill='currentColor' stroke-width='1px' dy='0.3em'>{percent}%</text>
         </svg>
 
       </div>

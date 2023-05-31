@@ -13,7 +13,7 @@ const ReportOverview = ({
 }) => {
   const content = (
     <>
-      <AccordionContent className='h-40 dark:!bg-slate-700'>
+      <AccordionContent className='h-40 dark:!bg-slate-700 !bg-white'>
         <form>
           <div className='flex w-full justify-between mr-80'>
             <div className='flex flex-row justify-between lg:w-11/12'>
