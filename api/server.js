@@ -15,4 +15,5 @@ server.listen(onDeployedEnv ? optsAWS : optsLocal, (err, address) => {
     server.log.error(err)
     process.exit(1)
   }
+  server.cron.startAllJobs()
 })
