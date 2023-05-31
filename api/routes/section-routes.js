@@ -12,6 +12,8 @@ async function sectionRoutes (fastify) {
   fastify.get('/getAreas', sectionController.getAreas)
 
   fastify.get('/getAreasBySection/:idSection', sectionController.getAreasBySection)
+
+  fastify.post('/createSection', sectionController.createSection)
 }
 
 module.exports = sectionRoutes

@@ -16,3 +16,11 @@ exports.getAreasBySection = (request, reply) => {
 
   return areaData
 }
+
+exports.createSection = async (request, reply) =>{
+  await Section.createSection(
+    this.fastify,
+    request.body.nameSection
+  )
+  return reply.code(200).send({ statusCode: 200 })
+}

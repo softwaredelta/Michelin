@@ -94,6 +94,14 @@ export const sectionApiSlice = appSlice.injectEndpoints({
           ]
         } else return [{ type: 'Section', id: 'LIST' }]
       }
+    }),
+    addSection: builder.mutation({
+      query: (initialUserData) => ({
+        url: '/section/createSection',
+        method: 'POST',
+        body: initialUserData
+      }),
+      invalidatesTags: [{ type: 'Section', id: 'LIST' }]
     })
   })
 })
@@ -102,7 +110,8 @@ export const {
   useGetCategoriesQuery,
   useGetAreaQuery,
   useGetSectionsQuery,
-  useGetAreasBySectionQuery
+  useGetAreasBySectionQuery,
+  useAddSectionMutation
 } = sectionApiSlice
 
 export const selectCategoryResult =
