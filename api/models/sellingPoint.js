@@ -57,21 +57,21 @@ module.exports = class SellingPoint {
   static async updateSellingPointRating (fastify) {
     const connection = await fastify.mysql.getConnection()
     const spData = await connection.query(
-      `SELECT sp.id_sp, sp.address, sp.rating, sp.name FROM sellingpoint as sp`
+      'SELECT sp.id_sp, sp.address, sp.rating, sp.name FROM sellingpoint as sp'
     )
 
     await spData[0].forEach(async sp => {
       let newRating = sp.rating
-      
-      try { //Check for errors in Google API Call
+
+      try { // Check for errors in Google API Call
         let apiRating = await PlacesApi.getRatingFromAPI(sp.address)
-        
-        //If search by address can't be found, try by sp name
-        apiRating = (typeof apiRating === 'undefined') ? await PlacesApi.getRatingFromAPI(sp.name) : apiRating;
-        
-        //Assign if new rating was found
-        newRating = (typeof apiRating === 'undefined') ? newRating : apiRating;
-      } catch(err) {
+
+        // If search by address can't be found, try by sp name
+        apiRating = (typeof apiRating === 'undefined') ? await PlacesApi.getRatingFromAPI(sp.name) : apiRating
+
+        // Assign if new rating was found
+        newRating = (typeof apiRating === 'undefined') ? newRating : apiRating
+      } catch (err) {
         console.log(err)
       }
 
@@ -81,8 +81,7 @@ module.exports = class SellingPoint {
           newRating, sp.id_sp
         ]
       )
-      
-    });
+    })
     connection.release()
   }
 }
