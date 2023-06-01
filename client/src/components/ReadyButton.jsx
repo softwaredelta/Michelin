@@ -1,14 +1,11 @@
-const ReadyButton = () =>{
-    
-    
-    
-    const content = (
-        <>
+const ReadyButton = () => {
+  const content = (
+    <>
 
-        </>
-    )
+    </>
+  )
 
-    return content
+  return content
 }
 
 export default ReadyButton

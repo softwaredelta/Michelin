@@ -101,7 +101,7 @@ const Public = () => {
                 </Button>
               </div>
             </div>
-            <NumberCircle countContent={countContent}/>
+            <NumberCircle countContent={countContent} />
           </div>
           <div className='self-start w-full mt-8'>
             <Header myText='Historial de Auditorías' />
