@@ -51,8 +51,8 @@ const SPAcordion = ({ spId }) => {
                     </div>
                     <div>
                     <div className='flex flex-row my-2 '>
-                        <p className='font-semibold m-auto mr-2'> Rating:</p>
-                        <Stars rating={5}/>
+                        <p className='font-semibold m-auto mr-2 dark:text-white'> Rating:</p>
+                        <Stars rating={3}/>
                       </div>    
                       <div className='text-xl font-michelin underline text-white pt-4'>               
                       <Bluebutton

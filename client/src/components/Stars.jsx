@@ -1,21 +1,36 @@
 const Stars = ({rating}) => {
-    
-    const checked = 0
-    let checks = [false, false, false, false,false]
+    const checked  = "w-8 h-8 text-yellow-400"
+    const unchecked = "w-8 h-8 text-gray-300 dark:text-gray-500"
+    let checks = [unchecked, unchecked, unchecked, unchecked,unchecked]
+
     if(rating === 1){
         checks[0] = checked
     }else if (rating === 2){
         checks[1] = checked
         checks[0] = checked
+    }else if (rating === 3){
+      checks[2] = checked
+      checks[1] = checked
+      checks[0] = checked
+    }else if (rating === 4){
+      checks[3] = checked
+      checks[2] = checked
+      checks[1] = checked
+      checks[0] = checked
+    }else if (rating === 5){
+      checks[4] = checked
+      checks[3] = checked
+      checks[2] = checked
+      checks[1] = checked
+      checks[0] = checked
     }
-
 
   const content = (
     <>
       <div class="flex items-center">
         <svg
           aria-hidden="true"
-          class="w-8 h-8 text-yellow-400"
+          class={checks[0]}
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +40,7 @@ const Stars = ({rating}) => {
         </svg>
         <svg
           aria-hidden="true"
-          class="w-8 h-8 text-yellow-400"
+          class={checks[1]}
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +50,7 @@ const Stars = ({rating}) => {
         </svg>
         <svg
           aria-hidden="true"
-          class="w-8 h-8 text-yellow-400"
+          class={checks[2]}
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +60,7 @@ const Stars = ({rating}) => {
         </svg>
         <svg
           aria-hidden="true"
-          class="w-8 h-8 text-yellow-400"
+          class={checks[3]}
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +70,7 @@ const Stars = ({rating}) => {
         </svg>
         <svg
           aria-hidden="true"
-          class="w-8 h-8 text-gray-300 dark:text-gray-500"
+          class={checks[4]}
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
