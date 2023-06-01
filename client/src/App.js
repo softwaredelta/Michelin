@@ -16,26 +16,29 @@ import Interior from './features/form/tour/Interior'
 import Client from './features/form/tour/Client'
 import Manager from './features/form/tour/Manager'
 import Finalize from './features/form/tour/Finalize'
+import Example from "./components/Example";
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
-        <Route path='home'>
+      <Route path="prueba" element={<Example />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Public />} />
+        <Route path="home">
           <Route
             index
             element={
-              <ProtectedRoute> <Public />
+              <ProtectedRoute>
+                <Public />
               </ProtectedRoute>
             }
           />
         </Route>
-        <Route path='login' element={<Login />} />
-        <Route path='user'>
+        <Route path="login" element={<Login />} />
+        <Route path="user">
           <Route index element={<UsersList />} />
         </Route>
-        <Route path='question'>
+        <Route path="question">
           <Route
             index
             element={
@@ -47,7 +50,7 @@ function App () {
             }
           />
           <Route
-            path='edit/:category/:section'
+            path="edit/:category/:section"
             element={
               <ProtectedRoute>
                 <ManagerRoute>
@@ -57,7 +60,7 @@ function App () {
             }
           />
         </Route>
-        <Route path='sellingPoint'>
+        <Route path="sellingPoint">
           <Route
             index
             element={
@@ -67,7 +70,7 @@ function App () {
             }
           />
         </Route>
-        <Route path='history'>
+        <Route path="history">
           <Route
             index
             element={
@@ -77,18 +80,34 @@ function App () {
             }
           />
         </Route>
-        <Route path='form'>
-          <Route index element={<ProtectedRoute> <FormStart /> </ProtectedRoute>} />
-          <Route path='preparation' element={<ProtectedRoute> <Preparation /> </ProtectedRoute>} />
-          <Route path='exterior' element={<Exterior />} />
-          <Route path='interior' element={<Interior />} />
-          <Route path='client' element={<Client />} />
-          <Route path='manager' element={<Manager />} />
-          <Route path='finalize' element={<Finalize />} />
+        <Route path="form">
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                {" "}
+                <FormStart />{" "}
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="preparation"
+            element={
+              <ProtectedRoute>
+                {" "}
+                <Preparation />{" "}
+              </ProtectedRoute>
+            }
+          />
+          <Route path="exterior" element={<Exterior />} />
+          <Route path="interior" element={<Interior />} />
+          <Route path="client" element={<Client />} />
+          <Route path="manager" element={<Manager />} />
+          <Route path="finalize" element={<Finalize />} />
         </Route>
       </Route>
     </Routes>
-  )
+  );
 }
 
 export default App
