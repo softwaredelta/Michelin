@@ -16,17 +16,20 @@ import Interior from './features/form/tour/Interior'
 import Client from './features/form/tour/Client'
 import Manager from './features/form/tour/Manager'
 import Finalize from './features/form/tour/Finalize'
+import Example from './components/Example'
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
+      <Route path='prueba' element={<Example />} />
       <Route path='/' element={<Layout />}>
-        <Route index element={<ProtectedRoute> <Public /> </ProtectedRoute>} />
+        <Route index element={<Public />} />
         <Route path='home'>
           <Route
             index
             element={
-              <ProtectedRoute> <Public />
+              <ProtectedRoute>
+                <Public />
               </ProtectedRoute>
             }
           />
@@ -40,11 +43,9 @@ function App () {
             index
             element={
               <ProtectedRoute>
-                {' '}
                 <ManagerRoute>
-                  {' '}
-                  <SectionList />{' '}
-                </ManagerRoute>{' '}
+                  <SectionList />
+                </ManagerRoute>
               </ProtectedRoute>
             }
           />
@@ -52,10 +53,8 @@ function App () {
             path='edit/:category/:section'
             element={
               <ProtectedRoute>
-                {' '}
                 <ManagerRoute>
-                  {' '}
-                  <QuestionList />{' '}
+                  <QuestionList />
                 </ManagerRoute>
               </ProtectedRoute>
             }
@@ -66,8 +65,7 @@ function App () {
             index
             element={
               <ProtectedRoute>
-                {' '}
-                <SellingPointList />{' '}
+                <SellingPointList />
               </ProtectedRoute>
             }
           />
@@ -77,15 +75,30 @@ function App () {
             index
             element={
               <ProtectedRoute>
-                {' '}
-                <History />{' '}
+                <History />
               </ProtectedRoute>
             }
           />
         </Route>
         <Route path='form'>
-          <Route index element={<ProtectedRoute> <FormStart /> </ProtectedRoute>} />
-          <Route path='preparation' element={<ProtectedRoute> <Preparation /> </ProtectedRoute>} />
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                {' '}
+                <FormStart />{' '}
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='preparation'
+            element={
+              <ProtectedRoute>
+                {' '}
+                <Preparation />{' '}
+              </ProtectedRoute>
+            }
+          />
           <Route path='exterior' element={<Exterior />} />
           <Route path='interior' element={<Interior />} />
           <Route path='client' element={<Client />} />

@@ -7,6 +7,7 @@ import { selectSPById } from '../features/sellingPoint/sellingPointApiSlice'
 import { useNavigate } from 'react-router-dom'
 import CurrentForm from '../services/CurrentForm'
 import Bluebutton from './Bluebutton'
+import Stars from './Stars'
 
 const SPAcordion = ({ spId }) => {
   const Form = CurrentForm.getInstance()
@@ -26,7 +27,7 @@ const SPAcordion = ({ spId }) => {
           <Accordion collapseAll alwaysOpen>
             <AccordionPanel>
               <AccordionTitle className="h-32 bg-[url('https://aecbmesvcm.cloudimg.io/v7/https://dcadprod.azureedge.net/b2c-experience-production/attachments/ckoaktxp706n801m4qyp64r0l-md-background-dealer-locator-1350x430px.max.jpg')]">
-                <div className='flex flex-row justify-between w-full text-3xl font-michelin underline text-white'>
+                <div className='flex flex-row justify-between w-full text-2xl font-michelin underline text-white'>
                   {sp.name}
                 </div>
               </AccordionTitle>
@@ -48,11 +49,17 @@ const SPAcordion = ({ spId }) => {
                       </div>
 
                     </div>
-                    <div className='self-end text-xl font-michelin underline text-white'>
-                      <Bluebutton
-                        myText='Iniciar Recorrido'
-                        method={startPreparation}
-                      />
+                    <div>
+                      <div className='flex flex-row my-2 '>
+                        <p className='font-semibold m-auto mr-2 dark:text-white'> Rating:</p>
+                        <Stars rating={sp.rating} />
+                      </div>
+                      <div className='text-xl font-michelin underline text-white pt-4'>
+                        <Bluebutton
+                          myText='Iniciar Recorrido'
+                          method={startPreparation}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
