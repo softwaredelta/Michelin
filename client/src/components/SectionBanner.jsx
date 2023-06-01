@@ -2,7 +2,7 @@ const SectionBanner = () => {
   return (
     <>
       <div
-        class='absolute top-6 w-1/4 h-0
+        class='absolute top-6 2xl:w-1/4 xl:w-1/3 iPadAir:w-1/3 lg:w-5/12 h-0
         border-l-[100px] border-l-trademark-50
         border-t-[65px] border-t-trademark-50
         border-r-[50px] border-r-transparent'
