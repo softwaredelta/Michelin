@@ -23,8 +23,7 @@ const ProgressBar = () => {
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => navigate('/form/interior')}>Interior</NavbarLink>
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => navigate('/form/client')}>Cliente</NavbarLink>
             <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => navigate('/form/manager')}>Gerente</NavbarLink>
-            <NavbarLink className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50 cursor-pointer' onClick={() => navigate('/form/finalize')}>Finalizar</NavbarLink>
-          </NavbarCollapse>
+            </NavbarCollapse>
         </Navbar>
       </div>
     </>

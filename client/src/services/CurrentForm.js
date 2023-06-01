@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiRoute = 'https://back2basics.software/'
+const apiRoute = 'https://back2basics.software/api/'
 
 export default class CurrentForm {
   static instance = null
