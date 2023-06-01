@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import ModifiedFooter from "../../components/ModifiedFooter";
 import NavBar from "../../components/NavBar";
 import { useGetSPQuery } from "../sellingPoint/sellingPointApiSlice";
-import Header from "../../components/Header";
 import SPAcordion from "../../components/SPAcordion";
 import { BsSearch } from "react-icons/bs";
 import CurrentForm from "../../services/CurrentForm";
