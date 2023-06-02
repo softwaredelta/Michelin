@@ -1,13 +1,19 @@
 import ImageCard from './ImageCard'
 import TourCard from './TourCard'
 import VisualKey from './VisualKey'
-import YellowButton from './YellowButton'
 import SectionBanner from './SectionBanner'
+import ProgressBar from './ProgressBar'
+import NextButton from './NextButton'
+import PreviousButton from './PreviousButton'
 
 const Example = () => {
   return (
     <>
       <div>
+        <div className='relative'>
+          <ProgressBar />
+        </div>
+
         <div>
           <SectionBanner />
         </div>
@@ -22,9 +28,21 @@ const Example = () => {
                 <div className='relative left-5 top-32'>
                   <VisualKey myLink='#Holis' />
                 </div>
-                <div>
-                  <YellowButton myText='Holis' />
+
+                <div className='flex flex-row w-11/12 justify-between ml-3'>
+                  <div className='w-32'>
+                    <div>
+                      <PreviousButton />
+                    </div>
+                  </div>
+
+                  <div className='w-32'>
+                    <div>
+                      <NextButton />
+                    </div>
+                  </div>
                 </div>
+
               </div>
             </div>
           </div>
