@@ -29,6 +29,7 @@ export default class CurrentForm {
 
   uploadImages = []
   idSp = 0
+  spName = ''
   startTime = 0
   endTime = 0
 
@@ -52,6 +53,10 @@ export default class CurrentForm {
   setEndTime () {
     const currentDate = new Date()
     this.endTime = currentDate.getTime()
+  }
+
+  getElapsedMinutes () {
+    return Math.floor((this.endTime - this.startTime) / 60000)
   }
 
   async loadAllQuestions () {
@@ -199,11 +204,12 @@ export default class CurrentForm {
     return currentSection
   }
 
-  setIdSp (newSp) {
-    this.idSp = newSp
+  setSp (newIdSp, newSpName) {
+    this.idSp = newIdSp
+    this.spName = newSpName
   }
 
-  postForm (comment, managerName) {
+  async postForm (comment, managerName, mailList) {
     const currentDate = new Date()
 
     const preparationJson = this.SectionJson(1)
@@ -212,6 +218,9 @@ export default class CurrentForm {
     const clientJson = this.SectionJson(4)
     const managerJson = this.SectionJson(5)
 
+    const reportName = `Reporte_${localStorage.getItem('name')}_${currentDate.getTime()}` // eslint-disable-line
+    const userName = localStorage.getItem('name') + ' ' + localStorage.getItem('lastName') // eslint-disable-line
+
     const formData = new FormData()
     formData.append("mail", localStorage.getItem("mail")); // eslint-disable-line
     formData.append('exteriorGrade', this.grades.exterior)
@@ -219,8 +228,8 @@ export default class CurrentForm {
     formData.append('clientGrade', this.grades.client)
     formData.append('managerGrade', this.grades.manager)
     formData.append('spId', this.idSp)
-    formData.append('fileName', `Reporte_${localStorage.getItem('name')}_${currentDate.getTime()}`) // eslint-disable-line
-    // formData.append('duration', (this.endTime - this.startTime) / 60000)
+    formData.append('fileName', reportName) // eslint-disable-line
+    // formData.append('duration', this.getElapsedMinutes())
     formData.append('duration', 150)
     formData.append('comment', comment)
     formData.append('managerName', managerName)
@@ -229,20 +238,27 @@ export default class CurrentForm {
     formData.append('interior', interiorJson)
     formData.append('client', clientJson)
     formData.append('manager', managerJson)
+    formData.append('userName', userName) // eslint-disable-line
 
-    formData.append(
-      'userName',
-      localStorage.getItem('name') + ' ' + localStorage.getItem('lastName') // eslint-disable-line
-    )
     this.uploadImages.forEach((image) => {
       formData.append('images', image.file, image.fileName)
     })
-
     this.uploadImages = []
 
-    axios.post(apiRoute + 'form/postForm', formData, {
+    await axios.post(apiRoute + 'form/postForm', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
+      }
+    })
+
+    const mailData = new FormData()
+    mailData.append('fileName', reportName)
+    mailData.append('userName', userName)
+    mailData.append('mails', this.MailJson(mailList))
+
+    axios.post(apiRoute + 'form/sendEmails', mailData, {
+      headers: {
+        'Content-Type': 'application/json'
       }
     })
   }
@@ -286,6 +302,18 @@ export default class CurrentForm {
     this.grades[currentSection] = Math.floor(
       (sumYes / (sumTotal - sumNa)) * 100
     )
+
+    json = json.substring(0, json.length - 1)
+    json += ']}'
+
+    return json
+  }
+
+  MailJson (mailList) {
+    let json = '{"mails": ['
+    mailList.forEach((mail) => {
+      json += '"' + mail + '",'
+    })
 
     json = json.substring(0, json.length - 1)
     json += ']}'

@@ -25,6 +25,8 @@ async function formRoutes (fastify, options) {
     formController.postForm)
 
   fastify.get('/report/:fileName', formController.loadReport)
+
+  fastify.post('/sendEmails', formController.postReportMails)
 }
 
 module.exports = formRoutes
