@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiRoute = 'https://back2basics.software/'
+const apiRoute = 'http://localhost:3080/'
 
 export default class CurrentForm {
   static instance = null
@@ -203,7 +203,7 @@ export default class CurrentForm {
     this.idSp = newSp
   }
 
-  postForm (comment, managerName) {
+  async postForm (comment, managerName, mailList) {
     const currentDate = new Date()
 
     const preparationJson = this.SectionJson(1)
@@ -212,6 +212,9 @@ export default class CurrentForm {
     const clientJson = this.SectionJson(4)
     const managerJson = this.SectionJson(5)
 
+    const reportName = `Reporte_${localStorage.getItem('name')}_${currentDate.getTime()}`
+    const userName = localStorage.getItem('name') + ' ' + localStorage.getItem('lastName')
+
     const formData = new FormData()
     formData.append("mail", localStorage.getItem("mail")); // eslint-disable-line
     formData.append('exteriorGrade', this.grades.exterior)
@@ -219,7 +222,7 @@ export default class CurrentForm {
     formData.append('clientGrade', this.grades.client)
     formData.append('managerGrade', this.grades.manager)
     formData.append('spId', this.idSp)
-    formData.append('fileName', `Reporte_${localStorage.getItem('name')}_${currentDate.getTime()}`) // eslint-disable-line
+    formData.append('fileName', reportName) // eslint-disable-line
     // formData.append('duration', (this.endTime - this.startTime) / 60000)
     formData.append('duration', 150)
     formData.append('comment', comment)
@@ -229,20 +232,27 @@ export default class CurrentForm {
     formData.append('interior', interiorJson)
     formData.append('client', clientJson)
     formData.append('manager', managerJson)
+    formData.append('userName', userName) // eslint-disable-line
 
-    formData.append(
-      'userName',
-      localStorage.getItem('name') + ' ' + localStorage.getItem('lastName') // eslint-disable-line
-    )
     this.uploadImages.forEach((image) => {
       formData.append('images', image.file, image.fileName)
     })
-
     this.uploadImages = []
-
-    axios.post(apiRoute + 'form/postForm', formData, {
+    
+    await axios.post(apiRoute + 'form/postForm', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
+      }
+    })
+
+    const mailData = new FormData()
+    mailData.append('fileName', reportName)
+    mailData.append('userName', userName)
+    mailData.append('mails', this.MailJson(mailList))
+
+    axios.post(apiRoute + 'form/sendEmails', mailData, {
+      headers: {
+        'Content-Type': 'application/json'
       }
     })
   }
@@ -290,6 +300,18 @@ export default class CurrentForm {
     json = json.substring(0, json.length - 1)
     json += ']}'
 
+    return json
+  }
+
+  MailJson (mailList) {
+    let json = '{"mails": ['
+    mailList.forEach((mail) => {
+      json += '"' + mail + '",'
+    })
+  
+    json = json.substring(0, json.length - 1)
+    json += ']}'
+  
     return json
   }
 }

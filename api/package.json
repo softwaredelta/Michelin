@@ -35,6 +35,7 @@
     "fastify-bcrypt": "^1.0.1",
     "fastify-cron": "^1.3.1",
     "fastify-favicon": "^4.3.0",
+    "fastify-mailer": "^2.3.1",
     "fastify-multer": "^2.0.3",
     "pdfkit": "^0.13.0"
   },

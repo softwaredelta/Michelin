@@ -2,10 +2,45 @@ import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/ProgressBar'
 import { useForm } from 'react-hook-form'
 import { Label } from 'flowbite-react'
+import SelectedMail from '../../../components/SelectedMail'
+import { useEffect, useState } from 'react'
+import MailTextBox from '../../../components/MailTextBox'
+import Toast from '../../../components/Toast'
+
 const Finalize = () => {
   const Form = CurrentForm.getInstance()
 
   const { register, getValues } = useForm()
+
+  const [mailList, setMailList] = useState([])
+
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
+  const onClickDeleteMail = (e) => {
+    let currentMailList = [...mailList]
+    currentMailList.splice(currentMailList.indexOf(e.target.id), 1)
+    setMailList(currentMailList)
+    
+  }
+
+  const onClickAddMail = (mail) => {
+    if(validateEmail(mail) && !mailList.includes(mail)){
+      let currentMailList = [...mailList]
+      currentMailList.push(mail)
+      setMailList(currentMailList)
+    }else{
+      Toast.fire({
+        icon: 'error',
+        title: 'Correo Inválido'
+      })
+    }
+  }
 
   const onFinalizeTourClicked = async (e) => {
     e.preventDefault()
@@ -13,8 +48,12 @@ const Finalize = () => {
     const manager = getValues('manager')
     const comments = getValues('comments')
 
-    Form.postForm(comments, manager)
+    Form.postForm(comments, manager, mailList)
   }
+
+  let mailListContent = mailList?.length
+  ? mailList.map((mailText) => <SelectedMail key={mailText} mail={mailText} onClickDelete={onClickDeleteMail}/>)
+  : null
 
   const content = (
     <>
@@ -56,7 +95,10 @@ const Finalize = () => {
               rows='5'
               cols='40'
             />
+            <MailTextBox onClickAdd={onClickAddMail}/>
+            {mailListContent}
           </div>
+
           <div>
             <button onClick={onFinalizeTourClicked} className='mt-4 px-5 !text-3xl shadow-xl !bg-trademark-50 !text-blues-200 !font-extrabold !rounded-full hover:!bg-yellow-500 dark:!bg-blues-300 dark:!text-trademark-50 dark:hover:!bg-blue-950 dark:hover:!text-yellow-500'>Finalizar</button>
           </div>

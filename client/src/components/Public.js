@@ -22,7 +22,7 @@ const Public = () => {
     mail: localStorage.getItem('mail') // eslint-disable-line
   }); // eslint-disable-line
 
-  const baseReportRoute = 'https://back2basics.software/form/report/'
+  const baseReportRoute = 'http://localhost:3080/form/report/'
 
   let tableContent
   let message
