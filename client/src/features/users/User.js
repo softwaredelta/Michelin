@@ -8,7 +8,7 @@ import UserOverview from './UserOverview'
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  */
-//M1_H9
+// M1_H9
 const User = ({ userId }) => {
   const user = useSelector((state) => selectUserById(state, userId))
 

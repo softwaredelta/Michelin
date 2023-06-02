@@ -55,7 +55,7 @@ const UserOverview = ({ userId }) => {
     e.target.checked()
     e.target.value()
   }
-  //M1_H2
+  // M1_H2
   const onEditUserClicked = async (e) => {
     e.preventDefault()
 
@@ -119,7 +119,7 @@ const UserOverview = ({ userId }) => {
     })
   }
 
-  //M1_H3
+  // M1_H3
   const [deleteUser, { isSuccess: isSuccessDelete }] =
     useDeleteUserMutation()
 

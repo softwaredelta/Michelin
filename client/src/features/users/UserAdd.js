@@ -17,7 +17,7 @@ import Swal from 'sweetalert2'
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  */
-//M1_H1
+// M1_H1
 const UserAdd = ({ show, onClose }) => {
   const { register, getValues, reset } = useForm()
 
