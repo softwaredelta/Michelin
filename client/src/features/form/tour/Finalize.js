@@ -7,12 +7,16 @@ import MailTextBox from '../../../components/MailTextBox'
 import Toast from '../../../components/Toast'
 import SectionBanner from '../../../components/SectionBanner'
 import { Card } from 'flowbite-react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 
 const Finalize = () => {
+  const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
   Form.setEndTime()
+  
   const tourTime = Form.getElapsedMinutes()
   const sellingPointName = Form.spName
 
@@ -59,6 +63,12 @@ const Finalize = () => {
   let mailListContent = mailList?.length
     ? mailList.map((mailText) => <SelectedMail key={mailText} mail={mailText} onClickDelete={onClickDeleteMail} />)
     : null
+
+    useEffect(() => {
+      if (Form.idSp === 0) {
+        navigate('/form')
+      }
+    })
 
   const content = (
     <>
@@ -126,7 +136,7 @@ const Finalize = () => {
                     value='Tiempo de Recorrido'
                     className='text-xl font-semibold mr-2 my-1 !text-blues-300'
                   />
-                  <div className='font-michelinl pt-2 pb-7 pl-1 top-10 left-7 text-3xl text-blues-300'>{tourTime} {'minuto' + (tourTime > 1 ? 's' : '')}</div>
+                  <div className='font-michelinl pt-2 pb-7 pl-1 top-10 left-7 text-3xl text-blues-300'>{tourTime} {'minuto' + (tourTime === 1 ? '' : 's')}</div>
                   <Label
                     htmlFor='Ingresa el correo electrónico de los destinatarios'
                     value='Ingresa el correo electrónico de los destinatarios'
