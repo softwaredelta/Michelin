@@ -14,12 +14,12 @@ const Client = () => {
       <AreaAccordion key={area.idArea} section={4} area={area} index={id} />
     ))
     : null
-  
-    useEffect(() => {
-      if (Form.idSp === 0) {
-        navigate('/form')
-      }
-    })
+
+  useEffect(() => {
+    if (Form.idSp === 0) {
+      navigate('/form')
+    }
+  })
 
   const content = (
     <>

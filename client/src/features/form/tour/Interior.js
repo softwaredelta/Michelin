@@ -15,11 +15,11 @@ const Interior = () => {
     ))
     : null
 
-    useEffect(() => {
-      if (Form.idSp === 0) {
-        navigate('/form')
-      }
-    })
+  useEffect(() => {
+    if (Form.idSp === 0) {
+      navigate('/form')
+    }
+  })
 
   const content = (
     <>

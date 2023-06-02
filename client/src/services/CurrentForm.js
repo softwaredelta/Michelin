@@ -218,8 +218,8 @@ export default class CurrentForm {
     const clientJson = this.SectionJson(4)
     const managerJson = this.SectionJson(5)
 
-    const reportName = `Reporte_${localStorage.getItem('name')}_${currentDate.getTime()}`
-    const userName = localStorage.getItem('name') + ' ' + localStorage.getItem('lastName')
+    const reportName = `Reporte_${localStorage.getItem('name')}_${currentDate.getTime()}` // eslint-disable-line
+    const userName = localStorage.getItem('name') + ' ' + localStorage.getItem('lastName') // eslint-disable-line
 
     const formData = new FormData()
     formData.append("mail", localStorage.getItem("mail")); // eslint-disable-line
@@ -314,10 +314,10 @@ export default class CurrentForm {
     mailList.forEach((mail) => {
       json += '"' + mail + '",'
     })
-  
+
     json = json.substring(0, json.length - 1)
     json += ']}'
-  
+
     return json
   }
 }

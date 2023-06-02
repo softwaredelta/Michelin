@@ -1,7 +1,7 @@
 const Form = require('../models/form')
 const SellingPoint = require('../models/sellingPoint')
 const User = require('../models/user')
-const ReportUtil = require('../util/report-util') 
+const ReportUtil = require('../util/report-util')
 
 const PDFDocument = require('pdfkit')
 const fs = require('fs')
@@ -53,27 +53,26 @@ exports.getFormsByUser = async (request, reply) => {
 }
 
 exports.postReportMails = async (request, reply) => {
-
   const mailList = JSON.parse(request.body.mails).mails
   const userName = request.body.userName
   const fileName = request.body.fileName
 
   const { mailer } = this.fastify
-    mailer.sendMail({
-      to: mailList,
-      subject: 'Reporte de auditoria de ' + userName,
-      text: 'Reporte generado por el TBM se adjunta al correo:',
-      attachments: [
-        {
-          fileName: fileName,
-          path: './uploads/reports/' + fileName + '.pdf'
-        }
-      ]
-    }, (errors, info) => {
-      if (errors) {
-        this.fastify.log.error(errors)
+  mailer.sendMail({
+    to: mailList,
+    subject: 'Reporte de auditoria de ' + userName,
+    text: 'Reporte generado por el TBM se adjunta al correo:',
+    attachments: [
+      {
+        fileName,
+        path: './uploads/reports/' + fileName + '.pdf'
       }
-    });
+    ]
+  }, (errors, info) => {
+    if (errors) {
+      this.fastify.log.error(errors)
+    }
+  })
 }
 
 exports.getFormCountByUser = async (request, reply) => {

@@ -15,7 +15,7 @@ const Example = () => {
         </div>
 
         <div>
-          <SectionBanner myText='Preparación'/>
+          <SectionBanner myText='Preparación' />
         </div>
         <div className='w-full h-screen flex flex-col items-center !bg-blues-300'>
           <div className='container h-screen flex flex-wrap justify-items-stretch'>

@@ -1,22 +1,19 @@
 import CurrentForm from '../../../services/CurrentForm'
 import { useForm } from 'react-hook-form'
-import { Label } from 'flowbite-react'
+import { Label, Card } from 'flowbite-react'
 import SelectedMail from '../../../components/SelectedMail'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MailTextBox from '../../../components/MailTextBox'
 import Toast from '../../../components/Toast'
 import SectionBanner from '../../../components/SectionBanner'
-import { Card } from 'flowbite-react'
-import { useEffect } from 'react'
+
 import { useNavigate } from 'react-router-dom'
-
-
 
 const Finalize = () => {
   const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
   Form.setEndTime()
-  
+
   const tourTime = Form.getElapsedMinutes()
   const sellingPointName = Form.spName
 
@@ -29,19 +26,18 @@ const Finalize = () => {
       .toLowerCase()
       .match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
+      )
+  }
 
   const onClickDeleteMail = (e) => {
-    let currentMailList = [...mailList]
+    const currentMailList = [...mailList]
     currentMailList.splice(currentMailList.indexOf(e.target.id), 1)
     setMailList(currentMailList)
-
   }
 
   const onClickAddMail = (mail) => {
     if (validateEmail(mail) && !mailList.includes(mail)) {
-      let currentMailList = [...mailList]
+      const currentMailList = [...mailList]
       currentMailList.push(mail)
       setMailList(currentMailList)
     } else {
@@ -60,15 +56,15 @@ const Finalize = () => {
     Form.postForm(comments, manager, mailList)
   }
 
-  let mailListContent = mailList?.length
+  const mailListContent = mailList?.length
     ? mailList.map((mailText) => <SelectedMail key={mailText} mail={mailText} onClickDelete={onClickDeleteMail} />)
     : null
 
-    useEffect(() => {
-      if (Form.idSp === 0) {
-        navigate('/form')
-      }
-    })
+  useEffect(() => {
+    if (Form.idSp === 0) {
+      navigate('/form')
+    }
+  })
 
   const content = (
     <>
