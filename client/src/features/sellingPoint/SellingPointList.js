@@ -7,6 +7,10 @@ import { useGetSPQuery } from './sellingPointApiSlice'
 import Header from '../../components/Header'
 import Bluebutton from '../../components/Bluebutton'
 
+/* https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ * Historia de Usuario M2_H4
+ */
+
 const SellingPointList = () => {
   const [show, setShow] = useState(false)
 

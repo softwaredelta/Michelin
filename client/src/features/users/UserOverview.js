@@ -16,7 +16,10 @@ import Toast from '../../components/Toast'
 import { useForm } from 'react-hook-form'
 import MultipleCheckbox from '../../components/MultipleCheckbox'
 import ConfirmationModal from '../../components/ConfirmationModal'
-
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
 const UserOverview = ({ userId }) => {
   const { register, getValues } = useForm()
 
@@ -52,7 +55,7 @@ const UserOverview = ({ userId }) => {
     e.target.checked()
     e.target.value()
   }
-
+  // M1_H2
   const onEditUserClicked = async (e) => {
     e.preventDefault()
 
@@ -116,6 +119,7 @@ const UserOverview = ({ userId }) => {
     })
   }
 
+  // M1_H3
   const [deleteUser, { isSuccess: isSuccessDelete }] =
     useDeleteUserMutation()
 

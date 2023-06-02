@@ -12,18 +12,18 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   const camera = question.camera
   const buttonNa = question.buttonNa
   const classNameDflt =
-    'scale-50 rounded-full bg-white bg-fixed opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   const classNameDis =
-    'scale-50 rounded-full bg-white bg-fixed transition duration-300 ease-in-out opacity-40 cursor-not-allowed'
+    'scale-50 rounded-full transition duration-300 ease-in-out opacity-40 cursor-not-allowed'
   let disableGRN = false
   let disableRED = false
   let disableNA = false
   let classNameGRN =
-    'scale-50 rounded-full bg-white bg-fixed opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let classNameRED =
-    'scale-50 rounded-full bg-white bg-fixed opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let classNameNA =
-    'scale-50 rounded-full bg-white bg-fixed opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let photo = null
 
   const [answer, setAnswer] = useState(
@@ -60,7 +60,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   if ((camera === 1 && answer === 2) || answer === 4) {
     photo = (
       <>
-        <button className='scale-50 rounded-full bg-white bg-fixed opacity-100 transition duration-300 ease-in-out hover:opacity-40'>
+        <button className='scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'>
           <label htmlFor={selectImageName} className='cursor-pointer'>
             <img src='/images/uploadFile.png' alt='Subir imagen' />
             <FileInput
@@ -75,11 +75,19 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
       </>
     )
   }
+  let currImg
+  if (imageUploaded === true) {
+    currImg = (
+      <>
+        <div className='dark:text-white w-fit text-xl self-center text-center m-auto mt-4 -mb-4'>La imagen se ha guardado</div>
+      </>
+    )
+  }
 
   const content = (
     <>
       <div class='flex flex-col text-center'>
-        <div class='flex-row'>
+        <div class='grid grid-flow-col w-fit self-center -mb-10'>
           <GreenBibendum
             section={section}
             area={area}
@@ -92,14 +100,14 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
             section={section}
             area={area}
             index={index}
-            img={imageUploaded}
             photo={photo}
             disable={disableRED}
             className={classNameRED}
             childtoParent={childtoParent}
           />
         </div>
-        <div class='text-center'>
+        <div className='text-center'>
+          {currImg}
           <NaButton
             section={section}
             area={area}

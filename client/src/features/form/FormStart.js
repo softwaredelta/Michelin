@@ -6,6 +6,12 @@ import SPAcordion from '../../components/SPAcordion'
 import { BsSearch } from 'react-icons/bs'
 import CurrentForm from '../../services/CurrentForm'
 
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+
+// Historia de usuario M13_H1
 const FormStart = () => {
   const Form = CurrentForm.getInstance()
   Form.loadFormInfo()
