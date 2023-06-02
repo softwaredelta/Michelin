@@ -21,6 +21,15 @@ const schema = {
     },
     ON_DEPLOY_ENV: {
       type: 'boolean'
+    },
+    GOOGLE_API_KEY: {
+      type: 'string'
+    },
+    MAIL_USER: {
+      type: 'string'
+    },
+    MAIL_PASSWORD: {
+      type: 'string'
     }
   }
 }
