@@ -9,6 +9,12 @@ import SectionBanner from '../../../components/SectionBanner'
 
 import { useNavigate } from 'react-router-dom'
 
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+
+// Historia de usuario M13_H1
 const Finalize = () => {
   const navigate = useNavigate()
   const Form = CurrentForm.getInstance()

@@ -1,10 +1,10 @@
 import { FaPlay } from 'react-icons/fa'
 
-const NextButton = ({ method }) => {
+const NextButton = ({ onClicked }) => {
   return (
     <>
       <button
-        onClick={method}
+        onClick={onClicked}
         className=' w-full bg-white !text-blues-300 !font-bold py-2 pl-3 rounded-2xl shadow-lg'
       >
         <div className='flex flex-row'>

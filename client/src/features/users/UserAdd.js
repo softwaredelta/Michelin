@@ -13,6 +13,11 @@ import StatesOption from './managers/StatesOption'
 import AreaOption from '../category/questions/AreaOption'
 import Swal from 'sweetalert2'
 
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+//M
 const UserAdd = ({ show, onClose }) => {
   const { register, getValues, reset } = useForm()
 

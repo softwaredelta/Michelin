@@ -12,7 +12,6 @@ const ProgressBar = () => {
             <YellowButton
               myText='Preparación'
               method={() => {
-                console.log('holis')
                 navigate('/form/preparation')
               }}
             />
