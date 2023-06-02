@@ -28,9 +28,9 @@ const Preparation = () => {
       <div>
         <ProgressBar />
         <div className='pt-20 w-full min-h-screen flex flex-col items-center dark:!bg-blues-400'>
-          <div className='w-3/5 h-8'> 
-        <ReadyButton answered={answered}/>
-        </div>
+          <div className='w-3/5 h-8'>
+            <ReadyButton answered={answered} />
+          </div>
           <div className='container flex flex-wrap justify-items-stretch' />
 
           <div className='w-2/5 mb-6'>{listContent}</div>
