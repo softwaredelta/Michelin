@@ -8,6 +8,7 @@ const fs = require('fs')
 
 exports.postForm = async (request, reply) => {
   // Get selling point data for report section
+  console.log(request.body)
   const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
   const userData = await User.fetchUserByMail(this.fastify, request.body.mail)
 
@@ -49,6 +50,29 @@ exports.getFormsByUser = async (request, reply) => {
   }
 
   return formData
+}
+
+exports.postReportMails = async (request, reply) => {
+  const mailList = JSON.parse(request.body.mails).mails
+  const userName = request.body.userName
+  const fileName = request.body.fileName
+
+  const { mailer } = this.fastify
+  mailer.sendMail({
+    to: mailList,
+    subject: 'Reporte de auditoria de ' + userName,
+    text: 'Reporte generado por el TBM se adjunta al correo:',
+    attachments: [
+      {
+        fileName,
+        path: './uploads/reports/' + fileName + '.pdf'
+      }
+    ]
+  }, (errors, info) => {
+    if (errors) {
+      this.fastify.log.error(errors)
+    }
+  })
 }
 
 exports.getFormCountByUser = async (request, reply) => {
