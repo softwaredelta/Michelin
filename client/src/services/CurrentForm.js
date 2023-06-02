@@ -29,6 +29,7 @@ export default class CurrentForm {
 
   uploadImages = []
   idSp = 0
+  spName = ''
   startTime = 0
   endTime = 0
 
@@ -52,6 +53,10 @@ export default class CurrentForm {
   setEndTime () {
     const currentDate = new Date()
     this.endTime = currentDate.getTime()
+  }
+
+  getElapsedMinutes () {
+    return Math.floor((this.endTime - this.startTime) / 60000)
   }
 
   async loadAllQuestions () {
@@ -199,8 +204,9 @@ export default class CurrentForm {
     return currentSection
   }
 
-  setIdSp (newSp) {
-    this.idSp = newSp
+  setSp (newIdSp, newSpName) {
+    this.idSp = newIdSp
+    this.spName = newSpName
   }
 
   async postForm (comment, managerName, mailList) {
@@ -223,7 +229,7 @@ export default class CurrentForm {
     formData.append('managerGrade', this.grades.manager)
     formData.append('spId', this.idSp)
     formData.append('fileName', reportName) // eslint-disable-line
-    // formData.append('duration', (this.endTime - this.startTime) / 60000)
+    // formData.append('duration', this.getElapsedMinutes())
     formData.append('duration', 150)
     formData.append('comment', comment)
     formData.append('managerName', managerName)

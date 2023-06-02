@@ -15,7 +15,7 @@ const SPAcordion = ({ spId }) => {
   const navigate = useNavigate()
 
   const startPreparation = () => {
-    Form.setIdSp(spId)
+    Form.setSp(spId, sp.name)
     Form.setStartTime()
     navigate('/form/preparation')
   }

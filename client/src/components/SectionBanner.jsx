@@ -1,4 +1,4 @@
-const SectionBanner = () => {
+const SectionBanner = ({ myText }) => {
   return (
     <>
       <div
@@ -7,7 +7,7 @@ const SectionBanner = () => {
         border-t-[65px] border-t-trademark-50
         border-r-[50px] border-r-transparent'
       />
-      <div className='absolute top-10 left-7 text-3xl text-blues-300 font-michelin'>Preparación</div>
+      <div className='absolute top-10 left-7 text-3xl text-blues-300 font-michelin'>{myText}</div>
     </>
   )
 }
