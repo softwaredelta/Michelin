@@ -238,7 +238,7 @@ export default class CurrentForm {
       formData.append('images', image.file, image.fileName)
     })
     this.uploadImages = []
-    
+
     await axios.post(apiRoute + 'form/postForm', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
