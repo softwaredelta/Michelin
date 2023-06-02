@@ -18,7 +18,7 @@ const Preparation = () => {
   const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
   const areas = Form.getAreasBySection(1)
-  //const answered = 50
+  // const answered = 50
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
