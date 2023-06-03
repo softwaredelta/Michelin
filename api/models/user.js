@@ -7,7 +7,7 @@ module.exports = class User {
       m.name AS manager_name, m.last_name AS manager_last_name, 
       r.name AS role_name, 
       s.name as state_name,
-      (SELECT COUNT(*) FROM form AS f WHERE u.id_user = f.id_user) AS form_count
+      (SELECT COUNT(*) FROM form AS f WHERE u.id_user = f.id_user AND sp_name in (SELECT name FROM sellingpoint)) AS form_count
       FROM users AS u
       JOIN role AS r
       ON u.id_role = r.id_role

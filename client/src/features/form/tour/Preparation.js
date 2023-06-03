@@ -3,13 +3,22 @@ import ProgressBar from '../../../components/ProgressBar'
 import AreaAccordion from '../../../components/AreaAccordion'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import ReadyButton from '../../../components/ReadyButton'
+import SectionBanner from '../../../components/SectionBanner'
+import ImageCard from '../../../components/ImageCard'
+import NextButton from '../../../components/NextButton'
+import TourScene from '../../../components/TourScene'
 
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+
+// Historia de usuario M13_H1
 const Preparation = () => {
   const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
   const areas = Form.getAreasBySection(1)
-  const answered = 50
+  // const answered = 50
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
@@ -26,15 +35,26 @@ const Preparation = () => {
   const content = (
     <>
       <div>
-        <ProgressBar />
-        <div className='pt-20 w-full min-h-screen flex flex-col items-center dark:!bg-blues-400'>
-          <div className='w-3/5 h-8'>
-            <ReadyButton answered={answered} />
-          </div>
-          <div className='container flex flex-wrap justify-items-stretch' />
-
-          <div className='w-2/5 mb-6'>{listContent}</div>
+        <div className='relative'>
+          <ProgressBar />
         </div>
+        <div>
+          <SectionBanner myText='Preparación' />
+        </div>
+
+        <TourScene questionContent={listContent}>
+          <div className='flex-col w-full my-auto'>
+            <ImageCard />
+            <div className='flex flex-row w-11/12 justify-between ml-3'>
+              <div className='w-32' />
+              <div className='w-32'>
+                <div>
+                  <NextButton onClicked={e => navigate('/form/exterior')} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </TourScene>
       </div>
     </>
   )

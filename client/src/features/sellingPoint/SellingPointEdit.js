@@ -12,6 +12,10 @@ import { useEffect } from 'react'
 import Toast from '../../components/Toast'
 import { useSelector } from 'react-redux'
 
+/* https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ * Historia de Usuario M2_H3
+ */
+
 const SellingPointEdit = ({ show, onClose, spId }) => {
   const sp = useSelector(state => selectSPById(state, spId))
 

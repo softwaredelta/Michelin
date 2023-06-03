@@ -45,6 +45,8 @@ exports.getFormsByUser = async (request, reply) => {
 
   if (userData[0].id_role === 1) {
     formData = Form.fetchByUser(this.fastify, userData[0].id_user)
+  } else if (userData[0].id_role === 2) {
+    formData = Form.fetchByManagerUser(this.fastify, userData[0].id_user)
   } else {
     formData = Form.fetchAll(this.fastify)
   }
@@ -83,6 +85,8 @@ exports.getFormCountByUser = async (request, reply) => {
 
   if (userData[0].id_role === 1) {
     formData = Form.fetchCountByUser(this.fastify, userData[0].id_user)
+  } else if (userData[0].id_role === 2) {
+    formData = Form.fetchCountByManagerUser(this.fastify, userData[0].id_user)
   } else {
     formData = Form.fetchCount(this.fastify)
   }

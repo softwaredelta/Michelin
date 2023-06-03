@@ -1,9 +1,12 @@
 import { FaPlay } from 'react-icons/fa'
 
-const PreviousButton = () => {
+const PreviousButton = ({ onClicked }) => {
   return (
     <>
-      <button className=' w-full bg-white !text-blues-300 !font-bold py-2 pl-3 rounded-2xl shadow-lg'>
+      <button
+        onClick={onClicked}
+        className=' w-full bg-white !text-blues-300 !font-bold py-2 pl-3 rounded-2xl shadow-lg'
+      >
         <div className='flex flex-row'>
           <FaPlay
             className='mr-4 mt-1'

@@ -22,13 +22,15 @@ const AreaAccordion = ({ section, area, index }) => {
 
   const content = (
 
-    <Accordion collapseAll alwaysOpen>
+    <Accordion collapseAll alwaysOpen className='bg-white'>
       <AccordionPanel>
         <AccordionTitle>
-          <AreaTitle number={index} title={area.areaTitle} questions={questions.length} answered={answerCount} />
+          <AreaTitle number={index + 1} title={area.areaTitle} questions={questions.length} answered={answerCount} />
         </AccordionTitle>
         <AccordionContent>
-          {listContent}
+          <div className='overflow-y-auto h-96'>
+            {listContent}
+          </div>
         </AccordionContent>
       </AccordionPanel>
     </Accordion>

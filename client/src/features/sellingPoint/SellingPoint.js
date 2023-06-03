@@ -5,6 +5,10 @@ import SellingPointEdit from './SellingPointEdit'
 import Toast from '../../components/Toast'
 import SPCard from '../../components/SPCard'
 
+/* https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ * Historia de Usuario M2_H2
+ */
+
 const SellingPoint = ({ spId }) => {
   const confirmationText = '¿Estás seguro que deseas eliminar el Punto de Venta?'
 

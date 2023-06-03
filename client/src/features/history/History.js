@@ -4,6 +4,11 @@ import Header from '../../components/Header'
 import Report from '../history/Report'
 import { useGetFormsByUserQuery } from '../form/formApiSlice'
 
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+// Historia de usuario M3_H3 M3_H2
 const History = () => {
   const {
     data: forms,
@@ -57,7 +62,7 @@ const History = () => {
       ))
       : null
   }
-
+  // M3_H1
   const content = (
     <>
       <div>

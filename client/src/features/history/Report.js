@@ -2,6 +2,12 @@ import SellingPointTitle from '../../components/SellingPointTitle'
 import InfoAccordion from '../../components/InfoAccordion'
 import ReportOverview from './ReportOverview'
 
+/*
+ *
+ *https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ *
+ */
+// Historia de usuario M3_H2
 const Report = ({
   spName,
   spZone,
