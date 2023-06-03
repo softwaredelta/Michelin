@@ -19,7 +19,7 @@ exports.postForm = async (request, reply) => {
   // Create PDF
   const doc = new PDFDocument({ autoFirstPage: false })
   doc.pipe(fs.createWriteStream('./uploads/reports/' + request.body.fileName + '.pdf'))
-  
+
   // M6_H1
   await ReportUtil.generateReport(doc, request.body, sellingPointData)
 

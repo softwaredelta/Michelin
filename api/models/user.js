@@ -48,7 +48,8 @@ module.exports = class User {
       return { status: false }
     }
   }
-// M1_H1
+
+  // M1_H1
   static async createUser (fastify, name, lastName, idManager, email, password, idRole, idState) {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
@@ -96,6 +97,7 @@ module.exports = class User {
     connection.release()
     return rows[0]
   }
+
   // M1_H2
   static async editUser (fastify, name, lastName, idUser, states) {
     const connection = await fastify.mysql.getConnection()
@@ -133,7 +135,7 @@ module.exports = class User {
     )
     connection.release()
   }
-  
+
   // M1_H3
   static async deleteUser (fastify, idUser) {
     const connection = await fastify.mysql.getConnection()
