@@ -5,17 +5,21 @@ import SectionBanner from './SectionBanner'
 import ProgressBar from './ProgressBar'
 import NextButton from './NextButton'
 import PreviousButton from './PreviousButton'
+import ReadyButton from './ReadyButton'
 
 const Example = () => {
   return (
     <>
       <div>
+        <div className='!bg-blues-300 absolute top-6 right-20 mt-4'>
+          <ReadyButton intPeansweredrcentage={30} />
+        </div>
         <div className='relative'>
           <ProgressBar />
         </div>
 
         <div>
-          <SectionBanner myText='Preparación' />
+          <SectionBanner myText='Example' />
         </div>
         <div className='w-full h-screen flex flex-col items-center !bg-blues-300'>
           <div className='container h-screen flex flex-wrap justify-items-stretch'>

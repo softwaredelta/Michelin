@@ -1,7 +1,7 @@
-const VisualKey = ({ myLink }) => {
+const VisualKey = ({ method, myName }) => {
   const content = (
     <>
-      <a href={myLink} className='w-10'>
+      <button onClick={method} className='w-10'>
         <div>
           <svg class='w-10 h-10' fill='white' fill-opacity='1.0'>
             <circle
@@ -22,11 +22,11 @@ const VisualKey = ({ myLink }) => {
               stroke-width='100%'
               dy='.3em'
             >
-              1
+              {myName}
             </text>
           </svg>
         </div>
-      </a>
+      </button>
     </>
   )
   return content

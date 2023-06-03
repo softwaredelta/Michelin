@@ -84,7 +84,7 @@ function addSellingPointSection (doc, currentRect, duration) {
   doc.fillColor(blueColor)
 
   doc.fontSize(18)
-  doc.text(`${('0' + Math.floor(duration / 60)).slice(-2)}:${('0' + duration % 60).slice(-2)}`, 485, singleRectPos[currentRect.index] + 40)
+  doc.text(`${duration} minutos`, 485, singleRectPos[currentRect.index] + 40, { align: 'center' })
   doc.fontSize(18).font('./uploads/fonts/RobotoSlab-Regular.ttf')
   doc.text('Tiempo del', 460, singleRectPos[currentRect.index] + 55)
   doc.text('Recorrido', 470, singleRectPos[currentRect.index] + 75)

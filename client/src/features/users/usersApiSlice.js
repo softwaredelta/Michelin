@@ -4,7 +4,11 @@ import {
 } from '@reduxjs/toolkit'
 
 import { appSlice } from '../../app/api/apiSlice'
-
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+// M9_H2
 const usersAdapter = createEntityAdapter({})
 
 const initialState = usersAdapter.getInitialState()
