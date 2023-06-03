@@ -1,7 +1,7 @@
 const AreaTitle = ({ number, title, questions, answered }) => {
   const content = (
     <>
-      <div class='grid grid-cols-6 w-96'>
+      <div class='grid grid-cols-6 w-96 dark:!bg-white'>
         <div class='col-span-1 self-center'>
           <h1 className='text-blues-200 text-3xl'>{number}</h1>
         </div>

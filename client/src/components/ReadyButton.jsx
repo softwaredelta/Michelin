@@ -1,13 +1,19 @@
 import { useNavigate } from 'react-router-dom'
+import GradeChart from './GradeChart'
 
-const ReadyButton = ({ answered }) => {
-  answered = (1006 * answered) / 100
+const ReadyButton = ({ intPeansweredrcentage }) => {
   const navigate = useNavigate()
-  // 1006 es total
+  let disable = true
+  if (intPeansweredrcentage === 100) {
+    disable = false
+  }
+
   const content = (
     <>
-      <div class='w-full bg-gray-200 rounded-full dark:bg-gray-700 h-8'>
-        <div class='bg-blue-600 text-l font-medium text-blue-100 text-center p-0.5 leading-none rounded-full cursor-pointer  h-8' style={{ width: answered }} onClick={() => navigate('/form/finalize')}><p>Listo</p></div>
+      <div className='scale-110'>
+        <button onClick={() => navigate('/form/finalize')} disabled={disable}>
+          <GradeChart percent={intPeansweredrcentage} zone='' />
+        </button>
       </div>
     </>
   )

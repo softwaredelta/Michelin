@@ -79,7 +79,7 @@ const Finalize = () => {
       </div>
       <div className='w-full h-screen items-center !bg-blues-300 object-center'>
         <div className='pt-32 w-full min-h-screen'>
-          <Card className='w-10/12 h-4/5 m-auto dark:bg-gray-50'>
+          <Card className='w-10/12 h-4/5 m-auto dark:bg-white'>
             <div className='grid grid-cols-2 gap-12'>
               <div>
                 <div className='flex flex-col content-center'>

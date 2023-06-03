@@ -2,11 +2,12 @@ import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/ProgressBar'
 import AreaAccordion from '../../../components/AreaAccordion'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import SectionBanner from '../../../components/SectionBanner'
 import ImageCard from '../../../components/ImageCard'
 import NextButton from '../../../components/NextButton'
 import TourScene from '../../../components/TourScene'
+import ReadyButton from '../../../components/ReadyButton'
 
 /*
  * Link a requerimientos funcionales:
@@ -18,11 +19,15 @@ const Preparation = () => {
   const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
   const areas = Form.getAreasBySection(1)
-  // const answered = 50
+  const [currentPercentage, setCurrentPercentage] = useState(Form.getCompletionPercentage())
+
+  const updatePercentage = () => {
+    setCurrentPercentage(Form.getCompletionPercentage())
+  }
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
-      <AreaAccordion key={area.idArea} section={1} area={area} index={id} />
+      <AreaAccordion key={area.idArea} section={1} area={area} index={id} onClicked={updatePercentage} />
     ))
     : null
 
@@ -35,6 +40,9 @@ const Preparation = () => {
   const content = (
     <>
       <div>
+        <div className='!bg-blues-300 absolute top-6 right-5 mt-4'>
+          <ReadyButton intPeansweredrcentage={currentPercentage} />
+        </div>
         <div className='relative'>
           <ProgressBar />
         </div>
@@ -44,7 +52,9 @@ const Preparation = () => {
 
         <TourScene questionContent={listContent}>
           <div className='flex-col w-full my-auto'>
-            <ImageCard />
+            <div className='object-scale-down h-48 w-96'>
+              <ImageCard imgName='Preparation.png' />
+            </div>
             <div className='flex flex-row w-11/12 justify-between ml-3'>
               <div className='w-32' />
               <div className='w-32'>

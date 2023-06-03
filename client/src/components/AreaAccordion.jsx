@@ -7,7 +7,7 @@ import AreaTitle from './AreaTitle'
 import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle'
 import { useState } from 'react'
 
-const AreaAccordion = ({ section, area, index }) => {
+const AreaAccordion = ({ section, area, index, onClicked }) => {
   const Form = CurrentForm.getInstance()
 
   const questions = Form.getQuestionsByArea(section, index)
@@ -18,19 +18,27 @@ const AreaAccordion = ({ section, area, index }) => {
     ? questions.map((question, id) => (
       <TourQuestion key={question.idQuestion} question={question} area={index} section={section} index={id} setAnswerCount={setAnswerCount} />
     ))
-    : <p className='dark:text-white italic text-2xl text-center'> No hay preguntas en esta área</p>
+    : <p className='dark:text-black italic text-2xl text-center'> No hay preguntas en esta área</p>
 
   const content = (
-
-    <Accordion collapseAll alwaysOpen className='bg-white'>
+    <Accordion
+      id={index + 1}
+      collapseAll
+      alwaysOpen
+      className='!bg-white mb-2 dark:!bg-white'
+      onClick={onClicked}
+    >
       <AccordionPanel>
-        <AccordionTitle>
-          <AreaTitle number={index + 1} title={area.areaTitle} questions={questions.length} answered={answerCount} />
+        <AccordionTitle className='dark:!bg-white'>
+          <AreaTitle
+            number={index + 1}
+            title={area.areaTitle}
+            questions={questions.length}
+            answered={answerCount}
+          />
         </AccordionTitle>
-        <AccordionContent>
-          <div className='overflow-y-auto h-96'>
-            {listContent}
-          </div>
+        <AccordionContent className='dark:!bg-white'>
+          <div className='overflow-y-auto h-full dark:!bg-white'>{listContent}</div>
         </AccordionContent>
       </AccordionPanel>
     </Accordion>
