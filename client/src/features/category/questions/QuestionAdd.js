@@ -9,7 +9,11 @@ import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter
 import AreaOption from './AreaOption'
 import { useForm } from 'react-hook-form'
 import Toast from '../../../components/Toast'
-
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+// M4_H3
 const QuestionAdd = ({ show, onClose, section, myCategory }) => {
   const { register, getValues, reset } = useForm()
 

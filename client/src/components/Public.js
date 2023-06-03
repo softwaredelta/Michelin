@@ -63,7 +63,7 @@ const Public = () => {
               idForm
             ].date.substring(5, 7)}/${entities[idForm].date.substring(0, 4)}`}
           userName={`${entities[idForm].user_name} ${entities[idForm].user_last_name}`}
-          repTime={`${entities[idForm].duration.substring(3, 5)} minutos`}
+          repTime={`${entities[idForm].duration} minutos`}
           repLink={baseReportRoute + entities[idForm].file_link}
           intPercentage={entities[idForm].interior_grade}
           extPercentage={entities[idForm].exterior_grade}

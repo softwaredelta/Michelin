@@ -7,7 +7,7 @@ const ProgressBar = () => {
   const content = (
     <>
       <div className='absolute top-24 w-full'>
-        <div className='flex flex-row justify-center gap-5'>
+        <div className='flex flex-row ml-3 gap-2'>
           <div className='flex flex-col w-36'>
             <YellowButton
               myText='Preparación'
@@ -28,7 +28,7 @@ const ProgressBar = () => {
               method={() => navigate('/form/interior')}
             />
           </div>
-          <div className='flex flex-col  w-36'>
+          <div className='flex flex-col w-36'>
             <YellowButton
               myText='Cliente'
               method={() => navigate('/form/client')}
@@ -40,7 +40,7 @@ const ProgressBar = () => {
               method={() => navigate('/form/manager')}
             />
           </div>
-          <div className='flex flex-col  w-36'>
+          <div className='flex flex-col w-36'>
             <YellowButton myText='Otros' />
           </div>
         </div>
