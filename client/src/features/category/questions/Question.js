@@ -6,10 +6,10 @@ import {
   useEditQuestionMutation
 } from './questionApiSlice'
 import { useEffect, useState } from 'react'
-import Toast from '../../../components/Toast'
-import SvgButton from '../../../components/SvgButton'
+import Toast from '../../../components/alerts/Toast'
+import SvgButton from '../../../components/buttons/SvgButton'
 import { BsFillTrashFill } from 'react-icons/bs'
-import ConfirmationModal from '../../../components/ConfirmationModal'
+import ConfirmationModal from '../../../components/alerts/ConfirmationModal'
 
 const Question = ({
   triggerEdit,

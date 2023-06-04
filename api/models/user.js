@@ -1,3 +1,7 @@
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
 
 module.exports = class User {
   static async fetchAll (fastify) {
@@ -30,6 +34,7 @@ module.exports = class User {
     return rows[0]
   }
 
+  // M9_H1
   static async verifyUser (fastify, email, password) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
@@ -44,6 +49,7 @@ module.exports = class User {
     }
   }
 
+  // M1_H1
   static async createUser (fastify, name, lastName, idManager, email, password, idRole, idState) {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
@@ -92,6 +98,7 @@ module.exports = class User {
     return rows[0]
   }
 
+  // M1_H2
   static async editUser (fastify, name, lastName, idUser, states) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
@@ -129,6 +136,7 @@ module.exports = class User {
     connection.release()
   }
 
+  // M1_H3
   static async deleteUser (fastify, idUser) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(

@@ -1,14 +1,14 @@
 import Report from '../features/history/Report'
-import Header from './Header'
-import ModifiedFooter from './ModifiedFooter'
-import NavBar from './NavBar'
+import Header from './headers/Header'
+import ModifiedFooter from './headers/ModifiedFooter'
+import NavBar from './headers/NavBar'
 import { Button } from 'flowbite-react'
 import {
   useGetFormsByUserQuery,
   useGetFormCountByUserQuery
 } from '../features/form/formApiSlice'
 import { FaFlagCheckered } from 'react-icons/fa'
-import NumberCircle from './NumberCircle'
+import NumberCircle from './inputs/NumberCircle'
 
 const Public = () => {
   const name = localStorage.getItem('name'); // eslint-disable-line
@@ -63,7 +63,7 @@ const Public = () => {
               idForm
             ].date.substring(5, 7)}/${entities[idForm].date.substring(0, 4)}`}
           userName={`${entities[idForm].user_name} ${entities[idForm].user_last_name}`}
-          repTime={`${entities[idForm].duration.substring(3, 5)} minutos`}
+          repTime={`${entities[idForm].duration} minutos`}
           repLink={baseReportRoute + entities[idForm].file_link}
           intPercentage={entities[idForm].interior_grade}
           extPercentage={entities[idForm].exterior_grade}

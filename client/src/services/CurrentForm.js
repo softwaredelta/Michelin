@@ -40,6 +40,11 @@ export default class CurrentForm {
     return CurrentForm.instance
   }
 
+  setSp (newIdSp, newSpName) {
+    this.idSp = newIdSp
+    this.spName = newSpName
+  }
+
   async loadFormInfo () {
     await this.loadAllAreas()
     await this.loadAllQuestions()
@@ -145,6 +150,7 @@ export default class CurrentForm {
 
   getQuestionsByArea (section, area) {
     const currentSection = this.selectSection(section)
+
     return this.questions[currentSection][area]
   }
 
@@ -158,6 +164,30 @@ export default class CurrentForm {
     })
 
     return answerCount
+  }
+
+  getCompletionPercentage () {
+    let sumAnswered = 0
+    let sumTotal = 0
+
+    // Used for instead of forEach because of unsafe references to variables sumAnswered and sumTotal
+    for (let section = 1; section <= 5; section++) {
+      const currentSection = this.selectSection(section)
+
+      for (let area = 0; area < this.questions[currentSection].length; area++) {
+        for (let question = 0; question < this.questions[currentSection][area].length; question++) {
+          sumTotal += 1
+
+          if (this.questions[currentSection][area][question].answer !== 0) {
+            sumAnswered += 1
+          }
+        }
+      }
+    }
+
+    const percentage = Math.floor((sumAnswered / sumTotal) * 100)
+
+    return percentage
   }
 
   setAnswer (section, area, question, newAnswer) {
@@ -180,35 +210,6 @@ export default class CurrentForm {
       currentDate.getTime() + '-' + file.name
   }
 
-  selectSection (section) {
-    let currentSection = ''
-    switch (section) {
-      case 1:
-        currentSection = 'preparation'
-        break
-      case 2:
-        currentSection = 'exterior'
-        break
-      case 3:
-        currentSection = 'interior'
-        break
-      case 4:
-        currentSection = 'client'
-        break
-      case 5:
-        currentSection = 'manager'
-        break
-      default:
-        break
-    }
-    return currentSection
-  }
-
-  setSp (newIdSp, newSpName) {
-    this.idSp = newIdSp
-    this.spName = newSpName
-  }
-
   async postForm (comment, managerName, mailList) {
     const currentDate = new Date()
 
@@ -229,8 +230,7 @@ export default class CurrentForm {
     formData.append('managerGrade', this.grades.manager)
     formData.append('spId', this.idSp)
     formData.append('fileName', reportName) // eslint-disable-line
-    // formData.append('duration', this.getElapsedMinutes())
-    formData.append('duration', 150)
+    formData.append('duration', this.getElapsedMinutes())
     formData.append('comment', comment)
     formData.append('managerName', managerName)
     formData.append('preparation', preparationJson)
@@ -251,16 +251,18 @@ export default class CurrentForm {
       }
     })
 
-    const mailData = new FormData()
-    mailData.append('fileName', reportName)
-    mailData.append('userName', userName)
-    mailData.append('mails', this.MailJson(mailList))
+    if (mailList.length > 0) {
+      const mailData = new FormData()
+      mailData.append('fileName', reportName)
+      mailData.append('userName', userName)
+      mailData.append('mails', this.MailJson(mailList))
 
-    axios.post(apiRoute + 'form/sendEmails', mailData, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+      axios.post(apiRoute + 'form/sendEmails', mailData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+    }
   }
 
   SectionJson (section) {
@@ -319,5 +321,30 @@ export default class CurrentForm {
     json += ']}'
 
     return json
+  }
+
+  selectSection (section) {
+    let currentSection = ''
+    switch (section) {
+      case 1:
+        currentSection = 'preparation'
+        break
+      case 2:
+        currentSection = 'exterior'
+        break
+      case 3:
+        currentSection = 'interior'
+        break
+      case 4:
+        currentSection = 'client'
+        break
+      case 5:
+        currentSection = 'manager'
+        break
+      default:
+        break
+    }
+
+    return currentSection
   }
 }

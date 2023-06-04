@@ -1,10 +1,10 @@
 import { useGetUsersQuery } from './usersApiSlice'
 import User from './User'
-import Bluebutton from '../../components/Bluebutton'
+import Bluebutton from '../../components/buttons/Bluebutton'
 import { useState } from 'react'
 import UserAdd from './UserAdd'
-import NavBar from '../../components/NavBar'
-import ModifiedFooter from '../../components/ModifiedFooter'
+import NavBar from '../../components/headers/NavBar'
+import ModifiedFooter from '../../components/headers/ModifiedFooter'
 
 const UsersList = () => {
   const { data: users, isLoading, isSuccess, isError } = useGetUsersQuery()

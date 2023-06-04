@@ -1,7 +1,7 @@
 import GreenBibendum from './GreenBibendum'
 import RedBibendum from './RedBibendum'
 import NaButton from './NaButton'
-import CurrentForm from '../services/CurrentForm'
+import CurrentForm from '../../services/CurrentForm'
 import { useState } from 'react'
 import { FileInput } from 'flowbite-react'
 
@@ -79,7 +79,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   if (imageUploaded === true) {
     currImg = (
       <>
-        <div className='dark:text-white w-fit text-xl self-center text-center m-auto mt-4 -mb-4'>La imagen se ha guardado</div>
+        <div className='dark:text-black w-fit text-xl self-center text-center m-auto mt-4 -mb-4'>La imagen se ha guardado</div>
       </>
     )
   }

@@ -1,6 +1,6 @@
-import ModifiedFooter from '../../components/ModifiedFooter'
-import NavBar from '../../components/NavBar'
-import Header from '../../components/Header'
+import ModifiedFooter from '../../components/headers/ModifiedFooter'
+import NavBar from '../../components/headers/NavBar'
+import Header from '../../components/headers/Header'
 import Report from '../history/Report'
 import { useGetFormsByUserQuery } from '../form/formApiSlice'
 
@@ -52,7 +52,7 @@ const History = () => {
               idForm
             ].date.substring(5, 7)}/${entities[idForm].date.substring(0, 4)}`}
           userName={`${entities[idForm].user_name} ${entities[idForm].user_last_name}`}
-          repTime={`${entities[idForm].duration.substring(3, 5)} minutos`}
+          repTime={`${entities[idForm].duration} minutos`}
           repLink={baseReportRoute + entities[idForm].file_link}
           intPercentage={entities[idForm].interior_grade}
           extPercentage={entities[idForm].exterior_grade}

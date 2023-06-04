@@ -1,11 +1,12 @@
 import CurrentForm from '../../../services/CurrentForm'
 import { useForm } from 'react-hook-form'
 import { Label, Card } from 'flowbite-react'
-import SelectedMail from '../../../components/SelectedMail'
+import SelectedMail from '../../../components/inputs/SelectedMail'
 import { useState, useEffect } from 'react'
-import MailTextBox from '../../../components/MailTextBox'
-import Toast from '../../../components/Toast'
-import SectionBanner from '../../../components/SectionBanner'
+import MailTextBox from '../../../components/inputs/MailTextBox'
+import Toast from '../../../components/alerts/Toast'
+import SectionBanner from '../../../components/titles/SectionBanner'
+import ConfirmationModal from '../../../components/alerts/ConfirmationModal'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -18,7 +19,6 @@ import { useNavigate } from 'react-router-dom'
 const Finalize = () => {
   const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
-  Form.setEndTime()
 
   const tourTime = Form.getElapsedMinutes()
   const sellingPointName = Form.spName
@@ -33,6 +33,26 @@ const Finalize = () => {
       .match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )
+  }
+
+  const [show, setShow] = useState(false)
+
+  const handleSetShow = () => {
+    const manager = getValues('manager')
+    const comments = getValues('comments')
+
+    if (manager !== '' && comments !== '') {
+      setShow(true)
+    } else {
+      Toast.fire({
+        icon: 'error',
+        title: 'Campos incompletos'
+      })
+    }
+  }
+
+  const handleClose = () => {
+    setShow(false)
   }
 
   const onClickDeleteMail = (e) => {
@@ -60,6 +80,7 @@ const Finalize = () => {
     const comments = getValues('comments')
 
     Form.postForm(comments, manager, mailList)
+    navigate('/form')
   }
 
   const mailListContent = mailList?.length
@@ -74,12 +95,13 @@ const Finalize = () => {
 
   const content = (
     <>
+      <ConfirmationModal show={show} onClose={handleClose} text='Terminar auditoria?' method={onFinalizeTourClicked} />
       <div>
         <SectionBanner myText='Resumen' />
       </div>
       <div className='w-full h-screen items-center !bg-blues-300 object-center'>
         <div className='pt-32 w-full min-h-screen'>
-          <Card className='w-10/12 h-4/5 m-auto dark:bg-gray-50'>
+          <Card className='w-10/12 h-4/5 m-auto dark:bg-white'>
             <div className='grid grid-cols-2 gap-12'>
               <div>
                 <div className='flex flex-col content-center'>
@@ -155,7 +177,7 @@ const Finalize = () => {
                   </div>
                 </div>
                 <div className='flex flex-col mr-8 items-end bottom-0 pt-4 lg:pt-4 pl-32'>
-                  <button onClick={onFinalizeTourClicked} className='!text-lg py-2 bottom-0 w-44 left-0 mt-4 px-5 shadow-xl !bg-trademark-50 !text-blues-200 !rounded-full hover:!bg-yellow-500'>Finalizar</button>
+                  <button onClick={handleSetShow} className='!text-lg py-2 bottom-0 w-44 left-0 mt-4 px-5 shadow-xl !bg-trademark-50 !text-blues-200 !rounded-full hover:!bg-yellow-500'>Finalizar</button>
                 </div>
               </div>
             </div>

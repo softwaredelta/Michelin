@@ -8,7 +8,11 @@ import { TableRow } from 'flowbite-react/lib/esm/components/Table/TableRow'
 import { TableCell } from 'flowbite-react/lib/esm/components/Table/TableCell'
 import { MdModeEditOutline } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
-
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+// M4_H1
 const QuestionOverview = ({ category, section }) => {
   const navigate = useNavigate()
 

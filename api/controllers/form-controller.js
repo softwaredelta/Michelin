@@ -6,15 +6,21 @@ const ReportUtil = require('../util/report-util')
 const PDFDocument = require('pdfkit')
 const fs = require('fs')
 
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+// M3_H3
 exports.postForm = async (request, reply) => {
   // Get selling point data for report section
-  console.log(request.body)
   const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
   const userData = await User.fetchUserByMail(this.fastify, request.body.mail)
 
   // Create PDF
   const doc = new PDFDocument({ autoFirstPage: false })
   doc.pipe(fs.createWriteStream('./uploads/reports/' + request.body.fileName + '.pdf'))
+
+  // M6_H1
   await ReportUtil.generateReport(doc, request.body, sellingPointData)
 
   await Form.createForm(this.fastify,
@@ -26,7 +32,7 @@ exports.postForm = async (request, reply) => {
     request.body.managerGrade,
     sellingPointData[0].name,
     request.body.fileName + '.pdf',
-    (Math.floor(request.body.duration / 60) * 100) + (request.body.duration % 60),
+    request.body.duration,
     getCurrentDateTimeSQL())
 
   return reply.code(200).send({ statusCode: 200 })
