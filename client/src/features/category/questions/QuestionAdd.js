@@ -8,7 +8,7 @@ import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import AreaOption from './AreaOption'
 import { useForm } from 'react-hook-form'
-import Toast from '../../../components/Toast'
+import Toast from '../../../components/alerts/Toast'
 /*
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing

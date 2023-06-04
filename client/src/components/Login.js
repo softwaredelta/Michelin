@@ -1,7 +1,7 @@
 import { useLoginUserMutation } from '../features/users/usersApiSlice'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-import Toast from './Toast'
+import Toast from './alerts/Toast'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {

@@ -1,9 +1,9 @@
-import CurrentForm from '../services/CurrentForm'
+import CurrentForm from '../../services/CurrentForm'
 import { Accordion } from 'flowbite-react'
 import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel'
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent'
 import TourQuestion from './TourQuestion'
-import AreaTitle from './AreaTitle'
+import AreaTitle from '../titles/AreaTitle'
 import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle'
 import { useState } from 'react'
 

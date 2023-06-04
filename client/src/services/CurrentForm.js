@@ -251,16 +251,18 @@ export default class CurrentForm {
       }
     })
 
-    const mailData = new FormData()
-    mailData.append('fileName', reportName)
-    mailData.append('userName', userName)
-    mailData.append('mails', this.MailJson(mailList))
+    if (mailList.length > 0) {
+      const mailData = new FormData()
+      mailData.append('fileName', reportName)
+      mailData.append('userName', userName)
+      mailData.append('mails', this.MailJson(mailList))
 
-    axios.post(apiRoute + 'form/sendEmails', mailData, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+      axios.post(apiRoute + 'form/sendEmails', mailData, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+    }
   }
 
   SectionJson (section) {

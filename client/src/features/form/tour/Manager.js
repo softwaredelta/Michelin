@@ -1,13 +1,13 @@
 import CurrentForm from '../../../services/CurrentForm'
-import ProgressBar from '../../../components/ProgressBar'
-import AreaAccordion from '../../../components/AreaAccordion'
+import ProgressBar from '../../../components/headers/ProgressBar'
+import AreaAccordion from '../../../components/accordions/AreaAccordion'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import SectionBanner from '../../../components/SectionBanner'
-import ImageCard from '../../../components/ImageCard'
-import PreviousButton from '../../../components/PreviousButton'
+import SectionBanner from '../../../components/titles/SectionBanner'
+import ImageCard from '../../../components/cards/ImageCard'
+import PreviousButton from '../../../components/buttons/PreviousButton'
 import TourScene from '../../../components/TourScene'
-import ReadyButton from '../../../components/ReadyButton'
+import ReadyButton from '../../../components/buttons/ReadyButton'
 
 /*
  * Link a requerimientos funcionales:

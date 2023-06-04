@@ -9,7 +9,7 @@ import StateOption from './state/StateOption'
 import CategoryOption from '../category/CategoryOption'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
-import Toast from '../../components/Toast'
+import Toast from '../../components/alerts/Toast'
 
 /* https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  * Historia de Usuario M2_H1

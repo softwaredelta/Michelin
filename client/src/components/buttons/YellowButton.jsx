@@ -1,6 +1,6 @@
 import { Button } from 'flowbite-react'
 
-const Bluebutton = ({ myText, method }) => {
+const YellowButton = ({ myText, method }) => {
   return (
     <Button
       onClick={method}
@@ -11,4 +11,4 @@ const Bluebutton = ({ myText, method }) => {
   )
 }
 
-export default Bluebutton
+export default YellowButton
