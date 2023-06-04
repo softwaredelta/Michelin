@@ -1,6 +1,6 @@
-import Header from '../../components/Header'
-import ModifiedFooter from '../../components/ModifiedFooter'
-import NavBar from '../../components/NavBar'
+import Header from '../../components/headers/Header'
+import ModifiedFooter from '../../components/headers/ModifiedFooter'
+import NavBar from '../../components/headers/NavBar'
 import Section from './Section'
 import { useGetSectionsQuery } from './sectionApiSlice'
 /*

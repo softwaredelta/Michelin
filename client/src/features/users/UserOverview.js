@@ -12,10 +12,10 @@ import {
 import { useGetStatesByUserQuery } from '../sellingPoint/state/stateApiSlice'
 import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
-import Toast from '../../components/Toast'
+import Toast from '../../components/alerts/Toast'
 import { useForm } from 'react-hook-form'
-import MultipleCheckbox from '../../components/MultipleCheckbox'
-import ConfirmationModal from '../../components/ConfirmationModal'
+import MultipleCheckbox from '../../components/inputs/MultipleCheckbox'
+import ConfirmationModal from '../../components/alerts/ConfirmationModal'
 /*
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing

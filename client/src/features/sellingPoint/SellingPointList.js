@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import ModifiedFooter from '../../components/ModifiedFooter'
+import ModifiedFooter from '../../components/headers/ModifiedFooter'
 import SellingPointAdd from './SellingPointAdd'
-import NavBar from '../../components/NavBar'
+import NavBar from '../../components/headers/NavBar'
 import SellingPoint from './SellingPoint'
 import { useGetSPQuery } from './sellingPointApiSlice'
-import Header from '../../components/Header'
-import Bluebutton from '../../components/Bluebutton'
+import Header from '../../components/headers/Header'
+import Bluebutton from '../../components/buttons/Bluebutton'
 
 /* https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  * Historia de Usuario M2_H4

@@ -1,6 +1,6 @@
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent'
 import { AiFillFilePdf } from 'react-icons/ai'
-import GradeChart from '../../components/GradeChart'
+import GradeChart from '../../components/inputs/GradeChart'
 
 const ReportOverview = ({
   name,

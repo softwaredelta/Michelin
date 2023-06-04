@@ -1,5 +1,5 @@
-import SellingPointTitle from '../../components/SellingPointTitle'
-import InfoAccordion from '../../components/InfoAccordion'
+import SellingPointTitle from '../../components/titles/SellingPointTitle'
+import InfoAccordion from '../../components/accordions/InfoAccordion'
 import ReportOverview from './ReportOverview'
 
 /*
