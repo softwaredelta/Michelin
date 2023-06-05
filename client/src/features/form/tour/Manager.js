@@ -51,16 +51,16 @@ const Manager = () => {
         </div>
 
         <TourScene questionContent={listContent}>
-          <div className='flex-col w-full my-auto'>
-            <div className='object-scale-down h-48 w-96'>
+          <div className='flex-col w-full h-96 place-self-center mx-auto'>
+            <div className='object-scale-down h-48 w-96 ml-8'>
               <ImageCard imgName='Manager.png' />
             </div>
 
             <div className='flex flex-row w-11/12 justify-between ml-3'>
-              <div className='w-32'>
+              <div className='w-32 mt-1'>
                 <PreviousButton onClicked={e => navigate('/form/client')} />
               </div>
-              <div className='w-32' />
+              <div className='w-32 mt-1' />
             </div>
           </div>
         </TourScene>

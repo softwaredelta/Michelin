@@ -12,18 +12,18 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   const camera = question.camera
   const buttonNa = question.buttonNa
   const classNameDflt =
-    'scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   const classNameDis =
-    'scale-50 rounded-full transition duration-300 ease-in-out opacity-40 cursor-not-allowed'
+    'scale-50 p-2 rounded-full transition duration-300 ease-in-out opacity-40 cursor-not-allowed'
   let disableGRN = false
   let disableRED = false
   let disableNA = false
   let classNameGRN =
-    'scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let classNameRED =
-    'scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let classNameNA =
-    'scale-50 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-5 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let photo = null
 
   const [answer, setAnswer] = useState(
