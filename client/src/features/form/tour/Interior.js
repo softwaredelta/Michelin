@@ -61,7 +61,7 @@ const Interior = () => {
         </div>
 
         <TourScene questionContent={listContent}>
-          <div className='flex-col w-full my-auto'>
+          <div className='flex-col w-full h-96 mt-56'>
             <div className='absolute w-10 lg:mb-11 lg:right-16 lg:bottom-80 iPadAir:mb-0 iPadAir:right-20 xl:bottom-72 xl:right-30 xl:mr-8'>
               <VisualKey myName={11} method={() => handleClick(11)} />
             </div>
@@ -98,7 +98,7 @@ const Interior = () => {
               <VisualKey myName={1} method={() => handleClick(1)} />
             </div>
 
-            <div className='flex flex-row w-11/12 justify-between ml-3'>
+            <div className='flex flex-row w-11/12 justify-between ml-3 mt-20'>
               <div className='w-32'>
                 <PreviousButton onClicked={(e) => navigate('/form/exterior')} />
               </div>

@@ -51,11 +51,11 @@ const Preparation = () => {
         </div>
 
         <TourScene questionContent={listContent}>
-          <div className='flex-col w-full my-auto'>
+          <div className='flex-col w-full h-96 mt-56'>
             <div className='object-scale-down h-48 w-96'>
               <ImageCard imgName='Preparation.png' />
             </div>
-            <div className='flex flex-row w-11/12 justify-between ml-3'>
+            <div className='flex flex-row w-11/12 justify-between ml-3 mt-24'>
               <div className='w-32' />
               <div className='w-32'>
                 <div>

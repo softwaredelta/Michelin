@@ -76,7 +76,7 @@ const Exterior = () => {
           <div className='absolute w-10 xl:pb-5 lg:mt-1 lg:mr-3 lg:right-16 lg:top-72 iPadAir:mr-5 xl:top-52 xl:mt-2 xl:right-36'>
             <VisualKey myName={9} method={() => handleClick(9)} />
           </div>
-          <div className='flex-col w-full my-auto'>
+          <div className='flex-col w-full h-96 mt-56'>
             <ImageCard imgName='Exterior.png' />
             <div className='absolute w-10 lg:right-16 lg:top-68 lg:pt-8 iPadAir:right-20 iPadAir:pt-12 xl:right-40 xl:top-32'>
               <VisualKey myName={8} method={() => handleClick(8)} />
@@ -103,7 +103,7 @@ const Exterior = () => {
               <VisualKey myName={1} method={() => handleClick(1)} />
             </div>
 
-            <div className='flex flex-row w-11/12 justify-between ml-3'>
+            <div className='flex flex-row w-11/12 justify-between ml-3 mt-20'>
               <div className='w-32'>
                 <PreviousButton
                   onClicked={(e) => navigate('/form/preparation')}
