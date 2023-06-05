@@ -25,11 +25,11 @@ const ReadyButton = ({ intPeansweredrcentage }) => {
       //   method={ onFinalizeTourClicked }
       // />
       <Button
-      onClick={ onFinalizeTourClicked }
-      className='w-full mt-4 py-0 px-5 text-3xl shadow-lg !bg-lime-600 !text-white !font-bold !rounded-full hover:!bg-yellow-500 '
-    >
-     <FaFlagCheckered className='mr-2' /> Finalizar
-    </Button>
+        onClick={onFinalizeTourClicked}
+        className='w-full mt-4 py-0 px-5 text-3xl shadow-lg !bg-lime-600 !text-white !font-bold !rounded-full hover:!bg-yellow-500 '
+      >
+        <FaFlagCheckered className='mr-2' /> Finalizar
+      </Button>
     )
   }
 
