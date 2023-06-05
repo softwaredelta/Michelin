@@ -59,21 +59,21 @@ const Interior = () => {
         </div>
 
         <TourScene questionContent={listContent}>
-          <div className='flex-col w-full my-auto'>
-            <div className='absolute w-10 lg:mb-11 lg:right-16 lg:bottom-80 iPadAir:mb-0 iPadAir:right-20 xl:bottom-72 xl:right-30 xl:mr-8'>
+          <div className='flex-col w-full h-96 place-self-center mt-36 mx-auto'>
+            <div className='absolute w-10 lg:mb-2 lg:mr-3 lg:right-16 lg:bottom-80 iPadAir:mb-6 iPadAir:right-16 iPadAir:mr-6 xl:bottom-72 xl:right-40'>
               <VisualKey myName={11} method={() => handleClick(11)} />
             </div>
-            <div className='absolute w-10 xl:pb-5 lg:pb-0 lg:mb-6 lg:ml-5 lg:right-16 lg:top-80 iPadAir:mr-2 iPadAir:mt-4 xl:top-62 xl:right-20 xl:mr-5 xl:mt-7'>
+            <div className='absolute w-10 xl:pb-5 lg:pb-0 lg:mt-9 lg:mr-1 lg:right-16 lg:top-80 iPadAir:mr-3 iPadAir:mt-16 xl:top-96 xl:right-40'>
               <VisualKey myName={10} method={() => handleClick(10)} />
             </div>
-            <div className='absolute w-10 lg:mt-6 lg:ml-3 lg:right-16 lg:top-64 iPadAir:mr-2 iPadAir:mt-9 xl:top-64 xl:right-30 xl:mt-12 xl:mr-10'>
+            <div className='absolute w-10 lg:mt-7 lg:mr-1 lg:right-16 lg:top-72 iPadAir:mr-3 iPadAir:top-80 xl:right-40 xl:mt-20'>
               <VisualKey myName={9} method={() => handleClick(9)} />
             </div>
             <ImageCard imgName='Interior.png' />
-            <div className='absolute w-10 lg:mr-3 lg:right-12 lg:top-52 lg:pt-8 iPadAir:right-20 iPadAir:pt-12 xl:right-28 xl:top-58'>
+            <div className='absolute w-10 lg:mr-2 lg:right-12 lg:top-60 lg:mt-9 iPadAir:right-16 iPadAir:pt-8 xl:right-44 xl:mr-4 xl:top-72'>
               <VisualKey myName={8} method={() => handleClick(8)} />
             </div>
-            <div className='absolute w-10 pb-5 lg:right-20 lg:mr-4 iPadAir:top-56 iPadAir:right-24 xl:right-58 xl:top-52 xl:mr-11'>
+            <div className='absolute w-10 pb-5 lg:right-20 lg:mr-3 iPadAir:top-72 iPadAir:right-24 xl:right-48 xl:mr-5 xl:pt-6'>
               <VisualKey myName={7} method={() => handleClick(7)} />
             </div>
             <div className='relative w-10 lg:left-72 lg:bottom-4 iPadAir:left-80 iPadAir:bottom-0 xl:left-96 xl:pl-12 xl:top-0'>
@@ -96,7 +96,7 @@ const Interior = () => {
               <VisualKey myName={1} method={() => handleClick(1)} />
             </div>
 
-            <div className='flex flex-row w-11/12 justify-between ml-3'>
+            <div className='flex flex-row w-11/12 justify-between ml-3 mt-2'>
               <div className='w-32'>
                 <PreviousButton onClicked={(e) => navigate('/form/exterior')} />
               </div>
