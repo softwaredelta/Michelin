@@ -1,4 +1,4 @@
-import CurrentForm from '../services/CurrentForm'
+import CurrentForm from '../../services/CurrentForm'
 const RedBibendum = ({
   section,
   area,

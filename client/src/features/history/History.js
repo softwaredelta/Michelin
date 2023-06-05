@@ -1,6 +1,6 @@
-import ModifiedFooter from '../../components/ModifiedFooter'
-import NavBar from '../../components/NavBar'
-import Header from '../../components/Header'
+import ModifiedFooter from '../../components/headers/ModifiedFooter'
+import NavBar from '../../components/headers/NavBar'
+import Header from '../../components/headers/Header'
 import Report from '../history/Report'
 import { useGetFormsByUserQuery } from '../form/formApiSlice'
 

@@ -1,4 +1,4 @@
-import InfoAccordion from '../../components/InfoAccordion'
+import InfoAccordion from '../../components/accordions/InfoAccordion'
 import QuestionOverview from './questions/QuestionOverview'
 import { HiDocumentText } from 'react-icons/hi'
 /*

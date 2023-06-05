@@ -1,14 +1,14 @@
 import Report from '../features/history/Report'
-import Header from './Header'
-import ModifiedFooter from './ModifiedFooter'
-import NavBar from './NavBar'
+import Header from './headers/Header'
+import ModifiedFooter from './headers/ModifiedFooter'
+import NavBar from './headers/NavBar'
 import { Button } from 'flowbite-react'
 import {
   useGetFormsByUserQuery,
   useGetFormCountByUserQuery
 } from '../features/form/formApiSlice'
 import { FaFlagCheckered } from 'react-icons/fa'
-import NumberCircle from './NumberCircle'
+import NumberCircle from './inputs/NumberCircle'
 
 const Public = () => {
   const name = localStorage.getItem('name'); // eslint-disable-line

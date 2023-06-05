@@ -1,13 +1,13 @@
 import CurrentForm from '../../../services/CurrentForm'
-import ProgressBar from '../../../components/ProgressBar'
-import AreaAccordion from '../../../components/AreaAccordion'
-import { useNavigate } from 'react-router-dom'
+import ProgressBar from '../../../components/headers/ProgressBar'
+import AreaAccordion from '../../../components/accordions/AreaAccordion'
 import { useState, useEffect } from 'react'
-import SectionBanner from '../../../components/SectionBanner'
-import ImageCard from '../../../components/ImageCard'
-import NextButton from '../../../components/NextButton'
+import { useNavigate } from 'react-router-dom'
+import SectionBanner from '../../../components/titles/SectionBanner'
 import TourScene from '../../../components/TourScene'
-import ReadyButton from '../../../components/ReadyButton'
+import ImageCard from '../../../components/cards/ImageCard'
+import NextButton from '../../../components/buttons/NextButton'
+import ReadyButton from '../../../components/buttons/ReadyButton'
 
 /*
  * Link a requerimientos funcionales:
@@ -51,14 +51,14 @@ const Preparation = () => {
         </div>
 
         <TourScene questionContent={listContent}>
-          <div className='flex-col w-full h-96 mt-56'>
-            <div className='object-scale-down h-48 w-96'>
+          <div className='flex-col w-full h-96 place-self-center'>
+            <div className='object-scale-down h-48 w-96 ml-12'>
               <ImageCard imgName='Preparation.png' />
             </div>
-            <div className='flex flex-row w-11/12 justify-between ml-3 mt-24'>
+            <div className='flex flex-row w-11/12 justify-between ml-3'>
               <div className='w-32' />
               <div className='w-32'>
-                <div>
+                <div className='mt-1'>
                   <NextButton onClicked={e => navigate('/form/exterior')} />
                 </div>
               </div>

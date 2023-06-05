@@ -1,4 +1,4 @@
-import AnsButtons from './AnsButtons'
+import AnsButtons from '../buttons/AnsButtons'
 
 const TourQuestion = ({ question, area, section, index, setAnswerCount }) => {
   const content = (
