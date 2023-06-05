@@ -29,7 +29,7 @@ const AreaAccordion = ({ section, area, index, onClicked }) => {
       onClick={onClicked}
     >
       <AccordionPanel>
-        <AccordionTitle className='dark:!bg-white'>
+        <AccordionTitle className='dark:!bg-white bg-neutral-100 border border-gray-400 top-0 z-10 sticky'>
           <AreaTitle
             number={index + 1}
             title={area.areaTitle}
@@ -38,7 +38,7 @@ const AreaAccordion = ({ section, area, index, onClicked }) => {
           />
         </AccordionTitle>
         <AccordionContent className='dark:!bg-white'>
-          <div className='overflow-y-auto h-full dark:!bg-white'>{listContent}</div>
+          <div className='overflow-y-auto dark:!bg-white'>{listContent}</div>
         </AccordionContent>
       </AccordionPanel>
     </Accordion>

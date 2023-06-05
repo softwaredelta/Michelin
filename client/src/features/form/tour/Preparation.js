@@ -51,14 +51,14 @@ const Preparation = () => {
         </div>
 
         <TourScene questionContent={listContent}>
-          <div className='flex-col w-full my-auto'>
-            <div className='object-scale-down h-48 w-96'>
+          <div className='flex-col w-full h-96 place-self-center'>
+            <div className='object-scale-down h-48 w-96 ml-12'>
               <ImageCard imgName='Preparation.png' />
             </div>
             <div className='flex flex-row w-11/12 justify-between ml-3'>
               <div className='w-32' />
               <div className='w-32'>
-                <div>
+                <div className='mt-1'>
                   <NextButton onClicked={e => navigate('/form/exterior')} />
                 </div>
               </div>
