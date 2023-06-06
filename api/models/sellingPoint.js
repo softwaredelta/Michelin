@@ -6,7 +6,7 @@ module.exports = class SellingPoint {
     const rows = await connection.query(
       `SELECT sp.id_sp, s.name AS zone, c.name AS category, sp.address, sp.name, sp.phone, sp.id_state, sp.id_category, sp.rating
       FROM sellingpoint AS sp, state AS s, category AS c 
-      WHERE sp.id_state = s.id_state AND sp.id_category = c.id_category`
+      WHERE sp.id_state = s.id_state AND sp.id_category = c.id_category AND sp.sp_visible = 1`
     )
     connection.release()
     return rows[0]
@@ -17,7 +17,7 @@ module.exports = class SellingPoint {
     const rows = await connection.query(
       `SELECT sp.id_sp, s.name AS zone, c.name AS category, sp.address, sp.name, sp.phone, sp.id_state, sp.id_category
       FROM sellingpoint AS sp, state AS s, category AS c 
-      WHERE sp.id_state = s.id_state AND sp.id_category = c.id_category AND sp.id_sp =?`,
+      WHERE sp.id_state = s.id_state AND sp.id_category = c.id_category AND sp.id_sp =? AND sp.sp_visible = 1`,
       [idSp]
     )
     connection.release()
@@ -27,7 +27,7 @@ module.exports = class SellingPoint {
   static async addSellingPoint (fastify, type, zone, address, rating, name, phone) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'INSERT INTO sellingpoint(id_category, id_state, address, rating, name, phone) VALUES (?,?,?,?,?,?)',
+      'INSERT INTO sellingpoint(id_category, id_state, address, rating, name, phone, sp_visible) VALUES (?,?,?,?,?,?,1)',
       [
         type, zone, address, rating, name, phone
       ]
@@ -38,7 +38,7 @@ module.exports = class SellingPoint {
   static async deleteSP (fastify, idSp) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'DELETE FROM sellingpoint WHERE id_sp = ?',
+      'UPDATE sellingpoint SET sp_visible = 0 WHERE id_sp = ?',
       [idSp]
     )
   }

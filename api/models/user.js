@@ -15,7 +15,7 @@ module.exports = class User {
       ON u.id_manager = m.id_user
       LEFT OUTER JOIN state as s
       ON s.id_state = (SELECT s.id_state FROM state as s, stateuser as su WHERE s.id_state = su.id_state AND su.id_user = u.id_user LIMIT 1)
-      `
+      WHERE u.user_visible = 1`
     )
     connection.release()
     return rows[0]
@@ -24,7 +24,7 @@ module.exports = class User {
   static async fetchUserByMail (fastify, mail) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user, id_role FROM users WHERE mail = ?', [mail]
+      'SELECT id_user, id_role FROM users WHERE mail = ? AND user_visible = 1', [mail]
     )
     connection.release()
     return rows[0]
@@ -33,7 +33,7 @@ module.exports = class User {
   static async verifyUser (fastify, email, password) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_role, name, last_name, password FROM users WHERE mail =?', [email]
+      'SELECT id_role, name, last_name, password FROM users WHERE mail =? AND user_visible = 1', [email]
     )
     connection.release()
     const match = rows[0].length > 0 && await fastify.bcrypt.compare(password, rows[0][0].password)
@@ -53,7 +53,7 @@ module.exports = class User {
     const match = rows[0].length === 0
     if (match) {
       const queryRes = await connection.query(
-        'INSERT INTO users(name, last_name, id_manager, mail, password, id_role) VALUES (?,?,?,?,?, ?)',
+        'INSERT INTO users(name, last_name, id_manager, mail, password, id_role, user_visible) VALUES (?,?,?,?,?,?,1)',
         [
           name, lastName, idManager, email, passwordEncrypted, idRole
         ]
@@ -132,15 +132,7 @@ module.exports = class User {
   static async deleteUser (fastify, idUser) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
-      'DELETE FROM stateuser WHERE id_user = ?',
-      [idUser]
-    )
-    await connection.query(
-      'UPDATE users SET id_manager = 0 WHERE id_manager = ?',
-      [idUser]
-    )
-    await connection.query(
-      'DELETE FROM users WHERE id_user = ?',
+      'UPDATE users SET id_manager = 0, user_visible = 0 WHERE id_user = ?',
       [idUser]
     )
     connection.release()
