@@ -83,7 +83,7 @@ export default class CurrentForm {
   async loadAreas (section) {
     const areaNames = []
     const loadedAreas = await axios.get(
-      apiRoute + `section/getAreasBySection/${section}`, 
+      apiRoute + `section/getAreasBySection/${section}`,
       {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // eslint-disable-line
@@ -102,7 +102,7 @@ export default class CurrentForm {
 
     const sectionQuestions = []
     const loadedQuestions = await axios.get(
-      apiRoute + `question/bySection/${category}/${section}`, 
+      apiRoute + `question/bySection/${category}/${section}`,
       {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}` // eslint-disable-line

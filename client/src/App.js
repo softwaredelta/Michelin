@@ -40,12 +40,12 @@ function App () {
         </Route>
         <Route path='login' element={<Login />} />
         <Route path='user'>
-          <Route 
+          <Route
             index element={
               <ProtectedRoute>
                 <UsersList />
               </ProtectedRoute>
-            } 
+            }
           />
         </Route>
         <Route path='question'>

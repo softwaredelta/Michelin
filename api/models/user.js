@@ -28,7 +28,7 @@ module.exports = class User {
   static async fetchUserByMail (fastify, mail) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user, id_role FROM users WHERE mail = ? AND user_visible = 1', 
+      'SELECT id_user, id_role FROM users WHERE mail = ? AND user_visible = 1',
       [
         mail
       ]
@@ -41,7 +41,7 @@ module.exports = class User {
   static async verifyUser (fastify, email, password) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_role, name, last_name, password FROM users WHERE mail =? AND user_visible = 1', 
+      'SELECT id_role, name, last_name, password FROM users WHERE mail =? AND user_visible = 1',
       [
         email
       ]
@@ -61,7 +61,7 @@ module.exports = class User {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user, user_visible FROM users WHERE mail = ?', 
+      'SELECT id_user, user_visible FROM users WHERE mail = ?',
       [
         email
       ]
