@@ -1,25 +1,10 @@
-import CurrentForm from '../../services/CurrentForm'
 import { Accordion } from 'flowbite-react'
 import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel'
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent'
-import TourQuestion from './TourQuestion'
 import AreaTitle from '../titles/AreaTitle'
 import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/AccordionTitle'
-import { useState } from 'react'
 
-const AreaAccordion = ({ section, area, index, onClicked }) => {
-  const Form = CurrentForm.getInstance()
-
-  const questions = Form.getQuestionsByArea(section, index)
-
-  const [answerCount, setAnswerCount] = useState(Form.getAnsweredQuestionsByArea(section, index))
-
-  const listContent = questions?.length
-    ? questions.map((question, id) => (
-      <TourQuestion key={question.idQuestion} question={question} area={index} section={section} index={id} setAnswerCount={setAnswerCount} />
-    ))
-    : <p className='dark:text-black italic text-2xl text-center'> No hay preguntas en esta área</p>
-
+const AreaAccordion = ({ areaTitle, index, onClicked, questionContent, questionCount, answerCount }) => {
   const content = (
     <Accordion
       id={index + 1}
@@ -32,13 +17,13 @@ const AreaAccordion = ({ section, area, index, onClicked }) => {
         <AccordionTitle className='dark:!bg-white bg-neutral-100 border border-gray-400 top-0 z-10 sticky'>
           <AreaTitle
             number={index + 1}
-            title={area.areaTitle}
-            questions={questions.length}
+            title={areaTitle}
+            questions={questionCount}
             answered={answerCount}
           />
         </AccordionTitle>
         <AccordionContent className='dark:!bg-white'>
-          <div className='overflow-y-auto dark:!bg-white'>{listContent}</div>
+          <div className='overflow-y-auto dark:!bg-white'>{questionContent}</div>
         </AccordionContent>
       </AccordionPanel>
     </Accordion>

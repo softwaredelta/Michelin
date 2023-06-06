@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectCategoryById } from './sectionApiSlice'
+import { selectCategoryById } from '../../services/sectionApiSlice'
 
 const CategoryOption = ({ categoryId }) => {
   const category = useSelector((state) => selectCategoryById(state, categoryId))

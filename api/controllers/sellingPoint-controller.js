@@ -3,6 +3,7 @@ const SellingPoint = require('../models/sellingPoint')
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  */
+
 // M2_H4
 exports.getSellingPoints = (request, reply) => {
   const sellingPointData = SellingPoint.fetchAll(this.fastify)

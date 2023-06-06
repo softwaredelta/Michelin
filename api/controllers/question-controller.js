@@ -9,6 +9,7 @@ exports.postQuestion = async (request, reply) => {
   const placeholderName = (typeof request.file !== 'undefined' && request.file !== null)
     ? request.file.filename
     : 'default-placeholder.jpg'
+
   // M4_H3
   await Question.addQuestion(
     this.fastify,
@@ -21,6 +22,7 @@ exports.postQuestion = async (request, reply) => {
 
   return reply.code(200).send({ statusCode: 200 })
 }
+
 // M4_H2
 exports.editQuestion = async (request, reply) => {
   await Question.editQuestion(

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiRoute = 'https://back2basics.software/api/'
+const apiRoute = 'http://localhost:3080/'
 
 export default class CurrentForm {
   static instance = null
@@ -83,7 +83,12 @@ export default class CurrentForm {
   async loadAreas (section) {
     const areaNames = []
     const loadedAreas = await axios.get(
-      apiRoute + `section/getAreasBySection/${section}`
+      apiRoute + `section/getAreasBySection/${section}`, 
+      {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}` // eslint-disable-line
+        }
+      }
     )
     loadedAreas.data.forEach((area) => {
       areaNames.push({ idArea: area.id_area, areaTitle: area.area_title })
@@ -97,7 +102,12 @@ export default class CurrentForm {
 
     const sectionQuestions = []
     const loadedQuestions = await axios.get(
-      apiRoute + `question/bySection/${category}/${section}`
+      apiRoute + `question/bySection/${category}/${section}`, 
+      {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}` // eslint-disable-line
+        }
+      }
     )
     if (loadedQuestions.data.length < 1) {
       return []
@@ -247,7 +257,8 @@ export default class CurrentForm {
 
     await axios.post(apiRoute + 'form/postForm', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${localStorage.getItem('token')}` // eslint-disable-line
       }
     })
 
@@ -259,7 +270,8 @@ export default class CurrentForm {
 
       axios.post(apiRoute + 'form/sendEmails', mailData, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}` // eslint-disable-line
         }
       })
     }

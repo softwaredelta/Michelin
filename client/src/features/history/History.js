@@ -2,7 +2,7 @@ import ModifiedFooter from '../../components/headers/ModifiedFooter'
 import NavBar from '../../components/headers/NavBar'
 import Header from '../../components/headers/Header'
 import Report from '../history/Report'
-import { useGetFormsByUserQuery } from '../form/formApiSlice'
+import { useGetFormsByUserQuery } from '../../services/formApiSlice'
 
 /*
  * Link a requerimientos funcionales:
@@ -10,14 +10,14 @@ import { useGetFormsByUserQuery } from '../form/formApiSlice'
  */
 // Historia de usuario M3_H3 M3_H2
 const History = () => {
+  const baseReportRoute = 'http://localhost:3080/form/report/'
+
   const {
     data: forms,
     isLoading,
     isSuccess,
     isError
   } = useGetFormsByUserQuery({ mail: localStorage.getItem("mail") }); // eslint-disable-line
-
-  const baseReportRoute = 'https://back2basics.software/api/form/report/'
 
   let tableContent
   let message

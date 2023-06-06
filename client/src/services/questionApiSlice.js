@@ -1,6 +1,6 @@
 import { createEntityAdapter } from '@reduxjs/toolkit'
 
-import { appSlice } from '../../../app/api/apiSlice'
+import { appSlice } from '../app/api/apiSlice'
 
 const questionAdapter = createEntityAdapter({})
 

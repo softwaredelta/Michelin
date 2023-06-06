@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import Layout from './components/Layout'
-import Public from './components/Public'
-import Login from './components/Login'
+import Public from './features/screen/Public'
+import Login from './features/screen/Login'
 import UsersList from './features/users/UserList'
 import SellingPointList from './features/sellingPoint/SellingPointList'
 import QuestionList from './features/category/questions/QuestionList'
@@ -16,12 +15,19 @@ import Interior from './features/form/tour/Interior'
 import Client from './features/form/tour/Client'
 import Manager from './features/form/tour/Manager'
 import Finalize from './features/form/tour/Finalize'
+
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route index element={<Public />} />
+      <Route path='/'>
+        <Route
+          index element={
+            <ProtectedRoute>
+              <Public />
+            </ProtectedRoute>
+            }
+        />
         <Route path='home'>
           <Route
             index
@@ -34,7 +40,13 @@ function App () {
         </Route>
         <Route path='login' element={<Login />} />
         <Route path='user'>
-          <Route index element={<UsersList />} />
+          <Route 
+            index element={
+              <ProtectedRoute>
+                <UsersList />
+              </ProtectedRoute>
+            } 
+          />
         </Route>
         <Route path='question'>
           <Route

@@ -1,7 +1,5 @@
 const GradeChart = ({ percent, zone }) => {
   const circumference = 30 * 2 * Math.PI
-  // const percent = 50
-  // const zone = 'Interior'
   let color
 
   if (percent < 35) {
