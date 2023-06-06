@@ -12,8 +12,7 @@ test('Create User', async () => {
     mail: 'newuser@gmail.com',
     password: 'SECRET',
     role: 1, // Example role, TBM
-    state: { 0: 1 }, // Example state
-    user_visible: 1
+    state: { 0: 1 } // Example state
   }
 
   const response = await app.inject({
