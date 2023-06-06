@@ -28,7 +28,7 @@ const Manager = () => {
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
-      <AreaOverview key={area.idArea} section={5} area={area} index={id} onClicked={updatePercentage} />
+      <AreaOverview key={area.idArea} section={5} area={area} index={id} method={updatePercentage} />
     ))
     : null
 
