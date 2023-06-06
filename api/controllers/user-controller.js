@@ -27,6 +27,7 @@ exports.login = async (request, reply) => {
 
 // M1_H1
 exports.signup = async (request, reply) => {
+  console.log('llega')
   if (await User.createUser(this.fastify,
     request.body.name,
     request.body.lastName,
