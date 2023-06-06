@@ -54,9 +54,9 @@ module.exports = class User {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user FROM users WHERE mail = ?', [email]
+      'SELECT id_user, user_visible FROM users WHERE mail = ?', [email]
     )
-    const match = rows[0].length === 0
+    let match = rows[0].length === 0
     if (match) {
       const queryRes = await connection.query(
         'INSERT INTO users(name, last_name, id_manager, mail, password, id_role, user_visible) VALUES (?,?,?,?,?,?,1)',
@@ -64,7 +64,6 @@ module.exports = class User {
           name, lastName, idManager, email, passwordEncrypted, idRole
         ]
       )
-
       const userId = queryRes[0].insertId
       for (let i = 0; i < (idState.length); i++) {
         await connection.query(
@@ -74,6 +73,14 @@ module.exports = class User {
           ]
         )
       }
+    } else if (rows[0][0].user_visible == 0) { // eslint-disable-line
+      await connection.query(
+        'UPDATE users SET name = ?, last_name = ?, id_manager = ?, password = ?, id_role = ?, user_visible = 1 WHERE mail = ?',
+        [
+          name, lastName, idManager, passwordEncrypted, idRole, email
+        ]
+      )
+      match = true
     }
 
     connection.release()

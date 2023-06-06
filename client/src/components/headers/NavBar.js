@@ -19,7 +19,6 @@ const NavBar = () => {
           className='!text-lg'
           label='Administración'
         >
-          <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'>Equipos</DropdownItem>
           <DropdownItem className='font-semibold !text-blues-100 dark:!text-white hover:!text-gray-500 dark:hover:!text-trademark-50'> <a href='/user'> Usuarios </a></DropdownItem>
         </Dropdown>
       </div>

@@ -202,7 +202,7 @@ const UserOverview = ({ userId }) => {
                   <div className='flex flex-row my-2 font-semibold dark:!text-white p-1'>
                     Apellido
                   </div>
-                  <div className='flex flex-row my-2 font-semibold dark:!text-white p-1'>
+                  <div className='flex flex-row my-2 font-semibold dark:!text-white p-1 bg-gray'>
                     Correo
                   </div>
                 </div>
@@ -227,7 +227,7 @@ const UserOverview = ({ userId }) => {
                   </div>
                   <div className='flex flex-row my-2'>
                     <input
-                      className='border rounded-md dark:bg-transparent dark:text-white p-1'
+                      className='border rounded-md p-1'
                       disabled
                       defaultValue={user.mail}
                     />
