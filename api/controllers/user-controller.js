@@ -11,7 +11,6 @@ exports.getUsers = (request, reply) => {
 }
 
 exports.login = async (request, reply) => {
-  console.log(request.body)
   const userResult = await User.verifyUser(this.fastify, request.body.email, request.body.password)
   console.log(userResult)
   if (userResult.status === true) { // Correct login credentials
