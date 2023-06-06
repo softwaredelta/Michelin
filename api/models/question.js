@@ -23,6 +23,7 @@ module.exports = class Question {
     return orderQueryRes[0][0]['MAX(q_order)'] || 0
   }
 
+  // M4_H3
   static async addQuestion (fastify, questionText, idArea, usingCamera, btnNa, pictureName, idCategory) {
     const connection = await fastify.mysql.getConnection()
 
@@ -46,6 +47,7 @@ module.exports = class Question {
     connection.release()
   }
 
+  // M4_H1
   static async fetchQuestionsBySection (fastify, idCategory, idSection) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
@@ -61,6 +63,7 @@ module.exports = class Question {
     return rows[0]
   }
 
+  // M4_H4
   static async deleteQuestion (fastify, idCategory, idQuestion, order) {
     const connection = await fastify.mysql.getConnection()
     const updateOrder = await connection.query(
@@ -87,6 +90,7 @@ module.exports = class Question {
     return updateOrder[0] + rows[0] + rows1[0]
   }
 
+  // M4_H2
   static async editQuestion (fastify, idQuestion, questionText, usingCamera, btnNa) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(

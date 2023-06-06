@@ -1,5 +1,9 @@
 const User = require('../models/user')
-
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+// M1_H9
 exports.getUsers = (request, reply) => {
   const userData = User.fetchAll(this.fastify)
   return userData
@@ -19,7 +23,7 @@ exports.login = async (request, reply) => {
     reply.code(400).send({ statusCode: 400 })
   }
 }
-
+// M1_H1
 exports.signup = async (request, reply) => {
   if (await User.createUser(this.fastify,
     request.body.name,
@@ -45,6 +49,7 @@ exports.getManagers = async (request, reply) => {
   return managerData
 }
 
+// M1_H2
 exports.editUser = async (request, reply) => {
   await User.editUser(
     this.fastify,
@@ -62,6 +67,7 @@ exports.generateNewUserPassword = async (request, reply) => {
   return reply.code(200).send({ statusCode: 200 })
 }
 
+// M1_H3
 exports.postDeleteUsers = async (request, reply) => {
   await User.deleteUser(
     this.fastify,

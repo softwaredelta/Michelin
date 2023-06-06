@@ -1,5 +1,11 @@
+/*
+ * Link a requerimientos funcionales:
+ * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
+ */
+
 const PlacesApi = require('../util/places-api-util')
 
+// M2_H4
 module.exports = class SellingPoint {
   static async fetchAll (fastify) {
     const connection = await fastify.mysql.getConnection()
@@ -24,6 +30,7 @@ module.exports = class SellingPoint {
     return rows[0]
   }
 
+  // M2_H1
   static async addSellingPoint (fastify, type, zone, address, rating, name, phone) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
@@ -35,6 +42,7 @@ module.exports = class SellingPoint {
     connection.release()
   }
 
+  // M2_H2
   static async deleteSP (fastify, idSp) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
@@ -43,6 +51,7 @@ module.exports = class SellingPoint {
     )
   }
 
+  // M2_H3
   static async editSellingPoint (fastify, type, zone, address, name, phone, idSp) {
     const connection = await fastify.mysql.getConnection()
     await connection.query(

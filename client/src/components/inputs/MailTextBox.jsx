@@ -9,7 +9,7 @@ const MailTextBox = ({ onClickAdd }) => {
       <div className='mb-6 w-fit'>
         <div className='pt-2 text-lg flex items-stretch w-full'>
           <input
-            className='rounded-lg bg-neutral-100 text-md h-10 w-72 pl-2 dark:!text-black resize-none'
+            className='rounded-lg bg-neutral-100 text-md h-10 w-4/5 pl-2 dark:!text-black resize-none'
             placeholder='ejemplo@ejemplo.com'
             type='mail'
             id='mail'

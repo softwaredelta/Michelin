@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import ModifiedFooter from '../../components/ModifiedFooter'
-import NavBar from '../../components/NavBar'
+import ModifiedFooter from '../../components/headers/ModifiedFooter'
+import NavBar from '../../components/headers/NavBar'
 import { useGetSPQuery } from '../sellingPoint/sellingPointApiSlice'
-import SPAcordion from '../../components/SPAcordion'
+import SPAcordion from '../../components/accordions/SPAcordion'
 import { BsSearch } from 'react-icons/bs'
 import CurrentForm from '../../services/CurrentForm'
 

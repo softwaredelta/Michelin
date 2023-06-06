@@ -1,15 +1,15 @@
 import { Card } from 'flowbite-react'
 import { useState } from 'react'
 import ReactCardFlip from 'react-card-flip'
-import SvgButton from './SvgButton'
+import SvgButton from '../buttons/SvgButton'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { FaEdit } from 'react-icons/fa'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { useSelector } from 'react-redux'
-import { selectSPById, useDeleteSPMutation } from '../features/sellingPoint/sellingPointApiSlice'
-import Toast from './Toast'
-import ConfirmationModal from './ConfirmationModal'
-import SellingPointEdit from '../features/sellingPoint/SellingPointEdit'
+import { selectSPById, useDeleteSPMutation } from '../../features/sellingPoint/sellingPointApiSlice'
+import Toast from '../alerts/Toast'
+import ConfirmationModal from '../alerts/ConfirmationModal'
+import SellingPointEdit from '../../features/sellingPoint/SellingPointEdit'
 
 const SPCard = ({ spId }) => {
   const sp = useSelector(state => selectSPById(state, spId))

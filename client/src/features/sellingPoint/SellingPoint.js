@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import ConfirmationModal from '../../components/ConfirmationModal'
+import ConfirmationModal from '../../components/alerts/ConfirmationModal'
 import { useDeleteSPMutation } from './sellingPointApiSlice'
 import SellingPointEdit from './SellingPointEdit'
-import Toast from '../../components/Toast'
-import SPCard from '../../components/SPCard'
+import Toast from '../../components/alerts/Toast'
+import SPCard from '../../components/cards/SPCard'
 
 /* https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  * Historia de Usuario M2_H2
