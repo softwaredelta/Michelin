@@ -49,6 +49,7 @@ module.exports = class User {
     connection.release()
 
     const match = rows[0].length > 0 && await fastify.bcrypt.compare(password, rows[0][0].password)
+    console.log(match)
     if (match) {
       return { status: true, id_role: rows[0][0].id_role, name: rows[0][0].name, last_name: rows[0][0].last_name }
     } else {
