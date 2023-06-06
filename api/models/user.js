@@ -41,7 +41,7 @@ module.exports = class User {
   static async verifyUser (fastify, email, password) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_role, name, last_name, password FROM users WHERE mail =? AND user_visible = 1',
+      'SELECT id_role, name, last_name, password FROM users WHERE mail = ? AND user_visible = 1',
       [
         email
       ]

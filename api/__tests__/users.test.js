@@ -26,8 +26,8 @@ test('Create User', async () => {
 
 test('Log In', async () => {
   const data = {
-    email: 'newuser@gmail.com',
-    password: 'SECRET'
+    email: 'example@gmail.com',
+    password: 'newPassword'
   }
 
   const response = await app.inject({
