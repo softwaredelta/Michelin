@@ -1,4 +1,3 @@
-
 const Header = ({ myText }) => {
   const content = (
     <div className='min-w-full'>
