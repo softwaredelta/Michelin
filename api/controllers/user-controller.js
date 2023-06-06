@@ -3,6 +3,7 @@ const User = require('../models/user')
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  */
+
 // M1_H9
 exports.getUsers = (request, reply) => {
   const userData = User.fetchAll(this.fastify)
@@ -12,7 +13,7 @@ exports.getUsers = (request, reply) => {
 exports.login = async (request, reply) => {
   const userResult = await User.verifyUser(this.fastify, request.body.email, request.body.password)
 
-  if (userResult.status === true) {
+  if (userResult.status === true) { // Correct login credentials
     const token = this.fastify.jwt.sign({ mail: request.body.email })
     reply.code(200).send(
       {
@@ -23,6 +24,7 @@ exports.login = async (request, reply) => {
     reply.code(400).send({ statusCode: 400 })
   }
 }
+
 // M1_H1
 exports.signup = async (request, reply) => {
   if (await User.createUser(this.fastify,

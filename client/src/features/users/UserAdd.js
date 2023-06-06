@@ -3,14 +3,13 @@ import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
 import { Label, Select, Modal } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
-import { useAddNewUserMutation, useGetRolesQuery, useGetManagersQuery } from './usersApiSlice'
+import { useAddNewUserMutation, useGetRolesQuery, useGetManagersQuery } from '../../services/usersApiSlice'
 import { useForm } from 'react-hook-form'
 import Toast from '../../components/alerts/Toast'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import { useGetStateQuery } from '../sellingPoint/state/stateApiSlice'
+import { useGetStateQuery } from '../../services/stateApiSlice'
 import StatesOption from './managers/StatesOption'
-import AreaOption from '../category/questions/AreaOption'
 import Swal from 'sweetalert2'
 
 /*
@@ -97,7 +96,7 @@ const UserAdd = ({ show, onClose }) => {
 
     const listContent = ids?.length
       ? ids.map((idRole) => (
-        <AreaOption key={idRole} areaId={idRole} areaTitle={entities[idRole].name} />
+        <option key={idRole} value={idRole}>{entities[idRole].name}</option>
       ))
       : null
 
@@ -127,7 +126,7 @@ const UserAdd = ({ show, onClose }) => {
 
     const listContent = ids?.length
       ? ids.map((idManager) => (
-        <AreaOption key={idManager} areaId={idManager} areaTitle={`${entities[idManager].name} ${entities[idManager].last_name}`} />
+        <option key={idManager} value={idManager}>{`${entities[idManager].name} ${entities[idManager].last_name}`}</option>
       ))
       : null
 

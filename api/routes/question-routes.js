@@ -17,18 +17,21 @@ async function questionRoutes (fastify, options) {
 
   fastify.post(
     '/postQuestion',
-    { preHandler: upload.single('placeholder') },
+    {
+      preHandler: upload.single('placeholder'),
+      onRequest: [fastify.authenticate]
+    },
     questionController.postQuestion)
 
-  fastify.post('/edit', questionController.editQuestion)
+  fastify.post('/edit', { onRequest: [fastify.authenticate] }, questionController.editQuestion)
 
-  fastify.get('/bySection/:idCategory/:idSection', questionController.getQuestionsBySection)
+  fastify.get('/bySection/:idCategory/:idSection', { onRequest: [fastify.authenticate] }, questionController.getQuestionsBySection)
 
-  fastify.get('/getAllQuestions', questionController.getQuestions)
+  fastify.get('/getAllQuestions', { onRequest: [fastify.authenticate] }, questionController.getQuestions)
 
-  fastify.post('/deleteQuestion', questionController.deleteQuestions)
+  fastify.post('/deleteQuestion', { onRequest: [fastify.authenticate] }, questionController.deleteQuestions)
 
-  fastify.get('/placeholder/:fileName', questionController.getPlaceholder)
+  fastify.get('/placeholder/:fileName', { onRequest: [fastify.authenticate] }, questionController.getPlaceholder)
 }
 
 module.exports = questionRoutes

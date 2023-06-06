@@ -28,7 +28,10 @@ module.exports = class User {
   static async fetchUserByMail (fastify, mail) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user, id_role FROM users WHERE mail = ?', [mail]
+      'SELECT id_user, id_role FROM users WHERE mail = ?',
+      [
+        mail
+      ]
     )
     connection.release()
     return rows[0]
@@ -38,9 +41,13 @@ module.exports = class User {
   static async verifyUser (fastify, email, password) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_role, name, last_name, password FROM users WHERE mail =?', [email]
+      'SELECT id_role, name, last_name, password FROM users WHERE mail =?',
+      [
+        email
+      ]
     )
     connection.release()
+
     const match = rows[0].length > 0 && await fastify.bcrypt.compare(password, rows[0][0].password)
     if (match) {
       return { status: true, id_role: rows[0][0].id_role, name: rows[0][0].name, last_name: rows[0][0].last_name }
@@ -54,7 +61,10 @@ module.exports = class User {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user FROM users WHERE mail = ?', [email]
+      'SELECT id_user FROM users WHERE mail = ?',
+      [
+        email
+      ]
     )
     const match = rows[0].length === 0
     if (match) {
@@ -110,7 +120,9 @@ module.exports = class User {
 
     await connection.query(
       'DELETE FROM stateuser WHERE id_user = ?',
-      [idUser]
+      [
+        idUser
+      ]
     )
 
     for (const idState in states.entities) {
@@ -131,7 +143,9 @@ module.exports = class User {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
       'UPDATE users SET password = ? WHERE id_user = ?',
-      [passwordEncrypted, idUser]
+      [
+        passwordEncrypted, idUser
+      ]
     )
     connection.release()
   }
@@ -141,15 +155,21 @@ module.exports = class User {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
       'DELETE FROM stateuser WHERE id_user = ?',
-      [idUser]
+      [
+        idUser
+      ]
     )
     await connection.query(
       'UPDATE users SET id_manager = 0 WHERE id_manager = ?',
-      [idUser]
+      [
+        idUser
+      ]
     )
     await connection.query(
       'DELETE FROM users WHERE id_user = ?',
-      [idUser]
+      [
+        idUser
+      ]
     )
     connection.release()
   }

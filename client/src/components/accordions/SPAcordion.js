@@ -3,7 +3,7 @@ import { AccordionTitle } from 'flowbite-react/lib/esm/components/Accordion/Acco
 import { AccordionPanel } from 'flowbite-react/lib/esm/components/Accordion/AccordionPanel'
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent'
 import { useSelector } from 'react-redux'
-import { selectSPById } from '../../features/sellingPoint/sellingPointApiSlice'
+import { selectSPById } from '../../services/sellingPointApiSlice'
 import { useNavigate } from 'react-router-dom'
 import CurrentForm from '../../services/CurrentForm'
 import Bluebutton from '../buttons/Bluebutton'

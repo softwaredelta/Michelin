@@ -24,7 +24,9 @@ module.exports = class SellingPoint {
       `SELECT sp.id_sp, s.name AS zone, c.name AS category, sp.address, sp.name, sp.phone, sp.id_state, sp.id_category
       FROM sellingpoint AS sp, state AS s, category AS c 
       WHERE sp.id_state = s.id_state AND sp.id_category = c.id_category AND sp.id_sp =?`,
-      [idSp]
+      [
+        idSp
+      ]
     )
     connection.release()
     return rows[0]
@@ -47,7 +49,9 @@ module.exports = class SellingPoint {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
       'DELETE FROM sellingpoint WHERE id_sp = ?',
-      [idSp]
+      [
+        idSp
+      ]
     )
   }
 

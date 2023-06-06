@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import ModifiedFooter from '../../components/headers/ModifiedFooter'
 import NavBar from '../../components/headers/NavBar'
-import { useGetSPQuery } from '../sellingPoint/sellingPointApiSlice'
+import { useGetSPQuery } from '../../services/sellingPointApiSlice'
 import SPAcordion from '../../components/accordions/SPAcordion'
 import { BsSearch } from 'react-icons/bs'
 import CurrentForm from '../../services/CurrentForm'
+import Swal from 'sweetalert2'
 
 /*
  * Link a requerimientos funcionales:
@@ -19,8 +20,9 @@ const FormStart = () => {
 
   const { data: sp, isLoading, isSuccess, isError } = useGetSPQuery()
 
-  let message
   const [listContent, setListContent] = useState([])
+
+  let message
 
   const onSearchBoxChanged = (e) => {
     const { ids, entities } = sp
@@ -68,6 +70,15 @@ const FormStart = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      Swal.fire({
+        title: 'Uso de iPad',
+        html: 'Esta sección esta dirigida al uso específico en iPad. <br /> Te sugerimos sólo ingresar a ella desde estos dispositivos, de lo contrario podrían existir algunos defectos visuales.',
+        icon: 'warning',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33'
+      })
+
       const { ids } = sp
 
       const contentInfo = ids?.length

@@ -10,6 +10,7 @@ const fs = require('fs')
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  */
+
 // M3_H3
 exports.postForm = async (request, reply) => {
   // Get selling point data for report section
@@ -20,7 +21,7 @@ exports.postForm = async (request, reply) => {
   const doc = new PDFDocument({ autoFirstPage: false })
   doc.pipe(fs.createWriteStream('./uploads/reports/' + request.body.fileName + '.pdf'))
 
-  // M6_H1
+  // M6_H1, fill report
   await ReportUtil.generateReport(doc, request.body, sellingPointData)
 
   await Form.createForm(this.fastify,
@@ -49,11 +50,11 @@ exports.getFormsByUser = async (request, reply) => {
   const userData = await User.fetchUserByMail(this.fastify, mail)
   let formData
 
-  if (userData[0].id_role === 1) {
+  if (userData[0].id_role === 1) { // TBM
     formData = Form.fetchByUser(this.fastify, userData[0].id_user)
-  } else if (userData[0].id_role === 2) {
+  } else if (userData[0].id_role === 2) { // Manager
     formData = Form.fetchByManagerUser(this.fastify, userData[0].id_user)
-  } else {
+  } else { // Admin
     formData = Form.fetchAll(this.fastify)
   }
 
@@ -89,11 +90,11 @@ exports.getFormCountByUser = async (request, reply) => {
   const userData = await User.fetchUserByMail(this.fastify, mail)
   let formData
 
-  if (userData[0].id_role === 1) {
+  if (userData[0].id_role === 1) { // TBM
     formData = Form.fetchCountByUser(this.fastify, userData[0].id_user)
-  } else if (userData[0].id_role === 2) {
+  } else if (userData[0].id_role === 2) { // Manager
     formData = Form.fetchCountByManagerUser(this.fastify, userData[0].id_user)
-  } else {
+  } else { // Admin
     formData = Form.fetchCount(this.fastify)
   }
 

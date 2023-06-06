@@ -8,8 +8,8 @@ import {
   useEditUserMutation,
   useNewUserPasswordMutation,
   useDeleteUserMutation
-} from './usersApiSlice'
-import { useGetStatesByUserQuery } from '../sellingPoint/state/stateApiSlice'
+} from '../../services/usersApiSlice'
+import { useGetStatesByUserQuery } from '../../services/stateApiSlice'
 import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import Toast from '../../components/alerts/Toast'

@@ -10,14 +10,14 @@ const GreenBibendum = ({
 }) => {
   const Form = CurrentForm.getInstance()
 
-  const myFunction = () => {
+  const onButtonClicked = () => {
     Form.setAnswer(section, area, index, 1)
     childtoParent(1)
   }
 
   const content = (
     <>
-      <button className={className} disabled={disable} onClick={myFunction}>
+      <button className={className} disabled={disable} onClick={onButtonClicked}>
         <img src='/images/greenBibendum.png' alt='Sí' />
       </button>
     </>

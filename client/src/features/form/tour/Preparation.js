@@ -1,6 +1,6 @@
 import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/headers/ProgressBar'
-import AreaAccordion from '../../../components/accordions/AreaAccordion'
+import AreaOverview from '../AreaOverview'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SectionBanner from '../../../components/titles/SectionBanner'
@@ -27,7 +27,7 @@ const Preparation = () => {
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
-      <AreaAccordion key={area.idArea} section={1} area={area} index={id} onClicked={updatePercentage} />
+      <AreaOverview key={area.idArea} section={1} area={area} index={id} method={updatePercentage} />
     ))
     : null
 
