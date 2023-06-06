@@ -15,6 +15,8 @@ test('Create User', async () => {
     state: { 0: 1 } // Example state
   }
 
+  console.log('hola')
+
   const response = await app.inject({
     method: 'POST',
     url: '/user/signup',
