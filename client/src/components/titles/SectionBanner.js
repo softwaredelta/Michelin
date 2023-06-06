@@ -29,9 +29,9 @@ const SectionBanner = ({ myText }) => {
       />
 
       <div className='absolute top-10 left-20 text-3xl text-blues-300 font-michelin'>{myText}</div>
-    
+
       <FaHome onClick={handleSetShow} className='fill-yellow-600 cursor-pointer absolute top-9 left-6' size={40} />
-      
+
     </>
   )
 }

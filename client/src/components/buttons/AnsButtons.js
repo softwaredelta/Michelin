@@ -49,7 +49,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
     }
     setAnswerCount(Form.getAnsweredQuestionsByArea(section, area))
   }
-  if(answer !== 0){
+  if (answer !== 0) {
     disableGRN = answer === 1
     disableNA = answer === 3
     disableRED = answer === 2 || answer === 4
