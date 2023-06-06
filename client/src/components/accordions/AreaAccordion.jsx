@@ -14,7 +14,7 @@ const AreaAccordion = ({ areaTitle, index, onClicked, questionContent, questionC
       onClick={onClicked}
     >
       <AccordionPanel>
-        <AccordionTitle className='dark:!bg-white bg-neutral-100 border border-gray-400 top-0 z-10 sticky'>
+        <AccordionTitle className='dark:!bg-white bg-neutral-100 border border-gray-400 rounded-lg top-0 z-10 sticky'>
           <AreaTitle
             number={index + 1}
             title={areaTitle}
