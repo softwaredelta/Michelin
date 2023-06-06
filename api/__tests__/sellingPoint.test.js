@@ -11,7 +11,8 @@ test('Create selling point', async () => {
     address: 'Dirección ejemplo',
     rating: 3,
     name: 'Sucursal ejemplo',
-    phone: '123456789'
+    phone: '123456789',
+    sp_visible: 1
   }
 
   const response = await app.inject({
