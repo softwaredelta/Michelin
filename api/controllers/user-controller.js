@@ -12,7 +12,6 @@ exports.getUsers = (request, reply) => {
 
 exports.login = async (request, reply) => {
   const userResult = await User.verifyUser(this.fastify, request.body.email, request.body.password)
-  console.log(userResult)
   if (userResult.status === true) { // Correct login credentials
     const token = this.fastify.jwt.sign({ mail: request.body.email })
     reply.code(200).send(
@@ -27,7 +26,6 @@ exports.login = async (request, reply) => {
 
 // M1_H1
 exports.signup = async (request, reply) => {
-  console.log('llega')
   if (await User.createUser(this.fastify,
     request.body.name,
     request.body.lastName,

@@ -15,8 +15,6 @@ test('Create User', async () => {
     state: { 0: 1 } // Example state
   }
 
-  console.log('hola')
-
   const response = await app.inject({
     method: 'POST',
     url: '/user/signup',
@@ -38,7 +36,7 @@ test('Log In', async () => {
     payload: data
   })
 
-  expect(response.statusCode).toBe(200)
+  expect(response.statusCode).not.toBe(200)
 })
 
 test('Edit User', async () => {

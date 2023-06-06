@@ -65,7 +65,6 @@ module.exports = class User {
         email
       ]
     )
-    console.log(rows[0])
     let match = rows[0].length === 0
     if (match) {
       const queryRes = await connection.query(
