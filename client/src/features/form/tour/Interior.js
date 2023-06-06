@@ -60,20 +60,20 @@ const Interior = () => {
 
         <TourScene questionContent={listContent}>
           <div className='flex-col w-full h-96 place-self-center mt-36 mx-auto'>
-            <div className='absolute w-10 lg:mb-2 lg:mr-3 lg:right-16 lg:bottom-80 iPadAir:mb-6 iPadAir:right-16 iPadAir:mr-6 xl:bottom-60 xl:right-32 2xl:bottom-72 2xl:right-40'>
+            <div className='absolute w-10 lg:mb-6 lg:mr-3 lg:right-16 lg:bottom-64 iPadAir:mb-7 iPadAir:right-16 iPadAir:mr-6 xl:bottom-60 xl:right-32 2xl:bottom-72 2xl:right-40'>
               <VisualKey myName={11} method={() => handleClick(11)} />
             </div>
-            <div className='absolute w-10 xl:pb-5 lg:pb-0 lg:mt-9 lg:mr-1 lg:right-16 lg:top-80 iPadAir:mr-3 iPadAir:mt-16 xl:top-72 xl:mt-10 xl:right-32 xl:mr-4 2xl:top-96 2xl:right-40'>
+            <div className='absolute w-10 xl:pb-5 lg:pb-0 lg:mt-11 lg:mr-1 lg:right-16 lg:top-72 iPadAir:mr-3 iPadAir:mt-20 xl:top-72 xl:mt-10 xl:right-32 xl:mr-4 2xl:top-96 2xl:right-40'>
               <VisualKey myName={10} method={() => handleClick(10)} />
             </div>
-            <div className='absolute w-10 lg:mt-7 lg:mr-1 lg:right-16 lg:top-72 iPadAir:mr-3 iPadAir:top-80 2xl:right-40 2xl:mt-20 xl:right-32 xl:top-64'>
+            <div className='absolute w-10 lg:mt-2 lg:mr-1 lg:right-16 lg:top-72 iPadAir:mr-3 iPadAir:top-80 2xl:right-40 2xl:mt-20 xl:right-32 xl:top-64'>
               <VisualKey myName={9} method={() => handleClick(9)} />
             </div>
             <ImageCard imgName='Interior.png' />
-            <div className='absolute w-10 lg:mr-2 lg:right-12 lg:top-60 lg:mt-9 iPadAir:right-16 iPadAir:pt-8 2xl:right-44 2xl:mr-4 2xl:top-72 xl:right-36 xl:top-44'>
+            <div className='absolute w-10 lg:mr-2 lg:right-12 lg:top-60 lg:mt-5 iPadAir:right-16 iPadAir:pt-8 2xl:right-44 2xl:mr-4 2xl:top-72 xl:right-36 xl:top-44'>
               <VisualKey myName={8} method={() => handleClick(8)} />
             </div>
-            <div className='absolute w-10 pb-5 lg:right-20 lg:mr-3 iPadAir:top-72 iPadAir:right-24 2xl:right-16 2xl:mr-5 2xl:pt-6 xl:top-52 xl:right-40'>
+            <div className='absolute w-10 pb-5 lg:right-20 lg:mr-3 iPadAir:right-24 iPadAir:top-64 2xl:right-16 2xl:mr-5 2xl:pt-6 xl:top-52 xl:right-40'>
               <VisualKey myName={7} method={() => handleClick(7)} />
             </div>
             <div className='relative w-10 lg:left-72 lg:bottom-4 iPadAir:left-80 iPadAir:bottom-0 xl:pl-8 2xl:left-96 2xl:pl-12 2xl:top-0'>
