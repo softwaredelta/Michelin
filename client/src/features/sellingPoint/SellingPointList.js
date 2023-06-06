@@ -3,7 +3,7 @@ import ModifiedFooter from '../../components/headers/ModifiedFooter'
 import SellingPointAdd from './SellingPointAdd'
 import NavBar from '../../components/headers/NavBar'
 import SellingPoint from './SellingPoint'
-import { useGetSPQuery } from './sellingPointApiSlice'
+import { useGetSPQuery } from '../../services/sellingPointApiSlice'
 import Header from '../../components/headers/Header'
 import Bluebutton from '../../components/buttons/Bluebutton'
 

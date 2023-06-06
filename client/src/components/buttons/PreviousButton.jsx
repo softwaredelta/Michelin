@@ -20,6 +20,3 @@ const PreviousButton = ({ onClicked }) => {
 }
 
 export default PreviousButton
-
-// BiSolidRightArrow
-// BiSolidLeftArrow

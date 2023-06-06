@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import ConfirmationModal from '../../components/alerts/ConfirmationModal'
-import { useDeleteSPMutation } from './sellingPointApiSlice'
+import { useDeleteSPMutation } from '../../services/sellingPointApiSlice'
 import SellingPointEdit from './SellingPointEdit'
 import Toast from '../../components/alerts/Toast'
 import SPCard from '../../components/cards/SPCard'

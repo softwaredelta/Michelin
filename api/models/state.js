@@ -15,7 +15,9 @@ module.exports = class State {
       FROM state as s
       LEFT OUTER JOIN stateuser as su
       ON s.id_state = su.id_state AND su.id_user = ? OR su.id_user IS NULL;`,
-      [idUser]
+      [
+        idUser
+      ]
     )
     connection.release()
     return rows[0]

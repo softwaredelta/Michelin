@@ -1,6 +1,5 @@
 import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/headers/ProgressBar'
-import AreaAccordion from '../../../components/accordions/AreaAccordion'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SectionBanner from '../../../components/titles/SectionBanner'
@@ -8,6 +7,7 @@ import ImageCard from '../../../components/cards/ImageCard'
 import PreviousButton from '../../../components/buttons/PreviousButton'
 import TourScene from '../../../components/TourScene'
 import ReadyButton from '../../../components/buttons/ReadyButton'
+import AreaOverview from '../AreaOverview'
 
 /*
  * Link a requerimientos funcionales:
@@ -19,6 +19,7 @@ const Manager = () => {
   const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
   const areas = Form.getAreasBySection(5)
+
   const [currentPercentage, setCurrentPercentage] = useState(Form.getCompletionPercentage())
 
   const updatePercentage = () => {
@@ -27,7 +28,7 @@ const Manager = () => {
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
-      <AreaAccordion key={area.idArea} section={5} area={area} index={id} onClicked={updatePercentage} />
+      <AreaOverview key={area.idArea} section={5} area={area} index={id} onClicked={updatePercentage} />
     ))
     : null
 
