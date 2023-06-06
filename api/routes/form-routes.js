@@ -27,7 +27,7 @@ async function formRoutes (fastify, options) {
     },
     formController.postForm)
 
-  fastify.get('/report/:fileName', { onRequest: [fastify.authenticate] }, formController.loadReport)
+  fastify.get('/report/:fileName', formController.loadReport)
 
   fastify.post('/sendEmails', { onRequest: [fastify.authenticate] }, formController.postReportMails)
 }
