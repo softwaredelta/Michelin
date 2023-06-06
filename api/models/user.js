@@ -88,7 +88,7 @@ module.exports = class User {
         'UPDATE users SET name = ?, last_name = ?, id_manager = ?, password = ?, id_role = ?, user_visible = 1 WHERE mail = ?',
         [
           name, lastName, idManager, passwordEncrypted, idRole, email
-        ]
+        ] 
       )
       match = true
     }
