@@ -25,6 +25,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   let classNameNA =
     'scale-5 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let photo = null
+  let currImg
 
   const [answer, setAnswer] = useState(
     Form.questions[currentSection][area][index].answer
@@ -75,7 +76,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
       </>
     )
   }
-  let currImg
+
   if (imageUploaded === true) {
     currImg = (
       <>
@@ -123,4 +124,5 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   )
   return content
 }
+
 export default AnsButtons

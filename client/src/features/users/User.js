@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectUserById } from './usersApiSlice'
+import { selectUserById } from '../../services/usersApiSlice'
 import UserAccordionTitle from '../../components/titles/UserAccordionTitle'
 import InfoAccordion from '../../components/accordions/InfoAccordion'
 import { FaUser } from 'react-icons/fa'

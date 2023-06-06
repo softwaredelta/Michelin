@@ -2,6 +2,7 @@
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  */
+
 // M3_H3
 module.exports = class Form {
   static async fetchAll (fastify) {
@@ -23,7 +24,9 @@ module.exports = class Form {
       FROM form as f, users as u, sellingpoint as sp, state as s
       WHERE f.id_user = u.id_user AND f.sp_name = sp.name AND sp.id_state = s.id_state AND f.id_user = ?
       ORDER BY f.date DESC`,
-      [idUser]
+      [
+        idUser
+      ]
     )
     connection.release()
     return rows[0]
@@ -40,7 +43,9 @@ module.exports = class Form {
                       WHERE u.id_manager = ?) 
         OR f.id_user = ?) 
       ORDER BY f.date DESC`,
-      [idUser, idUser]
+      [
+        idUser, idUser
+      ]
     )
     connection.release()
     return rows[0]
@@ -58,7 +63,10 @@ module.exports = class Form {
   static async fetchCountByUser (fastify, idUser) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT COUNT(id_form) AS count FROM form WHERE id_user = ? AND sp_name in (SELECT name FROM sellingpoint)', [idUser]
+      'SELECT COUNT(id_form) AS count FROM form WHERE id_user = ? AND sp_name in (SELECT name FROM sellingpoint)',
+      [
+        idUser
+      ]
     )
     connection.release()
     return rows[0]
@@ -67,7 +75,10 @@ module.exports = class Form {
   static async fetchCountByManagerUser (fastify, idUser) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT COUNT(id_form) AS count FROM form WHERE (id_user in (SELECT u.id_user FROM users u WHERE u.id_manager = ?) OR id_user = ?) AND sp_name in (SELECT name FROM sellingpoint)', [idUser, idUser]
+      'SELECT COUNT(id_form) AS count FROM form WHERE (id_user in (SELECT u.id_user FROM users u WHERE u.id_manager = ?) OR id_user = ?) AND sp_name in (SELECT name FROM sellingpoint)',
+      [
+        idUser, idUser
+      ]
     )
     connection.release()
     return rows[0]

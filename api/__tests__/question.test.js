@@ -15,7 +15,12 @@ test('Create Question test', async () => {
   }
 
   try {
-    await request(app).post('/question/postQuestion').send(data)
+    const response = await app.inject({
+      method: 'POST',
+      url: '/question/postQuestion',
+      payload: data
+    })
+
     expect(response.statusCode).toBe(200)
   } catch (err) {
     console.log(`Error ${err}`)
@@ -33,7 +38,12 @@ test('Create Question Fail test', async () => {
   }
 
   try {
-    await request(app).post('/question/postQuestion').send(data)
+    const response = await app.inject({
+      method: 'POST',
+      url: '/question/postQuestion',
+      payload: data
+    })
+
     expect(response.statusCode).not.toBe(200)
   } catch (err) {
     console.log(`Error ${err}`)
@@ -49,7 +59,12 @@ test('Update Question test', async () => {
   }
 
   try {
-    await request(app).post('/question/edit').send(data)
+    const response = await app.inject({
+      method: 'POST',
+      url: '/question/edit',
+      payload: data
+    })
+
     expect(response.statusCode).toBe(200)
   } catch (err) {
     console.log(`Error ${err}`)
@@ -65,7 +80,12 @@ test('Update Question Fail test', async () => {
   }
 
   try {
-    await request(app).post('/question/edit').send(data)
+    const response = await app.inject({
+      method: 'POST',
+      url: '/question/edit',
+      payload: data
+    })
+
     expect(response.statusCode).not.toBe(200)
   } catch (err) {
     console.log(`Error ${err}`)

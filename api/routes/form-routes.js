@@ -15,18 +15,21 @@ const upload = multer({ storage })
 async function formRoutes (fastify, options) {
   formController.fastify = fastify
 
-  fastify.get('/getByUser/:mail', formController.getFormsByUser)
+  fastify.get('/getByUser/:mail', { onRequest: [fastify.authenticate] }, formController.getFormsByUser)
 
-  fastify.get('/getCountByUser/:mail', formController.getFormCountByUser)
+  fastify.get('/getCountByUser/:mail', { onRequest: [fastify.authenticate] }, formController.getFormCountByUser)
 
   fastify.post(
     '/postForm',
-    { preHandler: upload.array('images', 40) },
+    {
+      preHandler: upload.array('images', 40),
+      onRequest: [fastify.authenticate]
+    },
     formController.postForm)
 
-  fastify.get('/report/:fileName', formController.loadReport)
+  fastify.get('/report/:fileName', { onRequest: [fastify.authenticate] }, formController.loadReport)
 
-  fastify.post('/sendEmails', formController.postReportMails)
+  fastify.post('/sendEmails', { onRequest: [fastify.authenticate] }, formController.postReportMails)
 }
 
 module.exports = formRoutes

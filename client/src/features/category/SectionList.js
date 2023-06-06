@@ -2,7 +2,7 @@ import Header from '../../components/headers/Header'
 import ModifiedFooter from '../../components/headers/ModifiedFooter'
 import NavBar from '../../components/headers/NavBar'
 import Section from './Section'
-import { useGetSectionsQuery } from './sectionApiSlice'
+import { useGetSectionsQuery } from '../../services/sectionApiSlice'
 /*
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing

@@ -17,15 +17,15 @@ import { useNavigate } from 'react-router-dom'
 
 // Historia de usuario M13_H1
 const Finalize = () => {
+  const { register, getValues } = useForm()
   const navigate = useNavigate()
-  const Form = CurrentForm.getInstance()
 
+  const Form = CurrentForm.getInstance()
   const tourTime = Form.getElapsedMinutes()
   const sellingPointName = Form.spName
 
-  const { register, getValues } = useForm()
-
   const [mailList, setMailList] = useState([])
+  const [show, setShow] = useState(false)
 
   const validateEmail = (email) => {
     return String(email)
@@ -34,8 +34,6 @@ const Finalize = () => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       )
   }
-
-  const [show, setShow] = useState(false)
 
   const handleSetShow = () => {
     const manager = getValues('manager')

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAddNewQuestionMutation } from './questionApiSlice'
-import { useGetAreasBySectionQuery } from '../sectionApiSlice'
+import { useAddNewQuestionMutation } from '../../../services/questionApiSlice'
+import { useGetAreasBySectionQuery } from '../../../services/sectionApiSlice'
 import { Checkbox, Select, Label, FileInput, Modal, Textarea } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
-import AreaOption from './AreaOption'
-import { useForm } from 'react-hook-form'
 import Toast from '../../../components/alerts/Toast'
+import { useForm } from 'react-hook-form'
+
 /*
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
@@ -67,7 +67,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
     const { ids, entities } = areas
     const listContent = ids?.length
       ? ids.map((idArea) => (
-        <AreaOption key={idArea} areaId={idArea} areaTitle={entities[idArea].area_title} />
+        <option key={idArea} value={idArea}>{entities[idArea].area_title}</option>
       ))
       : null
 
