@@ -4,6 +4,11 @@ import { BsPlusLg } from 'react-icons/bs'
 const MailTextBox = ({ onClickAdd }) => {
   const [mail, setMail] = useState('')
 
+  const restartMail = () => {
+    console.log('HOLAAAAAA')
+    setMail('')
+  }
+
   const content = (
     <>
       <div className='mb-6 w-fit'>
@@ -17,7 +22,7 @@ const MailTextBox = ({ onClickAdd }) => {
             onChange={e => setMail(e.target.value)}
             maxLength={50}
           />
-          <button className='ml-3 bg-blues-200 py-2 px-3 rounded-md' onClick={e => onClickAdd(mail)}>
+          <button className='ml-3 bg-blues-200 py-2 px-3 rounded-md' onClick={() => [onClickAdd(mail), restartMail()]}>
             <BsPlusLg size={25} className='fill-white ' />
           </button>
         </div>

@@ -1,4 +1,3 @@
-
 const AreaOption = ({ areaId, areaTitle }) => {
   const content = (
     <>

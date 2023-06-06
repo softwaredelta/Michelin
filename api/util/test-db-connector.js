@@ -42,6 +42,7 @@ async function createDB (fastify) {
     mail VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
     id_role INT(2) NOT NULL,
+    user_visible TINYINT NOT NULL,
     PRIMARY KEY (id_user),
     FOREIGN KEY (id_role) REFERENCES role(id_role)
     );
@@ -131,6 +132,7 @@ async function createDB (fastify) {
     rating FLOAT(5) NOT NULL,
     name VARCHAR(50) NOT NULL,
     phone VARCHAR(20) NOT NULL,
+    sp_visible TINYINT NOT NULL,
     PRIMARY KEY (id_sp),
     FOREIGN KEY (id_state) REFERENCES state(id_state),
     FOREIGN KEY (id_category) REFERENCES category(id_category)
@@ -178,7 +180,8 @@ async function createDB (fastify) {
   await connection.query(
     `
     INSERT INTO category (id_category, name) VALUES
-    (1, 'Normal');
+    (1, 'Car Service'),
+    (2,'Multimarcas');
     `
   )
   await connection.query(
@@ -193,21 +196,22 @@ async function createDB (fastify) {
     `
     INSERT INTO role (id_role, name) VALUES
     (1, 'TBM'),
-    (2, 'Manager');
+    (2, 'Manager'),
+    (3, 'Administrador');
     `
   )
 
   await connection.query(
     `
-    INSERT INTO users (id_user, name, last_name, id_manager, mail, password, id_role) VALUES
-    (1, 'Example', 'User', 0, 'example@gmail.com', 'newPassword', 2);
+    INSERT INTO users (id_user, name, last_name, id_manager, mail, password, id_role, user_visible) VALUES
+    (1, 'Example', 'User', 0, 'example@gmail.com', 'newPassword', 2, 1);
     `
   )
 
   await connection.query(
     `
-    INSERT INTO sellingpoint (id_sp, id_category, id_state, address, rating, name, phone) VALUES
-    (1, 1, 1, 'Example Address 1', 5, 'New Selling Point', 123456987);
+    INSERT INTO sellingpoint (id_sp, id_category, id_state, address, rating, name, phone, sp_visible) VALUES
+    (1, 1, 1, 'Example Address 1', 5, 'New Selling Point', 123456987, 1);
     `
   )
   connection.release()
