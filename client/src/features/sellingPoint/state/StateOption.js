@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectStateById } from './stateApiSlice'
+import { selectStateById } from '../../../services/stateApiSlice'
 
 const StateOption = ({ zoneId }) => {
   const zone = useSelector((state) => selectStateById(state, zoneId))

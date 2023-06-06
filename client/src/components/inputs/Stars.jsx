@@ -3,27 +3,12 @@ const Stars = ({ rating }) => {
   const unchecked = 'w-8 h-8 text-gray-300 dark:text-gray-500'
   const checks = [unchecked, unchecked, unchecked, unchecked, unchecked]
   rating = Math.floor(rating)
-  if (rating === 1) {
-    checks[0] = checked
-  } else if (rating === 2) {
-    checks[1] = checked
-    checks[0] = checked
-  } else if (rating === 3) {
-    checks[2] = checked
-    checks[1] = checked
-    checks[0] = checked
-  } else if (rating === 4) {
-    checks[3] = checked
-    checks[2] = checked
-    checks[1] = checked
-    checks[0] = checked
-  } else if (rating === 5) {
-    checks[4] = checked
-    checks[3] = checked
-    checks[2] = checked
-    checks[1] = checked
-    checks[0] = checked
-  }
+
+  checks[0] = rating >= 1 ? checked : unchecked
+  checks[1] = rating >= 2 ? checked : unchecked
+  checks[2] = rating >= 3 ? checked : unchecked
+  checks[3] = rating >= 4 ? checked : unchecked
+  checks[4] = rating >= 5 ? checked : unchecked
 
   const content = (
     <>

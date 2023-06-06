@@ -25,7 +25,10 @@ module.exports = class Section {
   static async fetchAreasBySection (fastify, idSection) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT * FROM area as a WHERE id_section = ? ORDER BY a.id_area ASC', [idSection]
+      'SELECT * FROM area as a WHERE id_section = ? ORDER BY a.id_area ASC',
+      [
+        idSection
+      ]
     )
     connection.release()
     return rows[0]

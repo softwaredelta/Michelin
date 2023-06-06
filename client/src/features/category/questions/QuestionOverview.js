@@ -1,7 +1,7 @@
 import { Button, Checkbox, Table } from 'flowbite-react'
 import { AccordionContent } from 'flowbite-react/lib/esm/components/Accordion/AccordionContent'
 import { TableHead } from 'flowbite-react/lib/esm/components/Table/TableHead'
-import { useGetQuestionsBySectionQuery } from './questionApiSlice'
+import { useGetQuestionsBySectionQuery } from '../../../services/questionApiSlice'
 import { TableHeadCell } from 'flowbite-react/lib/esm/components/Table/TableHeadCell'
 import { TableBody } from 'flowbite-react/lib/esm/components/Table/TableBody'
 import { TableRow } from 'flowbite-react/lib/esm/components/Table/TableRow'

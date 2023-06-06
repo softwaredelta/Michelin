@@ -1,4 +1,4 @@
-import { useGetUsersQuery } from './usersApiSlice'
+import { useGetUsersQuery } from '../../services/usersApiSlice'
 import User from './User'
 import Bluebutton from '../../components/buttons/Bluebutton'
 import { useState } from 'react'

@@ -1,6 +1,6 @@
 import CurrentForm from '../../../services/CurrentForm'
 import ProgressBar from '../../../components/headers/ProgressBar'
-import AreaAccordion from '../../../components/accordions/AreaAccordion'
+import AreaOverview from '../AreaOverview'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SectionBanner from '../../../components/titles/SectionBanner'
@@ -29,21 +29,21 @@ const Interior = () => {
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
-      <AreaAccordion key={area.idArea} section={3} area={area} index={id} onClicked={updatePercentage} />
+      <AreaOverview key={area.idArea} section={3} area={area} index={id} onClicked={updatePercentage} />
     ))
     : null
-
-  useEffect(() => {
-    if (Form.idSp === 0) {
-      navigate('/form')
-    }
-  })
 
   const handleClick = (myId) => {
     const myElement = document.getElementById(myId)
     myElement.children[1].hidden = !myElement.children[1].hidden
     myElement.scrollIntoView()
   }
+
+  useEffect(() => {
+    if (Form.idSp === 0) {
+      navigate('/form')
+    }
+  })
 
   const content = (
     <>

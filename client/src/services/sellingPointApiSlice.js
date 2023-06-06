@@ -3,7 +3,7 @@ import {
   createEntityAdapter
 } from '@reduxjs/toolkit'
 
-import { appSlice } from '../../app/api/apiSlice'
+import { appSlice } from '../app/api/apiSlice'
 
 const sellingPointAdapter = createEntityAdapter({})
 

@@ -1,17 +1,20 @@
-import Report from '../features/history/Report'
-import Header from './headers/Header'
-import ModifiedFooter from './headers/ModifiedFooter'
-import NavBar from './headers/NavBar'
+// import Report from '../features/history/Report'
+import Report from '../history/Report'
+import Header from '../../components/headers/Header'
+import ModifiedFooter from '../../components/headers/ModifiedFooter'
+import NavBar from '../../components/headers/NavBar'
+import NumberCircle from '../../components/inputs/NumberCircle'
 import { Button } from 'flowbite-react'
 import {
   useGetFormsByUserQuery,
   useGetFormCountByUserQuery
-} from '../features/form/formApiSlice'
+} from '../../services/formApiSlice'
 import { FaFlagCheckered } from 'react-icons/fa'
-import NumberCircle from './inputs/NumberCircle'
 
 const Public = () => {
   const name = localStorage.getItem('name'); // eslint-disable-line
+
+  const baseReportRoute = 'http://localhost:3080/form/report/'
 
   const {
     data: forms,
@@ -19,11 +22,10 @@ const Public = () => {
     isSuccess,
     isError
   } = useGetFormsByUserQuery({ mail: localStorage.getItem("mail") }); // eslint-disable-line
+
   const { data: count, isSuccess: isSuccesCount } = useGetFormCountByUserQuery({
     mail: localStorage.getItem('mail') // eslint-disable-line
   }); // eslint-disable-line
-
-  const baseReportRoute = 'https://back2basics.software/api/form/report/'
 
   let tableContent
   let message

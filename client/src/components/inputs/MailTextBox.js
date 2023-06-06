@@ -5,7 +5,6 @@ const MailTextBox = ({ onClickAdd }) => {
   const [mail, setMail] = useState('')
 
   const restartMail = () => {
-    console.log('HOLAAAAAA')
     setMail('')
   }
 
