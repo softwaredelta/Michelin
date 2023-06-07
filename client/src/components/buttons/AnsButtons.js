@@ -41,6 +41,12 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
     setImageUploaded(true)
   }
 
+  /**
+   * The function updates the answer count and image uploaded status based on the child data input.
+   * @param childdata - The parameter `childdata` is a variable that represents data being passed from
+   * a child component to a parent component in a React application. It is being used as an argument in
+   * the `childtoParent` function.
+   */
   const childtoParent = (childdata) => {
     setAnswer(childdata)
 
@@ -49,6 +55,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
     }
     setAnswerCount(Form.getAnsweredQuestionsByArea(section, area))
   }
+
   if (answer !== 0) {
     disableGRN = answer === 1
     disableNA = answer === 3

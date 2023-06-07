@@ -9,6 +9,9 @@ const sellingPointAdapter = createEntityAdapter({})
 
 const initialState = sellingPointAdapter.getInitialState()
 
+/* This code is creating an API slice using the `injectEndpoints` method from the `@reduxjs/toolkit`
+library. The `sellingPointApiSlice` object contains several endpoints (`getSP`, `addNewSP`,
+`deleteSP`, and `editSP`) that can be used to make API requests. */
 export const sellingPointApiSlice = appSlice.injectEndpoints({
   endpoints: builder => ({
     getSP: builder.query({

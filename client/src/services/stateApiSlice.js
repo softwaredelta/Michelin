@@ -9,6 +9,8 @@ const stateAdapter = createEntityAdapter({})
 
 const initialState = stateAdapter.getInitialState()
 
+/* This code is creating an API slice using the `injectEndpoints` method from the `@reduxjs/toolkit`
+library. The `stateApiSlice` object contains two endpoints: `getState` and `getStatesByUser`. */
 export const stateApiSlice = appSlice.injectEndpoints({
   endpoints: builder => ({
     getState: builder.query({

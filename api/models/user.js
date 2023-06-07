@@ -56,6 +56,20 @@ module.exports = class User {
   }
 
   // M1_H1
+  /**
+   * This function creates a new user or updates an existing user's information if
+   * their email already exists in the database.
+   * @param name - The first name of the user being created.
+   * @param lastName - The last name of the user being created.
+   * @param idManager - The id of the manager associated with the user being created.
+   * @param email - The email of the user being created.
+   * @param password - The password parameter is encrypted using the bcrypt library before being stored in the database.
+   * @param idRole - The parameter "idRole" is the ID of the role assigned to the user being created.
+   * @param idState - The parameter `idState` is an array of integers representing the IDs of the
+   * states associated with the user being created.
+   * @returns a boolean value indicating whether a user was successfully created or updated in the
+   * database.
+   */
   static async createUser (fastify, name, lastName, idManager, email, password, idRole, idState) {
     const passwordEncrypted = await fastify.bcrypt.hash(password)
     const connection = await fastify.mysql.getConnection()

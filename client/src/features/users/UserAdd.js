@@ -62,6 +62,12 @@ const UserAdd = ({ show, onClose }) => {
 
   const password = random()
 
+  /**
+  * This function creates a new user with inputted values and displays a password confirmation message
+  * using the Swal library.
+  * @param e - The "e" parameter is an event object that represents the event that triggered the
+  * function. In this case, it is the click event on a button.
+  */
   const onCreateUserClicked = async (e) => {
     e.preventDefault()
     const name = getValues('name')

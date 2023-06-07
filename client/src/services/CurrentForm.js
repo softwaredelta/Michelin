@@ -33,6 +33,10 @@ export default class CurrentForm {
   startTime = 0
   endTime = 0
 
+  /**
+   * This is a static method that returns a single instance of the CurrentForm class.
+   * @returns The `getInstance()` method is returning an instance of the `CurrentForm` class.
+   */
   static getInstance () {
     if (CurrentForm.instance == null) {
       CurrentForm.instance = new CurrentForm()
@@ -45,21 +49,35 @@ export default class CurrentForm {
     this.spName = newSpName
   }
 
+  /**
+   * The function loads all areas and questions asynchronously.
+   */
   async loadFormInfo () {
     await this.loadAllAreas()
     await this.loadAllQuestions()
   }
 
+  /**
+   * The function sets the start time to the current time.
+   */
   setStartTime () {
     const currentDate = new Date()
     this.startTime = currentDate.getTime()
   }
 
+  /**
+   * This function sets the end time to the current time.
+   */
   setEndTime () {
     const currentDate = new Date()
     this.endTime = currentDate.getTime()
   }
 
+  /**
+   * The function calculates the elapsed time in minutes between a start and end time.
+   * @returns The function `getElapsedMinutes` is returning the number of elapsed minutes between
+   * `this.endTime` and `this.startTime`.
+   */
   getElapsedMinutes () {
     return Math.floor((this.endTime - this.startTime) / 60000)
   }
@@ -97,6 +115,16 @@ export default class CurrentForm {
     return areaNames
   }
 
+  /**
+   * This function loads questions from a specific category and section using an API and organizes them
+   * by area.
+   * @param category - The category of questions to load, which is used in the API route to retrieve
+   * the questions.
+   * @param section - The `section` parameter is a string that represents the section of questions to
+   * be loaded. It is used to retrieve questions from a specific section within a category.
+   * @returns The function `loadQuestions` returns an array of arrays of objects representing the
+   * questions for a given category and section.
+   */
   async loadQuestions (category, section) {
     const currentSection = this.selectSection(section)
 
@@ -200,6 +228,15 @@ export default class CurrentForm {
     return percentage
   }
 
+  /**
+   * This function sets a new answer for a specific question
+   * @param section - The section of the questions being updated.
+   * @param area - The "area" refers to a specific area within a section of questions.
+   * @param question - The specific question within the given area of the selected section that needs
+   * to be updated with a new answer.
+   * @param newAnswer - The new answer that will be assigned to a specific question in a certain
+   * section and area.
+   */
   setAnswer (section, area, question, newAnswer) {
     const currentSection = this.selectSection(section)
 
@@ -220,6 +257,14 @@ export default class CurrentForm {
       currentDate.getTime() + '-' + file.name
   }
 
+  /**
+   * The function `postForm` sends a form with various data and images to a server and optionally sends
+   * emails to a list of recipients.
+   * @param comment - A string containing the comment entered by the user.
+   * @param managerName - The name of the manager who is being graded in the form.
+   * @param mailList - `mailList` is an array of email addresses to which the report should be sent via
+   * email.
+   */
   async postForm (comment, managerName, mailList) {
     const currentDate = new Date()
 
@@ -277,6 +322,14 @@ export default class CurrentForm {
     }
   }
 
+  /**
+   * The function generates a JSON string containing information about questions and their answers, as
+   * well as calculates a grade based on the number of "yes" answers.
+   * @param section - The section parameter is a variable that represents the section that
+   * is used to select the appropriate set of questions and calculate the grades for that section.
+   * @returns A JSON string representing the questions in a section, including their text, answer, and
+   * file name.
+   */
   SectionJson (section) {
     const currentSection = this.selectSection(section)
 
@@ -323,6 +376,11 @@ export default class CurrentForm {
     return json
   }
 
+  /**
+   * The function takes in a list of emails and returns a JSON string containing the emails.
+   * @param mailList - The mailList parameter is an array of email addresses.
+   * @returns A JSON string containing an array of email addresses, with the key "mails".
+   */
   MailJson (mailList) {
     let json = '{"mails": ['
     mailList.forEach((mail) => {
