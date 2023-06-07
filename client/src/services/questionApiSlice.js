@@ -6,6 +6,9 @@ const questionAdapter = createEntityAdapter({})
 
 const initialState = questionAdapter.getInitialState()
 
+/* This code is defining a `questionApiSlice` object using the `appSlice.injectEndpoints()` method from
+the `@reduxjs/toolkit` library. The `questionApiSlice` object contains several endpoints for making
+API requests related to questions. */
 export const questionApiSlice = appSlice.injectEndpoints({
   endpoints: (builder) => ({
     getQuestionsBySection: builder.query({

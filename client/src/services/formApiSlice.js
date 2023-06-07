@@ -13,6 +13,9 @@ const formAdapter = createEntityAdapter({})
 
 const initialState = formAdapter.getInitialState()
 
+/* This code is creating a Redux Toolkit API slice for handling form-related API requests. It uses the
+`injectEndpoints` method from the `appSlice` API slice to define two endpoints: `getFormsByUser` and
+`getFormCountByUser`. */
 export const formApiSlice = appSlice.injectEndpoints({
   endpoints: (builder) => ({
     getFormsByUser: builder.query({

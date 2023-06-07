@@ -24,6 +24,12 @@ const FormStart = () => {
 
   let message
 
+ /**
+  * This function filters and displays a list of selling points based on user input in a search box.
+  * @param e - The parameter `e` is an event object that is passed to the `onSearchBoxChanged`
+  * function. It represents the event that occurred when the search box was changed, such as a key
+  * press or input change.
+  */
   const onSearchBoxChanged = (e) => {
     const { ids, entities } = sp
 

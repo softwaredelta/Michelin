@@ -38,6 +38,10 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
 
   const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]) }
 
+  /**
+   * This function saves a new question by getting values from form inputs and sending them to the server.
+   * @param e - The "e" parameter is an event object that represents the click that triggered the function.
+   */
   const onSaveQuestionClicked = async (e) => {
     e.preventDefault()
     const qText = getValues('qText')

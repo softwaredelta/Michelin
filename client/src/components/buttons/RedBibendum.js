@@ -10,14 +10,14 @@ const RedBibendum = ({
 }) => {
   const Form = CurrentForm.getInstance()
 
-  const myFunction = () => {
+  const onButtonClicked = () => {
     Form.setAnswer(section, area, index, 2)
     childtoParent(2)
   }
 
   const content = (
     <>
-      <button className={className} onClick={myFunction} disabled={disable}>
+      <button className={className} onClick={onButtonClicked} disabled={disable}>
         <img src='/images/redBibendum.png' alt='No' />
       </button>
       {photo}

@@ -41,6 +41,12 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
 
   let myCategory, myState
 
+ /**
+  * This function edits a selling point's information based on user input and closes the editing
+  * modal.
+  * @param e - The "e" parameter is an event object that represents the event that triggered the
+  * function. In this case, it is likely a click event on a button or link.
+  */
   const onEditSPClicked = async (e) => {
     e.preventDefault()
     const name = getValues('name')

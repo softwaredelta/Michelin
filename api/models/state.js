@@ -8,6 +8,11 @@ module.exports = class State {
     return rows[0]
   }
 
+  /**
+   * This function fetches usersbased on a given user ID.
+   * @param idUser - The parameter `idUser` is the ID of a user for whom we want to fetch the states.
+   * @returns the first row of the result set obtained from the SQL query.
+   */
   static async fetchByUser (fastify, idUser) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(

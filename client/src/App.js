@@ -95,8 +95,7 @@ function App () {
             index
             element={
               <ProtectedRoute>
-                {' '}
-                <FormStart />{' '}
+                <FormStart />
               </ProtectedRoute>
             }
           />
@@ -104,16 +103,50 @@ function App () {
             path='preparation'
             element={
               <ProtectedRoute>
-                {' '}
-                <Preparation />{' '}
+                <Preparation />
               </ProtectedRoute>
             }
           />
-          <Route path='exterior' element={<Exterior />} />
-          <Route path='interior' element={<Interior />} />
-          <Route path='client' element={<Client />} />
-          <Route path='manager' element={<Manager />} />
-          <Route path='finalize' element={<Finalize />} />
+          <Route 
+            path='exterior' 
+            element={
+              <ProtectedRoute>
+                <Exterior />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path='interior' 
+            element={
+              <ProtectedRoute>
+                <Interior />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path='client' 
+            element={
+              <ProtectedRoute>
+                <Client />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path='manager' 
+            element={
+              <ProtectedRoute>
+                <Manager />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path='finalize' 
+            element={
+              <ProtectedRoute>
+                <Finalize />
+              </ProtectedRoute>
+            } 
+          />
         </Route>
       </Route>
     </Routes>
