@@ -5,8 +5,8 @@ const sectionAdapter = createEntityAdapter({})
 
 const initialState = sectionAdapter.getInitialState()
 
-/* This code is creating a Redux Toolkit API slice for managing section data. These endpoints 
-include getting a list of categories, get areas by section, get all areas, and get sections, 
+/* This code is creating a Redux Toolkit API slice for managing section data. These endpoints
+include getting a list of categories, get areas by section, get all areas, and get sections,
 */
 export const sectionApiSlice = appSlice.injectEndpoints({
   endpoints: (builder) => ({

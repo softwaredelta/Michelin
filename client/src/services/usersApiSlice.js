@@ -13,9 +13,9 @@ const usersAdapter = createEntityAdapter({})
 
 const initialState = usersAdapter.getInitialState()
 
-/* This code is creating a Redux Toolkit API slice for managing user data. These endpoints 
-include getting a list of users, logging in a user, adding a new user, editing a user, 
-resetting a user's password, gettinga list of roles, getting a list of managers, and deleting a user. 
+/* This code is creating a Redux Toolkit API slice for managing user data. These endpoints
+include getting a list of users, logging in a user, adding a new user, editing a user,
+resetting a user's password, gettinga list of roles, getting a list of managers, and deleting a user.
 */
 export const usersApiSlice = appSlice.injectEndpoints({
   endpoints: builder => ({

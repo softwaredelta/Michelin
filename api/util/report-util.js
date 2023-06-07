@@ -50,7 +50,7 @@ exports.generateReport = async (doc, bodyData, sellingPointData) => {
  * @param doc - a PDF document object that the function will add content to.
  * @param questions - an array of objects representing the questions to be added to the PDF document.
  * @param currentRect - currentRect is an object that contains information about the current position
- * of the rectangle on the PDF document. 
+ * of the rectangle on the PDF document.
  * @param userName - The name of the user for whom the document is being created.
  */
 function addQuestions (doc, questions, currentRect, userName) {

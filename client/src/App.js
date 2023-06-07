@@ -107,45 +107,45 @@ function App () {
               </ProtectedRoute>
             }
           />
-          <Route 
-            path='exterior' 
+          <Route
+            path='exterior'
             element={
               <ProtectedRoute>
                 <Exterior />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path='interior' 
+          <Route
+            path='interior'
             element={
               <ProtectedRoute>
                 <Interior />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path='client' 
+          <Route
+            path='client'
             element={
               <ProtectedRoute>
                 <Client />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path='manager' 
+          <Route
+            path='manager'
             element={
               <ProtectedRoute>
                 <Manager />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path='finalize' 
+          <Route
+            path='finalize'
             element={
               <ProtectedRoute>
                 <Finalize />
               </ProtectedRoute>
-            } 
+            }
           />
         </Route>
       </Route>

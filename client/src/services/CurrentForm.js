@@ -231,7 +231,7 @@ export default class CurrentForm {
   /**
    * This function sets a new answer for a specific question
    * @param section - The section of the questions being updated.
-   * @param area - The "area" refers to a specific area within a section of questions. 
+   * @param area - The "area" refers to a specific area within a section of questions.
    * @param question - The specific question within the given area of the selected section that needs
    * to be updated with a new answer.
    * @param newAnswer - The new answer that will be assigned to a specific question in a certain
