@@ -29,7 +29,7 @@ exports.fetchAverageTime = (request, reply) => {
   return metricData
 }
 
-exports.fetchAverageGrade = (request, reply) => {
+exports.fetchAverageGrade = async (request, reply) => {
   const { dStart, dEnd, zone, user } = request.params
   
   let dFilter = ""
@@ -44,7 +44,7 @@ exports.fetchAverageGrade = (request, reply) => {
   if (user != "null"){
     userParam = " AND (f.id_user = "+user+") "
   } else {userParam = ""}
-  const metricData = Metric.averageGrade(this.fastify, dFilter, zoneParam, userParam)
+  const metricData = await Metric.averageGrade(this.fastify, dFilter, zoneParam, userParam)
 
   let data = []
   let interior = []
@@ -54,12 +54,11 @@ exports.fetchAverageGrade = (request, reply) => {
   let months = []
 
   for(let i = 0; i < metricData.length; i++){
-    console.log(metricData[i])
     interior.push(metricData[i].EXTERIOR)
     exterior.push(metricData[i].INTERIOR)
     client.push(metricData[i].CLIENT)
     manager.push(metricData[i].MANAGER)
-    months.push(nameMonths[(metricData[i].MONTHS)-1])
+    months.push(nameMonths[(metricData[i].MONTH)-1])
   }
 
   data.push({name: "Exterior", data: exterior})
@@ -67,7 +66,10 @@ exports.fetchAverageGrade = (request, reply) => {
   data.push({name: "Manager", data: manager})
   data.push({name: "Client", data: client})
 
-  if(metricData){return (metricData)}
+  let datafull = [data,months]
+  console.log(datafull)
+  return (datafull)
+  
 }
 
 exports.fetchAverageGradePDV = (request, reply) => {

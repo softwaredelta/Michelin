@@ -95,6 +95,7 @@ const Metric = () => {
                   id='select_zone'
                   name='select_zone'
                   {...register('select_zone')}
+                  
                 >
                   <option value='' selected>
                     Selecciona un estado
@@ -122,6 +123,7 @@ const Metric = () => {
                 </button>
                 </form>
                 </div>
+
                 <div>
                 <Line title={'Promedio de Califación por Área'} data={data} months={months}/>
                 </div>

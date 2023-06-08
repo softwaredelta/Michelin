@@ -1,6 +1,6 @@
 const fastifyPlugin = require('fastify-plugin')
 
-const localConnectionString = 'mysql://root1@localhost:8889/back_to_basics'
+const localConnectionString = 'mysql://root@localhost:3306/back_to_basics'
 const awsConnectionString = `mysql://${process.env.MYSQL_USER}:${process.env.MYSQL_PASSWORD}@${process.env.MYSQL_HOST}:${process.env.MYSQL_PORT}/${process.env.MYSQL_DB}`
 
 const onDeployedEnv = process.env.ON_DEPLOY_ENV === 'true' || false

@@ -31,7 +31,6 @@ export const metricApiSlice = appSlice.injectEndpoints({
           },
           transformResponse: (responseData) => {
             const loadedMetrics = responseData
-            console.log(responseData)
             return metricAdapter.setAll(initialState, loadedMetrics)
           }
     })
