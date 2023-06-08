@@ -62,7 +62,7 @@ const Metric = () => {
   } = useGetByAvgGradeQuery({dStart:dStart,dEnd:dEnd,zone:zone,user:user})
 
   console.log(grades)
-  
+
   const onFilterButtonClicked = () =>{
     setDStart()
     setDEnd()
