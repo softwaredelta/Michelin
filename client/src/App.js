@@ -13,8 +13,10 @@ import Preparation from './features/form/tour/Preparation'
 import Exterior from './features/form/tour/Exterior'
 import Interior from './features/form/tour/Interior'
 import Client from './features/form/tour/Client'
-import Manager from './features/form/tour/Manager'
 import Finalize from './features/form/tour/Finalize'
+import Manager from './features/form/tour/Manager'
+import Metric from './features/metrics/Metric'
+
 
 // AdminRoute in UsersList
 function App () {
@@ -86,6 +88,16 @@ function App () {
             element={
               <ProtectedRoute>
                 <History />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+        <Route path='metric'>
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <Metric />
               </ProtectedRoute>
             }
           />

@@ -14,7 +14,7 @@ import { FaFlagCheckered } from 'react-icons/fa'
 const Public = () => {
   const name = localStorage.getItem('name'); // eslint-disable-line
 
-  const baseReportRoute = 'https://back2basics.software/api/form/report/'
+  const baseReportRoute = 'http://localhost:3080/'
 
   const {
     data: forms,
