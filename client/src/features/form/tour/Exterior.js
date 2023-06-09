@@ -60,24 +60,24 @@ const Exterior = () => {
         </div>
 
         <TourScene questionContent={listContent}>
-          <div className='absolute w-10 xl:pb-5 lg:mb-8 lg:pb-3 lg:right-44 lg:bottom-64 iPadAir:bottom-48 iPadAir:mr-6 xl:bottom-36 xl:right-64 2xl:bottom-44 2xl:right-72 2xl:mr-12'>
+          <div className='absolute w-10 xl:pb-5 lg:mb-8 lg:pb-1 lg:right-44 lg:bottom-56 iPadAir:bottom-48 iPadAir:mr-6 iPadAir:pb-2 xl:bottom-36 xl:right-64 2xl:bottom-44 2xl:right-72 2xl:mr-12'>
             <VisualKey myName={13} method={() => handleClick(13)} />
           </div>
-          <div className='absolute w-10 lg:mb-8 lg:mr-2 lg:pb-5 lg:right-28 lg:bottom-72 iPadAir:bottom-60 iPadAir:mb-7 iPadAir:mr-8 xl:bottom-48 xl:right-44 2xl:bottom-48 2xl:mb-10 2xl:right-56'>
+          <div className='absolute w-10 lg:mb-8 lg:mr-2 lg:pb-5 lg:right-28 lg:bottom-60 iPadAir:bottom-60 iPadAir:mb-7 iPadAir:mr-8 xl:bottom-48 xl:right-44 2xl:bottom-48 2xl:mb-10 2xl:right-56'>
             <VisualKey myName={12} method={() => handleClick(12)} />
           </div>
-          <div className='absolute w-10 xl:pb-5 lg:mb-12 lg:pb-3 lg:right-24 lg:bottom-80 iPadAir:bottom-72 iPadAir:mb-9 iPadAir:mr-5 xl:mb-0 xl:right-40 xl:mr-7 2xl:mb-3 2xl:right-52 2xl:mr-3'>
+          <div className='absolute w-10 xl:pb-5 lg:mb-12 lg:mr-1 lg:right-24 lg:bottom-72 iPadAir:bottom-72 iPadAir:mb-9 iPadAir:mr-5 xl:mb-0 xl:right-40 xl:mr-7 2xl:mb-3 2xl:right-52 2xl:mr-3'>
             <VisualKey myName={11} method={() => handleClick(11)} />
           </div>
-          <div className='absolute w-10 xl:pb-5 lg:mt-4 lg:mr-3 lg:right-16 lg:top-72 iPadAir:top-72 iPadAir:mt-10 iPadAir:mr-6 xl:top-64 xl:right-28 xl:mr-7 2xl:top-96 2xl:right-40 '>
+          <div className='absolute w-10 xl:pb-5 lg:mt-6 lg:mr-3 lg:right-16 lg:top-64 iPadAir:top-72 iPadAir:mt-10 iPadAir:mr-6 xl:top-64 xl:right-28 xl:mr-7 2xl:top-96 2xl:right-40 '>
             <VisualKey myName={10} method={() => handleClick(10)} />
           </div>
-          <div className='absolute w-10 xl:pb-8 lg:mt-2 lg:mr-3 lg:right-16 lg:top-64 iPadAir:top-60 iPadAir:mt-11 iPadAir:mr-6 xl:top-52 xl:right-32 xl:mr-8 2xl:top-80 2xl:mt-10 2xl:right-40'>
+          <div className='absolute w-10 xl:pb-8 lg:mt-0 lg:mr-3 lg:right-16 lg:top-60 iPadAir:top-60 iPadAir:mt-11 iPadAir:mr-6 xl:top-52 xl:right-32 xl:mr-8 2xl:top-80 2xl:mt-10 2xl:right-40'>
             <VisualKey myName={9} method={() => handleClick(9)} />
           </div>
           <div className='flex-col w-full h-96 place-self-center'>
             <ImageCard imgName='Exterior.png' />
-            <div className='absolute w-10 lg:right-16 lg:top-48 lg:mt-8 lg:mr-2 iPadAir:top-52 iPadAir:mr-5 xl:right-36 xl:mr-3 xl:top-44 xl:mt-7 2xl:top-64 2xl:right-40 2xl:mt-12'>
+            <div className='absolute w-10 lg:right-16 lg:top-48 lg:mt-3 lg:mr-2 iPadAir:top-52 iPadAir:mt-8 iPadAir:mr-5 xl:right-36 xl:mr-3 xl:top-44 xl:mt-7 2xl:top-64 2xl:right-40 2xl:mt-12'>
               <VisualKey myName={8} method={() => handleClick(8)} />
             </div>
             <div className='absolute w-10 xl:pb-2 lg:right-28 lg:mr-2 iPadAir:mt-1 iPadAir:right-32 xl:right-52 xl:mt-3 2xl:right-56 2xl:mr-6 2xl:mt-4'>

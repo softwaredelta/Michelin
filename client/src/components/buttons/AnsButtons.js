@@ -12,9 +12,9 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   const camera = question.camera
   const buttonNa = question.buttonNa
   const classNameDflt =
-    'scale-50 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 p-2 rounded-full opacity-100 transition duration-300 ease-in-out'
   const classNameDis =
-    'scale-50 p-2 rounded-full transition duration-300 ease-in-out opacity-40 cursor-not-allowed'
+    'scale-50 p-2 rounded-full transition duration-300 ease-in-out opacity-40 hover:opacity-100'
   let disableGRN = false
   let disableRED = false
   let disableNA = false
@@ -23,7 +23,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   let classNameRED =
     'scale-50 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let classNameNA =
-    'scale-5 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
+    'scale-50 p-2 rounded-full opacity-100 transition duration-300 ease-in-out hover:opacity-40'
   let photo = null
   let currImg
 
@@ -41,6 +41,12 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
     setImageUploaded(true)
   }
 
+  /**
+   * The function updates the answer count and image uploaded status based on the child data input.
+   * @param childdata - The parameter `childdata` is a variable that represents data being passed from
+   * a child component to a parent component in a React application. It is being used as an argument in
+   * the `childtoParent` function.
+   */
   const childtoParent = (childdata) => {
     setAnswer(childdata)
 
@@ -50,12 +56,14 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
     setAnswerCount(Form.getAnsweredQuestionsByArea(section, area))
   }
 
-  disableGRN = answer === 1
-  disableNA = answer === 3
-  disableRED = answer === 2 || answer === 4
-  classNameGRN = disableGRN ? classNameDis : classNameDflt
-  classNameRED = disableRED ? classNameDis : classNameDflt
-  classNameNA = disableNA ? classNameDis : classNameDflt
+  if (answer !== 0) {
+    disableGRN = answer === 1
+    disableNA = answer === 3
+    disableRED = answer === 2 || answer === 4
+    classNameGRN = disableGRN ? classNameDflt : classNameDis
+    classNameRED = disableRED ? classNameDflt : classNameDis
+    classNameNA = disableNA ? classNameDflt : classNameDis
+  }
 
   const selectImageName = `s${section}a${area}i${index}selectImg`
   if ((camera === 1 && answer === 2) || answer === 4) {

@@ -37,6 +37,11 @@ const SellingPointAdd = ({ show, onClose }) => {
 
   let myCategory, myState
 
+  /**
+   * The function saves a new selling point with the given information and closes the form.
+   * @param e - The "e" parameter is an event object that represents the event that triggered the
+   * function.
+   */
   const onSaveSPClicked = async (e) => {
     e.preventDefault()
     const name = getValues('name')

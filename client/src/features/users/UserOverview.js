@@ -46,6 +46,11 @@ const UserOverview = ({ userId }) => {
 
   const confirmationText = '¿Estás seguro que deseas eliminar el usuario'
 
+  /**
+   * This function handles input change events by updating the stateList entities with the user ID or
+   * null value based on the checkbox status.
+   * @param e - The parameter "e" is an event object that is passed to the function "handleInputChange".
+   */
   const handleInputChange = (e) => {
     const auxList = JSON.parse(JSON.stringify(stateList))
     auxList.entities[e.target.id].id_user === null
@@ -56,6 +61,11 @@ const UserOverview = ({ userId }) => {
     e.target.value()
   }
   // M1_H2
+  /**
+   * This function handles the click event for editing a user.
+   * @param e - The `e` parameter is an event object that represents a click that triggered the
+   * function.
+   */
   const onEditUserClicked = async (e) => {
     e.preventDefault()
 
@@ -90,6 +100,12 @@ const UserOverview = ({ userId }) => {
     }
   }
 
+  /**
+   * This function generates a random password and updates it for a user, then displays the new
+   * password in a pop-up message.
+   * @param e - The "e" parameter is an event object that represents the event that triggered the
+   * function. In this case, it is the click event on a button that generates a new password.
+   */
   const onGeneratePasswordClicked = async (e) => {
     e.preventDefault()
     const password = (length = 8) => {

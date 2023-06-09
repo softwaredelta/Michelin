@@ -67,6 +67,10 @@ module.exports = class SellingPoint {
     connection.release()
   }
 
+  /**
+   * This function updates the rating of selling points by querying their information from a database
+   * and using the Google Places API to retrieve their ratings.
+   */
   static async updateSellingPointRating (fastify) {
     const connection = await fastify.mysql.getConnection()
     const spData = await connection.query(

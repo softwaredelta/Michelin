@@ -4,6 +4,7 @@ const fs = require('fs')
 const singleRectPos = [65, 150, 235, 320, 405, 490, 575, 660] // Fila page division coordinates
 const blueColor = [66, 98, 130]
 
+/* This function is called to create the pdf report that represent the auditorship a user makes. */
 exports.generateReport = async (doc, bodyData, sellingPointData) => {
   // Get selling point data for report section
   const sellingPointQuestions = getSellingpointQuestions(sellingPointData, bodyData.managerName)
@@ -43,6 +44,15 @@ exports.generateReport = async (doc, bodyData, sellingPointData) => {
   doc.end()
 }
 
+/**
+ * The function adds questions and their options to a PDF document based on their answer type and
+ * current position on the page.
+ * @param doc - a PDF document object that the function will add content to.
+ * @param questions - an array of objects representing the questions to be added to the PDF document.
+ * @param currentRect - currentRect is an object that contains information about the current position
+ * of the rectangle on the PDF document.
+ * @param userName - The name of the user for whom the document is being created.
+ */
 function addQuestions (doc, questions, currentRect, userName) {
   for (const questionNum in questions) {
     if (currentRect.index > 7 || (currentRect.index === 7 && questions[questionNum].answer === 4)) { // Reset rect index if end of file reached
@@ -172,6 +182,14 @@ function addSingleAnswer (doc, currentRect, question) {
   doc.text(question.answerText, 410, singleRectPos[currentRect.index] + 25, { oblique: true, width: 160 }) // Answer
 }
 
+/**
+ * The function adds a question with checkboxes and a checkmark to a PDF document.
+ * @param doc - The PDF document object that the function is adding content to.
+ * @param currentRect - The current rectangle being used to position the question and answer options.
+ * @param question - The question object contains the text of the question and the answer option
+ * selected by the user. The answer option is represented by a number (1, 2, or 3) which determines the
+ * position of the checkmark in the checkbox.
+ */
 function addSingleOption (doc, currentRect, question) {
   addRectangle(doc, currentRect, 75)
 

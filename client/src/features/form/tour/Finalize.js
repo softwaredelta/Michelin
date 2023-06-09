@@ -93,7 +93,7 @@ const Finalize = () => {
 
   const content = (
     <>
-      <ConfirmationModal show={show} onClose={handleClose} text='Terminar auditoria?' method={onFinalizeTourClicked} />
+      <ConfirmationModal show={show} onClose={handleClose} text='¿Terminar auditoría?' method={onFinalizeTourClicked} />
       <div>
         <SectionBanner myText='Resumen' />
       </div>
