@@ -3,7 +3,6 @@ const fastifyEnv = require('@fastify/env')
 
 const schema = {
   type: 'object',
-  required: ['MYSQL_USER', 'MYSQL_PASSWORD', 'MYSQL_HOST', 'MYSQL_PORT', 'MYSQL_DB'],
   properties: {
     MYSQL_USER: {
       type: 'string'
@@ -18,6 +17,18 @@ const schema = {
       type: 'string'
     },
     MYSQL_DB: {
+      type: 'string'
+    },
+    ON_DEPLOY_ENV: {
+      type: 'boolean'
+    },
+    GOOGLE_API_KEY: {
+      type: 'string'
+    },
+    MAIL_USER: {
+      type: 'string'
+    },
+    MAIL_PASSWORD: {
       type: 'string'
     }
   }

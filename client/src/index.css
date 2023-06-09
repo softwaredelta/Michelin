@@ -1,3 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @font-face {
+  font-family: "Michelin";
+  src: url("../public/font/Michelin-Black.ttf");
+} */
+
+/* @font-face {
+  font-family: 'Michelin';
+  src: url('Michelin-SemiBold.ttf');
+  src: local('Michelin SemiBold Regular'), local('Michelin-SemiBold'),
+      url('Michelin-SemiBold.eot?#iefix') format('embedded-opentype'),
+      url('Michelin-SemiBold.woff2') format('woff2'),
+      url('Michelin-SemiBold.woff') format('woff'),
+      url('Michelin-SemiBold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+} */
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +32,75 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.colored-toast.swal2-icon-success {
+  background-color: #a5dc86 !important;
+}
+
+.colored-toast.swal2-icon-error {
+  background-color: #f27474 !important;
+}
+
+.colored-toast.swal2-icon-warning {
+  background-color: #f8bb86 !important;
+}
+
+.colored-toast.swal2-icon-info {
+  background-color: #3fc3ee !important;
+}
+
+.colored-toast.swal2-icon-question {
+  background-color: #87adbd !important;
+}
+
+.colored-toast .swal2-title {
+  color: white;
+}
+
+.colored-toast .swal2-close {
+  color: white;
+}
+
+.colored-toast .swal2-html-container {
+  color: white;
+}
+
+.swal2-container {
+  z-index: 10000;
+}
+
+@font-face {
+  font-family: 'Michelin';
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.eot');
+  src:
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.eot?#iefix') format('embedded-opentype'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.woff2') format('woff2'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.woff') format('woff'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.ttf') format('truetype'),
+    url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Black.svg#Michelin-Black') format('svg');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'MichelinLight';
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.eot');
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.eot?#iefix') format('embedded-opentype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.woff2') format('woff2'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.woff') format('woff'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.ttf') format('truetype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-Light.svg#Michelin-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MichelinSemiBold';
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.eot');
+  src: url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.eot?#iefix') format('embedded-opentype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.woff2') format('woff2'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.woff') format('woff'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.ttf') format('truetype'), url('https://dcadprod.azureedge.net/b2c-experience-production/assets/clhrf53tp000101mt6iclaly8/modules/my-apostrophe-assets/fonts/Michelin-SemiBold.svg#Michelin-SemiBold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+.truncate{
+  width: 200px;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
 }
