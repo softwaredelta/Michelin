@@ -40,7 +40,7 @@ const UserAdd = ({ show, onClose }) => {
   } = useGetManagersQuery()
 
   const {
-    data: state,
+    data: states,
     isSuccess: isSuccessState,
     isError: isErrorState
   } = useGetStateQuery()
@@ -76,6 +76,8 @@ const UserAdd = ({ show, onClose }) => {
     const mail = getValues('mail')
     const role = getValues('role')
     const state = getValues('state')
+
+    console.log(state)
 
     onClose()
     Swal.fire({
@@ -113,7 +115,7 @@ const UserAdd = ({ show, onClose }) => {
   }
 
   if (isSuccessState) {
-    const { ids } = state
+    const { ids } = states
 
     const listContent = ids?.length
       ? ids.map((idState) => <StatesOption key={idState} zoneId={idState} />)
@@ -152,6 +154,7 @@ const UserAdd = ({ show, onClose }) => {
         title: 'Se creó un nuevo usuario'
       })
       reset()
+      window.location.reload(false)
     }
   }, [isSuccessUser, isError, error, reset, navigate])
 
@@ -223,6 +226,7 @@ const UserAdd = ({ show, onClose }) => {
                   className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2'
                   maxLength='255'
                   type='email'
+                  pattern='[a-z0-9]+@[a-z]+\.[a-z]{2,3}'
                 />
                 <div className='flex flex-row items-center'>
                   <Label
@@ -242,7 +246,7 @@ const UserAdd = ({ show, onClose }) => {
                     {' '}
                     Selecciona una opción
                   </option>
-                  <option value={0}> Sin manager</option>
+                  <option value={0}> Sin Mánager</option>
                   {manager}
                 </Select>
                 <div className='flex flex-row'>

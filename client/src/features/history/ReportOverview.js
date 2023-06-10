@@ -27,7 +27,7 @@ const ReportOverview = ({
                   <p className='font-medium'> {time} </p>
                 </div>
                 <a href={repLink} target='_blank' rel='noreferrer'>
-                  <div className='flex flex-row w-4/6 my-2 font-semibold dark:!text-white border-b border-black dark:!border-white cursor-pointer'>
+                  <div className='flex flex-row w-9/12 my-2 font-semibold dark:!text-white border-b border-black dark:!border-white cursor-pointer'>
                     Ver Reporte PDF
                     <AiFillFilePdf className='ml-2 my-1' />
                   </div>

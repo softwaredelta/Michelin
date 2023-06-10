@@ -4,11 +4,11 @@ import AreaOverview from '../AreaOverview'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SectionBanner from '../../../components/titles/SectionBanner'
-import TourScene from '../../../components/TourScene'
+import TourScene from '../../../components/scenes/TourScene'
 import ImageCard from '../../../components/cards/ImageCard'
 import NextButton from '../../../components/buttons/NextButton'
 import PreviousButton from '../../../components/buttons/PreviousButton'
-import VisualKey from '../../../components/inputs/VisualKey'
+// import VisualKey from '../../../components/inputs/VisualKey'
 import ReadyButton from '../../../components/buttons/ReadyButton'
 
 /*
@@ -21,7 +21,9 @@ const Interior = () => {
   const navigate = useNavigate()
   const Form = CurrentForm.getInstance()
   const areas = Form.getAreasBySection(3)
-  const [currentPercentage, setCurrentPercentage] = useState(Form.getCompletionPercentage())
+  const [currentPercentage, setCurrentPercentage] = useState(
+    Form.getCompletionPercentage()
+  )
 
   const updatePercentage = () => {
     setCurrentPercentage(Form.getCompletionPercentage())
@@ -29,15 +31,15 @@ const Interior = () => {
 
   const listContent = areas?.length
     ? areas.map((area, id) => (
-      <AreaOverview key={area.idArea} section={3} area={area} index={id} method={updatePercentage} />
+      <AreaOverview
+        key={area.idArea}
+        section={3}
+        area={area}
+        index={id}
+        method={updatePercentage}
+      />
     ))
     : null
-
-  const handleClick = (myId) => {
-    const myElement = document.getElementById(myId)
-    myElement.children[1].hidden = !myElement.children[1].hidden
-    myElement.scrollIntoView()
-  }
 
   useEffect(() => {
     if (Form.idSp === 0) {
@@ -60,7 +62,10 @@ const Interior = () => {
 
         <TourScene questionContent={listContent}>
           <div className='flex-col w-full h-96 place-self-center mt-36 mx-auto'>
-            <div className='absolute w-10 lg:mb-6 lg:mr-3 lg:right-16 lg:bottom-64 iPadAir:mb-7 iPadAir:right-16 iPadAir:mr-6 xl:bottom-60 xl:right-32 2xl:bottom-72 2xl:right-40'>
+            <div className='place-self-center mr-24 scale-150'>
+              <ImageCard imgName='Interior.png' />
+            </div>
+            {/* <div className='absolute w-10 lg:mb-6 lg:mr-3 lg:right-16 lg:bottom-64 iPadAir:mb-7 iPadAir:right-16 iPadAir:mr-6 xl:bottom-60 xl:right-32 2xl:bottom-72 2xl:right-40'>
               <VisualKey myName={11} method={() => handleClick(11)} />
             </div>
             <div className='absolute w-10 xl:pb-5 lg:pb-0 lg:mt-11 lg:mr-1 lg:right-16 lg:top-72 iPadAir:mr-3 iPadAir:mt-20 xl:top-72 xl:mt-10 xl:right-32 xl:mr-4 2xl:top-96 2xl:right-40'>
@@ -94,13 +99,13 @@ const Interior = () => {
 
             <div className='relative w-10 lg:bottom-28 lg:ml-10 iPadAir:left-4 iPadAir:bottom-20 2xl:left-10 2xl:bottom-12 xl:right-32 xl:bottom-20'>
               <VisualKey myName={1} method={() => handleClick(1)} />
-            </div>
+            </div> */}
 
             <div className='flex flex-row w-11/12 justify-between ml-3 mt-2'>
-              <div className='w-32'>
+              <div className='w-32 pt-32'>
                 <PreviousButton onClicked={(e) => navigate('/form/exterior')} />
               </div>
-              <div className='w-32'>
+              <div className='w-32 pt-32'>
                 <NextButton onClicked={(e) => navigate('/form/client')} />
               </div>
             </div>

@@ -17,6 +17,8 @@ exports.postForm = async (request, reply) => {
   const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
   const userData = await User.fetchUserByMail(this.fastify, request.body.mail)
 
+  console.log(request.body)
+
   // Create PDF
   const doc = new PDFDocument({ autoFirstPage: false })
   doc.pipe(fs.createWriteStream('./uploads/reports/' + request.body.fileName + '.pdf'))
@@ -69,7 +71,7 @@ exports.postReportMails = async (request, reply) => {
   const { mailer } = this.fastify
   mailer.sendMail({
     to: mailList,
-    subject: 'Reporte de auditoria de ' + userName,
+    subject: 'Reporte de auditoría de ' + userName,
     text: 'Reporte generado por el TBM se adjunta al correo:',
     attachments: [
       {

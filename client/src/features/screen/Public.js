@@ -14,7 +14,7 @@ import { FaFlagCheckered } from 'react-icons/fa'
 const Public = () => {
   const name = localStorage.getItem('name'); // eslint-disable-line
 
-  const baseReportRoute = 'https://back2basics.software/api/form/report/'
+  const baseReportRoute = 'https://back2basics.software/api/'
 
   const {
     data: forms,
@@ -99,14 +99,14 @@ const Public = () => {
                   className='mt-4 px-5 !text-3xl shadow-xl !bg-trademark-50 !text-blues-200 !font-extrabold !rounded-full hover:!bg-yellow-500 dark:!bg-blues-300 dark:!text-trademark-50 dark:hover:!bg-blue-950 dark:hover:!text-yellow-500'
                 >
                   <FaFlagCheckered size='20' className='mr-4' />
-                  Iniciar Auditoría
+                  Iniciar Recorrido
                 </Button>
               </div>
             </div>
             <NumberCircle countContent={countContent} />
           </div>
           <div className='self-start w-full mt-8'>
-            <Header myText='Historial de Auditorías' />
+            <Header myText='Historial de Recorridos' />
             <div className='self-center m-auto w-9/12 mb-6 py-4 border-b-2 dark:border-blues-200'>
               <div className='flex flex-row xl:w-9/12 lg:w-10/12 md:w-10/12 justify-between'>
                 <h2 className='font-semibold ml-14 small:text-sm md:text-base dark:!text-white'>
