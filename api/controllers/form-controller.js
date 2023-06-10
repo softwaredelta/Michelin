@@ -17,6 +17,8 @@ exports.postForm = async (request, reply) => {
   const sellingPointData = await SellingPoint.fetchById(this.fastify, request.body.spId)
   const userData = await User.fetchUserByMail(this.fastify, request.body.mail)
 
+  console.log(request.body)
+
   // Create PDF
   const doc = new PDFDocument({ autoFirstPage: false })
   doc.pipe(fs.createWriteStream('./uploads/reports/' + request.body.fileName + '.pdf'))

@@ -88,14 +88,12 @@ module.exports = class User {
         ]
       )
       const userId = queryRes[0].insertId
-      for (let i = 0; i < (idState.length); i++) {
-        await connection.query(
-          'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
-          [
-            userId, idState[i]
-          ]
-        )
-      }
+      await connection.query(
+        'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+        [
+          userId, idState
+        ]
+      )
     } else if (rows[0][0].user_visible == 0) { // eslint-disable-line
       await connection.query(
         'UPDATE users SET name = ?, last_name = ?, id_manager = ?, password = ?, id_role = ?, user_visible = 1 WHERE mail = ?',

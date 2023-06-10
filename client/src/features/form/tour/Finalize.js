@@ -158,8 +158,8 @@ const Finalize = () => {
                     value='Tiempo de Recorrido'
                     className='text-xl font-semibold mr-2 my-1 !text-blues-300'
                   />
-                  <div className='font-michelinl pt-2 pb-7 pl-1 top-10 left-7 text-3xl text-blues-300'>{tourTime} {'minuto' + (tourTime === 1 ? '' : 's')}</div>
-                  <Label
+                  <div className='font-michelinl pt-2 pb-28 pl-1 top-10 left-7 text-3xl text-blues-300'>{tourTime} {'minuto' + (tourTime === 1 ? '' : 's')}</div>
+                  {/* <Label
                     htmlFor='Ingresa el correo electrónico de los destinatarios'
                     value='Ingresa el correo electrónico de los destinatarios'
                     className='text-xl font-semibold mr-2 my-1 !text-blues-300'
@@ -172,10 +172,10 @@ const Finalize = () => {
                   />
                   <div className='flex flex-col h-52 p-3 overflow-y-scroll rounded-lg'>
                     {mailListContent}
-                  </div>
+                  </div> */}
                 </div>
-                <div className='flex flex-col mr-8 items-end bottom-0 pt-4 lg:pt-4 pl-32'>
-                  <button onClick={handleSetShow} className='!text-lg py-2 bottom-0 w-44 left-0 mt-4 px-5 shadow-xl !bg-trademark-50 !text-blues-200 !rounded-full hover:!bg-yellow-500'>Finalizar</button>
+                <div className='flex flex-col mr-8 items-end bottom-0 pt-56 lg:pt-56 pl-32'>
+                  <button onClick={handleSetShow} className='!text-lg py-2 w-44 left-0 mt-4 px-5 shadow-xl !bg-trademark-50 !text-blues-200 !rounded-full hover:!bg-yellow-500'>Finalizar</button>
                 </div>
               </div>
             </div>

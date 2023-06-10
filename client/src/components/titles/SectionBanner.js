@@ -30,7 +30,7 @@ const SectionBanner = ({ myText }) => {
 
       <div className='absolute top-10 left-20 text-3xl text-blues-300 font-michelin'>{myText}</div>
 
-      <FaHome onClick={handleSetShow} className='fill-blues-300 cursor-pointer absolute top-9 left-6' size={40} />
+      <FaHome onClick={handleSetShow} className='fill-trademark-50 cursor-pointer border-8 border-blues-300 rounded-full bg-blues-300 absolute top-9 left-6' size={40} />
 
     </>
   )

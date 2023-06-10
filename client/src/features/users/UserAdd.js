@@ -40,7 +40,7 @@ const UserAdd = ({ show, onClose }) => {
   } = useGetManagersQuery()
 
   const {
-    data: state,
+    data: states,
     isSuccess: isSuccessState,
     isError: isErrorState
   } = useGetStateQuery()
@@ -115,7 +115,7 @@ const UserAdd = ({ show, onClose }) => {
   }
 
   if (isSuccessState) {
-    const { ids } = state
+    const { ids } = states
 
     const listContent = ids?.length
       ? ids.map((idState) => <StatesOption key={idState} zoneId={idState} />)
@@ -154,139 +154,140 @@ const UserAdd = ({ show, onClose }) => {
         title: 'Se creó un nuevo usuario'
       })
       reset()
+      window.location.reload(false)
     }
   }, [isSuccessUser, isError, error, reset, navigate])
 
   const content = (
     <>
       <Modal show={show} onClose={onClose} dismissible>
-        <ModalHeader className="!bg-blues-200">
-          <div className="flex ml-14">
-            <div className="flex items-center flex-col mx-4 text-2xl font-semibold text-white">
+        <ModalHeader className='!bg-blues-200'>
+          <div className='flex ml-14'>
+            <div className='flex items-center flex-col mx-4 text-2xl font-semibold text-white'>
               Nuevo Usuario
             </div>
           </div>
         </ModalHeader>
         <form onSubmit={onCreateUserClicked}>
           <ModalBody>
-            <div className="flex justify-center">
-              <div className="flex flex-col w-3/4">
-                <div className=" flex flex-row">
-                  <div className="flex-col mr-9">
-                    <div className="flex flex-row items-center">
+            <div className='flex justify-center'>
+              <div className='flex flex-col w-3/4'>
+                <div className=' flex flex-row'>
+                  <div className='flex-col mr-9'>
+                    <div className='flex flex-row items-center'>
                       <Label
-                        htmlFor="name"
-                        value="Nombre"
-                        className="text-lg font-semibold mr-2 my-1"
+                        htmlFor='name'
+                        value='Nombre'
+                        className='text-lg font-semibold mr-2 my-1'
                       />
                     </div>
                     <input
-                      id="name"
-                      name="name"
-                      {...register("name")}
+                      id='name'
+                      name='name'
+                      {...register('name')}
                       required
-                      autoComplete="off"
-                      className="border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2"
-                      maxLength="255"
+                      autoComplete='off'
+                      className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2'
+                      maxLength='255'
                     />
                   </div>
-                  <div className="flex-col w-full">
-                    <div className="flex flex-row items-center">
+                  <div className='flex-col w-full'>
+                    <div className='flex flex-row items-center'>
                       <Label
-                        htmlFor="lastName"
-                        value="Apellidos"
-                        className="text-lg font-semibold mr-2 my-1"
+                        htmlFor='lastName'
+                        value='Apellidos'
+                        className='text-lg font-semibold mr-2 my-1'
                       />
                     </div>
                     <input
-                      id="lastName"
-                      name="lastName"
-                      {...register("lastName")}
+                      id='lastName'
+                      name='lastName'
+                      {...register('lastName')}
                       required
-                      autoComplete="off"
-                      className="border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2"
-                      maxLength="255"
+                      autoComplete='off'
+                      className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2'
+                      maxLength='255'
                     />
                   </div>
                 </div>
-                <div className="flex flex-row items-center">
+                <div className='flex flex-row items-center'>
                   <Label
-                    htmlFor="mail"
-                    value="Correo Electrónico"
-                    className="text-lg font-semibold mr-2 my-1"
+                    htmlFor='mail'
+                    value='Correo Electrónico'
+                    className='text-lg font-semibold mr-2 my-1'
                   />
                 </div>
                 <input
-                  id="mail"
-                  name="mail"
-                  {...register("mail")}
+                  id='mail'
+                  name='mail'
+                  {...register('mail')}
                   required
-                  autoComplete="off"
-                  className="border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2"
-                  maxLength="255"
-                  type="email"
-                  pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
+                  autoComplete='off'
+                  className='border-2 rounded-md my-2 resize-none dark:bg-transparent dark:text-white p-2'
+                  maxLength='255'
+                  type='email'
+                  pattern='[a-z0-9]+@[a-z]+\.[a-z]{2,3}'
                 />
-                <div className="flex flex-row items-center">
+                <div className='flex flex-row items-center'>
                   <Label
-                    htmlFor="idManager"
-                    value="Mánager asignado"
-                    className="text-lg font-semibold mr-2 my-1"
+                    htmlFor='idManager'
+                    value='Mánager asignado'
+                    className='text-lg font-semibold mr-2 my-1'
                   />
                 </div>
                 <Select
-                  id="idManager"
-                  name="idManager"
+                  id='idManager'
+                  name='idManager'
                   required
-                  className="rounded-md my-2 dark:border-2"
-                  {...register("idManager")}
+                  className='rounded-md my-2 dark:border-2'
+                  {...register('idManager')}
                 >
-                  <option value="" selected>
-                    {" "}
+                  <option value='' selected>
+                    {' '}
                     Selecciona una opción
                   </option>
                   <option value={0}> Sin Mánager</option>
                   {manager}
                 </Select>
-                <div className="flex flex-row">
-                  <div className="col mr-9">
-                    <div className="flex flex-row">
+                <div className='flex flex-row'>
+                  <div className='col mr-9'>
+                    <div className='flex flex-row'>
                       <Label
-                        htmlFor="role"
-                        value="Rol"
-                        className="align-bottom mr-2 my-1 text-lg font-semibold"
+                        htmlFor='role'
+                        value='Rol'
+                        className='align-bottom mr-2 my-1 text-lg font-semibold'
                       />
                     </div>
                     <Select
-                      id="role"
-                      name="role"
+                      id='role'
+                      name='role'
                       required
-                      {...register("role")}
-                      className="rounded-md my-2 dark:border-2"
+                      {...register('role')}
+                      className='rounded-md my-2 dark:border-2'
                     >
-                      <option value="" selected>
-                        {" "}
+                      <option value='' selected>
+                        {' '}
                         Selecciona una opción
                       </option>
                       {role}
                     </Select>
                   </div>
-                  <div className="col">
-                    <div className="flex flex-row">
+                  <div className='col'>
+                    <div className='flex flex-row'>
                       <Label
-                        htmlFor="state"
-                        value="Zona"
-                        className="align-bottom mr-2 my-1 text-lg font-semibold"
+                        htmlFor='state'
+                        value='Zona'
+                        className='align-bottom mr-2 my-1 text-lg font-semibold'
                       />
                     </div>
                     <Select
-                      id="state"
-                      name="state"
+                      id='state'
+                      name='state'
                       required
-                      className="rounded-md my-2 dark:border-2"
-                      {...register("state")}
+                      className='rounded-md my-2 dark:border-2'
+                      {...register('state')}
                     >
-                      <option value="" selected>
+                      <option value='' selected>
                         Selecciona una opción
                       </option>
                       {myState}
@@ -296,16 +297,16 @@ const UserAdd = ({ show, onClose }) => {
               </div>
             </div>
           </ModalBody>
-          <ModalFooter className="justify-end">
+          <ModalFooter className='justify-end'>
             <button
-              className="bg-blues-200 text-white font-semibold py-2 px-4 rounded-md dark:hover:text-trademark-50"
-              title="Create"
-              type="submit"
+              className='bg-blues-200 text-white font-semibold py-2 px-4 rounded-md dark:hover:text-trademark-50'
+              title='Create'
+              type='submit'
             >
               Crear
             </button>
             <a
-              className="bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer font-semibold dark:hover:text-trademark-50"
+              className='bg-gray-500 text-white py-2 px-4 rounded-md cursor-pointer font-semibold dark:hover:text-trademark-50'
               onClick={onClose}
               href={onClose}
             >
@@ -315,7 +316,7 @@ const UserAdd = ({ show, onClose }) => {
         </form>
       </Modal>
     </>
-  );
+  )
   return content
 }
 

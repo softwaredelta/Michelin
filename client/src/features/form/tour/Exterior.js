@@ -4,11 +4,11 @@ import AreaOverview from '../AreaOverview'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SectionBanner from '../../../components/titles/SectionBanner'
-import TourScene from '../../../components/TourScene'
+import TourScene from '../../../components/scenes/TourScene'
 import ImageCard from '../../../components/cards/ImageCard'
 import NextButton from '../../../components/buttons/NextButton'
 import PreviousButton from '../../../components/buttons/PreviousButton'
-//import VisualKey from '../../../components/inputs/VisualKey'
+// import VisualKey from '../../../components/inputs/VisualKey'
 import ReadyButton from '../../../components/buttons/ReadyButton'
 
 /*
@@ -60,11 +60,11 @@ const Exterior = () => {
         </div>
 
         <TourScene questionContent={listContent}>
-        <div className='flex-col w-full h-96 place-self-center mt-36 mx-auto'>
+          <div className='flex-col w-full h-96 place-self-center mt-36 mx-auto'>
             <div className='place-self-center mr-24 scale-125 pb-28'>
               <ImageCard imgName='Exterior.png' />
             </div>
-           {/*<div className='absolute w-10 xl:pb-5 lg:mb-8 lg:pb-1 lg:right-44 lg:bottom-56 iPadAir:bottom-48 iPadAir:mr-6 iPadAir:pb-2 xl:bottom-36 xl:right-64 2xl:bottom-44 2xl:right-72 2xl:mr-12'>
+            {/* <div className='absolute w-10 xl:pb-5 lg:mb-8 lg:pb-1 lg:right-44 lg:bottom-56 iPadAir:bottom-48 iPadAir:mr-6 iPadAir:pb-2 xl:bottom-36 xl:right-64 2xl:bottom-44 2xl:right-72 2xl:mr-12'>
             <ImageCard imgName='Exterior.png' />
             <VisualKey myName={13} method={() => handleClick(13)} />
           </div>
