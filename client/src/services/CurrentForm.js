@@ -336,7 +336,6 @@ export default class CurrentForm {
     let sumYes = 0
     let sumTotal = 0
     let sumNa = 0
-
     let json = '{"questions": ['
     this.questions[currentSection].forEach((questions) => {
       questions.forEach((question) => {

@@ -3,7 +3,7 @@ const NumberCircle = ({ countContent }) => {
     <>
       <div className='absolute 2xl:mr-24 lg:mr-3 self-center bottom-20 right-11 z-20 rounded-xl border-2 px-5'>
         <div className='text-center text-white font-semibold pt-5 text-xl'>
-          Número de Auditorías Realizadas
+          Número de Recorridos Realizadas
         </div>
         <div class='flex items-center justify-center m-auto'>
           <svg class='w-auto h-auto' fill='none' fill-opacity='0.0'>

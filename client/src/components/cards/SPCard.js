@@ -63,7 +63,8 @@ const SPCard = ({ spId }) => {
       >
         <Card
           imgSrc={img}
-          className='!bg-gradient-to-b from-blues-150 to-blues-300 h-72 !rounded-xl !border-2'
+          className='!bg-gradient-to-b from-blues-150 to-blues-300 h-72 !rounded-xl !border-2 cursor-pointer'
+          onClick={handleSetFlip}
         >
           <div className='flex row justify-between'>
             <div className='flex-col mr-2'>
@@ -74,7 +75,6 @@ const SPCard = ({ spId }) => {
             <div className='flex col ml-2 mt-1'>
               <SvgButton
                 svgfile={<FiMoreHorizontal color='white' />}
-                method={handleSetFlip}
                 className='hover:!fill-gray-500'
               />
             </div>

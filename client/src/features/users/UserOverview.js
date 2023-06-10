@@ -16,6 +16,7 @@ import Toast from '../../components/alerts/Toast'
 import { useForm } from 'react-hook-form'
 import MultipleCheckbox from '../../components/inputs/MultipleCheckbox'
 import ConfirmationModal from '../../components/alerts/ConfirmationModal'
+
 /*
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
@@ -40,11 +41,12 @@ const UserOverview = ({ userId }) => {
   })
 
   let myStates
+  // console.log(stateData)
   let [stateList] = useState(stateData)
 
   const [showDelete, setShowDelete] = useState(false)
 
-  const confirmationText = '¿Estás seguro que deseas eliminar el usuario'
+  const confirmationText = '¿Estás seguro que deseas eliminar el usuario?'
 
   /**
    * This function handles input change events by updating the stateList entities with the user ID or
@@ -91,7 +93,7 @@ const UserOverview = ({ userId }) => {
       Toast.fire({
         icon: 'error',
         title:
-          'No se pudo guardar el usuario ' +
+          'No se pudo editar el usuario ' +
           name +
           ' ' +
           lastName +
@@ -141,6 +143,7 @@ const UserOverview = ({ userId }) => {
 
   const deleteU = async (idU) => {
     await deleteUser([{ idUser: idU }])
+    window.location.reload(false)
   }
 
   const handleSetShowDelete = () => {
@@ -237,7 +240,7 @@ const UserOverview = ({ userId }) => {
                       className='border rounded-md dark:bg-transparent dark:text-white p-1'
                       defaultValue={user.last_name}
                       id='lastName'
-                      {...register('lastName')}
+                      {...register('lastName')} t
                       required
                     />
                   </div>
@@ -284,11 +287,20 @@ const UserOverview = ({ userId }) => {
               className='!bg-zinc-500 dark:!bg-blues-200 hover:!bg-gray-500 dark:hover:!bg-blue-500 mx-4'
               type='submit'
             >
-              <MdModeEditOutline className='mx-2' /> Guardar
+              <MdModeEditOutline className='mx-2' /> Actualizar
             </Button>
-            <Button className='!bg-white dark:!bg-zinc-500 dark:hover:!bg-zinc-700 dark:hover:!border-zinc-700 dark:text-white text-zinc-500 border-zinc-500' onClick={handleSetShowDelete}>
-              <BsFillTrashFill className='mx-2' /> Eliminar
-            </Button>
+            {localStorage.getItem('mail') === user.mail // eslint-disable-line
+              ? (
+                <div />
+                )
+              : (
+                <Button
+                  className='!bg-white dark:!bg-zinc-500 dark:hover:!bg-zinc-700 dark:hover:!border-zinc-700 dark:text-white text-zinc-500 border-zinc-500'
+                  onClick={handleSetShowDelete}
+                >
+                  <BsFillTrashFill className='mx-2' /> Eliminar
+                </Button>
+                )}
           </div>
         </form>
       </AccordionContent>

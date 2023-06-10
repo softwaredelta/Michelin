@@ -88,14 +88,12 @@ module.exports = class User {
         ]
       )
       const userId = queryRes[0].insertId
-      for (let i = 0; i < (idState.length); i++) {
-        await connection.query(
-          'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
-          [
-            userId, idState[i]
-          ]
-        )
-      }
+      await connection.query(
+        'INSERT INTO stateuser (id_user, id_state) VALUES (?,?)',
+        [
+          userId, idState
+        ]
+      )
     } else if (rows[0][0].user_visible == 0) { // eslint-disable-line
       await connection.query(
         'UPDATE users SET name = ?, last_name = ?, id_manager = ?, password = ?, id_role = ?, user_visible = 1 WHERE mail = ?',
@@ -122,7 +120,7 @@ module.exports = class User {
   static async getManager (fastify) {
     const connection = await fastify.mysql.getConnection()
     const rows = await connection.query(
-      'SELECT id_user, name, last_name FROM users WHERE id_role = 2'
+      'SELECT id_user, name, last_name FROM users WHERE id_role = 2 AND user_visible = 1'
     )
     connection.release()
     return rows[0]
@@ -175,6 +173,12 @@ module.exports = class User {
     const connection = await fastify.mysql.getConnection()
     await connection.query(
       'UPDATE users SET id_manager = 0, user_visible = 0 WHERE id_user = ?',
+      [
+        idUser
+      ]
+    )
+    await connection.query(
+      'UPDATE users SET id_manager = 0 WHERE id_manager = ?',
       [
         idUser
       ]

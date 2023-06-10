@@ -59,6 +59,12 @@ const NavBar = () => {
               Historial
             </NavbarLink>
             <NavbarLink
+              href='/metric'
+              className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
+            >
+              Métricas
+            </NavbarLink>
+            <NavbarLink
               href='/sellingPoint'
               className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
             >

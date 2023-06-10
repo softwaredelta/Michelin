@@ -102,7 +102,7 @@ const FormStart = () => {
         <div className='pt-20 w-full min-h-screen dark:!bg-blues-400'>
           <div className='flex flex-col'>
             <div className='mr-24'>
-              <div className='grid grid-cols-4 mb-3'>
+              <div className='grid grid-cols-4 mb-2'>
                 <h2 className='text-3xl font-michelin col-span-2 underline text-blues-200 dark:text-white mt-2 ml-10'>
                   ¡¡Bienvenido {name}!!
                 </h2>
@@ -114,6 +114,7 @@ const FormStart = () => {
                   maxLength={255}
                 />
               </div>
+              <p className='text-3xl font-semibold text-gray-500 dark:!text-white ml-10 mb-4'>Selecciona un punto de venta:</p>
             </div>
             {message}
             <div className='w-full'>{listContent}</div>

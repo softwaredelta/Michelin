@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAddNewQuestionMutation } from '../../../services/questionApiSlice'
 import { useGetAreasBySectionQuery } from '../../../services/sectionApiSlice'
-import { Checkbox, Select, Label, FileInput, Modal, Textarea } from 'flowbite-react'
+import { Checkbox, Select, Label, Modal, Textarea } from 'flowbite-react'
 import { ModalHeader } from 'flowbite-react/lib/esm/components/Modal/ModalHeader'
 import { ModalBody } from 'flowbite-react/lib/esm/components/Modal/ModalBody'
 import { ModalFooter } from 'flowbite-react/lib/esm/components/Modal/ModalFooter'
@@ -34,10 +34,6 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
 
   let area
 
-  const [placeholder, setPlaceHolder] = useState('')
-
-  const onPlaceHolderChanged = e => { setPlaceHolder(e.target.files[0]) }
-
   /**
    * This function saves a new question by getting values from form inputs and sending them to the server.
    * @param e - The "e" parameter is an event object that represents the click that triggered the function.
@@ -55,7 +51,7 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
     newQuestion.append('idArea', idArea)
     newQuestion.append('usingCamera', usingCamera)
     newQuestion.append('btnNa', btnNa)
-    newQuestion.append('placeholder', placeholder)
+    newQuestion.append('placeholder', '')
     newQuestion.append('idCategory', idCategory)
     onClose()
     await addNewQuestion(newQuestion)
@@ -88,7 +84,6 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
 
     if (isSuccess) {
       reset()
-      setPlaceHolder('') // reset placeholder
       Toast.fire({
         icon: 'success',
         title: 'Se creó una nueva pregunta'
@@ -170,34 +165,6 @@ const QuestionAdd = ({ show, onClose, section, myCategory }) => {
 
                       <Checkbox id='btnNa' {...register('btnNa')} name='btnNa' value={1} uncheckedvalue={0} className='align-center scale-150 my-1 accent-blues-150' />
                     </div>
-                  </div>
-                </div>
-                <div className='flex-row my-5'>
-                  <div className='flex flex-row'>
-
-                    <Label
-                      htmlFor='placeholder'
-                      value='Imagen de ejemplo'
-                      className='align-bottom text-center text-lg font-semibold mr-1'
-                    />
-
-                  </div>
-                  <div id='fileUpload'>
-                    <FileInput
-                      id='placeholder'
-                      name='placeholder'
-                      className='rounded-md my-2.5 dark:border-'
-                      onChange={onPlaceHolderChanged}
-                      accept='.jpg, .jpeg'
-                    />
-                  </div>
-
-                  <div className='flex-row justify-end float-right -my-2'>
-                    <Label
-                      htmlFor='placeholder'
-                      value='Formatos aceptados .jpg, .jpeg'
-                      className='font-semibold text-xs'
-                    />
                   </div>
                 </div>
               </div>

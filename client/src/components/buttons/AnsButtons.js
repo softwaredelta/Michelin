@@ -95,7 +95,7 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
 
   const content = (
     <>
-      <div class='flex flex-col text-center'>
+      <div class='flex flex-col text-center w-10/12 justify-center m-auto'>
         <div class='grid grid-flow-col w-fit self-center -mb-10'>
           <GreenBibendum
             section={section}

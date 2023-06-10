@@ -31,6 +31,7 @@ function buildFastify (opts = {}, testing) {
   fastify.register(require('./routes/category-routes'), { prefix: '/category' })
   fastify.register(require('./routes/state-routes'), { prefix: '/state' })
   fastify.register(require('./routes/section-routes'), { prefix: '/section' })
+  fastify.register(require('./routes/metric-routes'), { prefix: '/metric' })
 
   return fastify
 }

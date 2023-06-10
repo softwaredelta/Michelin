@@ -13,13 +13,16 @@ import Preparation from './features/form/tour/Preparation'
 import Exterior from './features/form/tour/Exterior'
 import Interior from './features/form/tour/Interior'
 import Client from './features/form/tour/Client'
-import Manager from './features/form/tour/Manager'
 import Finalize from './features/form/tour/Finalize'
+import Manager from './features/form/tour/Manager'
+import Metric from './features/metrics/Metric'
+import AdminRoute from './utils/AdminRoute'
 
 // AdminRoute in UsersList
 function App () {
   return (
     <Routes>
+      <Route path='prueba' />
       <Route path='/'>
         <Route
           index element={
@@ -42,9 +45,11 @@ function App () {
         <Route path='user'>
           <Route
             index element={
-              <ProtectedRoute>
-                <UsersList />
-              </ProtectedRoute>
+              <AdminRoute>
+                <ProtectedRoute>
+                  <UsersList />
+                </ProtectedRoute>
+              </AdminRoute>
             }
           />
         </Route>
@@ -86,6 +91,16 @@ function App () {
             element={
               <ProtectedRoute>
                 <History />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+        <Route path='metric'>
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <Metric />
               </ProtectedRoute>
             }
           />

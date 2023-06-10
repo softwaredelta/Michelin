@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import SectionBanner from '../../../components/titles/SectionBanner'
 import ImageCard from '../../../components/cards/ImageCard'
 import NextButton from '../../../components/buttons/NextButton'
-import TourScene from '../../../components/TourScene'
+import TourScene from '../../../components/scenes/TourScene'
 import PreviousButton from '../../../components/buttons/PreviousButton'
 import ReadyButton from '../../../components/buttons/ReadyButton'
 
