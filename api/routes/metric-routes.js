@@ -10,21 +10,21 @@ const metricController = require('../controllers/metric-controller')
 async function metricRoutes (fastify, options) {
   metricController.fastify = fastify
 
-  fastify.get('/getAverageTime/:dStart/:dEnd/:zone/:user', metricController.fetchAverageTime) //ready
+  fastify.get('/getAverageTime/:dStart/:dEnd/:zone/:user', metricController.fetchAverageTime) // ready
 
-  fastify.get('/getAverageGradeByMonth/:dStart/:dEnd/:zone/:user', metricController.fetchAverageGradeByMonth) //ready
+  fastify.get('/getAverageGradeByMonth/:dStart/:dEnd/:zone/:user', metricController.fetchAverageGradeByMonth) // ready
 
-  fastify.get('/getAverageGradeCur/:dStart/:dEnd/:zone/:user', metricController.fetchAverageGradeCur) //ready
+  fastify.get('/getAverageGradeCur/:dStart/:dEnd/:zone/:user', metricController.fetchAverageGradeCur) // ready
 
-  fastify.get('/getAverageGradePDV/:dStart/:dEnd/:zone/:user', metricController.fetchAverageGradePDV) //ready
+  fastify.get('/getAverageGradePDV/:dStart/:dEnd/:zone/:user', metricController.fetchAverageGradePDV) // ready
 
-  fastify.get('/getFormsCurrentMonth/:dStart/:dEnd/:zone/:user', metricController.fetchFormsCurrentMonth) //ready
+  fastify.get('/getFormsCurrentMonth/:dStart/:dEnd/:zone/:user', metricController.fetchFormsCurrentMonth) // ready
 
-  fastify.get('/getFormsByMonth/:dStart/:dEnd/:zone/:user', metricController.fetchFormsByMonth) //ready 
+  fastify.get('/getFormsByMonth/:zone/:user', metricController.fetchFormsByMonth) // ready
 
-  fastify.get('/getFormsByMonthUser/:dStart/:dEnd/:zone/:mail', metricController.fetchFormsByMonthUser) 
+  fastify.get('/getFormsByMonthUser/:zone/:mail', metricController.fetchFormsByMonthUser)
 
-  fastify.get('/getAverageTimeByMonth/:dStart/:dEnd/:zone/:user', metricController.fetchAverageTimeByMonth) //ready
+  fastify.get('/getAverageTimeByMonth/:zone/:user', metricController.fetchAverageTimeByMonth) // ready
   // { onRequest: [fastify.authenticate]}, metricController.fetchAverageTime)
 }
 

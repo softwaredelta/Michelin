@@ -16,14 +16,12 @@ import Toast from '../../components/alerts/Toast'
 import { useForm } from 'react-hook-form'
 import MultipleCheckbox from '../../components/inputs/MultipleCheckbox'
 import ConfirmationModal from '../../components/alerts/ConfirmationModal'
-import { useNavigate } from 'react-router-dom'
 
 /*
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
  */
 const UserOverview = ({ userId }) => {
-  const navigate = useNavigate()
   const { register, getValues } = useForm()
 
   const user = useSelector((state) => selectUserById(state, userId))
@@ -291,7 +289,7 @@ const UserOverview = ({ userId }) => {
             >
               <MdModeEditOutline className='mx-2' /> Actualizar
             </Button>
-            {localStorage.getItem('mail') === user.mail
+            {localStorage.getItem('mail') === user.mail // eslint-disable-line
               ? (
                 <div />
                 )

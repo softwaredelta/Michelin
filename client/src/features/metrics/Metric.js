@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+/* import React, { useState, useEffect } from 'react'
 import NavBar from '../../components/headers/NavBar'
 import Header from '../../components/headers/Header'
 import ModifiedFooter from '../../components/headers/ModifiedFooter'
@@ -26,7 +26,7 @@ import GradeChart from '../../components/inputs/GradeChart'
  */
 
 // Historia de usuario M5_H1
-
+/*
 const Metric = () => {
   const { register, getValues, reset } = useForm()
 
@@ -131,8 +131,6 @@ const Metric = () => {
     isSuccess: isSuccessToursByMonths,
     isError: isErrorToursByMonths
   } = useGetToursByMonthsQuery({
-    dStart,
-    dEnd,
     zone,
     user
   })
@@ -150,8 +148,6 @@ const Metric = () => {
     isSuccess: isSuccessTimeByMonths,
     isError: isErrorTimeByMonths
   } = useGetTimeByMonthsQuery({
-    dStart,
-    dEnd,
     zone,
     user
   })
@@ -170,8 +166,6 @@ const Metric = () => {
     isSuccess: isSuccessUserByMonths,
     isError: isErrorUserByMonths
   } = useGetFormsByMonthsUserQuery({
-    dStart,
-    dEnd,
     zone,
     user
   })
@@ -379,3 +373,4 @@ const Metric = () => {
 }
 
 export default Metric
+*/

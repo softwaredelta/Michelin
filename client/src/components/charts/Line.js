@@ -1,4 +1,3 @@
-import React, { useRef } from 'react'
 import * as Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 

@@ -81,8 +81,8 @@ export const metricApiSlice = appSlice.injectEndpoints({
     }),
     getToursByMonths: builder.query({
       query: (args) => {
-        const { dStart, dEnd, zone, user } = args
-        return `/metric/getFormsByMonth/${dStart}/${dEnd}/${zone}/${user}`
+        const { zone, user } = args
+        return `/metric/getFormsByMonth/${zone}/${user}`
       },
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError
@@ -94,8 +94,8 @@ export const metricApiSlice = appSlice.injectEndpoints({
     }),
     getTimeByMonths: builder.query({
       query: (args) => {
-        const { dStart, dEnd, zone, user } = args
-        return `/metric/getAverageTimeByMonth/${dStart}/${dEnd}/${zone}/${user}`
+        const { zone, user } = args
+        return `/metric/getAverageTimeByMonth/${zone}/${user}`
       },
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError
@@ -107,8 +107,8 @@ export const metricApiSlice = appSlice.injectEndpoints({
     }),
     getFormsByMonthsUser: builder.query({
       query: (args) => {
-        const { dStart, dEnd, zone } = args
-        return `/metric/getFormsByMonthUser/${dStart}/${dEnd}/${zone}/${localStorage.getItem('mail')}`
+        const { zone } = args
+        return `/metric/getFormsByMonthUser/${zone}/${localStorage.getItem('mail')}` // eslint-disable-line
       },
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError

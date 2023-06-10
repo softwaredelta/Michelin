@@ -1,6 +1,6 @@
 import AreaTitle from '../titles/AreaTitle'
 
-const AreaAccordion = ({
+const AreaCard = ({
   areaTitle,
   index,
   questionContent
@@ -16,4 +16,4 @@ const AreaAccordion = ({
   return content
 }
 
-export default AreaAccordion
+export default AreaCard

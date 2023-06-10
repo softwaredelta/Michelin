@@ -34,7 +34,7 @@ module.exports = class SellingPoint {
 
   // M2_H1
   static async addSellingPoint (fastify, type, zone, address, name, phone) {
-    let newRating = await PlacesApi.getRatingFromAPI({address: address, name: name, rating: 0})
+    const newRating = await PlacesApi.getRatingFromAPI({ address, name, rating: 0 })
 
     const connection = await fastify.mysql.getConnection()
     await connection.query(
@@ -80,7 +80,7 @@ module.exports = class SellingPoint {
     )
 
     await spData[0].forEach(async sp => {
-      let newRating = await PlacesApi.getRatingFromAPI(sp)
+      const newRating = await PlacesApi.getRatingFromAPI(sp)
 
       await connection.query(
         'UPDATE sellingpoint SET rating = ? WHERE id_sp = ?',

@@ -41,12 +41,6 @@ const Interior = () => {
     ))
     : null
 
-  const handleClick = (myId) => {
-    const myElement = document.getElementById(myId)
-    myElement.children[1].hidden = !myElement.children[1].hidden
-    myElement.scrollIntoView()
-  }
-
   useEffect(() => {
     if (Form.idSp === 0) {
       navigate('/form')
