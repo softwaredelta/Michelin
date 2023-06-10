@@ -91,7 +91,7 @@ const UserOverview = ({ userId }) => {
       Toast.fire({
         icon: 'error',
         title:
-          'No se pudo guardar el usuario ' +
+          'No se pudo editar el usuario ' +
           name +
           ' ' +
           lastName +
@@ -206,44 +206,44 @@ const UserOverview = ({ userId }) => {
 
   const content = (
     <>
-      <AccordionContent className='h-60 !bg-white dark:!bg-blues-500'>
+      <AccordionContent className="h-60 !bg-white dark:!bg-blues-500">
         <form onSubmit={onEditUserClicked}>
-          <div className='flex justify-between'>
-            <div className='flex flex-col'>
-              <div className='flex flex-row'>
-                <div className='flex flex-col mx-5'>
-                  <div className='flex flex-row my-2 font-semibold dark:!text-white p-1'>
+          <div className="flex justify-between">
+            <div className="flex flex-col">
+              <div className="flex flex-row">
+                <div className="flex flex-col mx-5">
+                  <div className="flex flex-row my-2 font-semibold dark:!text-white p-1">
                     Nombre
                   </div>
-                  <div className='flex flex-row my-2 font-semibold dark:!text-white p-1'>
+                  <div className="flex flex-row my-2 font-semibold dark:!text-white p-1">
                     Apellido
                   </div>
-                  <div className='flex flex-row my-2 font-semibold dark:!text-white p-1 bg-gray'>
+                  <div className="flex flex-row my-2 font-semibold dark:!text-white p-1 bg-gray">
                     Correo
                   </div>
                 </div>
-                <div className='flex flex-col'>
-                  <div className='flex flex-row my-2'>
+                <div className="flex flex-col">
+                  <div className="flex flex-row my-2">
                     <input
-                      className='border rounded-md dark:bg-transparent dark:text-white p-1'
+                      className="border rounded-md dark:bg-transparent dark:text-white p-1"
                       defaultValue={user.name}
-                      id='name'
-                      {...register('name')}
+                      id="name"
+                      {...register("name")}
                       required
                     />
                   </div>
-                  <div className='flex flex-row my-2'>
+                  <div className="flex flex-row my-2">
                     <input
-                      className='border rounded-md dark:bg-transparent dark:text-white p-1'
+                      className="border rounded-md dark:bg-transparent dark:text-white p-1"
                       defaultValue={user.last_name}
-                      id='lastName'
-                      {...register('lastName')}
+                      id="lastName"
+                      {...register("lastName")}
                       required
                     />
                   </div>
-                  <div className='flex flex-row my-2'>
+                  <div className="flex flex-row my-2">
                     <input
-                      className='border rounded-md p-1'
+                      className="border rounded-md p-1"
                       disabled
                       defaultValue={user.mail}
                     />
@@ -251,44 +251,51 @@ const UserOverview = ({ userId }) => {
                 </div>
               </div>
             </div>
-            <div className='flex flex-col'>
-              <div className='flex flew-row'>
-                <div className='flex flex-col font-semibold mx-5 dark:!text-white p-1 my-1 text-l'>
+            <div className="flex flex-col">
+              <div className="flex flew-row">
+                <div className="flex flex-col font-semibold mx-5 dark:!text-white p-1 my-1 text-l">
                   Zona
                 </div>
-                <div className='flex flex-col h-36 border overflow-y-scroll rounded-lg'>
-                  <div className='flex flex-row text-sm px-3 pb-2 pt-1 dark:!text-white'>
+                <div className="flex flex-col h-36 border overflow-y-scroll rounded-lg">
+                  <div className="flex flex-row text-sm px-3 pb-2 pt-1 dark:!text-white">
                     Selecciona una o más opciones
                   </div>
                   {myStates}
                 </div>
               </div>
             </div>
-            <div className='flex flex-col mx-10'>
-              <div className='flex flex-col font-semibold dark:!text-white text-center'>
+            <div className="flex flex-col mx-10">
+              <div className="flex flex-col font-semibold dark:!text-white text-center">
                 Generar nueva contraseña
               </div>
-              <div className='flex flex-col my-2'>
+              <div className="flex flex-col my-2">
                 <Button
-                  className='w-5/6 self-center !border-blues-200 !bg-white !text-blues-200 dark:!bg-blues-200 dark:!text-white'
+                  className="w-5/6 self-center !border-blues-200 !bg-white !text-blues-200 dark:!bg-blues-200 dark:!text-white"
                   onClick={onGeneratePasswordClicked}
                 >
-                  <BsDice5 className='mx-1' />
+                  <BsDice5 className="mx-1" />
                   Generar
                 </Button>
               </div>
             </div>
           </div>
-          <div className=' flex flex-row justify-end my-2'>
+          <div className=" flex flex-row justify-end my-2">
             <Button
-              className='!bg-zinc-500 dark:!bg-blues-200 hover:!bg-gray-500 dark:hover:!bg-blue-500 mx-4'
-              type='submit'
+              className="!bg-zinc-500 dark:!bg-blues-200 hover:!bg-gray-500 dark:hover:!bg-blue-500 mx-4"
+              type="submit"
             >
-              <MdModeEditOutline className='mx-2' /> Guardar
+              <MdModeEditOutline className="mx-2" /> Actualizar
             </Button>
-            <Button className='!bg-white dark:!bg-zinc-500 dark:hover:!bg-zinc-700 dark:hover:!border-zinc-700 dark:text-white text-zinc-500 border-zinc-500' onClick={handleSetShowDelete}>
-              <BsFillTrashFill className='mx-2' /> Eliminar
-            </Button>
+            {localStorage.getItem("mail") === user.mail ? (
+              <div></div>
+            ) : (
+              <Button
+                className="!bg-white dark:!bg-zinc-500 dark:hover:!bg-zinc-700 dark:hover:!border-zinc-700 dark:text-white text-zinc-500 border-zinc-500"
+                onClick={handleSetShowDelete}
+              >
+                <BsFillTrashFill className="mx-2" /> Eliminar
+              </Button>
+            )}
           </div>
         </form>
       </AccordionContent>
@@ -299,7 +306,7 @@ const UserOverview = ({ userId }) => {
         method={() => deleteU(userId)}
       />
     </>
-  )
+  );
   return content
 }
 

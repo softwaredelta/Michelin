@@ -33,12 +33,14 @@ module.exports = class SellingPoint {
   }
 
   // M2_H1
-  static async addSellingPoint (fastify, type, zone, address, rating, name, phone) {
+  static async addSellingPoint (fastify, type, zone, address, name, phone) {
+    let newRating = await PlacesApi.getRatingFromAPI({address: address, name: name, rating: 0})
+
     const connection = await fastify.mysql.getConnection()
     await connection.query(
       'INSERT INTO sellingpoint(id_category, id_state, address, rating, name, phone, sp_visible) VALUES (?,?,?,?,?,?,1)',
       [
-        type, zone, address, rating, name, phone
+        type, zone, address, newRating, name, phone
       ]
     )
     connection.release()
@@ -78,19 +80,7 @@ module.exports = class SellingPoint {
     )
 
     await spData[0].forEach(async sp => {
-      let newRating = sp.rating
-
-      try { // Check for errors in Google API Call
-        let apiRating = await PlacesApi.getRatingFromAPI(sp.address)
-
-        // If search by address can't be found, try by sp name
-        apiRating = (typeof apiRating === 'undefined') ? await PlacesApi.getRatingFromAPI(sp.name) : apiRating
-
-        // Assign if new rating was found
-        newRating = (typeof apiRating === 'undefined') ? newRating : apiRating
-      } catch (err) {
-        console.log(err)
-      }
+      let newRating = await PlacesApi.getRatingFromAPI(sp)
 
       await connection.query(
         'UPDATE sellingpoint SET rating = ? WHERE id_sp = ?',

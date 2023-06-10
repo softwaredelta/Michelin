@@ -69,7 +69,7 @@ exports.postReportMails = async (request, reply) => {
   const { mailer } = this.fastify
   mailer.sendMail({
     to: mailList,
-    subject: 'Reporte de auditoria de ' + userName,
+    subject: 'Reporte de auditoría de ' + userName,
     text: 'Reporte generado por el TBM se adjunta al correo:',
     attachments: [
       {

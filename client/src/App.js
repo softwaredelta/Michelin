@@ -16,7 +16,7 @@ import Client from './features/form/tour/Client'
 import Finalize from './features/form/tour/Finalize'
 import Manager from './features/form/tour/Manager'
 import Metric from './features/metrics/Metric'
-
+import AdminRoute from './utils/AdminRoute'
 
 // AdminRoute in UsersList
 function App () {
@@ -44,9 +44,11 @@ function App () {
         <Route path='user'>
           <Route
             index element={
+              <AdminRoute>
               <ProtectedRoute>
                 <UsersList />
               </ProtectedRoute>
+              </AdminRoute>
             }
           />
         </Route>

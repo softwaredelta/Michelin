@@ -17,7 +17,6 @@ exports.addSellingPoints = async (request, reply) => {
     request.body.type,
     request.body.zone,
     request.body.address,
-    request.body.rating,
     request.body.name,
     request.body.phone
   )
