@@ -77,8 +77,6 @@ const UserAdd = ({ show, onClose }) => {
     const role = getValues('role')
     const state = getValues('state')
 
-    console.log(state)
-
     onClose()
     Swal.fire({
       title: 'Contraseña',
