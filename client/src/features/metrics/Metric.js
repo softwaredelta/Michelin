@@ -1,4 +1,4 @@
-/* import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import NavBar from '../../components/headers/NavBar'
 import Header from '../../components/headers/Header'
 import ModifiedFooter from '../../components/headers/ModifiedFooter'
@@ -15,7 +15,8 @@ import {
   useGetAvgPDVQuery,
   useGetFormsCuQuery,
   useGetTimeByMonthsQuery,
-  useGetFormsByMonthsUserQuery
+  useGetFormsByMonthsUserQuery,
+  useGetByMailQuery
 } from '../../services/metricApiSlice'
 import { useGetUsersQuery } from '../../services/usersApiSlice'
 import GradeChart from '../../components/inputs/GradeChart'
@@ -26,19 +27,31 @@ import GradeChart from '../../components/inputs/GradeChart'
  */
 
 // Historia de usuario M5_H1
-/*
-const Metric = () => {
-  const { register, getValues, reset } = useForm()
 
-  const [dStart, setDStart] = useState(null)
-  const [dEnd, setDEnd] = useState(null)
-  const [zone, setZone] = useState(null)
-  const [user, setUser] = useState(null)
+const Metric = () => {
+  const { register, getValues } = useForm()
+
+  const [dStart] = useState('null')
+  const [dEnd] = useState('null')
+  const [zone, setZone] = useState('null')
+  const [user, setUser] = useState('null')
+  const role = localStorage.getItem('role') // eslint-disable-line
+
+  const {
+    data: mail,
+    isSuccess: isSuccesMail
+  } = useGetByMailQuery()
+
+  useEffect(() => {
+    if (isSuccesMail) {
+      const { entities } = mail
+      setUser(entities.undefined.id_user)
+    }
+  }, [isSuccesMail])
 
   const {
     data: state,
-    isSuccess: isSuccessState,
-    isError: isErrorState
+    isSuccess: isSuccessState
   } = useGetStateQuery()
 
   let myState
@@ -53,8 +66,9 @@ const Metric = () => {
     myState = listContent
   }
 
-  const { data: users, isLoading, isSuccess, isError } = useGetUsersQuery()
+  const { data: users, isSuccess } = useGetUsersQuery()
   let myUser
+
   if (isSuccess) {
     const { ids, entities } = users
     const tableContent = ids?.length
@@ -70,9 +84,7 @@ const Metric = () => {
 
   const {
     data: time,
-    isLoading: isLoadingTimes,
-    isSuccess: isSuccessTimes,
-    isError: isErrorTimes
+    isSuccess: isSuccessTimes
   } = useGetByAvgTimeQuery({
     dStart,
     dEnd,
@@ -82,16 +94,14 @@ const Metric = () => {
   const [dataTime, setDataTime] = useState()
   useEffect(() => {
     if (isSuccessTimes) {
-      const { ids, entities } = time
+      const { entities } = time
       setDataTime(entities.undefined)
     }
-  }, [isSuccessTimes])
+  }, [isSuccessTimes, time, user, zone, useGetByAvgTimeQuery])
 
   const {
     data: tours,
-    isLoading: isLoadingTours,
-    isSuccess: isSuccessTours,
-    isError: isErrorTours
+    isSuccess: isSuccessTours
   } = useGetFormsCuQuery({
     dStart,
     dEnd,
@@ -101,87 +111,89 @@ const Metric = () => {
   const [dataTour, setDataTour] = useState()
   useEffect(() => {
     if (isSuccessTours) {
-      const { ids, entities } = tours
+      const { entities } = tours
       setDataTour(entities.undefined)
     }
-  }, [isSuccessTours])
+  }, [isSuccessTours, tours, user, zone, useGetFormsCuQuery])
 
   const {
     data: avgGradeByMonths,
-    isLoading: isLoadingGradeByMonths,
-    isSuccess: isSuccessGradeByMonths,
-    isError: isErrorGradeByMonths
+    isSuccess: isSuccessGradeByMonths
   } = useGetByAvgGradeQuery({
     dStart,
     dEnd,
     zone,
     user
   })
-  let dataAvgByMonths
-  let monthAvgByMonths
-  if (isSuccessGradeByMonths) {
-    const { ids, entities } = avgGradeByMonths
-    dataAvgByMonths = entities.undefined[0]
-    monthAvgByMonths = entities.undefined[1]
-  }
+
+  const [dataAvgByMonths, setDataAvgByMonths] = useState({ name: 'Tiempo Promedio', data: [2, 3, 4, 5, 6, 5] })
+  const [monthAvgByMonths, setMonthAvgByMonths] = useState(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'])
+
+  useEffect(() => {
+    if (isSuccessGradeByMonths) {
+      const { entities } = avgGradeByMonths
+      setDataAvgByMonths(entities.undefined[0])
+      setMonthAvgByMonths(entities.undefined[1])
+    }
+  }, [isSuccessGradeByMonths, avgGradeByMonths, user, zone, useGetByAvgGradeQuery])
 
   const {
     data: ToursByMonths,
-    isLoading: isLoadingToursByMonths,
-    isSuccess: isSuccessToursByMonths,
-    isError: isErrorToursByMonths
+    isSuccess: isSuccessToursByMonths
   } = useGetToursByMonthsQuery({
     zone,
     user
   })
-  let dataToursByMonths
-  let monthToursByMonths
-  if (isSuccessToursByMonths) {
-    const { ids, entities } = ToursByMonths
-    dataToursByMonths = entities.undefined[0]
-    monthToursByMonths = entities.undefined[1]
-  }
+  const [dataTourByMonths, setDataTourByMonths] = useState({ name: 'Tiempo Promedio', data: [2, 3, 4, 5, 6, 5] })
+  const [monthTourByMonths, setMonthTourByMonths] = useState(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'])
+
+  useEffect(() => {
+    if (isSuccessToursByMonths) {
+      const { entities } = ToursByMonths
+      setDataTourByMonths(entities.undefined[0])
+      setMonthTourByMonths(entities.undefined[1])
+    }
+  }, [isSuccessToursByMonths, ToursByMonths, user, zone, useGetToursByMonthsQuery])
 
   const {
     data: TimeByMonths,
-    isLoading: isLoadingTimeByMonths,
-    isSuccess: isSuccessTimeByMonths,
-    isError: isErrorTimeByMonths
+    isSuccess: isSuccessTimeByMonths
   } = useGetTimeByMonthsQuery({
     zone,
     user
   })
-  let dataTimeByMonths
-  let monthTimeByMonths
-  if (isSuccessTimeByMonths) {
-    const { ids, entities } = TimeByMonths
+  const [dataTimeByMonths, setDataTimeByMonths] = useState({ name: 'Tiempo Promedio', data: [2, 3, 4, 5, 6, 5] })
+  const [monthTimeByMonths, setMonthTimeByMonths] = useState(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'])
 
-    dataTimeByMonths = entities.undefined[0]
-    monthTimeByMonths = entities.undefined[1]
-  }
+  useEffect(() => {
+    if (isSuccessTimeByMonths) {
+      const { entities } = TimeByMonths
+      setDataTimeByMonths(entities.undefined[0])
+      setMonthTimeByMonths(entities.undefined[1])
+    }
+  }, [isSuccessTimeByMonths, TimeByMonths, user, zone, useGetTimeByMonthsQuery])
 
   const {
     data: UserByMonths,
-    isLoading: isLoadingUserByMonths,
-    isSuccess: isSuccessUserByMonths,
-    isError: isErrorUserByMonths
+    isSuccess: isSuccessUserByMonths
   } = useGetFormsByMonthsUserQuery({
     zone,
     user
   })
-  let dataUserByMonths
-  let monthUserByMonths
-  if (isSuccessUserByMonths) {
-    const { ids, entities } = UserByMonths
-    dataUserByMonths = entities.undefined[0]
-    monthUserByMonths = entities.undefined[1]
-  }
+  const [dataUserByMonths, setDataUserByMonths] = useState({ name: 'Tiempo Promedio', data: [2, 3, 4, 5, 6, 5] })
+  const [monthUserByMonths, setMonthUserByMonths] = useState(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'])
+
+  useEffect(() => {
+    if (isSuccessUserByMonths) {
+      const { entities } = UserByMonths
+      setDataUserByMonths(entities.undefined[0])
+      setMonthUserByMonths(entities.undefined[1])
+    }
+  }, [isSuccessUserByMonths, UserByMonths, user, zone, useGetFormsByMonthsUserQuery])
 
   const {
     data: AvgGradeCur,
-    isLoading: isLoadingAvgGradeCur,
-    isSuccess: isSuccessAvgGradeCur,
-    isError: isErrorAvgGradeCur
+    isSuccess: isSuccessAvgGradeCur
   } = useGetByAvgGradeCurQuery({
     dStart,
     dEnd,
@@ -196,20 +208,18 @@ const Metric = () => {
   const [managerGradeCur, setManagerGradeCur] = useState(0)
   useEffect(() => {
     if (isSuccessAvgGradeCur) {
-      const { ids, entities } = AvgGradeCur
+      const { entities } = AvgGradeCur
       dataAvgGradeCur = entities.undefined[0]
-      setExteriorGradeCur(dataAvgGradeCur.EXTERIOR)
-      setInteriorGradeCur(dataAvgGradeCur.INTERIOR)
-      setClientGradeCur(dataAvgGradeCur.CLIENT)
-      setManagerGradeCur(dataAvgGradeCur.MANAGER)
+      setExteriorGradeCur((dataAvgGradeCur.EXTERIOR === null) ? 0 : dataAvgGradeCur.EXTERIOR)
+      setInteriorGradeCur((dataAvgGradeCur.INTERIOR === null) ? 0 : dataAvgGradeCur.INTERIOR)
+      setClientGradeCur((dataAvgGradeCur.CLIENT === null) ? 0 : dataAvgGradeCur.CLIENT)
+      setManagerGradeCur((dataAvgGradeCur.MANAGER === null) ? 0 : dataAvgGradeCur.MANAGER)
     }
-  }, [isSuccessAvgGradeCur])
+  }, [isSuccessAvgGradeCur, AvgGradeCur, user, zone, useGetByAvgGradeCurQuery])
 
   const {
     data: AvgPDV,
-    isLoading: isLoadingAvgPDV,
-    isSuccess: isSuccessAvgPDV,
-    isError: isErrorAvgPDV
+    isSuccess: isSuccessAvgPDV
   } = useGetAvgPDVQuery({
     dStart,
     dEnd,
@@ -218,23 +228,34 @@ const Metric = () => {
   })
   const [dataAvgPDV, setDataAvgPDV] = useState(0)
 
-  useEffect(() => {
-    if (isSuccessAvgPDV) {
-      const { ids, entities } = AvgPDV
-      setDataAvgPDV(entities.undefined)
-    }
-  }, [isSuccessAvgPDV, AvgPDV])
-
-  const onFilterButtonClicked = () => {
-    setDStart()
-    setDEnd()
+  const onFilterButtonClicked = (e) => {
+    e.preventDefault()
     setZone(getValues('select_zone'))
-    setUser()
+    setUser(getValues('select_user'))
   }
 
-  // recorrido month-section
-  // section-calificacion
-
+  useEffect(() => {
+    if (isSuccessAvgPDV) {
+      const { entities } = AvgPDV
+      setDataAvgPDV(entities.undefined)
+    }
+  }, [isSuccessAvgPDV, AvgPDV, zone, user, useGetAvgPDVQuery])
+  let selectUser
+  if (role == 2 || role == 3){ //eslint-disable-line
+    selectUser = (
+      <Select
+        className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
+        id='select_user'
+        name='select_user'
+        {...register('select_user')}
+      >
+        <option value='null' selected>
+          Selecciona un usuario
+        </option>
+        {myUser}
+      </Select>
+    )
+  }
   const content = (
     <>
       <div>
@@ -245,9 +266,12 @@ const Metric = () => {
             <div className='content-start w-full ml-0 mb-6 bg-white rounded-2xl'>
               <div className='rounded-2xl border-blues-400 w-full'>
                 <form
-                  onSubmit={onFilterButtonClicked}
                   className='w-full flex flex-row gap-6 justify-center'
+
                 >
+                  <div className='flex-col text-lg text-center text-blues-300 break-words font-bold'>
+                    Estos registros son de los ultimos 6 meses
+                  </div>
                   <div className='flex-col'>
                     <Select
                       className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
@@ -255,50 +279,43 @@ const Metric = () => {
                       name='select_zone'
                       {...register('select_zone')}
                     >
-                      <option value='' selected>
+                      <option value='null' selected>
                         Selecciona un estado
                       </option>
                       {myState}
                     </Select>
                   </div>
                   <div className='flex-col'>
-                    <Select
-                      className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
-                      id='select_user'
-                      name='select_user'
-                      {...register('select_user')}
-                    >
-                      <option value='' selected>
-                        Selecciona un usuario
-                      </option>
-                      {myUser}
-                    </Select>
+                    {selectUser}
                   </div>
                   <div className='flex-col'>
                     <button
                       className='bg-blues-200 text-white py-2 px-4 rounded-md'
-                      type='submit'
+                      onClick={onFilterButtonClicked}
                     >
                       Filtrar
                     </button>
                   </div>
                 </form>
               </div>
-              <div className='w-11/12 grid grid-cols-3 gap-10 justify-center m-auto border-2 py-3 mb-6 mt-4 rounded-md shadow-md'>
-                <div className='text-center grid grid-rows-2 text-lg text-blues-300 break-words font-bold'>
-                  Promedio de Calificación de Puntos de Venta
-                  <GradeChart percent={parseInt(dataAvgPDV)} zone='' />
+              <div className='w-11/12 grid grid-cols-3 gap-10 justify-center m-auto border-2 py-3 mb-6 mt-4 rounded-md shadow-md dark:bg-slate-700'>
+                <div className='text-center grid grid-rows-2 text-lg text-blues-300 break-words font-bold dark:text-white'>
+                  Promedio de Calificación de Punto de Venta
+                  <div>
+                    <GradeChart percent={parseInt(dataAvgPDV)} zone='' />
+                  </div>
                 </div>
-                <div className='text-center grid grid-rows-2 text-lg text-blues-300 break-words font-bold'>
+                <div className='text-center grid grid-rows-2 text-lg text-blues-300 break-words font-bold dark:text-white'>
                   Tiempo Promedio de Recorridos al Mes
                   <p className='text-4xl'>{dataTime}</p> minutos
                 </div>
-                <div className='text-center grid grid-rows-2 text-lg text-blues-300 break-words font-bold'>
-                  Numero de Recorridos al Mes
+                <div className='text-center grid grid-rows-2 text-lg text-blues-300 break-words font-bold dark:text-white'>
+                  Número de Recorridos al Mes
                   <p className='text-4xl'>{dataTour}</p> recorridos
                 </div>
               </div>
-              <div className='w-11/12 grid grid-cols-4 gap-4 justify-center m-auto border-2 py-3 mb-6 mt-4 rounded-md shadow-md'>
+              <div className='w-11/12 grid grid-cols-4 gap-4 justify-center m-auto border-2 py-3 mb-6 mt-4 rounded-md shadow-md dark:bg-slate-700'>
+
                 <div className='text-center caption-bottom grid grid-rows-1 text-lg text-blues-300 break-words font-bold'>
                   <GradeChart
                     percent={parseInt(exteriorGradeCur)}
@@ -325,43 +342,45 @@ const Metric = () => {
                 </div>
               </div>
               <div className='w-full flex flex-row justify-center mb-5'>
-                <div className='flex-col border rounded-lg shadow-md'>
+                <div className='flex-col border rounded-lg shadow-md mr-2'>
                   <Line
                     title='Promedio de Calificación por Área'
                     data={dataAvgByMonths}
                     months={monthAvgByMonths}
+                    yAxis='Calificación'
                   />
                 </div>
-              </div>
-              <div className='flex flex-row gap-1 justify-center mb-5'>
-                <div className='flex-col border rounded-lg shadow-md'>
-                  <Line
-                    className='object-contain'
-                    title='Recorridos al Mes'
-                    data={dataToursByMonths}
-                    months={monthToursByMonths}
-                  />
-                </div>
-              </div>
-              <div className='flex flex-row w-full gap-2 justify-center mb-5'>
-                <div className='flex-col border rounded-lg shadow-md'>
-                  <Line
-                    className='object-contain'
-                    title='Recorridos de TBM por mes'
-                    data={dataUserByMonths}
-                    months={monthUserByMonths}
-                  />
-                </div>
-              </div>
-              <div className='w-full flex flex-row justify-center mb-5'>
                 <div className='flex-col border rounded-lg shadow-md'>
                   <Line
                     title='Tiempo de Recorridos'
                     data={dataTimeByMonths}
                     months={monthTimeByMonths}
+                    yAxis='Minutos'
                   />
                 </div>
               </div>
+              <div className='flex flex-row gap-1 justify-center mb-5'>
+                <div className='flex-col border rounded-lg shadow-md mr-2'>
+                  <Line
+                    className='object-contain'
+                    title='Recorridos al Mes'
+                    data={dataTourByMonths}
+                    months={monthTourByMonths}
+                    yAxis='Recorridos'
+                  />
+                </div>
+                <div className='flex-col border rounded-lg shadow-md'>
+                  <Line
+                    className='object-contain'
+                    title={`Recorridos por Mes de ${localStorage.getItem('name')} ${localStorage.getItem('lastName')}`}//eslint-disable-line
+                    data={dataUserByMonths}
+                    months={monthUserByMonths}
+                    yAxis='Recorridos'
+                  />
+                </div>
+              </div>
+              <div className='flex flex-row w-full gap-2 justify-center mb-5' />
+              <div className='w-full flex flex-row justify-center mb-5' />
             </div>
           </div>
           <ModifiedFooter />
@@ -373,4 +392,3 @@ const Metric = () => {
 }
 
 export default Metric
-*/

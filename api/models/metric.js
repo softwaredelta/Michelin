@@ -53,7 +53,6 @@ module.exports = class Metric {
       queryString
     )
     connection.release()
-    console.log(rows[0])
     return rows[0]
   }
 
