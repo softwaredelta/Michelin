@@ -37,9 +37,9 @@ const Finalize = () => {
 
   const handleSetShow = () => {
     const manager = getValues('manager')
-    const comments = getValues('comments')
+    const comments = [getValues('comment1'), getValues('comment2'), getValues('comment3')]
 
-    if (manager !== '' && comments !== '') {
+    if (manager !== '' && !comments.every(comment => comment === '')) {
       setShow(true)
     } else {
       Toast.fire({
@@ -75,10 +75,10 @@ const Finalize = () => {
   const onFinalizeTourClicked = async (e) => {
     e.preventDefault()
     const manager = getValues('manager')
-    const comments = getValues('comments')
+    const comments = [getValues('comment1'), getValues('comment2'), getValues('comment3')]
 
     Form.postForm(comments, manager, mailList)
-    navigate('/form')
+    navigate('/')
   }
 
   const mailListContent = mailList?.length
@@ -127,27 +127,56 @@ const Finalize = () => {
                     required
                     autoComplete='off'
                     className='rounded-md my-2 resize-none bg-neutral-100 p-2'
-                    maxLength='255'
+                    maxLength='80'
                     type='text'
                     placeholder='Ingrese el nombre del Gerente'
                   />
                   <Label
                     htmlFor='comments'
-                    value='Comentarios'
+                    value='Acciones Puntuales de Mejora'
                     className='text-xl font-semibold mr-2 my-1 mt-5 !text-blues-300'
                   />
-                  <textarea
-                    id='comments'
-                    name='comments'
-                    {...register('comments')}
+                  <Label
+                    htmlFor='comments'
+                    value='Ingresa por lo menos una acción de mejora'
+                    className='text-sm font-semibold mr-2 my-1 !text-blues-300'
+                  />
+                  <input
+                    id='comment1'
+                    name='comment1'
+                    {...register('comment1')}
                     required
                     autoComplete='off'
-                    className='rounded-md my-2 h-60 resize-none bg-neutral-100 p-2'
-                    maxLength='255'
+                    className='rounded-md my-2 resize-none bg-neutral-100 p-2'
+                    maxLength='80'
                     type='text'
                     rows='5'
                     cols='40'
-                    placeholder='Ingrese uno o varios Comentarios'
+                    placeholder='Ingrese una acción de mejora'
+                  />
+                  <input
+                    id='comment2'
+                    name='comment2'
+                    {...register('comment2')}
+                    autoComplete='off'
+                    className='rounded-md my-2 resize-none bg-neutral-100 p-2'
+                    maxLength='80'
+                    type='text'
+                    rows='5'
+                    cols='40'
+                    placeholder='Ingrese una acción de mejora'
+                  />
+                  <input
+                    id='comment3'
+                    name='comment3'
+                    {...register('comment3')}
+                    autoComplete='off'
+                    className='rounded-md my-2 resize-none bg-neutral-100 p-2'
+                    maxLength='80'
+                    type='text'
+                    rows='5'
+                    cols='40'
+                    placeholder='Ingrese una acción de mejora'
                   />
                 </div>
               </div>
