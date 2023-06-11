@@ -39,7 +39,7 @@ exports.generateReport = async (doc, bodyData, sellingPointData) => {
   addQuestions(doc, JSON.parse(bodyData.manager).questions, currentRect, bodyData.userName)
 
   checkCurrentRect(doc, currentRect, bodyData.userName)
-  addCommentSection(doc, currentRect, bodyData.comment)
+  addCommentSection(doc, currentRect, getCommentText(JSON.parse(bodyData.comments)))
 
   doc.end()
 }
@@ -94,7 +94,7 @@ function addSellingPointSection (doc, currentRect, duration) {
   doc.fillColor(blueColor)
 
   doc.fontSize(18)
-  doc.text(`${duration} minutos`, 485, singleRectPos[currentRect.index] + 40, { align: 'center' })
+  doc.text(`${duration} minutos`, 420, singleRectPos[currentRect.index] + 30, { align: 'center' })
   doc.fontSize(18).font('./uploads/fonts/RobotoSlab-Regular.ttf')
   doc.text('Tiempo del', 460, singleRectPos[currentRect.index] + 55)
   doc.text('Recorrido', 470, singleRectPos[currentRect.index] + 75)
@@ -165,9 +165,9 @@ function addCommentSection (doc, currentRect, comment) {
   doc.fillColor(blueColor)
   addSectionTitle(doc,
     currentRect,
-    'COMENTARIOS FINALES',
+    'ACCIONES DE MEJORA',
     '',
-    'Sección de comentarios para generar los compromisos de mejora y sus fechas de cumplimiento.'
+    'Sección de comentarios donde se indican los compromisos puntuales de mejora y sus fechas de cumplimiento.'
   )
 }
 
@@ -328,10 +328,21 @@ function getSellingpointQuestions (sellingPointData, managerName) { // Get first
   return questionObject
 }
 
+function getCommentText (commentObject) { // Full comment text
+  const comment1 = `${(commentObject.comments[0] !== '') ? '\u2022 ' : ''}${commentObject.comments[0]}`
+  const comment2 = `${(commentObject.comments[1] !== '') ? '\n\u2022 ' : ''}${commentObject.comments[1]}`
+  const comment3 = `${(commentObject.comments[2] !== '') ? '\n\u2022 ' : ''}${commentObject.comments[2]}`
+
+  const commentText = `${comment1}${comment2}${comment3}`
+
+  return commentText
+}
+
 function getCurrentDate () { // Date for report
   const date = new Date().toLocaleDateString('en-IN')
   const dateObject = new Date()
   const time = dateObject.toGMTString().slice(17, 22)
   const currentDate = `${date} ${time} GMT`
+
   return currentDate
 }

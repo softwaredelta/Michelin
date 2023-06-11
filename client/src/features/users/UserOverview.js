@@ -41,7 +41,6 @@ const UserOverview = ({ userId }) => {
   })
 
   let myStates
-  // console.log(stateData)
   let [stateList] = useState(stateData)
 
   const [showDelete, setShowDelete] = useState(false)

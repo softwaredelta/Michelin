@@ -265,7 +265,7 @@ export default class CurrentForm {
    * @param mailList - `mailList` is an array of email addresses to which the report should be sent via
    * email.
    */
-  async postForm (comment, managerName, mailList) {
+  async postForm (comments, managerName, mailList) {
     const currentDate = new Date()
 
     const preparationJson = this.SectionJson(1)
@@ -286,7 +286,7 @@ export default class CurrentForm {
     formData.append('spId', this.idSp)
     formData.append('fileName', reportName) // eslint-disable-line
     formData.append('duration', this.getElapsedMinutes())
-    formData.append('comment', comment)
+    formData.append('comments', this.CommentJson(comments))
     formData.append('managerName', managerName)
     formData.append('preparation', preparationJson)
     formData.append('exterior', exteriorJson)
@@ -384,6 +384,24 @@ export default class CurrentForm {
     let json = '{"mails": ['
     mailList.forEach((mail) => {
       json += '"' + mail + '",'
+    })
+
+    json = json.substring(0, json.length - 1)
+    json += ']}'
+
+    return json
+  }
+
+  /**
+   * The function converts a list of comments into a JSON string.
+   * @param commentList - The parameter commentList is an array of comments that will be converted to a
+   * JSON string.
+   * @returns A JSON string containing an array of comments.
+   */
+  CommentJson (commentList) {
+    let json = '{"comments": ['
+    commentList.forEach((comment) => {
+      json += '"' + comment + '",'
     })
 
     json = json.substring(0, json.length - 1)
