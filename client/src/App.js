@@ -22,6 +22,7 @@ import AdminRoute from './utils/AdminRoute'
 function App () {
   return (
     <Routes>
+      <Route path='prueba' />
       <Route path='/'>
         <Route
           index element={
