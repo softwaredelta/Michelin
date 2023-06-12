@@ -17,11 +17,11 @@ import Finalize from './features/form/tour/Finalize'
 import Manager from './features/form/tour/Manager'
 import Metric from './features/metrics/Metric'
 import AdminRoute from './utils/AdminRoute'
+import MetricTBM from './features/metrics/MetricTBM'
 
 function App () {
   return (
     <Routes>
-      <Route path='prueba' />
       <Route path='/'>
         <Route
           index element={
@@ -99,7 +99,17 @@ function App () {
             index
             element={
               <ProtectedRoute>
-                <Metric />
+                <ManagerRoute>
+                  <Metric />
+                </ManagerRoute>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='tbm'
+            element={
+              <ProtectedRoute>
+                <MetricTBM />
               </ProtectedRoute>
             }
           />

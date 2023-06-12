@@ -25,13 +25,30 @@ const NavBar = () => {
     </NavbarLink>
   )
   let manager
+  let metric
   if (role != 3){ //eslint-disable-line
     admin = null
+    metric = (
+      <NavbarLink
+        href='/metric/tbm'
+        className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
+      >
+        Métricas
+      </NavbarLink>
+    )
   }
 
   if (role == 2 || role == 3){ //eslint-disable-line
     manager = (
       <NavbarLink href='/question' className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'>Cuestionarios</NavbarLink>
+    )
+    metric = (
+      <NavbarLink
+        href='/metric'
+        className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
+      >
+        Métricas
+      </NavbarLink>
     )
   }
 
@@ -58,12 +75,7 @@ const NavBar = () => {
             >
               Historial
             </NavbarLink>
-            <NavbarLink
-              href='/metric'
-              className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
-            >
-              Métricas
-            </NavbarLink>
+            {metric}
             <NavbarLink
               href='/sellingPoint'
               className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
