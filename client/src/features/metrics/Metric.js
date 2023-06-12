@@ -200,8 +200,7 @@ const Metric = () => {
     zone,
     user
   })
-  let dataAvgGradeCur
-
+  const [dataAvgGradeCur, setDataAvgGradeCur] = useState({})
   const [exteriorGradeCur, setExteriorGradeCur] = useState(0)
   const [interiorGradeCur, setInteriorGradeCur] = useState(0)
   const [clientGradeCur, setClientGradeCur] = useState(0)
@@ -209,7 +208,7 @@ const Metric = () => {
   useEffect(() => {
     if (isSuccessAvgGradeCur) {
       const { entities } = AvgGradeCur
-      dataAvgGradeCur = entities.undefined[0]
+      setDataAvgGradeCur(entities.undefined[0])
       setExteriorGradeCur((dataAvgGradeCur.EXTERIOR === null) ? 0 : dataAvgGradeCur.EXTERIOR)
       setInteriorGradeCur((dataAvgGradeCur.INTERIOR === null) ? 0 : dataAvgGradeCur.INTERIOR)
       setClientGradeCur((dataAvgGradeCur.CLIENT === null) ? 0 : dataAvgGradeCur.CLIENT)
