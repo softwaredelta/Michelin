@@ -5,7 +5,7 @@ library. The API is configured with a `baseUrl` and a function to prepare header
 */
 export const appSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3080/',
+    baseUrl: 'https://back2basics.software/api/',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token') // eslint-disable-line
       if (token) {
