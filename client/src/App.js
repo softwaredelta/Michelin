@@ -100,7 +100,7 @@ function App () {
             element={
               <ProtectedRoute>
                 <ManagerRoute>
-                <Metric />
+                  <Metric />
                 </ManagerRoute>
               </ProtectedRoute>
             }

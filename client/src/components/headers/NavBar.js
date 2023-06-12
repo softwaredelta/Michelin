@@ -30,11 +30,11 @@ const NavBar = () => {
     admin = null
     metric = (
       <NavbarLink
-              href='/metric/tbm'
-              className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
-            >
-              Métricas
-            </NavbarLink>
+        href='/metric/tbm'
+        className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
+      >
+        Métricas
+      </NavbarLink>
     )
   }
 
@@ -44,11 +44,11 @@ const NavBar = () => {
     )
     metric = (
       <NavbarLink
-              href='/metric'
-              className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
-            >
-              Métricas
-            </NavbarLink>
+        href='/metric'
+        className='text-lg font-semibold dark:!text-white !text-blues-200 hover:!text-gray-500 dark:hover:!text-trademark-50'
+      >
+        Métricas
+      </NavbarLink>
     )
   }
 

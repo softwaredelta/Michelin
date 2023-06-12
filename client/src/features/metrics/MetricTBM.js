@@ -41,9 +41,9 @@ const MetricTBM = () => {
     data: mail,
     isSuccess: isSuccesMail
   } = useGetByMailQuery()
-  
-  const [idUser,setIdUser] = useState('null')
-useEffect(() => {
+
+  const [idUser, setIdUser] = useState('null')
+  useEffect(() => {
     if (isSuccesMail) {
       const { entities } = mail
       setUser(entities.undefined.id_user)
@@ -72,7 +72,7 @@ useEffect(() => {
 
   const { data: users, isSuccess } = useGetUsersQuery()
   let myUser
-  
+
   if (isSuccess) {
     const { ids, entities } = users
     const tableContent = ids?.length
@@ -234,7 +234,7 @@ useEffect(() => {
     e.preventDefault()
     setZone(getValues('select_zone'))
     if(role != 1){ // eslint-disable-line
-    setUser(getValues('select_user'))
+      setUser(getValues('select_user'))
     }
   }
 
@@ -245,19 +245,19 @@ useEffect(() => {
     }
   }, [isSuccessAvgPDV, AvgPDV, zone, user])
 
-    const selectUser = (
-      <Select
-        className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2 hidden'
-        id='select_user'
-        name='select_user'
-        {...register('select_user')}
-      >
-        <option value={idUser} selected>
-          Selecciona un usuario
-        </option>
-        {myUser}
-      </Select>
-    )
+  const selectUser = (
+    <Select
+      className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2 hidden'
+      id='select_user'
+      name='select_user'
+      {...register('select_user')}
+    >
+      <option value={idUser} selected>
+        Selecciona un usuario
+      </option>
+      {myUser}
+    </Select>
+  )
   const content = (
     <>
       <div>

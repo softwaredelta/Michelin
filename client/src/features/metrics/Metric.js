@@ -35,7 +35,6 @@ const Metric = () => {
   const [user, setUser] = useState('null')
   const role = localStorage.getItem('role') // eslint-disable-line
 
-
   const {
     data: state,
     isSuccess: isSuccessState
@@ -57,15 +56,14 @@ const Metric = () => {
     const { ids, entities } = users
     const tableContent = ids?.length
       ? ids.map((idUser) => { //eslint-disable-line
-        if(entities[idUser].mail !== localStorage.mail){ // eslint-disable-line
-            return(<>
-                <option key={idUser} value={entities[idUser].id_user}>
-                  {' '}
-                  {`${entities[idUser].name} ${entities[idUser].last_name}`}
-                </option>
-            </>)
-       }
-        })
+        if(entities[idUser].mail !== 'admin@backtobasics.com'){ // eslint-disable-line
+          return (
+            <option key={idUser} value={entities[idUser].id_user}>
+              {`${entities[idUser].name} ${entities[idUser].last_name}`}
+            </option>
+          )
+        }
+      })
       : null
     myUser = tableContent
   }
