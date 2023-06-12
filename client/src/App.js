@@ -18,7 +18,6 @@ import Manager from './features/form/tour/Manager'
 import Metric from './features/metrics/Metric'
 import AdminRoute from './utils/AdminRoute'
 
-// AdminRoute in UsersList
 function App () {
   return (
     <Routes>

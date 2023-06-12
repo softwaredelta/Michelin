@@ -19,6 +19,8 @@ exports.generateReport = async (doc, bodyData, sellingPointData) => {
   addSellingPointSection(doc, currentRect, bodyData.duration)
   addQuestions(doc, sellingPointQuestions, currentRect, bodyData.userName)
 
+  currentRect.index += 2 //Jump to new page
+
   addPreparationSection(doc, currentRect, bodyData.duration)
   addQuestions(doc, JSON.parse(bodyData.preparation).questions, currentRect, bodyData.userName)
 
@@ -318,11 +320,13 @@ function getSellingpointQuestions (sellingPointData, managerName) { // Get first
   const spStateQuestion = '¿En qué estado del país está el PDV?'
   const spNameQuestion = 'Nombre comercial del PDV'
   const spManagerQuestion = 'Nombre del encargado / contacto del PDV'
+  const spRatingQuestion = '¿Qué calificación promedio en tiene el PDV según las opiniones en Google?'
 
   const questionObject = [
     { text: spStateQuestion, answer: 5, answerText: sellingPointData[0].zone },
     { text: spNameQuestion, answer: 5, answerText: sellingPointData[0].name },
-    { text: spManagerQuestion, answer: 5, answerText: managerName }
+    { text: spRatingQuestion, answer: 5, answerText: sellingPointData[0].rating },
+    { text: spManagerQuestion, answer: 5, answerText: managerName },
   ]
 
   return questionObject
