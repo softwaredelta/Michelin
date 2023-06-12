@@ -345,7 +345,7 @@ const Metric = () => {
                 <div className='flex-col border rounded-lg shadow-md mr-2'>
                   <Line
                     title='Promedio de Calificación por Área'
-                    subtitle={'Muestra el desempeño de los resultados en los recorridos.                                (Puede ser filtrada por Usuarios y Zonas)'}
+                    subtitle='Muestra el desempeño de los resultados en los recorridos.                                (Puede ser filtrada por Usuarios y Zonas)'
                     data={dataAvgByMonths}
                     months={monthAvgByMonths}
                     yAxis='Calificación'
@@ -354,7 +354,7 @@ const Metric = () => {
                 <div className='flex-col border rounded-lg shadow-md'>
                   <Line
                     title='Tiempo de Recorridos'
-                    subtitle={'(Puede ser filtrada por Usuarios y Zonas)'}
+                    subtitle='(Puede ser filtrada por Usuarios y Zonas)'
                     data={dataTimeByMonths}
                     months={monthTimeByMonths}
                     yAxis='Minutos'
@@ -366,7 +366,7 @@ const Metric = () => {
                   <Line
                     className='object-contain'
                     title='Recorridos al Mes'
-                    subtitle={'(Puede ser filtrada por Usuarios y Zonas)'}
+                    subtitle='(Puede ser filtrada por Usuarios y Zonas)'
                     data={dataTourByMonths}
                     months={monthTourByMonths}
                     yAxis='Recorridos'
@@ -376,7 +376,7 @@ const Metric = () => {
                   <Line
                     className='object-contain'
                     title={`Recorridos por Mes de ${localStorage.getItem('name')} ${localStorage.getItem('lastName')}`}//eslint-disable-line
-                    subtitle={'Muestra tus recorridos (Filtra por Zonas)'}
+                    subtitle='Muestra tus recorridos (Filtra por Zonas)'
                     data={dataUserByMonths}
                     months={monthUserByMonths}
                     yAxis='Recorridos'
