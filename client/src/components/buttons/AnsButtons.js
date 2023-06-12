@@ -4,8 +4,7 @@ import NaButton from './NaButton'
 import CurrentForm from '../../services/CurrentForm'
 import { useState } from 'react'
 import { FileInput } from 'flowbite-react'
-import Compressor from 'compressorjs';
-import imageCompression from 'browser-image-compression';
+import imageCompression from 'browser-image-compression'
 
 const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
   const Form = CurrentForm.getInstance()
@@ -41,18 +40,18 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
     const options = {
       maxSizeMB: 0.8,
       maxWidthOrHeight: 1920,
-      useWebWorker: true,
+      useWebWorker: true
     }
 
     imageCompression(e.target.files[0], options)
-    .then(function (compressedImage) {  
-      Form.setFile(section, area, index, compressedImage)
-      Form.setAnswer(section, area, index, 4)
-      setImageUploaded(true) 
-    })
-    .catch(function (err) {
-      console.log(err.message)
-    });
+      .then(function (compressedImage) {
+        Form.setFile(section, area, index, compressedImage)
+        Form.setAnswer(section, area, index, 4)
+        setImageUploaded(true)
+      })
+      .catch(function (err) {
+        console.log(err.message)
+      })
   }
 
   /**
