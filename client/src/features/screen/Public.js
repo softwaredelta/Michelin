@@ -14,7 +14,7 @@ import { FaFlagCheckered } from 'react-icons/fa'
 const Public = () => {
   const name = localStorage.getItem('name'); // eslint-disable-line
 
-  const baseReportRoute = 'https://back2basics.software/api/form/report/'
+  const baseReportRoute = 'http://localhost:3080/form/report/'
 
   const {
     data: forms,
@@ -90,8 +90,8 @@ const Public = () => {
             />
 
             <div className='absolute self-start text-2xl text-blue-300 bottom-48 left-10 z-20'>
-              <h2 className='text-3xl font-michelin underline text-white mt-2 shadow-xl'>
-                ¡¡Bienvenido {name}!!
+              <h2 className='text-3xl font-michelin text-white mt-2 shadow-xl'>
+                Bienvenido/a {name}
               </h2>
               <div className='justify-self-end w-7/12'>
                 <Button
