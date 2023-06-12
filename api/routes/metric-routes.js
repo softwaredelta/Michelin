@@ -26,6 +26,7 @@ async function metricRoutes (fastify, options) {
 
   fastify.get('/getAverageTimeByMonth/:zone/:user', metricController.fetchAverageTimeByMonth) // ready
   // { onRequest: [fastify.authenticate]}, metricController.fetchAverageTime)
+  fastify.get('/getUserMail/:mail', metricController.fetchByMail)
 }
 
 module.exports = metricRoutes

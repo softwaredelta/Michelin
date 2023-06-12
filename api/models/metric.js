@@ -8,7 +8,7 @@
 module.exports = class Metric {
   static async averageTime (fastify, dFilter, zone, user) {
     const connection = await fastify.mysql.getConnection()
-    const filters = 'SELECT AVG(f.duration) AS "TIEMPO" FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND f.sp_name = sp.name ' + dFilter + zone + user
+    const filters = 'SELECT AVG(f.duration) AS "TIEMPO" FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND f.sp_name = sp.name ' + dFilter + zone + user
     const rows = await connection.query(
       filters
     )
@@ -18,7 +18,7 @@ module.exports = class Metric {
 
   static async averageGradeByMonth (fastify, dFilter, zone, user) {
     const connection = await fastify.mysql.getConnection()
-    const queryString = "SELECT MONTH(f.date) AS 'MONTH', AVG(f.exterior_grade) AS 'EXTERIOR', AVG(f.interior_grade) AS 'INTERIOR', AVG(f.client_grade) AS 'CLIENT', AVG(f.store_manager_grade) AS 'MANAGER' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND f.sp_name = sp.name " + dFilter + zone + user + 'GROUP BY MONTH(f.date)'
+    const queryString = "SELECT YEAR(f.date), MONTH(f.date) AS 'MONTH', AVG(f.exterior_grade) AS 'EXTERIOR', AVG(f.interior_grade) AS 'INTERIOR', AVG(f.client_grade) AS 'CLIENT', AVG(f.store_manager_grade) AS 'MANAGER' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND f.sp_name = sp.name " + dFilter + zone + user + ' GROUP BY YEAR(f.date), MONTH(f.date) ORDER BY YEAR(f.date) ASC'
     const rows = await connection.query(
       queryString
     )
@@ -28,7 +28,7 @@ module.exports = class Metric {
 
   static async averageGradeCur (fastify, dFilter, zone, user) {
     const connection = await fastify.mysql.getConnection()
-    const queryString = "SELECT AVG(f.exterior_grade) AS 'EXTERIOR', AVG(f.interior_grade) AS 'INTERIOR', AVG(f.client_grade) AS 'CLIENT', AVG(f.store_manager_grade) AS 'MANAGER' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND f.sp_name = sp.name " + dFilter + zone + user
+    const queryString = "SELECT AVG(f.exterior_grade) AS 'EXTERIOR', AVG(f.interior_grade) AS 'INTERIOR', AVG(f.client_grade) AS 'CLIENT', AVG(f.store_manager_grade) AS 'MANAGER' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND f.sp_name = sp.name " + dFilter + zone + user
     const rows = await connection.query(
       queryString
     )
@@ -38,7 +38,7 @@ module.exports = class Metric {
 
   static async averageGradePDV (fastify, dFilter, zone, user) {
     const connection = await fastify.mysql.getConnection()
-    const queryString = "SELECT (sb.EXT+sb.INTE+sb.CLIENT+sb.MANAGER)/(4*1.0) as 'PROMEDIO' FROM (SELECT AVG(f.exterior_grade) AS EXT, AVG(f.interior_grade) AS INTE, AVG(f.client_grade) AS CLIENT, AVG(f.store_manager_grade) AS MANAGER FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND f.sp_name = sp.name " + dFilter + zone + user + ') AS sb'
+    const queryString = "SELECT (sb.EXT+sb.INTE+sb.CLIENT+sb.MANAGER)/(4*1.0) as 'PROMEDIO' FROM (SELECT AVG(f.exterior_grade) AS EXT, AVG(f.interior_grade) AS INTE, AVG(f.client_grade) AS CLIENT, AVG(f.store_manager_grade) AS MANAGER FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND f.sp_name = sp.name " + dFilter + zone + user + ') AS sb'
     const rows = await connection.query(
       queryString
     )
@@ -53,13 +53,12 @@ module.exports = class Metric {
       queryString
     )
     connection.release()
-    console.log(rows[0])
     return rows[0]
   }
 
   static async formsByMonth (fastify, zone, user) {
     const connection = await fastify.mysql.getConnection()
-    const queryString = "SELECT MONTH(f.date) as 'MONTH', COUNT(f.id_form) as 'COUNT' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND f.sp_name = sp.name " + zone + user + ' GROUP BY MONTH(f.date)'
+    const queryString = "SELECT YEAR(f.date), MONTH(f.date) as 'MONTH', COUNT(f.id_form) as 'COUNT' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND f.sp_name = sp.name " + zone + user + ' GROUP BY YEAR(f.date), MONTH(f.date) ORDER BY YEAR(f.date) ASC'
     const rows = await connection.query(
       queryString
     )
@@ -69,7 +68,7 @@ module.exports = class Metric {
 
   static async formsByMonthTBM (fastify, zone, user) {
     const connection = await fastify.mysql.getConnection()
-    const queryString = "SELECT MONTH(f.date) as 'MONTH', COUNT(f.id_form) as 'COUNT' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND (f.id_user = " + user + ') AND f.sp_name = sp.name ' + zone + ' GROUP BY MONTH(f.date)'
+    const queryString = "SELECT YEAR(f.date), MONTH(f.date) as 'MONTH', COUNT(f.id_form) as 'COUNT' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND (f.id_user = " + user + ') AND f.sp_name = sp.name ' + zone + ' GROUP BY YEAR(f.date), MONTH(f.date) ORDER BY YEAR(f.date) ASC'
     const rows = await connection.query(
       queryString
     )
@@ -79,7 +78,7 @@ module.exports = class Metric {
 
   static async formsByMonthManager (fastify, zone, user) {
     const connection = await fastify.mysql.getConnection()
-    const queryString = "SELECT MONTH(f.date) as 'MONTH', COUNT(f.id_form) as 'COUNT' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND ((f.id_user IN (SELECT u.id_user FROM users u WHERE u.id_manager = " + user + ')) OR f.id_user = ' + user + ') AND f.sp_name = sp.name ' + zone + ' GROUP BY MONTH(f.date)'
+    const queryString = "SELECT YEAR(f.date), MONTH(f.date) as 'MONTH', COUNT(f.id_form) as 'COUNT' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND ((f.id_user IN (SELECT u.id_user FROM users u WHERE u.id_manager = " + user + ')) OR f.id_user = ' + user + ') AND f.sp_name = sp.name ' + zone + ' GROUP BY YEAR(f.date), MONTH(f.date) ORDER BY YEAR(f.date) ASC'
     const rows = await connection.query(
       queryString
     )
@@ -89,7 +88,7 @@ module.exports = class Metric {
 
   static async formsByMonthAdmin (fastify, zone) {
     const connection = await fastify.mysql.getConnection()
-    const queryString = "SELECT MONTH(f.date) as 'MONTH', COUNT(f.id_form) as 'COUNT' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND f.sp_name = sp.name " + zone + ' GROUP BY MONTH(f.date)'
+    const queryString = "SELECT YEAR(f.date), MONTH(f.date) as 'MONTH', COUNT(f.id_form) as 'COUNT' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND f.sp_name = sp.name " + zone + ' GROUP BY YEAR(f.date), MONTH(f.date) ORDER BY YEAR(f.date) ASC'
     const rows = await connection.query(
       queryString
     )
@@ -99,7 +98,7 @@ module.exports = class Metric {
 
   static async averageTimeByMonth (fastify, zone, user) {
     const connection = await fastify.mysql.getConnection()
-    const queryString = "SELECT MONTH(f.date) as 'MONTH', AVG(f.duration) as 'DURATION' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -6 MONTH) AND f.sp_name = sp.name " + zone + user + ' GROUP BY MONTH(f.date)'
+    const queryString = "SELECT YEAR(f.date), MONTH(f.date) as 'MONTH', AVG(f.duration) as 'DURATION' FROM form f, sellingpoint sp WHERE f.date >= DATE_ADD(CURRENT_DATE(),INTERVAL -5 MONTH) AND f.sp_name = sp.name " + zone + user + ' GROUP BY YEAR(f.date), MONTH(f.date) ORDER BY YEAR(f.date) ASC'
     const rows = await connection.query(
       queryString
     )

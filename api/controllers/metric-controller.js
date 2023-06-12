@@ -7,12 +7,11 @@ const Metric = require('../models/metric')
 
 // Historia de usuario M5_H1
 
-const nameMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+const nameMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
 exports.fetchBy = async (request, reply) => {
   const { dStart, dEnd, zone, user } = request.params
   const metricData = await Metric.fetchBy(this.fastify, dStart, dEnd, zone, user)
-
   return metricData
 }
 
@@ -51,7 +50,6 @@ exports.fetchAverageGradeCur = async (request, reply) => {
     userParam = ' AND (f.id_user = ' + user + ') '
   } else { userParam = '' }
   const metricData = await Metric.averageGradeCur(this.fastify, dFilter, zoneParam, userParam)
-  console.log(metricData)
 
   return metricData
 }
@@ -85,7 +83,7 @@ exports.fetchAverageGradeByMonth = async (request, reply) => {
     exterior.push(parseInt(metricData[i].INTERIOR))
     client.push(parseInt(metricData[i].CLIENT))
     manager.push(parseInt(metricData[i].MANAGER))
-    months.push(nameMonths[(metricData[i].MONTH) - 2])
+    months.push(nameMonths[(metricData[i].MONTH) - 1])
   }
 
   data.push({ name: 'Exterior', data: exterior })
@@ -156,13 +154,12 @@ exports.fetchFormsByMonth = async (request, reply) => {
 
   for (let i = 0; i < metricData.length; i++) {
     tours.push((parseInt(metricData[i].COUNT)))
-    months.push(nameMonths[(metricData[i].MONTH) - 2])
+    months.push(nameMonths[(metricData[i].MONTH) - 1])
   }
 
   data.push({ name: 'Recorridos', data: tours })
 
   const datafull = [data, months]
-  console.log(datafull)
   return (datafull)
 }
 
@@ -191,13 +188,12 @@ exports.fetchFormsByMonthUser = async (request, reply) => {
 
   for (let i = 0; i < metricData.length; i++) {
     forms.push((parseInt(metricData[i].COUNT)))
-    months.push(nameMonths[(metricData[i].MONTH) - 2])
+    months.push(nameMonths[(metricData[i].MONTH) - 1])
   }
 
   data.push({ name: userId[0].name, data: forms })
 
   const datafull = [data, months]
-  console.log(datafull)
   return datafull
 }
 
@@ -219,7 +215,7 @@ exports.fetchAverageTimeByMonth = async (request, reply) => {
 
   for (let i = 0; i < metricData.length; i++) {
     duration.push((parseInt(metricData[i].DURATION)))
-    months.push(nameMonths[(metricData[i].MONTH) - 2])
+    months.push(nameMonths[(metricData[i].MONTH) - 1])
   }
 
   data.push({ name: 'Tiempo Promedio', data: duration })
@@ -227,4 +223,10 @@ exports.fetchAverageTimeByMonth = async (request, reply) => {
   const datafull = [data, months]
 
   return datafull
+}
+
+exports.fetchByMail = async (request, reply) => {
+  const { mail } = request.params
+  const userId = await Metric.getId(this.fastify, mail)
+  return userId
 }

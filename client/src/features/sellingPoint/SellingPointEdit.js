@@ -135,7 +135,7 @@ const SellingPointEdit = ({ show, onClose, spId }) => {
                   {...register('name')}
                   defaultValue={sp.name}
                   required
-                  maxLength={255}
+                  maxLength={50}
                   rows='2'
                 />
               </div>
