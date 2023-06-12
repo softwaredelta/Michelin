@@ -47,7 +47,7 @@ const Metric = () => {
       const { entities } = mail
       setUser(entities.undefined.id_user)
     }
-  }, [isSuccesMail])
+  }, [isSuccesMail, mail])
 
   const {
     data: state,
@@ -97,7 +97,7 @@ const Metric = () => {
       const { entities } = time
       setDataTime(entities.undefined)
     }
-  }, [isSuccessTimes, time, user, zone, useGetByAvgTimeQuery])
+  }, [isSuccessTimes, time, user, zone])
 
   const {
     data: tours,
@@ -114,7 +114,7 @@ const Metric = () => {
       const { entities } = tours
       setDataTour(entities.undefined)
     }
-  }, [isSuccessTours, tours, user, zone, useGetFormsCuQuery])
+  }, [isSuccessTours, tours, user, zone])
 
   const {
     data: avgGradeByMonths,
@@ -135,7 +135,7 @@ const Metric = () => {
       setDataAvgByMonths(entities.undefined[0])
       setMonthAvgByMonths(entities.undefined[1])
     }
-  }, [isSuccessGradeByMonths, avgGradeByMonths, user, zone, useGetByAvgGradeQuery])
+  }, [isSuccessGradeByMonths, avgGradeByMonths, user, zone])
 
   const {
     data: ToursByMonths,
@@ -153,7 +153,7 @@ const Metric = () => {
       setDataTourByMonths(entities.undefined[0])
       setMonthTourByMonths(entities.undefined[1])
     }
-  }, [isSuccessToursByMonths, ToursByMonths, user, zone, useGetToursByMonthsQuery])
+  }, [isSuccessToursByMonths, ToursByMonths, user, zone])
 
   const {
     data: TimeByMonths,
@@ -171,7 +171,7 @@ const Metric = () => {
       setDataTimeByMonths(entities.undefined[0])
       setMonthTimeByMonths(entities.undefined[1])
     }
-  }, [isSuccessTimeByMonths, TimeByMonths, user, zone, useGetTimeByMonthsQuery])
+  }, [isSuccessTimeByMonths, TimeByMonths, user, zone])
 
   const {
     data: UserByMonths,
@@ -189,7 +189,7 @@ const Metric = () => {
       setDataUserByMonths(entities.undefined[0])
       setMonthUserByMonths(entities.undefined[1])
     }
-  }, [isSuccessUserByMonths, UserByMonths, user, zone, useGetFormsByMonthsUserQuery])
+  }, [isSuccessUserByMonths, UserByMonths, user, zone])
 
   const {
     data: AvgGradeCur,
@@ -215,7 +215,7 @@ const Metric = () => {
       setClientGradeCur((dataAvgGradeCur.CLIENT === null) ? 0 : dataAvgGradeCur.CLIENT)
       setManagerGradeCur((dataAvgGradeCur.MANAGER === null) ? 0 : dataAvgGradeCur.MANAGER)
     }
-  }, [isSuccessAvgGradeCur, AvgGradeCur, user, zone, useGetByAvgGradeCurQuery])
+  }, [isSuccessAvgGradeCur, AvgGradeCur, user, zone, dataAvgGradeCur])
 
   const {
     data: AvgPDV,
@@ -239,7 +239,7 @@ const Metric = () => {
       const { entities } = AvgPDV
       setDataAvgPDV(entities.undefined)
     }
-  }, [isSuccessAvgPDV, AvgPDV, zone, user, useGetAvgPDVQuery])
+  }, [isSuccessAvgPDV, AvgPDV, zone, user])
   let selectUser
   if (role == 2 || role == 3){ //eslint-disable-line
     selectUser = (
