@@ -125,7 +125,7 @@ const SellingPointAdd = ({ show, onClose }) => {
                   id='name'
                   {...register('name')}
                   required
-                  maxLength={255}
+                  maxLength={50}
                 />
               </div>
             </div>
