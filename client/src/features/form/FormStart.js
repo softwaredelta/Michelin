@@ -103,8 +103,8 @@ const FormStart = () => {
           <div className='flex flex-col'>
             <div className='mr-24'>
               <div className='grid grid-cols-4 mb-2'>
-                <h2 className='text-3xl font-michelin col-span-2 underline text-blues-200 dark:text-white mt-2 ml-10'>
-                  ¡¡Bienvenido {name}!!
+                <h2 className='text-3xl font-michelin col-span-2 text-blues-200 dark:text-white mt-2 ml-10'>
+                  Bienvenido/a {name}
                 </h2>
                 <BsSearch className='mr-2 my-1 mt-5 dark:fill-white col-span-1 justify-self-end' />
                 <input

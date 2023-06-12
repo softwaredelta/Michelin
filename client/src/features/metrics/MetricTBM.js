@@ -15,10 +15,12 @@ import {
   useGetAvgPDVQuery,
   useGetFormsCuQuery,
   useGetTimeByMonthsQuery,
-  useGetFormsByMonthsUserQuery
+  useGetFormsByMonthsUserQuery,
+  useGetByMailQuery
 } from '../../services/metricApiSlice'
 import { useGetUsersQuery } from '../../services/usersApiSlice'
 import GradeChart from '../../components/inputs/GradeChart'
+
 /*
  * Link a requerimientos funcionales:
  * https://docs.google.com/spreadsheets/d/1Eme0YIj9GZCc3QCBQehDUGZIgS7aTilZx4oUy35dcGc/edit?usp=sharing
@@ -26,7 +28,7 @@ import GradeChart from '../../components/inputs/GradeChart'
 
 // Historia de usuario M5_H1
 
-const Metric = () => {
+const MetricTBM = () => {
   const { register, getValues } = useForm()
 
   const [dStart] = useState('null')
@@ -35,6 +37,21 @@ const Metric = () => {
   const [user, setUser] = useState('null')
   const role = localStorage.getItem('role') // eslint-disable-line
 
+  const {
+    data: mail,
+    isSuccess: isSuccesMail
+  } = useGetByMailQuery()
+  
+  const [idUser,setIdUser] = useState('null')
+useEffect(() => {
+    if (isSuccesMail) {
+      const { entities } = mail
+      setUser(entities.undefined.id_user)
+      if (role == 1){ // eslint-disable-line
+        setIdUser(entities.undefined.id_user)
+      }
+    }
+  }, [isSuccesMail, mail, role])
 
   const {
     data: state,
@@ -42,30 +59,28 @@ const Metric = () => {
   } = useGetStateQuery()
 
   let myState
+
   if (isSuccessState) {
     const { ids } = state
+
     const listContent = ids?.length
       ? ids.map((idState) => <StateOption key={idState} zoneId={idState} />)
       : null
+
     myState = listContent
   }
 
   const { data: users, isSuccess } = useGetUsersQuery()
   let myUser
-
+  
   if (isSuccess) {
     const { ids, entities } = users
     const tableContent = ids?.length
-      ? ids.map((idUser) => { //eslint-disable-line
-        if(entities[idUser].mail !== localStorage.mail){ // eslint-disable-line
-            return(<>
-                <option key={idUser} value={entities[idUser].id_user}>
-                  {' '}
-                  {`${entities[idUser].name} ${entities[idUser].last_name}`}
-                </option>
-            </>)
-       }
-        })
+      ? ids.map((idUser) => (
+        <option key={idUser} value={entities[idUser].id_user}>
+          {`${entities[idUser].name} ${entities[idUser].last_name}`}
+        </option>
+      ))
       : null
     myUser = tableContent
   }
@@ -218,7 +233,9 @@ const Metric = () => {
   const onFilterButtonClicked = (e) => {
     e.preventDefault()
     setZone(getValues('select_zone'))
+    if(role != 1){ // eslint-disable-line
     setUser(getValues('select_user'))
+    }
   }
 
   useEffect(() => {
@@ -227,22 +244,20 @@ const Metric = () => {
       setDataAvgPDV(entities.undefined)
     }
   }, [isSuccessAvgPDV, AvgPDV, zone, user])
-  let selectUser
-  if (role == 2 || role == 3){ //eslint-disable-line
-    selectUser = (
+
+    const selectUser = (
       <Select
-        className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
+        className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2 hidden'
         id='select_user'
         name='select_user'
         {...register('select_user')}
       >
-        <option value='null' selected>
+        <option value={idUser} selected>
           Selecciona un usuario
         </option>
         {myUser}
       </Select>
     )
-  }
   const content = (
     <>
       <div>
@@ -382,4 +397,4 @@ const Metric = () => {
   return content
 }
 
-export default Metric
+export default MetricTBM
