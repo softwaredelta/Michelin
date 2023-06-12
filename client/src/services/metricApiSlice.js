@@ -117,6 +117,18 @@ export const metricApiSlice = appSlice.injectEndpoints({
         const loadedMetrics = responseData
         return metricAdapter.setAll(initialState, { loadedMetrics })
       }
+    }),
+    getByMail: builder.query({
+      query: () => {
+        return `/metric/getUserMail/${localStorage.getItem('mail')}` // eslint-disable-line
+      },
+      validateStatus: (response, result) => {
+        return response.status === 200 && !result.isError
+      },
+      transformResponse: (responseData) => {
+        const loadedMetrics = responseData
+        return metricAdapter.setAll(initialState, loadedMetrics)
+      }
     })
   })
 })
@@ -129,5 +141,6 @@ export const {
   useGetByAvgGradeCurQuery,
   useGetAvgPDVQuery,
   useGetFormsCuQuery,
-  useGetFormsByMonthsUserQuery
+  useGetFormsByMonthsUserQuery,
+  useGetByMailQuery
 } = metricApiSlice
