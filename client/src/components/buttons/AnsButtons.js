@@ -38,13 +38,15 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
 
   const onImageChanged = (e) => {
     const options = {
-      maxSizeMB: 0.8,
+      maxSizeMB: 0.5,
       maxWidthOrHeight: 1920,
       useWebWorker: true
     }
 
     imageCompression(e.target.files[0], options)
       .then(function (compressedImage) {
+        console.log(e.target.files[0].size)
+        console.log(compressedImage.size)
         Form.setFile(section, area, index, compressedImage)
         Form.setAnswer(section, area, index, 4)
         setImageUploaded(true)

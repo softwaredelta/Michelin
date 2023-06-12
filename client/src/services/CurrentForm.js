@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiRoute = 'https://back2basics.software/api/'
+const apiRoute = 'http://localhost:3080/'
 
 export default class CurrentForm {
   static instance = null
@@ -401,7 +401,7 @@ export default class CurrentForm {
   CommentJson (commentList) {
     let json = '{"comments": ['
     commentList.forEach((comment) => {
-      json += '"' + comment + '",'
+      json += '"' + comment.replace(/"/g, "'") + '",'
     })
 
     json = json.substring(0, json.length - 1)
