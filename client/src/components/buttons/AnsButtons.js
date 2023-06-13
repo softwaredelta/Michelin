@@ -45,8 +45,6 @@ const AnsButtons = ({ question, area, section, index, setAnswerCount }) => {
 
     imageCompression(e.target.files[0], options)
       .then(function (compressedImage) {
-        console.log(e.target.files[0].size)
-        console.log(compressedImage.size)
         Form.setFile(section, area, index, compressedImage)
         Form.setAnswer(section, area, index, 4)
         setImageUploaded(true)
