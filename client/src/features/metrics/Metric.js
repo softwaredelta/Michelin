@@ -55,19 +55,16 @@ const Metric = () => {
   if (isSuccess) {
     const { ids, entities } = users
     const tableContent = ids?.length
-      ? ids.map((idUser) => { //eslint-disable-line
-        if(entities[idUser].mail !== 'admin@backtobasics.com'){ // eslint-disable-line
-          return (
-            <option key={idUser} value={entities[idUser].id_user}>
-              {`${entities[idUser].name} ${entities[idUser].last_name}`}
-            </option>
-          )
-        }
+      ? ids.map((idUser) => { // eslint-disable-line// eslint-disable-line
+        return (
+          <option key={idUser} value={entities[idUser].id_user}>
+            {`${entities[idUser].name} ${entities[idUser].last_name}`}
+          </option>
+        )
       })
       : null
     myUser = tableContent
   }
-
   const {
     data: time,
     isSuccess: isSuccessTimes
@@ -229,7 +226,7 @@ const Metric = () => {
   if (role == 2 || role == 3){ //eslint-disable-line
     selectUser = (
       <Select
-        className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
+        className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2 hidden'
         id='select_user'
         name='select_user'
         {...register('select_user')}
@@ -259,7 +256,7 @@ const Metric = () => {
                   </div>
                   <div className='flex-col'>
                     <Select
-                      className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
+                      className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2 hidden'
                       id='select_zone'
                       name='select_zone'
                       {...register('select_zone')}
@@ -275,7 +272,7 @@ const Metric = () => {
                   </div>
                   <div className='flex-col'>
                     <button
-                      className='bg-blues-200 text-white py-2 px-4 rounded-md'
+                      className='bg-blues-200 text-white py-2 px-4 rounded-md hidden'
                       onClick={onFilterButtonClicked}
                     >
                       Filtrar

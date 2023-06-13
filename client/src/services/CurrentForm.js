@@ -401,7 +401,7 @@ export default class CurrentForm {
   CommentJson (commentList) {
     let json = '{"comments": ['
     commentList.forEach((comment) => {
-      json += '"' + comment + '",'
+      json += '"' + comment.replace(/"/g, "'") + '",'
     })
 
     json = json.substring(0, json.length - 1)
