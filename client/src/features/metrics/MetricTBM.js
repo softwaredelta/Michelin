@@ -276,7 +276,7 @@ const MetricTBM = () => {
                   </div>
                   <div className='flex-col'>
                     <Select
-                      className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2'
+                      className='rounded-md lg:mt-2 lg:mb-6 xl:mt-0 xl:mb-3 dark:border-2 hidden'
                       id='select_zone'
                       name='select_zone'
                       {...register('select_zone')}
@@ -292,7 +292,7 @@ const MetricTBM = () => {
                   </div>
                   <div className='flex-col'>
                     <button
-                      className='bg-blues-200 text-white py-2 px-4 rounded-md'
+                      className='bg-blues-200 text-white py-2 px-4 rounded-md hidden'
                       onClick={onFilterButtonClicked}
                     >
                       Filtrar
