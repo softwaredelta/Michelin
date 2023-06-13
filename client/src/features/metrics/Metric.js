@@ -221,7 +221,6 @@ const Metric = () => {
       const { entities } = AvgPDV
       setDataAvgPDV(entities.undefined)
     }
-    console.log(dataAvgByMonths)
   }, [isSuccessAvgPDV, AvgPDV, zone, user])
   let selectUser
   if (role == 2 || role == 3){ //eslint-disable-line
