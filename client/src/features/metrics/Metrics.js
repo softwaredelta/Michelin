@@ -77,7 +77,6 @@ const Metric = () => {
       : null
     userListContent = listContent
   }
-
   if (role == 2 || role == 3){ //eslint-disable-line
     selectUser = (
       <Select
@@ -279,7 +278,7 @@ const Metric = () => {
       const { entities } = mail
       setUser(entities.undefined.id_user)
     }
-  }, [isSuccessMail])
+  }, [isSuccessMail, mail, role])
 
   const content = (
     <>
