@@ -10,7 +10,7 @@ import { useGetFormsByUserQuery } from '../../services/formApiSlice'
  */
 // Historia de usuario M3_H3 M3_H2
 const History = () => {
-  const baseReportRoute = 'https://back2basics.software/api/form/report/'
+  const baseReportRoute = 'http://localhost:3080/form/report/'
 
   const {
     data: forms,

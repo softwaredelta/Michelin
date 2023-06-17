@@ -93,6 +93,8 @@ exports.fetchAverageGradeByMonth = async (request, reply) => {
 
   const datafull = [data, months]
 
+  console.log(datafull)
+
   return (datafull)
 }
 
@@ -160,6 +162,7 @@ exports.fetchFormsByMonth = async (request, reply) => {
   data.push({ name: 'Recorridos', data: tours })
 
   const datafull = [data, months]
+  console.log(datafull)
   return (datafull)
 }
 

@@ -30,6 +30,7 @@ const Line = ({ title, subtitle, data, months, yAxis }) => {
     <>
       <div>
         <HighchartsReact
+          immutable
           highcharts={Highcharts}
           options={options}
         />
