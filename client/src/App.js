@@ -15,9 +15,8 @@ import Interior from './features/form/tour/Interior'
 import Client from './features/form/tour/Client'
 import Finalize from './features/form/tour/Finalize'
 import Manager from './features/form/tour/Manager'
-import Metric from './features/metrics/Metric'
 import AdminRoute from './utils/AdminRoute'
-import MetricTBM from './features/metrics/MetricTBM'
+import Metrics from './features/metrics/Metrics'
 
 function App () {
   return (
@@ -94,22 +93,12 @@ function App () {
             }
           />
         </Route>
-        <Route path='metric'>
+        <Route path='metrics'>
           <Route
             index
             element={
               <ProtectedRoute>
-                <ManagerRoute>
-                  <Metric />
-                </ManagerRoute>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='tbm'
-            element={
-              <ProtectedRoute>
-                <MetricTBM />
+                <Metrics />
               </ProtectedRoute>
             }
           />

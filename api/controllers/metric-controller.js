@@ -160,6 +160,7 @@ exports.fetchFormsByMonth = async (request, reply) => {
   data.push({ name: 'Recorridos', data: tours })
 
   const datafull = [data, months]
+
   return (datafull)
 }
 
